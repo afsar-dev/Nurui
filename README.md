@@ -1,130 +1,28 @@
 <h1 align="center">
-  <img src="nurui-logo.png" alt="Nurui Logo" width="200" />
+  <img
+    src="nurui-logo.png"
+    alt="Nurui Logo"
+    width="200"
+  />
 </h1>
 
-<p align="center"><b>Nurui</b> — A production-ready React & Next.js UI component library for building fast, beautiful, and accessible interfaces.</p>
+<p align="center">Nurui is a modern React and Next.js based UI component library that streamlines front-end development. It offers CLI scaffolding, automatic TypeScript to JavaScript conversion, and live component previews for a faster, more customizable workflow.</p>
 
-<p align="center">
-  <a href="https://nurui.vercel.app/docs/installation"><b>Documentation</b></a> •
-  <a href="#features">Features</a> •
-  <a href="#installation">Install</a> •
-  <a href="#add-components">Add Components</a> •
-  <a href="#contributing">Contribute</a>
-</p>
+<img src="og-image.png" alt="UI component library" width="100%" />
 
-<p align="center">
-  <img alt="License" src="https://img.shields.io/github/license/afsar-dev/Nurui?label=License&style=flat-square">
-  <img alt="Last Commit" src="https://img.shields.io/github/last-commit/afsar-dev/Nurui?style=flat-square">
-  <img alt="Issues" src="https://img.shields.io/github/issues/afsar-dev/Nurui?style=flat-square">
-  <img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-1abc9c.svg?style=flat-square">
-</p>
+## Documentation
 
-<img src="og-image.png" alt="Nurui UI component library" width="100%" />
+Visit https://nurui.vercel.app/docs/installation to view the documentation.
 
----
-
-## About Nurui
-
-Nurui provides a modern set of React/Next.js UI components with built-in CLI scaffolding, TypeScript to JavaScript conversion, and live previews for faster, more customizable workflows.  
-It’s production-ready, accessible by default, and easy to theme.
-
----
-
-## Features
-
-- Next.js-first — Works seamlessly with App Router and Pages Router
-- Themeable — CSS variables, design tokens, and dark mode ready
-- Component Library + CLI — Scaffold new components instantly
-- Live Previews — Iterate faster in a playground environment
-- Accessible by default — ARIA roles, keyboard navigation, focus management
-- Tree-shakable — Import only what you need
-- TypeScript and JavaScript Support — Works in both environments
-
----
-
-## Installation
-
-Install Nurui and the CLI with your preferred package manager:
-
-```bash
-# npm
-npm install nurui nurui-cli
-
-# pnpm
-pnpm add nurui nurui-cli
-
-# bun
-bun add nurui nurui-cli
-
-# yarn
-yarn add nurui nurui-cli
-```
-
----
-
-## View All Available Components
-
-List all supported components you can scaffold:
-
-```bash
-npx nurui list
-```
-
----
-
-## Add Components
-
-Add any component to your project using the CLI:
-
-```bash
-# npm
-npx nurui add gradient-button
-
-# pnpm
-pnpm dlx nurui add gradient-button
-
-# bun
-bunx nurui add gradient-button
-
-# yarn
-yarn dlx nurui add gradient-button
-```
-
-This will generate the `GradientButton` component in:
-
-```
-components/nurui/GradientButton.tsx
-```
-
----
-
-## Import and Use a Component
-
-```tsx
-import { GradientButton } from "@/components/nurui/GradientButton";
-
-export default function Home() {
-  return (
-    <div>
-      <GradientButton />
-    </div>
-  );
-}
-```
-
-Update the import path to match your project’s folder structure.
-
----
-
-## Local Development Setup
+## 🛠️ Project Setup
 
 ```bash
 # 1. Clone the repository
 git clone https://github.com/afsar-dev/Nurui.git
 cd Nurui
 
-# 2. Create a .env file in the root directory:
-echo "NODE_ENV=development" > .env
+# 2. Create a .env file in the root directory and add:
+NODE_ENV=development
 
 # 3. Install dependencies
 yarn install
@@ -132,32 +30,30 @@ yarn install
 # 4. Start the development server
 yarn dev
 
-# App runs at http://localhost:3000
+# The application will be available at http://localhost:3000
 ```
 
----
+<!-- ## Activity
 
-## Contributing
-
-We welcome contributions!
-
-1. Fork the repo
-2. Create a feature branch (`feat/amazing-feature`)
-3. Commit with conventional messages
-4. Open a PR
-
-See the [Contributing Guide](https://github.com/afsar-dev/Nurui/blob/main/CONTRIBUTING.md) for details.
-
----
+![Alt](https://repobeats.axiom.co/api/embed/35271c3244e24efbae34731d1ee21d0988f8fc0e.svg "Repobeats analytics image") -->
 
 ## License
 
-Licensed under the [MIT License](https://github.com/afsar-dev/Nurui/blob/main/LICENSE).
+Licensed under the [MIT license.](https://github.com/afsar-dev/Nurui/blob/main/LICENSE)
 
----
+## Contributing
+
+visit this [Documentation](https://github.com/afsar-dev/Nurui/blob/main/CONTRIBUTING.md)
+
+<!-- ## Support
+
+If you find this project useful, please consider [sponsoring me](https://github.com/sponsors/your-username).
+
+[![Sponsor](https://img.shields.io/badge/Sponsor-%F0%9F%92%96-pink)](https://github.com/sponsors/your-username) -->
 
 ## Author
 
-**Md Afsar Mahmud** — Full Stack Developer
+**Md Afsar Mahmud**  
+Full Stack Developer  
 [HackerRank](https://www.hackerrank.com/profile/mdafsar) •
 [LinkedIn](https://www.linkedin.com/in/md-afsar-mahmud)
