@@ -100,6 +100,9 @@ export const componentsPreviewRegistry: Record<
   "virus-background": {
     component: dynamic(() => import("@/components/nurui/virus-background")),
   },
+  "hacker-background": {
+    component: dynamic(() => import("@/components/nurui/hacker-background")),
+  },
   // texts
   "gradient-text": {
     component: dynamic(() => import("@/components/nurui/gradient-text-demo")),

@@ -63,6 +63,7 @@ export const navigation = [
       { name: "jump", href: `${baseUrl}/jump-background` },
       { name: "virus", href: `${baseUrl}/virus-background` },
       { name: "gradient", href: `${baseUrl}/gradient-background` },
+      { name: "hacker", href: `${baseUrl}/hacker-background` },
     ],
   },
   // buttons
