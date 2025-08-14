@@ -180,6 +180,9 @@ import JumpsBackgroundCode from "@/components/nurui/jump-background.tsx?raw";
 import VirusBackgroundCode from "@/components/nurui/virus-background.tsx?raw";
 import VirusBackgroundDemo from "@/components/nurui/virus-background-demo";
 import VirusBackgroundDemoCode from "@/components/nurui/virus-background-demo.tsx?raw";
+import { HackerBackgroundDemo } from "@/components/nurui/hacker-background-demo";
+import HackerBackgroundDemoCode from "@/components/nurui/hacker-background-demo.tsx?raw";
+import HackerBackgroundCode from "@/components/nurui/hacker-background.tsx?raw";
 
 type CodeEntry = {
   fileName: string;
@@ -451,6 +454,11 @@ export const Index: Record<string, ComponentEntry> = {
     preview: <BarsBackgroundDemo />,
     code: BarsBackgroundDemoCode,
     othersCode: [{ fileName: "gradient-bars", code: GradientBarsCode }],
+  },
+  hackerBackground: {
+    preview: <HackerBackgroundDemo />,
+    code: HackerBackgroundDemoCode,
+    othersCode: [{ fileName: "hacker-background", code: HackerBackgroundCode }],
   },
   gradientBackground: {
     preview: <GradientBackgroundDemo />,

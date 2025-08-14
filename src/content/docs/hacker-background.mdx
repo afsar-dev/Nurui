@@ -1,0 +1,48 @@
+---
+title: "hacker background"
+description: "A stylish hacker background component for modern UIs, built with accessibility and animation in mind."
+---
+
+<ComponentPreview componentName="hackerBackground" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <Cli />
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+`components/nurui/hacker-background.tsx`
+
+<CodeBlock componentName="hackerBackground" fileName="hacker-background" />
+
+<Step>Update the import paths to match your project setup.</Step>
+   
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+### Props
+
+| Prop        | Type     | Default     | Description                                                                  |
+| ----------- | -------- | ----------- | ---------------------------------------------------------------------------- |
+| `color`     | `string` | `"#3ca2fa"` | Color of the falling hacker characters.                                      |
+| `fontSize`  | `number` | `14`        | Font size (in pixels) for the hacker characters.                             |
+| `className` | `string` | `""`        | Additional class names for the canvas element.                               |
+| `speed`     | `number` | `1`         | Speed multiplier controlling how fast the characters fall (higher = faster). |
