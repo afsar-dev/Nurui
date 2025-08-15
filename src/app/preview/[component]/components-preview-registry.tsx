@@ -38,6 +38,10 @@ export const componentsPreviewRegistry: Record<
   "grid-feature": {
     component: dynamic(() => import("@/components/nurui/grid-feature-demo")),
   },
+  // header
+  "future-navbar": {
+    component: dynamic(() => import("@/components/nurui/futrue-navbar")),
+  },
   // components
   "project-showcase": {
     component: dynamic(

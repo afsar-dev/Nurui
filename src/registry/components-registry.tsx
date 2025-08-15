@@ -86,9 +86,8 @@ import CreativePricingDemoCode from "@/components/nurui/creative-pricing-demo.ts
 import CreativePricingCode from "@/components/nurui/creative-pricing.tsx?raw";
 import ButtonCode from "@/components/nurui/button.tsx?raw";
 import FutureButtonDemo from "@/components/nurui/future-button-demo";
-import FutureButtonCode from "@/components/nurui/future-button.tsx?raw";
 import FutureButtonDemoCode from "@/components/nurui/future-button-demo.tsx?raw";
-import FrameCode from "@/components/nurui/future-frame.tsx?raw";
+import FrameCode from "@/components/nurui/frame.tsx?raw";
 import GamingFormDemo from "@/components/nurui/gaming-form-demo";
 import GamingFormDemoCode from "@/components/nurui/gaming-form-demo.tsx?raw";
 import GamingFormCode from "@/components/nurui/gaming-form.tsx?raw";
@@ -183,6 +182,9 @@ import VirusBackgroundDemoCode from "@/components/nurui/virus-background-demo.ts
 import { HackerBackgroundDemo } from "@/components/nurui/hacker-background-demo";
 import HackerBackgroundDemoCode from "@/components/nurui/hacker-background-demo.tsx?raw";
 import HackerBackgroundCode from "@/components/nurui/hacker-background.tsx?raw";
+import FutureNavbar from "@/components/nurui/futrue-navbar";
+import FutureNavbarCode from "@/components/nurui/futrue-navbar.tsx?raw";
+import FutureButtonCode from "@/components/nurui/future-button.tsx?raw";
 
 type CodeEntry = {
   fileName: string;
@@ -236,6 +238,15 @@ export const Index: Record<string, ComponentEntry> = {
       { fileName: "rating-icon", code: RatingIconCode },
     ],
   },
+  futureNavbar: {
+    preview: <FutureNavbar />,
+    code: FutureNavbarCode,
+    othersCode: [
+      { fileName: "future-button", code: FutureButtonCode },
+      { fileName: "frame", code: FrameCode },
+    ],
+  },
+
   // components
   projectShowCase: {
     preview: <ProjectShowCaseDemo />,

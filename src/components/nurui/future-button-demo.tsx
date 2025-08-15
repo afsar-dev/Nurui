@@ -1,14 +1,14 @@
 "use client";
-import { Button } from "@/components/nurui/future-button";
 import { ShoppingCart } from "lucide-react";
+import FutureButton from "./future-button";
 
 export default function FutureButtonDemo() {
   return (
     <div className="flex justify-center py-20">
-      <Button variant="destructive">
+      <FutureButton>
         <ShoppingCart className="w-4 h-4 mr-2" />
         Purchase Item
-      </Button>
+      </FutureButton>
     </div>
   );
 }

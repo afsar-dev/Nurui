@@ -303,6 +303,11 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@left4code/svg-renderer@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@left4code/svg-renderer/-/svg-renderer-1.0.4.tgz#822277dcf01aa9fe500450b68341859fe31943f1"
+  integrity sha512-QpGS3fz9NDtb/TtD8UYnPeQlG2HvRxGTBSsSfCCcHfHxOSC/cJWwK2hOyD3xFFVmcW+DqUdzH8gi3i1B5XWpDw==
+
 "@mdx-js/loader@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-3.1.0.tgz#715fdab11d0c9567e45049c16a7d9c83cec88214"
