@@ -1,5 +1,10 @@
 import { TfiHelpAlt } from "react-icons/tfi";
-import { TbBackground, TbCards, TbHandClick } from "react-icons/tb";
+import {
+  TbBackground,
+  TbCards,
+  TbHandClick,
+  TbLayoutNavbarCollapse,
+} from "react-icons/tb";
 import { GrDrawer, GrInstallOption } from "react-icons/gr";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { FaWpforms } from "react-icons/fa";
@@ -39,6 +44,11 @@ export const navigation = [
       { name: "animated pricing", href: `${baseUrl}/animated-pricing` },
       { name: "creative pricing", href: `${baseUrl}/creative-pricing` },
     ],
+  },
+  {
+    icon: <TbLayoutNavbarCollapse />,
+    title: "Navbar",
+    submenu: [{ name: "future", href: `${baseUrl}/future-navbar` }],
   },
   // components
   {

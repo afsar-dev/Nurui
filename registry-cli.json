@@ -97,6 +97,24 @@
     },
 
     {
+      "name": "future-navbar",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": ["lucide-react", "class-variance-authority"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/frame.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/future-button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+
+    {
       "name": "project-showcase",
       "type": "registry:component",
       "devDependencies": [],
@@ -374,7 +392,7 @@
           "type": "registry:component"
         },
         {
-          "path": "./src/components/nurui/future-frame.tsx",
+          "path": "./src/components/nurui/frame.tsx",
           "type": "registry:component"
         }
       ]

@@ -1,0 +1,100 @@
+---
+title: "future Navbar"
+description: "A stylish future Navbar component for modern UIs, built with accessibility and animation in mind."
+---
+
+<ComponentPreview componentName="futureNavbar" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <Cli />
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+<Cli
+  dependencies={[
+    {
+      label: "npm",
+      command:
+        "npm i class-variance-authority clsx tailwind-merge lucide-react",
+    },
+    {
+      label: "pnpm",
+      command:
+        "pnpm add class-variance-authority clsx tailwind-merge lucide-react",
+    },
+    {
+      label: "bun",
+      command:
+        "bun add class-variance-authority clsx tailwind-merge lucide-react",
+    },
+    {
+      label: "yarn",
+      command:
+        "yarn add class-variance-authority clsx tailwind-merge lucide-react",
+    },
+  ]}
+/>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+`components/nurui/future-button.tsx`
+
+<CodeBlock componentName="futureNavbar" fileName="future-button" />
+
+`components/nurui/frame.tsx`
+
+<CodeBlock componentName="futureNavbar" fileName="frame" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+### Props
+
+`MobileMenuContext`
+
+| Prop          | Type                                            | Default    | Description                              |
+| ------------- | ----------------------------------------------- | ---------- | ---------------------------------------- |
+| `showMenu`    | `boolean`                                       | `true`     | Indicates if the mobile menu is visible. |
+| `setShowMenu` | `React.Dispatch<React.SetStateAction<boolean>>` | `() => {}` | Function to update `showMenu`.           |
+
+`FutureButton Props`
+
+| Prop                 | Type                              | Default     | Description                                                                    |
+| -------------------- | --------------------------------- | ----------- | ------------------------------------------------------------------------------ |
+| `shape`              | `"default" \| "flat" \| "simple"` | `"default"` | Determines the button style and path rendering.                                |
+| `className`          | `string`                          | `undefined` | Additional class names for the button.                                         |
+| `children`           | `React.ReactNode`                 | `undefined` | Button content.                                                                |
+| `enableBackdropBlur` | `boolean`                         | `false`     | Enables backdrop blur effect for the button frame.                             |
+| `enableViewBox`      | `boolean`                         | `false`     | Enables the SVG viewBox for responsive scaling.                                |
+| `customPaths`        | `string[]`                        | `undefined` | Custom SVG path definitions (JSON strings) instead of default paths.           |
+| `bgColor`            | `string`                          | `undefined` | Optional background color for the button (not used in default implementation). |
+| `textColor`          | `string`                          | `undefined` | Text color for the button; defaults to theme color.                            |
+| `...props`           | `React.ComponentProps<"button">`  | `undefined` | Standard button HTML attributes like `onClick`, `type`, `disabled`, etc.       |
+
+`Frame Props`
+
+| Prop                 | Type                                | Default     | Description                                                                            |
+| -------------------- | ----------------------------------- | ----------- | -------------------------------------------------------------------------------------- |
+| `paths`              | `Paths` (array of path definitions) | required    | Array of objects describing SVG paths, including `show`, `style`, and `path` commands. |
+| `enableBackdropBlur` | `boolean`                           | `false`     | Adds a blur filter behind paths when true.                                             |
+| `className`          | `string`                            | `undefined` | Additional class names for the SVG wrapper.                                            |
+| `...props`           | `React.ComponentProps<"svg">`       | `undefined` | Standard SVG element props, e.g., `width`, `height`, `viewBox`.                        |
