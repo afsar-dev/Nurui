@@ -62,7 +62,7 @@ function FutureNavbar() {
             />
             <div className="flex items-center mt-2.5 relative">
               <Link href="/" className="me-16 font-bold">
-                COSMIC UI
+                Nur/ui
               </Link>
               <div className="hidden lg:flex gap-8 font-medium">
                 <Link href="/docs">Docs</Link>
