@@ -185,6 +185,9 @@ import HackerBackgroundCode from "@/components/nurui/hacker-background.tsx?raw";
 import FutureNavbar from "@/components/nurui/futrue-navbar";
 import FutureNavbarCode from "@/components/nurui/futrue-navbar.tsx?raw";
 import FutureButtonCode from "@/components/nurui/future-button.tsx?raw";
+import NuralBackgroundDemo from "@/components/nurui/nural-background-demo";
+import NuralBackgroundDemoCode from "@/components/nurui/nural-background-demo.tsx?raw";
+import NeuralNoiseCode from "@/components/nurui/neural-background.tsx?raw";
 
 type CodeEntry = {
   fileName: string;
@@ -487,6 +490,11 @@ export const Index: Record<string, ComponentEntry> = {
     preview: <VirusBackgroundDemo />,
     code: VirusBackgroundDemoCode,
     othersCode: [{ fileName: "virus-background", code: VirusBackgroundCode }],
+  },
+  neuralBackground: {
+    preview: <NuralBackgroundDemo />,
+    code: NuralBackgroundDemoCode,
+    othersCode: [{ fileName: "neural-background", code: NeuralNoiseCode }],
   },
   // text
   gradientText: {

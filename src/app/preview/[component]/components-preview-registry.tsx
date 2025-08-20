@@ -107,6 +107,9 @@ export const componentsPreviewRegistry: Record<
   "hacker-background": {
     component: dynamic(() => import("@/components/nurui/hacker-background")),
   },
+  "neural-background": {
+    component: dynamic(() => import("@/components/nurui/neural-background")),
+  },
   // texts
   "gradient-text": {
     component: dynamic(() => import("@/components/nurui/gradient-text-demo")),
