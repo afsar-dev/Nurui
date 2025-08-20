@@ -22,7 +22,7 @@ function FutureNavbar() {
 
   return (
     <MobileMenuContext.Provider value={{ showMenu, setShowMenu }}>
-      <div className="h-16 mt-2 mx-2 lg:-mt-px lg:-mx-px flex w-full top-0 inset-x-0 z-50">
+      <div className="h-16 mt-2 mx-2 lg:-mt-px lg:-mx-px flex w-full top-0 inset-x-0 z-40">
         <div className="size-full relative -mr-[11px] hidden lg:block">
           <Frame
             className="drop-shadow-2xl"
