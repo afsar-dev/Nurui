@@ -72,7 +72,14 @@ const Cli: React.FC<IDependencies> = ({ dependencies }) => {
         {dependencies?.length ? (
           <SnippetCopyButton value={dependencieCommand?.command ?? ""} />
         ) : (
-          <SnippetCopyButton value={activeCommand?.code ?? ""} />
+          <SnippetCopyButton
+            value={
+              activeCommand?.code.concat(
+                " ",
+                componentName[componentName.length - 1],
+              ) ?? ""
+            }
+          />
         )}
       </SnippetHeader>
       {dependencies?.length
