@@ -74,6 +74,7 @@ export const navigation = [
       { name: "virus", href: `${baseUrl}/virus-background` },
       { name: "gradient", href: `${baseUrl}/gradient-background` },
       { name: "hacker", href: `${baseUrl}/hacker-background` },
+      { name: "neural", href: `${baseUrl}/neural-background` },
     ],
   },
   // buttons

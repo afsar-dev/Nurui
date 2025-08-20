@@ -305,6 +305,19 @@
         }
       ]
     },
+    {
+      "name": "neural-background",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": [""],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/hacker-background.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
 
     {
       "name": "magnet-button",
