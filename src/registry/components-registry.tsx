@@ -188,6 +188,10 @@ import FutureButtonCode from "@/components/nurui/future-button.tsx?raw";
 import NuralBackgroundDemo from "@/components/nurui/nural-background-demo";
 import NuralBackgroundDemoCode from "@/components/nurui/nural-background-demo.tsx?raw";
 import NeuralNoiseCode from "@/components/nurui/neural-background.tsx?raw";
+import HoverFooter from "@/components/nurui/hover-footer";
+import HoverFooterCode from "@/components/nurui/hover-footer.tsx?raw";
+import TextHoverEffectCode from "@/components/nurui/text-hover-effect.tsx?raw";
+import FooterBackgroundGradient from "@/components/nurui/footer-background-gradient.tsx?raw";
 
 type CodeEntry = {
   fileName: string;
@@ -241,12 +245,25 @@ export const Index: Record<string, ComponentEntry> = {
       { fileName: "rating-icon", code: RatingIconCode },
     ],
   },
+  // navbar
   futureNavbar: {
     preview: <FutureNavbar />,
     code: FutureNavbarCode,
     othersCode: [
       { fileName: "future-button", code: FutureButtonCode },
       { fileName: "frame", code: FrameCode },
+    ],
+  },
+  // footer
+  hoverFooter: {
+    preview: <HoverFooter />,
+    code: HoverFooterCode,
+    othersCode: [
+      { fileName: "text-hover-effect", code: TextHoverEffectCode },
+      {
+        fileName: "footer-background-gradient",
+        code: FooterBackgroundGradient,
+      },
     ],
   },
 

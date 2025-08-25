@@ -1,0 +1,73 @@
+---
+title: "hover footer"
+description: "A stylish hover footer component for modern UIs, built with accessibility and animation in mind."
+---
+
+<ComponentPreview componentName="hoverFooter" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <Cli />
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+<Cli
+  dependencies={[
+    {
+      label: "npm",
+      command: "npm i motion clsx tailwind-merge lucide-react",
+    },
+    {
+      label: "pnpm",
+      command: "pnpm add motion clsx tailwind-merge lucide-react",
+    },
+    {
+      label: "bun",
+      command: "bun add motion clsx tailwind-merge lucide-react",
+    },
+    {
+      label: "yarn",
+      command: "yarn add motion clsx tailwind-merge lucide-react",
+    },
+  ]}
+/>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+`components/nurui/text-hover-effect.tsx`
+
+<CodeBlock componentName="hoverFooter" fileName="text-hover-effect" />
+
+`components/nurui/footer-background-gradient.tsx`
+
+<CodeBlock componentName="hoverFooter" fileName="footer-background-gradient" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+### Props
+
+| Prop         | Type      | Default | Description                                                                 |
+| ------------ | --------- | ------- | --------------------------------------------------------------------------- |
+| `text`       | `string`  | —       | The text content to display.                                                |
+| `duration?`  | `number`  | `0`     | Transition duration (in seconds) for the gradient mask movement animation.  |
+| `className?` | `string`  | —       | Additional CSS class names applied to the root `<svg>` element.             |
+| `automatic?` | `boolean` | —       | (Currently unused) Intended for triggering automatic animations if enabled. |

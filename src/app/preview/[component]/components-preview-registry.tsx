@@ -42,6 +42,10 @@ export const componentsPreviewRegistry: Record<
   "future-navbar": {
     component: dynamic(() => import("@/components/nurui/futrue-navbar")),
   },
+  // footer
+  "hover-footer": {
+    component: dynamic(() => import("@/components/nurui/hover-footer")),
+  },
   // components
   "project-showcase": {
     component: dynamic(

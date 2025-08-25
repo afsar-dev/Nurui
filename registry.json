@@ -153,6 +153,28 @@
     },
 
     {
+      "name": "hover-footer",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": ["clsx", "tailwind-merge", "lucide-react", "motion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/hover-footer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/text-hover-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/footer-background-gradient.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+
+    {
       "name": "project-showcase",
       "type": "registry:component",
       "devDependencies": [],
