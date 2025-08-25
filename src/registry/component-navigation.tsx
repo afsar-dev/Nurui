@@ -12,6 +12,7 @@ import { RxComponent2, RxSection } from "react-icons/rx";
 import { PiCursorClickDuotone } from "react-icons/pi";
 import { SiApacherocketmq } from "react-icons/si";
 import { IoTextSharp } from "react-icons/io5";
+import { MdLegendToggle } from "react-icons/md";
 
 const baseUrl = "/docs";
 
@@ -45,10 +46,17 @@ export const navigation = [
       { name: "creative pricing", href: `${baseUrl}/creative-pricing` },
     ],
   },
+  // navbar
   {
     icon: <TbLayoutNavbarCollapse />,
     title: "Navbar",
     submenu: [{ name: "future", href: `${baseUrl}/future-navbar` }],
+  },
+  // footer
+  {
+    icon: <MdLegendToggle />,
+    title: "Footer",
+    submenu: [{ name: "hover", href: `${baseUrl}/hover-footer` }],
   },
   // components
   {

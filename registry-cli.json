@@ -113,6 +113,23 @@
         }
       ]
     },
+    {
+      "name": "hover-footer",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": ["lucide-react", "motion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/text-hover-effect.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/footer-background-gradient.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
 
     {
       "name": "project-showcase",
