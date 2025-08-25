@@ -71,19 +71,19 @@ const StatesCount = () => {
 
   const metricsData: MetricsData[] = [
     {
-      count: Object.keys(Index).length - 1,
+      count: Object.keys(Index).length, 
       description: "Components available in the library",
     },
     {
-      count: githubData.developersUsing - 1,
+      count: githubData.developersUsing, 
       description: "Developers using nurui",
     },
     {
-      count: githubData.contributors - 1,
+      count: githubData.contributors, 
       description: "Open-source contributors",
     },
     {
-      count: githubData.stars - 1,
+      count: githubData.stars, 
       description: "GitHub stars",
     },
   ];
