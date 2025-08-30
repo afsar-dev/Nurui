@@ -96,6 +96,7 @@ export const navigation = [
       { name: "Shadow", href: `${baseUrl}/shadow-button` },
       { name: "Text", href: `${baseUrl}/text-button` },
       { name: "future", href: `${baseUrl}/future-button` },
+      { name: "Play", href: `${baseUrl}/play-button` },
     ],
   },
   // cards
