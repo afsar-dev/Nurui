@@ -138,6 +138,12 @@ export const componentsPreviewRegistry: Record<
       ),
     ),
   },
+  "play-button": {
+    component: dynamic(() => import("@/components/nurui/play-button-demo")),
+  },
+  "copy-button": {
+    component: dynamic(() => import("@/components/nurui/copy-button-demo")),
+  },
   // cards
   "playing-card": {
     component: dynamic(() => import("@/components/nurui/playing-card-demo")),
