@@ -13,6 +13,9 @@ import TextFallButtonCode from "@/components/nurui/text-button.tsx?raw";
 import MagnetButtonDemo from "@/components/nurui/magnet-button-demo";
 import MagnetButtonDemoCode from "@/components/nurui/magnet-button-demo.tsx?raw";
 import MagnetButtonCode from "@/components/nurui/magnet-button.tsx?raw";
+import PlayButtonDemoCode from "@/components/nurui/play-button-demo.tsx?raw";
+import PlayButtonDemo from "@/components/nurui/play-button-demo";
+import PlayButtonCode from "@/components/nurui/play-button.tsx?raw";
 import PlayingCardDemo from "@/components/nurui/playing-card-demo";
 import PlayingCardDemoCode from "@/components/nurui/playing-card-demo.tsx?raw";
 import PlayingCardCode from "@/components/nurui/playing-card.tsx?raw";
@@ -193,6 +196,7 @@ import HoverFooterCode from "@/components/nurui/hover-footer.tsx?raw";
 import TextHoverEffectCode from "@/components/nurui/text-hover-effect.tsx?raw";
 import FooterBackgroundGradient from "@/components/nurui/footer-background-gradient.tsx?raw";
 
+
 type CodeEntry = {
   fileName: string;
   code: string;
@@ -355,6 +359,13 @@ export const Index: Record<string, ComponentEntry> = {
     othersCode: [
       { fileName: "future-button", code: FutureButtonCode },
       { fileName: "future-frame", code: FrameCode },
+    ],
+  },
+  PlayButton: {
+    preview: <PlayButtonDemo />,
+    code: PlayButtonDemoCode,
+    othersCode: [
+      { fileName: "play-button", code: PlayButtonCode }
     ],
   },
   // cards
