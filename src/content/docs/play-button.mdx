@@ -1,0 +1,43 @@
+---
+title: "Play Button"
+description: "A stylish play button component with indigo glow and animation effects."
+---
+
+<ComponentPreview componentName="PlayButton" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <Cli />
+</TabsContent>
+
+<TabsContent value="manual">
+<Steps>
+<Step>Install dependencies</Step>
+<Cli
+  dependencies={[
+    { label: "npm", command: "npm i react-icons" },
+    { label: "yarn", command: "yarn add react-icons" },
+  ]}
+/>
+<Step>Copy and paste the following code into your project.</Step>
+`components/nurui/play-button.tsx`
+<CodeBlock componentName="PlayButton" fileName="play-button" />
+</Steps>
+</TabsContent>
+
+</Tabs>
+
+### Props
+
+| Prop     | Type     | Default       | Description                   |
+|----------|----------|---------------|-------------------------------|
+| `text`   | `string` | `"Play demo"` | The text displayed on button  |
+| ...props | `button` | —             | Standard button props         |
