@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "play-button",
+  "type": "registry:component",
+  "dependencies": [
+    "react-icons"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "./src/components/nurui/play-button-demo.tsx",
+      "content": "import React from \"react\";\nimport PlayButton from \"@/components/nurui/play-button\";\n\nconst PlayButtonDemo = () => {\n  return (\n    <div className=\"flex items-center justify-center min-h-[30rem]\">\n      <PlayButton text=\"Play Now\" />\n    </div>\n  );\n};\n\nexport default PlayButtonDemo;\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "./src/components/nurui/play-button.tsx",
+      "content": "import React from 'react';\nimport { FaPlay } from 'react-icons/fa';\n\nconst PlayButton = ({ text }: { text: string }) => {\n  return (\n    <button className=\"relative group text-white transition-all flex items-center justify-center whitespace-nowrap rounded-lg hover:rotate-[3deg] will-change-transform duration-300 shadow-lg hover:shadow-xl h-14 text-lg pl-[5rem] pr-6 bg-fuchsia-950 shadow-fuchsia-950/30 hover:shadow-fuchsia-950/30\">\n      <div className=\"absolute left-0 top-0 mt-1 ml-1 bg-white text-fuchsia-950 p-[0.35rem] bottom-1 group-hover:w-[calc(100%-0.5rem)] transition-all rounded-md duration-300 h-12 w-12 flex items-center justify-center\">\n        <FaPlay className=\"h-6 w-6\" />\n      </div>\n      <div>{text}</div>\n    </button>\n  );\n};\n\nexport default PlayButton;\n",
+      "type": "registry:component"
+    }
+  ]
+}

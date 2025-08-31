@@ -3,7 +3,7 @@
 import { Copy } from "lucide-react";
 import React, { useState } from "react";
 import Lottie from "lottie-react";
-import animationData from "../data/confetti.json";
+import animationData from "./data/confetti.json";
 
 interface CopyButtonProps {
   text: string; // the text/email to copy
