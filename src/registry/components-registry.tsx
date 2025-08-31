@@ -63,6 +63,9 @@ import TerminalCursorCode from "@/components/nurui/terminal-cursor.tsx?raw";
 import CodeCursorDemo from "@/components/nurui/code-cursor-demo";
 import CodeCursorDemoCode from "@/components/nurui/code-cursor-demo.tsx?raw";
 import CodeCursorCode from "@/components/nurui/code-cursor.tsx?raw";
+import CopyButtonCode from "@/components/nurui/copy-button.tsx?raw";
+import CopyButtonDemo from "@/components/nurui/copy-button-demo";
+import CopyButtonDemoCode from "@/components/nurui/copy-button-demo.tsx?raw";
 import MoneyCursorDemo from "@/components/nurui/money-cursor-demo";
 import MoneyCursorDemoCode from "@/components/nurui/money-cursor-demo.tsx?raw";
 import MoneyCursorCode from "@/components/nurui/money-cursor.tsx?raw";
@@ -368,6 +371,14 @@ export const Index: Record<string, ComponentEntry> = {
       { fileName: "play-button", code: PlayButtonCode }
     ],
   },
+  CopyButton: {
+  preview: <CopyButtonDemo />,
+  code: CopyButtonDemoCode,
+  othersCode: [
+    { fileName: "copy-button", code: CopyButtonCode },
+  ],
+},
+
   // cards
   playingCard: {
     preview: <PlayingCardDemo />,

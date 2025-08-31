@@ -1,0 +1,42 @@
+---
+title: "Copy Button"
+description: "A button that copies text to clipboard with confetti animation."
+---
+
+<ComponentPreview componentName="CopyButton" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+  <TabsList>
+    <TabsTrigger value="cli">CLI</TabsTrigger>
+    <TabsTrigger value="manual">Manual</TabsTrigger>
+  </TabsList>
+
+  <TabsContent value="cli">
+    <Cli />
+  </TabsContent>
+
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
+      <Cli
+        dependencies={[
+          { label: "npm", command: "npm i lottie-react lucide-react" },
+          { label: "yarn", command: "yarn add lottie-react lucide-react" },
+        ]}
+      />
+      <Step>Copy and paste the following code into your project.</Step>
+      `components/nurui/copy-button.tsx`
+      <CodeBlock componentName="CopyButton" fileName="copy-button" />
+    </Steps>
+  </TabsContent>
+</Tabs>
+
+### Props
+
+| Prop          | Type     | Default                  | Description                         |
+|---------------|----------|--------------------------|-------------------------------------|
+| `text`        | string   | `"your@email.com"`       | The text/email copied to clipboard  |
+| `defaultLabel`| string   | `"Copy my email address"`| Label before copy                   |
+| `successLabel`| string   | `"Email is Copied!"`     | Label after copy                    |
