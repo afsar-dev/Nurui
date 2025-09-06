@@ -22,7 +22,9 @@ const Layout = ({ children }: IChildren) => {
           "xl:w-[calc(100%-18rem)]": !isLeftSideBar,
         })}
       >
-        <main className="px-6 md:px-12 py-8">{children}</main>
+        <main className="px-6 md:px-12 py-8">
+          {children}
+        </main>
         <ComponentsFooter />
       </div>
       <ComponentsRightSidebar />
