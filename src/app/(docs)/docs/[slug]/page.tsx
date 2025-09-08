@@ -4,6 +4,7 @@ import path from "path";
 import { getMDXComponents } from "../../../../../mdx-components";
 import { Metadata } from "next";
 import remarkGfm from "remark-gfm";
+import CopyPage from "@/components/ui/CopyButton";
 
 interface AsyncParams {
   params: Promise<{ slug: string }>;
@@ -104,7 +105,12 @@ const Page = async ({ params }: AsyncParams) => {
     components: getMDXComponents({}),
   });
 
-  return <div>{content}</div>;
+  return (
+    <div>
+      <CopyPage text={rawMDX} slug={slug} />
+      {content}
+    </div>
+  );
 };
 
 export default Page;
