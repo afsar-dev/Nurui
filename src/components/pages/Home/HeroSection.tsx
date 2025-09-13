@@ -97,7 +97,7 @@ const HeroSection = async () => {
               }}
             >
               <ShadowAnimationButton
-                href={"/docs/installation"}
+                href={"/docs/components"}
                 title="Get Started"
               />
             </CollMode>

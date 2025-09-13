@@ -11,6 +11,7 @@ import {
   TabsTrigger,
 } from "@/components/common/Tabs";
 import Link from "next/link";
+import ComponentsPage from "./src/components/pages/components/ComponentsPage";
 
 export function getMDXComponents(
   components: MDXComponents = {},
@@ -239,6 +240,7 @@ export function getMDXComponents(
     CodeBlock,
     ComponentPreview,
     Cli,
+    ComponentsPage,
     ...components,
   };
 }

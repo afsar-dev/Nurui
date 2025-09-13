@@ -9,24 +9,31 @@ import Link from "next/link";
 interface BentoGridProps extends ComponentPropsWithoutRef<"div"> {
   children: ReactNode;
   className?: string;
+  container?: boolean;
 }
 
 interface BentoCardProps extends ComponentPropsWithoutRef<"div"> {
   name: string;
-  className: string;
+  className?: string;
   background: ReactNode;
   description: string;
   href: string;
   previewComponentName: string;
-  v0ComponentName: string;
-  cli: string;
+  v0ComponentName?: string;
+  cli?: string;
 }
 
-const BentoGrid = ({ children, className, ...props }: BentoGridProps) => {
+const BentoGrid = ({
+  children,
+  className,
+  container = true,
+  ...props
+}: BentoGridProps) => {
   return (
     <div
       className={cn(
-        "grid container auto-rows-[22rem] grid-cols-4 gap-4",
+        "grid  auto-rows-[22rem] grid-cols-4 gap-4",
+        container && "container",
         className,
       )}
       {...props}
@@ -59,17 +66,26 @@ const BentoCard = ({
     {...props}
   >
     <div className="z-50">
-      <CLICommandButton cli={cli} className="absolute right-36 top-2" />
+      {cli && (
+        <CLICommandButton cli={cli} className="absolute right-36 top-2" />
+      )}
       <FullScreenPreview
-        className="absolute right-[101px] top-2"
+        className={cn(
+          "absolute right-[101px] top-2",
+          !v0ComponentName && "absolute right-2 top-2",
+        )}
         previewComponentName={previewComponentName}
       />
-      <OpenInV0Button
-        className="absolute right-2 top-2"
-        v0ComponentName={v0ComponentName}
-      />
+      {v0ComponentName && (
+        <OpenInV0Button
+          className="absolute right-2 top-2"
+          v0ComponentName={v0ComponentName}
+        />
+      )}
     </div>
-    <div>{background}</div>
+    <div className="flex flex-col items-center justify-center">
+      {background}
+    </div>
     <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-6 transition-all duration-300 group-hover:-translate-y-10">
       <h3 className="text-xl font-semibold text-neutral-700 dark:text-neutral-300">
         {name}
