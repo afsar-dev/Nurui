@@ -106,10 +106,10 @@ const Page = async ({ params }: AsyncParams) => {
   });
 
   return (
-    <div>
+    <>
       <CopyPage text={rawMDX} slug={slug} />
       {content}
-    </div>
+    </>
   );
 };
 

@@ -1,12 +1,11 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { Copy, Github, ExternalLink} from "lucide-react";
+import { Copy, Github, ExternalLink } from "lucide-react";
 import { FaAngleDown } from "react-icons/fa";
 import { SiClaude } from "react-icons/si";
 import ChatgptIcon from "../icons/ChatgptIcon";
 import SciraAiIcon from "../icons/SciraAiIcon";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
-
 
 interface CopyWithMenuProps {
   text: string;
@@ -19,7 +18,8 @@ export default function CopyPage({ text, slug }: CopyWithMenuProps) {
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null); // ref for menu
 
-  const githubBase = "https://github.com/afsar-dev/Nurui/blob/main/src/content/docs";
+  const githubBase =
+    "https://github.com/afsar-dev/Nurui/blob/main/src/content/docs";
 
   async function handleCopy() {
     try {
@@ -35,33 +35,30 @@ export default function CopyPage({ text, slug }: CopyWithMenuProps) {
     window.open(`${githubBase}/${slug}.mdx`, "_blank");
   };
 
- const handleAI = (provider: AIProvider, slug: string) => {
-  const mdxUrl = `https://nurui.vercel.app/docs/${slug}.mdx`; // full public URL
-  const prompt = `Read ${mdxUrl}, I want to ask questions about it.`; 
-  const encoded = encodeURIComponent(prompt);
+  const handleAI = (provider: AIProvider, slug: string) => {
+    const mdxUrl = `https://nurui.vercel.app/docs/${slug}.mdx`; // full public URL
+    const prompt = `Read ${mdxUrl}, I want to ask questions about it.`;
+    const encoded = encodeURIComponent(prompt);
 
-  let baseUrl = "";
+    let baseUrl = "";
 
-  switch (provider) {
-    case "chatgpt":
-      baseUrl = "https://chat.openai.com/?prompt=";
-      break;
-    case "scira":
-      baseUrl = "https://scira.ai/?q=";
-      break;
-    case "claude":
-      baseUrl = "https://claude.ai/new?q=";
-      break;
-    case "t3":
-      baseUrl = "https://t3.chat/new?q=";
-      break;
-  }
+    switch (provider) {
+      case "chatgpt":
+        baseUrl = "https://chat.openai.com/?prompt=";
+        break;
+      case "scira":
+        baseUrl = "https://scira.ai/?q=";
+        break;
+      case "claude":
+        baseUrl = "https://claude.ai/new?q=";
+        break;
+      case "t3":
+        baseUrl = "https://t3.chat/new?q=";
+        break;
+    }
 
-  window.open(`${baseUrl}${encoded}`, "_blank");
-};
-
-
-
+    window.open(`${baseUrl}${encoded}`, "_blank");
+  };
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -83,7 +80,7 @@ export default function CopyPage({ text, slug }: CopyWithMenuProps) {
   }, [open]);
 
   return (
-    <div className="flex items-center gap-2 relative mb-2" ref={menuRef}>
+    <div className="flex items-center gap-2 relative mb-4" ref={menuRef}>
       <button
         onClick={handleCopy}
         className="flex items-center gap-2 rounded-lg px-3 py-1.5 bg-gray-200 text-black hover:bg-gray-300 transition dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800"
@@ -105,14 +102,18 @@ export default function CopyPage({ text, slug }: CopyWithMenuProps) {
             onClick={handleGitHub}
             className="flex items-center justify-between w-full px-3 py-2 rounded-lg hover:bg-gray-200 transition dark:hover:bg-gray-800"
           >
-            <span className="flex items-center gap-2"><Github size={16} /> Open in GitHub</span>
+            <span className="flex items-center gap-2">
+              <Github size={16} /> Open in GitHub
+            </span>
             <ExternalLink size={14} />
           </button>
           <button
             onClick={() => handleAI("chatgpt", slug)}
             className="flex items-center justify-between w-full px-3 py-2 rounded-lg hover:bg-gray-200 transition dark:hover:bg-gray-800"
           >
-            <span className="flex items-center gap-2"><ChatgptIcon className="size-4" /> Open in ChatGPT</span>
+            <span className="flex items-center gap-2">
+              <ChatgptIcon className="size-4" /> Open in ChatGPT
+            </span>
             <ExternalLink size={14} />
           </button>
           <button
@@ -120,21 +121,26 @@ export default function CopyPage({ text, slug }: CopyWithMenuProps) {
             className="flex items-center justify-between w-full px-3 py-2 rounded-lg hover:bg-gray-200 transition dark:hover:bg-gray-800"
           >
             <span className="flex items-center gap-2">
-              <SciraAiIcon className="size-4" /> Open in Scira AI</span>
+              <SciraAiIcon className="size-4" /> Open in Scira AI
+            </span>
             <ExternalLink size={14} />
           </button>
           <button
             onClick={() => handleAI("claude", slug)}
             className="flex items-center justify-between w-full px-3 py-2 rounded-lg hover:bg-gray-200 transition dark:hover:bg-gray-800"
           >
-            <span className="flex items-center gap-2"><SiClaude size={16} /> Open in Claude AI</span>
+            <span className="flex items-center gap-2">
+              <SiClaude size={16} /> Open in Claude AI
+            </span>
             <ExternalLink size={14} />
           </button>
           <button
             onClick={() => handleAI("t3", slug)}
             className="flex items-center justify-between w-full px-3 py-2 rounded-lg hover:bg-gray-200 transition dark:hover:bg-gray-800"
           >
-            <span className="flex items-center gap-2"><IoChatbubbleEllipsesOutline size={16} /> Open in T3 Chat</span>
+            <span className="flex items-center gap-2">
+              <IoChatbubbleEllipsesOutline size={16} /> Open in T3 Chat
+            </span>
             <ExternalLink size={14} />
           </button>
         </div>

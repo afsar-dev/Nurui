@@ -2,6 +2,7 @@ import { TfiHelpAlt } from "react-icons/tfi";
 import {
   TbBackground,
   TbCards,
+  TbComponents,
   TbHandClick,
   TbLayoutNavbarCollapse,
 } from "react-icons/tb";
@@ -29,11 +30,11 @@ export const navigation = [
     title: "Installation",
     href: `${baseUrl}/installation`,
   },
-  // {
-  //   icon: <TbComponents />,
-  //   title: "Components",
-  //   href: `${baseUrl}/components`,
-  // },
+  {
+    icon: <TbComponents />,
+    title: "Components",
+    href: `${baseUrl}/components`,
+  },
   // sections
   {
     icon: <RxSection />,
@@ -61,7 +62,7 @@ export const navigation = [
   // components
   {
     icon: <RxComponent2 />,
-    title: "Components",
+    title: "Blocks",
     submenu: [
       { name: "Project showcase", href: `${baseUrl}/project-showcase` },
       { name: "Animated List", href: `${baseUrl}/animated-list` },
@@ -149,12 +150,6 @@ export const navigation = [
     title: "texts",
     submenu: [{ name: "gradient", href: `${baseUrl}/gradient-text` }],
   },
-
-  // {
-  //   icon: <FaWpforms />,
-  //   title: "Modals",
-  //   submenu: [{ name: "gradient", href: `${baseUrl}/gradient-hero` }],
-  // },
 
   // cursors
   {

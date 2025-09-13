@@ -89,7 +89,7 @@ const navigation = [
   {
     id: 2,
     name: "component",
-    url: "/docs/wave-card",
+    url: "/docs/components",
   },
   {
     id: 3,
