@@ -13,6 +13,9 @@ import GlowingCard from "@/components/nurui/glowing-card";
 import BentoDemo from "@/components/ui/bento-grid/BentoGrid";
 import GradientButton from "@/components/nurui/gradient-button";
 import BorderAnimationButton from "@/components/nurui/border-button";
+import { InfoCardDemo } from "@/components/nurui/info-card-demo";
+import WaveCard from "@/components/nurui/wave-card";
+import HackerBackground from "@/components/nurui/hacker-background";
 
 const ComponentsPage = () => {
   return (
@@ -200,5 +203,42 @@ const featuresComponents = [
     href: "/docs/border-button",
     previewComponentName: "border-button",
     background: <BorderAnimationButton text="Contact me" className="mt-16" />,
+  },
+  {
+    name: "Info Card",
+    description: "Animated info card for modern web apps",
+    className: "col-span-full md:col-span-2 xl:col-span-1",
+    href: "/docs/info-card",
+    previewComponentName: "info-card",
+    background: (
+      <div className="absolute -top-9 h-[400px] w-full scale-75 transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)]">
+        <InfoCardDemo />
+      </div>
+    ),
+  },
+  {
+    name: "Wave Card",
+    description: "Wave card for modern web apps",
+    className: "col-span-full md:col-span-2 xl:col-span-1",
+    href: "/docs/wave-card",
+    previewComponentName: "wave-card",
+    background: (
+      <div className="absolute -top-10 w-full scale-75 transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)]">
+        <WaveCard
+          tags="Database"
+          title="Schema Management"
+          description="Design, optimize and maintain your database structure with powerful schema tools."
+          buttonText="Manage"
+        />
+      </div>
+    ),
+  },
+  {
+    name: "Hacker Background",
+    description: "Hacker background for next generation websites",
+    className: "col-span-full md:col-span-2 xl:col-span-1",
+    href: "/docs/hacker-background",
+    previewComponentName: "hacker-background",
+    background: <HackerBackground />,
   },
 ];
