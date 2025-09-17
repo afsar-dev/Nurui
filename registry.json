@@ -21,6 +21,27 @@
       ]
     },
     {
+      "name": "neobrutalism-faq",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": ["react-icons"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/glassy-faq-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/glassy-faq.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/question-answer.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "premium-testimonial",
       "type": "registry:component",
       "devDependencies": [],

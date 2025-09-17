@@ -41,6 +41,7 @@ export const navigation = [
     title: "Sections",
     submenu: [
       { name: "Neobrutalism faq", href: `${baseUrl}/neobrutalism-faq` },
+      { name: "glassy faq", href: `${baseUrl}/glassy-faq` },
       { name: "Premium testimonial", href: `${baseUrl}/premium-testimonial` },
       { name: "marquee testimonial", href: `${baseUrl}/marquee-testimonial` },
       { name: "animated pricing", href: `${baseUrl}/animated-pricing` },
