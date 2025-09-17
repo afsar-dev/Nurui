@@ -11,6 +11,9 @@ export const componentsPreviewRegistry: Record<
       () => import("@/components/nurui/neobrutalism-faq-demo"),
     ),
   },
+  "glassy-faq": {
+    component: dynamic(() => import("@/components/nurui/glassy-faq")),
+  },
   "premium-testimonial": {
     component: dynamic(
       () => import("@/components/nurui/premium-testimonial-demo"),

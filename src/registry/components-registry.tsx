@@ -198,7 +198,10 @@ import HoverFooter from "@/components/nurui/hover-footer";
 import HoverFooterCode from "@/components/nurui/hover-footer.tsx?raw";
 import TextHoverEffectCode from "@/components/nurui/text-hover-effect.tsx?raw";
 import FooterBackgroundGradient from "@/components/nurui/footer-background-gradient.tsx?raw";
-
+import GlassyFaqDemo from "@/components/nurui/glassy-faq-demo";
+import GlassyFaqDemoCode from "@/components/nurui/glassy-faq-demo.tsx?raw";
+import GlassyFaqCode from "@/components/nurui/glassy-faq.tsx?raw";
+import QuestionAnswerCode from "@/components/nurui/question-answer.tsx?raw";
 
 type CodeEntry = {
   fileName: string;
@@ -217,6 +220,14 @@ export const Index: Record<string, ComponentEntry> = {
     preview: <NeobrutalismFaqDemo />,
     code: NeobrutalismFaqDemoCode,
     othersCode: [{ fileName: "neobrutalism-faq", code: NeobrutalismFaqCode }],
+  },
+  glassyFaq: {
+    preview: <GlassyFaqDemo />,
+    code: GlassyFaqDemoCode,
+    othersCode: [
+      { fileName: "glassy-faq", code: GlassyFaqCode },
+      { fileName: "question-answer", code: QuestionAnswerCode },
+    ],
   },
   premiumTestimonial: {
     preview: <PremiumTestimonialDemo />,
@@ -367,17 +378,13 @@ export const Index: Record<string, ComponentEntry> = {
   PlayButton: {
     preview: <PlayButtonDemo />,
     code: PlayButtonDemoCode,
-    othersCode: [
-      { fileName: "play-button", code: PlayButtonCode }
-    ],
+    othersCode: [{ fileName: "play-button", code: PlayButtonCode }],
   },
   CopyButton: {
-  preview: <CopyButtonDemo />,
-  code: CopyButtonDemoCode,
-  othersCode: [
-    { fileName: "copy-button", code: CopyButtonCode },
-  ],
-},
+    preview: <CopyButtonDemo />,
+    code: CopyButtonDemoCode,
+    othersCode: [{ fileName: "copy-button", code: CopyButtonCode }],
+  },
 
   // cards
   playingCard: {

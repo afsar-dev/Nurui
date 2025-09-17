@@ -1,8 +1,8 @@
 "use client";
-import QuestionAnswer from "@/components/common/QuestionAnswer";
+import QuestionAnswer from "@/components/nurui/question-answer";
 import { useState } from "react";
 
-const FaqSection = () => {
+const GlassyFaq = () => {
   const [openKey, setOpenKey] = useState<number>(1);
   const [activeCategoryKey, setActiveCategoryKey] = useState<number>(1);
 
@@ -52,7 +52,7 @@ const FaqSection = () => {
   );
 };
 
-export default FaqSection;
+export default GlassyFaq;
 
 const faqsData = [
   {

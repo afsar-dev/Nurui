@@ -88,9 +88,13 @@ async function downloadFileFromGitHub(filePath) {
   const fileName = path.basename(filePath);
   const isCss = fileName.endsWith(".css");
 
-  const targetDir = isCss
-    ? path.join(process.cwd(), "components", "nurui", "styles")
+  const hasSrc = fs.existsSync(path.join(process.cwd(), "src"));
+
+  const baseDir = hasSrc
+    ? path.join(process.cwd(), "src", "components", "nurui")
     : path.join(process.cwd(), "components", "nurui");
+
+  const targetDir = isCss ? path.join(baseDir, "styles") : baseDir;
 
   const targetPath = path.join(targetDir, fileName);
 
