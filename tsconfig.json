@@ -30,7 +30,7 @@
     "src/components/icons/Viber.Icontsx",
     "src/cli/components/js/cursor/blink-cursor/BlinkButton.jsx",
     "next.config.ts",
-    "src/app/(docs)/docs/[[...slug]]/page.tsx",
+    "src/app/(docs)/docs/[slug]/page.tsx",
     "src/cli/utils/convertTsxToJsx.js",
     "src/content/docs/info-card.mdx",
     "src/content/docs/animated-form.mdx"
