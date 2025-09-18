@@ -89,6 +89,9 @@ export const componentsPreviewRegistry: Record<
       ),
     ),
   },
+  "news-letter": {
+    component: dynamic(() => import("@/components/nurui/news-letter")),
+  },
   story: {
     component: dynamic(() =>
       import("@/components/nurui/story-demo").then((mod) => mod.StoryDemo),

@@ -145,6 +145,23 @@
         }
       ]
     },
+    {
+      "name": "news-letter",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": ["react-icons"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/news-letter.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/animate-Input.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
 
     {
       "name": "future-navbar",

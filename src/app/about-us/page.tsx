@@ -1,4 +1,4 @@
-import NewsLetterSection from "@/components/common/NewsLetterSection";
+import NewsLetter from "@/components/nurui/news-letter";
 import GlassyFaq from "@/components/nurui/glassy-faq";
 import AboutUsHeroSection from "@/components/pages/about-us/AboutUsHeroSection";
 import ImageTabsSection from "@/components/pages/about-us/ImageTabsSection";
@@ -21,7 +21,7 @@ const page = () => {
       <WorldMapAnimationSection />
       <StackingCardsSection />
       <GlassyFaq />
-      <NewsLetterSection />
+      <NewsLetter />
     </main>
   );
 };

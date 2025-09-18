@@ -202,6 +202,9 @@ import GlassyFaqDemo from "@/components/nurui/glassy-faq-demo";
 import GlassyFaqDemoCode from "@/components/nurui/glassy-faq-demo.tsx?raw";
 import GlassyFaqCode from "@/components/nurui/glassy-faq.tsx?raw";
 import QuestionAnswerCode from "@/components/nurui/question-answer.tsx?raw";
+import NewsLetter from "@/components/nurui/news-letter";
+import NewsLetterCode from "@/components/nurui/news-letter.tsx?raw";
+import AnimateInputCode from "@/components/nurui/animate-Input.tsx?raw";
 
 type CodeEntry = {
   fileName: string;
@@ -337,6 +340,11 @@ export const Index: Record<string, ComponentEntry> = {
       { fileName: "story-button", code: StoryButtonCode },
       { fileName: "story-dialog", code: StoryDialogCode },
     ],
+  },
+  newsLetter: {
+    preview: <NewsLetter />,
+    code: NewsLetterCode,
+    othersCode: [{ fileName: "animated-input", code: AnimateInputCode }],
   },
 
   // buttons

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "news-letter",
+  "type": "registry:component",
+  "dependencies": [
+    "react-icons"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "./src/components/nurui/news-letter.tsx",
+      "content": "import AnimateInput from \"@/components/nurui/animate-Input\";\n\nconst NewsLetter = () => {\n  return (\n    <section className=\"sm:container\">\n      <div className=\"shadow-xl dark:shadow-none bg-gradient-to-r from-[var(--white-color)] dark:from-[var(--glass-color)] via-[var(--white-color)] dark:via-[var(--glass-color)] to-[var(--primary-color)] dark:to-[var(--primary-color-2)] py-6 md:py-10 lg:py-20 px-2.5 md:px-20 sm:rounded-xl flex flex-col items-center xl:items-start justify-center text-left gap-3.5\">\n        <h6 className=\"text-2xl md:text-4xl font-bold text-center xl:text-start\">\n          {newsLetter?.title}\n        </h6>\n        <p className=\"max-w-2xl text-center xl:text-start text-balance sm:text-pretty\">\n          {newsLetter?.description}\n        </p>\n        <AnimateInput\n          className=\"w-full max-w-2xl mt-2\"\n          onBlurTitle=\"subscribe to our newsletter\"\n          onFocusTitle=\"We won't spam you!\"\n          buttonTitle={newsLetter?.subscribe_button.label}\n        />\n      </div>\n    </section>\n  );\n};\n\nexport default NewsLetter;\n\nconst newsLetter = {\n  title: \"Subscribe to our newsletter\",\n  description:\n    \"Join our newsletter for regular updates from nurui UI. No spam ever.\",\n  subscribe_button: {\n    label: \"Subscribe\",\n    action: \"subscribe\",\n  },\n  input_field: {\n    placeholder: \"subscribe to our newsletter\",\n    onFocus: {\n      action: \"setPlaceholder\",\n      value: \"We won't spam you!\",\n    },\n    onBlur: {\n      action: \"setPlaceholder\",\n      value: \"subscribe to our newsletter\",\n    },\n  },\n};\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "./src/components/nurui/animate-Input.tsx",
+      "content": "\"use client\";\nimport { FC, useState } from \"react\";\nimport toast from \"react-hot-toast\";\n\ninterface IProps {\n  className?: string;\n  onBlurTitle: string;\n  onFocusTitle: string;\n  buttonTitle: string;\n}\n\nconst AnimateInput: FC<IProps> = ({\n  className,\n  onBlurTitle,\n  onFocusTitle,\n  buttonTitle,\n}) => {\n  const [placeholder, setPlaceholder] = useState(onBlurTitle);\n\n  const handleSubmit = (e: React.FormEvent) => {\n    e.preventDefault();\n    const target = e.target as HTMLFormElement;\n    const email = (target.email as HTMLInputElement).value;\n    if (email) {\n      toast.success(\"Email submitted successfully!\", {\n        style: {\n          background: \"#1b1d2b\",\n          color: \"#fff\",\n        },\n      });\n      target.reset();\n    }\n  };\n\n  return (\n    <div className={className}>\n      <div className=\"relative z-10 flex w-full cursor-pointer items-center overflow-hidden rounded-xl border border-[var(--border-color)] p-[1.5px]\">\n        <div className=\"animate-rotate absolute inset-0 h-full w-full rounded-full bg-[conic-gradient(#3CA2FA_20deg,transparent_120deg)]\" />\n        <form\n          onSubmit={handleSubmit}\n          className=\"relative z-20 flex w-full rounded-[0.60rem] bg-white dark:bg-[var(--background-color)] p-2\"\n        >\n          <input\n            onFocus={() => setPlaceholder(onFocusTitle)}\n            onBlur={() => setPlaceholder(onBlurTitle)}\n            type=\"email\"\n            name=\"email\"\n            className=\"mr-2 pl-3 inline-block h-full flex-1 rounded-lg bg-transparent px-2 py-3 placeholder:text-[var(--placeholder-color)] focus:outline-none focus:ring-1 focus:ring-[var(--primary-color)]\"\n            placeholder={placeholder}\n            required\n          />\n          <button className=\"relative z-40 block rounded-lg border border-[var(--border-color)] bg-[var(--glass-color)] px-4 sm:px-8 py-3 text-center text-sm transition duration-200 hover:bg-[var(--glass-color-2)] hover:text-white\">\n            {buttonTitle}\n          </button>\n        </form>\n      </div>\n    </div>\n  );\n};\n\nexport default AnimateInput;",
+      "type": "registry:component"
+    }
+  ]
+}

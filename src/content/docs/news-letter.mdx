@@ -1,0 +1,57 @@
+---
+title: "newsLetter"
+description: "A stylish neobrutalism-faq component for modern UIs, built with accessibility and animation in mind."
+---
+
+<ComponentPreview componentName="newsLetter" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <Cli />
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+<Cli
+  dependencies={[
+    { label: "npm", command: "npm i react-hot-toast" },
+    { label: "pnpm", command: "pnpm add react-hot-toast" },
+    { label: "bun", command: "bun add react-hot-toast" },
+    { label: "yarn", command: "yarn add react-hot-toast" },
+  ]}
+/>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+`components/nurui/animated-input.tsx`
+
+<CodeBlock componentName="newsLetter" fileName="animated-input" />
+
+<Step>Update the import paths to fit your project setup</Step>
+ 
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+### Props
+
+| Prop           | Type     | Default | Description                                           |
+| -------------- | -------- | ------- | ----------------------------------------------------- |
+| `className`    | `string` | —       | Optional custom class name for the container div.     |
+| `onBlurTitle`  | `string` | —       | Placeholder text shown when the input is not focused. |
+| `onFocusTitle` | `string` | —       | Placeholder text shown when the input is focused.     |
+| `buttonTitle`  | `string` | —       | The text displayed inside the submit button.          |
