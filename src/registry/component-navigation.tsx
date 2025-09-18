@@ -71,6 +71,7 @@ export const navigation = [
       { name: "progress bar", href: `${baseUrl}/progress-bar` },
       { name: "terminal", href: `${baseUrl}/terminal` },
       { name: "banner", href: `${baseUrl}/banner` },
+      { name: "news letter", href: `${baseUrl}/news-letter` },
       { name: "Story", href: `${baseUrl}/story` },
     ],
   },
