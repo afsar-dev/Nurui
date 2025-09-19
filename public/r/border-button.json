@@ -12,12 +12,12 @@
   "files": [
     {
       "path": "./src/components/nurui/border-button-demo.tsx",
-      "content": "import React from \"react\";\nimport BorderAnimationButton from \"@/components/nurui/border-button\";\n\nconst BorderAnimationButtonDemo = () => {\n  return (\n    <div className=\"flex items-center justify-center min-h-screen\">\n      <BorderAnimationButton text=\"Contact me\" />\n    </div>\n  );\n};\n\nexport default BorderAnimationButtonDemo;\n",
+      "content": "import React from \"react\";\r\nimport BorderAnimationButton from \"@/components/nurui/border-button\";\r\n\r\nconst BorderAnimationButtonDemo = () => {\r\n  return (\r\n    <div className=\"flex items-center justify-center min-h-screen\">\r\n      <BorderAnimationButton text=\"Contact me\" />\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default BorderAnimationButtonDemo;\r\n",
       "type": "registry:component"
     },
     {
       "path": "./src/components/nurui/border-button.tsx",
-      "content": "import React from \"react\";\nimport { FaLocationArrow } from \"react-icons/fa\";\n\nconst BorderAnimationButton = ({ text }: { text: string }) => {\n  return (\n    <div className=\"relative inline-flex h-12 active:scale-95 transistion overflow-hidden rounded-lg p-[1px] focus:outline-none\">\n      <span className=\"absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]\"></span>\n      <p className=\"inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2 undefined\">\n        <span>{text}</span>\n        <FaLocationArrow />\n      </p>\n    </div>\n  );\n};\n\nexport default BorderAnimationButton;\n",
+      "content": "import React from \"react\";\r\nimport { FaLocationArrow } from \"react-icons/fa\";\r\n\r\nconst BorderAnimationButton = ({ text }: { text: string }) => {\r\n  return (\r\n    <div className=\"relative inline-flex h-12 active:scale-95 transistion overflow-hidden rounded-lg p-[1px] focus:outline-none\">\r\n      <span className=\"absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]\"></span>\r\n      <p className=\"inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2 undefined\">\r\n        <span>{text}</span>\r\n        <FaLocationArrow />\r\n      </p>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default BorderAnimationButton;\r\n",
       "type": "registry:component"
     }
   ]
