@@ -5,6 +5,7 @@ import {
   TbHandClick,
   TbLayoutNavbarCollapse,
 } from "react-icons/tb";
+import { BiLoader } from "react-icons/bi";
 import { GrDrawer, GrInstallOption } from "react-icons/gr";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { FaWpforms } from "react-icons/fa";
@@ -98,6 +99,14 @@ export const navigation = [
       { name: "future", href: `${baseUrl}/future-button` },
       { name: "Play", href: `${baseUrl}/play-button` },
       { name: "Copy", href: `${baseUrl}/copy-button` },
+    ],
+  },
+  // loaders
+  {
+    icon: <BiLoader />,
+    title: "Loaders",
+    submenu: [
+      { name: "Ripple Loader", href: `${baseUrl}/ripple-loader` },
     ],
   },
   // cards

@@ -198,6 +198,9 @@ import HoverFooter from "@/components/nurui/hover-footer";
 import HoverFooterCode from "@/components/nurui/hover-footer.tsx?raw";
 import TextHoverEffectCode from "@/components/nurui/text-hover-effect.tsx?raw";
 import FooterBackgroundGradient from "@/components/nurui/footer-background-gradient.tsx?raw";
+import RippleLoaderCode from "@/components/nurui/ripple-loader.tsx?raw";
+import RippleLoaderDemo from "@/components/nurui/ripple-loader-demo";
+import RippleLoaderDemoCode from "@/components/nurui/ripple-loader-demo.tsx?raw";
 
 
 type CodeEntry = {
@@ -378,6 +381,14 @@ export const Index: Record<string, ComponentEntry> = {
     { fileName: "copy-button", code: CopyButtonCode },
   ],
 },
+
+// Loaders
+ RippleLoader: {
+  preview: <RippleLoaderDemo />,
+  code: RippleLoaderDemoCode,
+  othersCode: [{ fileName: "ripple-loader", code: RippleLoaderCode }],
+ },
+
 
   // cards
   playingCard: {

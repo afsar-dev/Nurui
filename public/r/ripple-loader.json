@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ripple-loader",
+  "type": "registry:component",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "./src/components/nurui/ripple-loader-demo.tsx",
+      "content": "import RippleLoader from \"@/components/nurui/ripple-loader\";\n\nconst RippleLoaderDemo = () => {\n  return (\n    <>\n      <p className=\"text-3xl text-center pt-4 text-[#00FF87] font-bold\">\n        Watch the ripple animation.\n      </p>\n      <RippleLoader />\n    </>\n  );\n};\n\nexport default RippleLoaderDemo;\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "./src/components/nurui/ripple-loader.tsx",
+      "content": "\"use client\";\nimport React from \"react\";\n\ninterface RippleLoaderProps {\n  /** Custom colors for the ripple cells */\n  colors?: string[];\n  /** Size of each cell (px) */\n  cellSize?: number;\n  /** Grid size (default 3 → 3x3) */\n  cells?: number;\n  /** Delay between animations in ms */\n  delayStep?: number;\n}\n\nconst RippleLoader: React.FC<RippleLoaderProps> = ({\n  colors = [\n    \"#00FF87\",\n    \"#0CFD95\",\n    \"#17FBA2\",\n    \"#23F9B2\",\n    \"#30F7C3\",\n    \"#3DF5D4\",\n    \"#45F4DE\",\n    \"#53F1F0\",\n    \"#60EFFF\"\n  ],\n  cellSize = 52,\n  cells = 3,\n  delayStep = 100\n}) => {\n  const totalSize = cells * (cellSize + 2);\n\n  return (\n    <>\n      <style jsx>{`\n        @keyframes ripple {\n          0% { background-color: transparent; }\n          30% { background-color: var(--cell-color); }\n          60% { background-color: transparent; }\n          100% { background-color: transparent; }\n        }\n      `}</style>\n\n      <div className=\"flex flex-wrap\" style={{ width: totalSize, height: totalSize }}>\n        {Array.from({ length: cells * cells }).map((_, index) => (\n          <div\n            key={index}\n            style={{\n              \"--cell-color\": colors[index % colors.length],\n              animationDelay: `${(index % cells) * delayStep}ms`,\n              animation: \"ripple 1.5s ease infinite\",\n              width: cellSize,\n              height: cellSize\n            } as React.CSSProperties}\n            className=\"flex-none m-[1px] rounded-md\"\n          />\n        ))}\n      </div>\n    </>\n  );\n};\n\nexport default RippleLoader;",
+      "type": "registry:component"
+    }
+  ]
+}
