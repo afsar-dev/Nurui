@@ -138,6 +138,12 @@ export const componentsPreviewRegistry: Record<
       ),
     ),
   },
+  // loaders
+
+   "ripple-loader": {
+    component: dynamic(() => import("@/components/nurui/ripple-loader-demo")),
+  },
+
   // cards
   "playing-card": {
     component: dynamic(() => import("@/components/nurui/playing-card-demo")),

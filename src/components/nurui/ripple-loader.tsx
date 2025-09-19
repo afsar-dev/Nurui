@@ -3,20 +3,20 @@ import React from "react";
 
 const RippleLoader = () => {
   const colors = [
-  "#cce4fc", // very light
-  "#99c9fa",
-  "#66afe0",
-  "#3ca2fa", // base color
-  "#1f8de6",
-  "#1073d1",
-  "#095abf",
-  "#0347aa",
-  "#012f82", // darkest
-];
+    "#cce4fc", // very light
+    "#99c9fa",
+    "#66afe0",
+    "#3ca2fa", // base color
+    "#1f8de6",
+    "#1073d1",
+    "#095abf",
+    "#0347aa",
+    "#012f82", // darkest
+  ];
 
   // Mapping the same animation delays as the original
   const delays = [
-    0,   // d-0
+    0, // d-0
     100, // d-1
     200, // d-2
     100, // d-1
@@ -50,11 +50,16 @@ const RippleLoader = () => {
         {colors.map((color, index) => (
           <div
             key={index}
-            style={{
-              "--cell-color": color,
-              animationDelay: `${delays[index]}ms`,
-              animation: "ripple 1.5s ease infinite",
-            } as React.CSSProperties}
+            style={
+              {
+                "--cell-color": color,
+                animationName: "ripple",
+                animationDuration: "1.5s",
+                animationTimingFunction: "ease",
+                animationIterationCount: "infinite",
+                animationDelay: `${delays[index]}ms`,
+              } as React.CSSProperties
+            }
             className="flex-none w-[52px] h-[52px] m-[1px] rounded-md"
           />
         ))}
