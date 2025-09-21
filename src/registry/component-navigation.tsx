@@ -2,6 +2,7 @@ import { TfiHelpAlt } from "react-icons/tfi";
 import {
   TbBackground,
   TbCards,
+  TbComponents,
   TbHandClick,
   TbLayoutNavbarCollapse,
 } from "react-icons/tb";
@@ -30,17 +31,18 @@ export const navigation = [
     title: "Installation",
     href: `${baseUrl}/installation`,
   },
-  // {
-  //   icon: <TbComponents />,
-  //   title: "Components",
-  //   href: `${baseUrl}/components`,
-  // },
+  {
+    icon: <TbComponents />,
+    title: "Components",
+    href: `${baseUrl}/components`,
+  },
   // sections
   {
     icon: <RxSection />,
     title: "Sections",
     submenu: [
       { name: "Neobrutalism faq", href: `${baseUrl}/neobrutalism-faq` },
+      { name: "glassy faq", href: `${baseUrl}/glassy-faq` },
       { name: "Premium testimonial", href: `${baseUrl}/premium-testimonial` },
       { name: "marquee testimonial", href: `${baseUrl}/marquee-testimonial` },
       { name: "animated pricing", href: `${baseUrl}/animated-pricing` },
@@ -62,7 +64,7 @@ export const navigation = [
   // components
   {
     icon: <RxComponent2 />,
-    title: "Components",
+    title: "Blocks",
     submenu: [
       { name: "Project showcase", href: `${baseUrl}/project-showcase` },
       { name: "Animated List", href: `${baseUrl}/animated-list` },
@@ -70,6 +72,7 @@ export const navigation = [
       { name: "progress bar", href: `${baseUrl}/progress-bar` },
       { name: "terminal", href: `${baseUrl}/terminal` },
       { name: "banner", href: `${baseUrl}/banner` },
+      { name: "news letter", href: `${baseUrl}/news-letter` },
       { name: "Story", href: `${baseUrl}/story` },
     ],
   },
@@ -158,12 +161,6 @@ export const navigation = [
     title: "texts",
     submenu: [{ name: "gradient", href: `${baseUrl}/gradient-text` }],
   },
-
-  // {
-  //   icon: <FaWpforms />,
-  //   title: "Modals",
-  //   submenu: [{ name: "gradient", href: `${baseUrl}/gradient-hero` }],
-  // },
 
   // cursors
   {

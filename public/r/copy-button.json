@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "copy-button",
+  "type": "registry:component",
+  "dependencies": [
+    "lucide-react",
+    "lottie-react"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "./src/components/nurui/copy-button-demo.tsx",
+      "content": "import React from \"react\";\nimport CopyButton from \"@/components/nurui/copy-button\";\n\nconst CopyButtonDemo = () => {\n  return (\n    <div className=\"flex items-center justify-center min-h-[20rem]\">\n      <CopyButton\n        text=\"example@gmail.com\"\n        defaultLabel=\"Copy email address\"\n        successLabel=\"Copied!\"\n      />\n    </div>\n  );\n};\n\nexport default CopyButtonDemo;\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "./src/components/nurui/copy-button.tsx",
+      "content": "\"use client\";\n\nimport { Copy } from \"lucide-react\";\nimport React, { useState } from \"react\";\nimport Lottie from \"lottie-react\";\nimport animationData from \"./data/confetti.json\";\n\ninterface CopyButtonProps {\n  text: string; // the text/email to copy\n  defaultLabel?: string; // label before copying\n  successLabel?: string; // label after copying\n}\n\nconst CopyButton: React.FC<CopyButtonProps> = ({\n  text,\n  defaultLabel = \"Copy my email address\",\n  successLabel = \"Email is Copied!\",\n}) => {\n  const [copied, setCopied] = useState(false);\n\n  const handleCopy = () => {\n    navigator.clipboard.writeText(text);\n    setCopied(true);\n    setTimeout(() => setCopied(false), 2000); // reset after 2s\n  };\n\n  return (\n    <button\n      onClick={handleCopy}\n      className=\"relative mt-5 bg-fuchsia-950 px-4 py-2 rounded-lg font-bold flex gap-2 items-center text-white transition-colors\"\n      style={{ minWidth: \"220px\" }} // ✅ lock button width (tweak px if needed)\n    >\n      <Copy className=\"w-5 h-5\" />\n\n      {/* keep label width stable by wrapping */}\n      <span className=\"whitespace-nowrap text-center flex-1\">\n        {copied ? successLabel : defaultLabel}\n      </span>\n\n      {copied && (\n        <div className=\"absolute inset-0 flex items-center justify-center pointer-events-none\">\n          <Lottie\n            animationData={animationData}\n            loop={false}\n            autoplay={true}\n            style={{ width: 200, height: 200 }}\n          />\n        </div>\n      )}\n    </button>\n  );\n};\n\nexport default CopyButton;\n",
+      "type": "registry:component"
+    }
+  ]
+}

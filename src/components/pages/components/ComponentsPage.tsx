@@ -1,41 +1,33 @@
-import React from "react";
-import SectionIntro from "@/components/common/SectionIntro";
-import ButtonsMarquee from "./ButtonsMarquee";
-import BentoDemo from "@/components/ui/bento-grid/BentoGrid";
-import { TerminalDemo } from "@/components/nurui/terminal-demo";
-import { cn } from "@/lib/utils";
-import { Marquee } from "@/components/nurui/marque";
-import { GradientGridHero } from "@/components/nurui/gradient-grid-hero";
-import GlowingCard from "@/components/nurui/glowing-card";
-import GradientBarsDemo from "@/components/nurui/bars-background-demo";
 import GradientText from "@/components/nurui/gradient-text";
+import React from "react";
+import GradientBarsDemo from "@/components/nurui/bars-background-demo";
 import ShinyCardDemo from "@/components/nurui/shiny-card-demo";
+import { GradientGridHero } from "@/components/nurui/gradient-grid-hero";
 import { FollowingEye } from "@/components/nurui/following-eye";
-import { AnimatedListDemo } from "@/components/nurui/animated-list-demo";
+import { TerminalDemo } from "@/components/nurui/terminal-demo";
 import { ProgressBarDemo } from "@/components/nurui/progress-bar-demo";
+import { AnimatedListDemo } from "@/components/nurui/animated-list-demo";
+import { Marquee } from "@/components/nurui/marque";
+import { cn } from "@/lib/utils";
+import GlowingCard from "@/components/nurui/glowing-card";
+import BentoDemo from "@/components/ui/bento-grid/BentoGrid";
+import GradientButton from "@/components/nurui/gradient-button";
+import BorderAnimationButton from "@/components/nurui/border-button";
+import { InfoCardDemo } from "@/components/nurui/info-card-demo";
+import WaveCard from "@/components/nurui/wave-card";
+import HackerBackground from "@/components/nurui/hacker-background";
 
-const ComponentDemosSection = () => {
+const ComponentsPage = () => {
   return (
-    <section>
-      <SectionIntro
-        title={{
-          fullHighLightColor: "text-[var(--secondary-color)]",
-          normalWords: "Component",
-          highLiteWords: "Demos",
-        }}
-        description="Here are some of the components that you can use to build your landing pages.
-        You can easily customize and combine them to match your brand and design goals."
-      />
-      <div className="space-y-12">
-        <BentoDemo features={featuresDataOne} />
-        <ButtonsMarquee />
-        <BentoDemo features={featuresDataTwo} />
-      </div>
-    </section>
+    <BentoDemo
+      features={featuresComponents}
+      container={false}
+      className="pt-1 xl:grid-cols-3 gap-6"
+    />
   );
 };
 
-export default ComponentDemosSection;
+export default ComponentsPage;
 
 const files = [
   {
@@ -60,17 +52,15 @@ const files = [
   },
 ];
 
-const featuresDataOne = [
+const featuresComponents = [
   {
     name: "Glowing Card",
     description: "Interactive glowing UI card",
     href: "/docs/glowing-card",
-    className: "col-span-full xl:col-span-2",
+    className: "col-span-full md:col-span-2 xl:col-span-1",
     previewComponentName: "glowing-card",
-    v0ComponentName: "glowing-card",
-    cli: "npx nurui add glowing-card",
     background: (
-      <GlowingCard className="absolute left-1/2 -translate-x-1/2 -top-6 h-[400px] w-full scale-75 transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)]" />
+      <GlowingCard className="absolute -top-6 h-[400px] w-full scale-75 transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)]" />
     ),
   },
   {
@@ -78,8 +68,6 @@ const featuresDataOne = [
     description: "Smooth infinite testimonial scroll.",
     href: "/docs/marquee-testimonial",
     previewComponentName: "marquee-testimonial",
-    v0ComponentName: "marquee-testimonial",
-    cli: "npx nurui add marquee-testimonial",
     className: "col-span-full md:col-span-2 xl:col-span-1",
     background: (
       <Marquee
@@ -114,11 +102,9 @@ const featuresDataOne = [
     description: "A list that animates each item in sequence with a delay.",
     href: "/docs/animated-list",
     previewComponentName: "animated-list",
-    v0ComponentName: "animated-list",
-    cli: "npx nurui add animated-list",
-    className: "col-span-full md:col-span-2 xl:col-span-1 xl:row-span-2",
+    className: "col-span-full md:col-span-2 xl:col-span-1",
     background: (
-      <AnimatedListDemo className="absolute left-1/2 -translate-x-1/2 -top-20 h-[900px] w-full scale-75 border-none transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)]" />
+      <AnimatedListDemo className="absolute -top-20 h-[900px] w-full scale-75 border-none transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)]" />
     ),
   },
   {
@@ -127,36 +113,27 @@ const featuresDataOne = [
     className: "col-span-full md:col-span-2 xl:col-span-1",
     href: "/docs/progress-bar",
     previewComponentName: "progress-bar",
-    v0ComponentName: "progress-bar",
-    cli: "npx nurui add animated-progress",
-    background: <ProgressBarDemo className="top-10" />,
+    background: <ProgressBarDemo className="top-8" />,
   },
   {
     name: "Terminal",
     description:
       "An implementation of the MacOS terminal. Useful for showcasing a command line interface.",
-    className: "col-span-full md:col-span-2 xl:col-span-2",
+    className: "col-span-full md:col-span-2 xl:col-span-1",
     href: "/docs/terminal",
     previewComponentName: "terminal",
-    v0ComponentName: "terminal",
-    cli: "npx nurui add terminal",
     background: (
-      <TerminalDemo className="absolute left-1/2 -translate-x-1/2 -top-6 h-[400px] w-full scale-75 transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)]" />
+      <TerminalDemo className="absolute -top-6 h-[400px] w-full scale-75 transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)]" />
     ),
   },
-];
-
-const featuresDataTwo = [
   {
     name: "Following Eye",
     description: "Interactive following eye cursor",
     href: "/docs/following-eye",
     previewComponentName: "following-eye",
-    v0ComponentName: "following-eye",
-    cli: "npx nurui add following-eye",
     className: "col-span-full md:col-span-2 xl:col-span-1",
     background: (
-      <div className="absolute left-1/2 -translate-x-1/2 -top-8">
+      <div className="absolute -top-8">
         <FollowingEye className={"w-auto h-[400px]"} />
       </div>
     ),
@@ -166,11 +143,9 @@ const featuresDataTwo = [
     description: "A animated gradient hero section for portfolio websites ",
     href: "/docs/gradient-hero",
     previewComponentName: "gradient-hero",
-    v0ComponentName: "gradient-hero",
-    cli: "npx nurui add gradient-hero",
-    className: "col-span-full md:col-span-2 xl:col-span-2",
+    className: "col-span-full md:col-span-2 xl:col-span-1",
     background: (
-      <div className="absolute left-1/2 -translate-x-1/2 -top-6 h-[400px] w-full scale-75 transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)]">
+      <div className="absolute -top-6 h-[400px] w-full scale-75 transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)]">
         <GradientGridHero />
       </div>
     ),
@@ -180,11 +155,9 @@ const featuresDataTwo = [
     description: "Digital animation card",
     href: "/docs/shiny-card",
     previewComponentName: "shiny-card",
-    v0ComponentName: "shiny-card",
-    cli: "npx nurui add shiny-card",
-    className: "col-span-full md:col-span-2 xl:col-span-1 row-span-1",
+    className: "col-span-full md:col-span-2 xl:col-span-1",
     background: (
-      <div className="absolute left-1/2 -translate-x-1/2 -top-9 h-[400px] w-full scale-75 transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)]">
+      <div className="absolute -top-9 h-[400px] w-full scale-75 transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)]">
         <ShinyCardDemo />
       </div>
     ),
@@ -193,30 +166,79 @@ const featuresDataTwo = [
     name: "Bars Background",
     description:
       "Animated gradient bars background for next generation websites",
-    className: "col-span-full md:col-span-2 xl:col-span-2",
+    className: "col-span-full md:col-span-2 xl:col-span-1",
     href: "/docs/bars-background",
     previewComponentName: "bars-background",
-    v0ComponentName: "bars-background",
-    cli: "npx nurui add bars-background",
     background: <GradientBarsDemo />,
   },
   {
     name: "Gradient Text",
     description: "Animated colorful gradient text",
-    className: "col-span-full xl:col-span-2",
+    className: "col-span-full md:col-span-2 xl:col-span-1",
     href: "/docs/gradient-text",
     previewComponentName: "gradient-text",
-    v0ComponentName: "gradient-text",
-    cli: "npx nurui add gradient-text",
     background: (
       <GradientText
         colors={["#3ca2fa", "#80eeb4", "#3ca2fa", "#80eeb4", "#3ca2fa"]}
         animationSpeed={3}
         showBorder={false}
-        className="text-6xl font-black mt-16"
+        className="text-6xl font-black mt-16 text-center"
       >
         Welcome to Nur/ui
       </GradientText>
     ),
+  },
+  {
+    name: "Gradient Button",
+    description: "Animated gradient buttons for modern web apps",
+    className: "col-span-full md:col-span-2 xl:col-span-1",
+    href: "/docs/gradient-button",
+    previewComponentName: "gradient-button",
+    background: <GradientButton className="mt-16" />,
+  },
+  {
+    name: "Border Button",
+    description: "Animated border buttons for modern web apps",
+    className: "col-span-full md:col-span-2 xl:col-span-1",
+    href: "/docs/border-button",
+    previewComponentName: "border-button",
+    background: <BorderAnimationButton text="Contact me" className="mt-16" />,
+  },
+  {
+    name: "Info Card",
+    description: "Animated info card for modern web apps",
+    className: "col-span-full md:col-span-2 xl:col-span-1",
+    href: "/docs/info-card",
+    previewComponentName: "info-card",
+    background: (
+      <div className="absolute -top-9 h-[400px] w-full scale-75 transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)]">
+        <InfoCardDemo />
+      </div>
+    ),
+  },
+  {
+    name: "Wave Card",
+    description: "Wave card for modern web apps",
+    className: "col-span-full md:col-span-2 xl:col-span-1",
+    href: "/docs/wave-card",
+    previewComponentName: "wave-card",
+    background: (
+      <div className="absolute -top-10 w-full scale-75 transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)]">
+        <WaveCard
+          tags="Database"
+          title="Schema Management"
+          description="Design, optimize and maintain your database structure with powerful schema tools."
+          buttonText="Manage"
+        />
+      </div>
+    ),
+  },
+  {
+    name: "Hacker Background",
+    description: "Hacker background for next generation websites",
+    className: "col-span-full md:col-span-2 xl:col-span-1",
+    href: "/docs/hacker-background",
+    previewComponentName: "hacker-background",
+    background: <HackerBackground />,
   },
 ];

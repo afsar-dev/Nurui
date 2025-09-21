@@ -11,6 +11,9 @@ export const componentsPreviewRegistry: Record<
       () => import("@/components/nurui/neobrutalism-faq-demo"),
     ),
   },
+  "glassy-faq": {
+    component: dynamic(() => import("@/components/nurui/glassy-faq")),
+  },
   "premium-testimonial": {
     component: dynamic(
       () => import("@/components/nurui/premium-testimonial-demo"),
@@ -86,6 +89,9 @@ export const componentsPreviewRegistry: Record<
       ),
     ),
   },
+  "news-letter": {
+    component: dynamic(() => import("@/components/nurui/news-letter")),
+  },
   story: {
     component: dynamic(() =>
       import("@/components/nurui/story-demo").then((mod) => mod.StoryDemo),
@@ -138,11 +144,19 @@ export const componentsPreviewRegistry: Record<
       ),
     ),
   },
+  
+   "play-button": {
+    component: dynamic(() => import("@/components/nurui/play-button-demo")),
+  },
+  "copy-button": {
+    component: dynamic(() => import("@/components/nurui/copy-button-demo")),
+  },
   // loaders
 
    "ripple-loader": {
     component: dynamic(() => import("@/components/nurui/ripple-loader-demo")),
   },
+ 
 
   // cards
   "playing-card": {

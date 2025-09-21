@@ -26,21 +26,31 @@ description: "A stylish border button component for modern UIs, built with acces
 
 <Cli
   dependencies={[
-    { label: "npm", command: "npm i react-icons" },
-    { label: "pnpm", command: "pnpm add react-icons" },
-    { label: "bun", command: "bun add react-icons" },
-    { label: "yarn", command: "yarn add react-icons" },
+    { label: "npm", command: "npm i clsx tailwind-merge react-icons" },
+    { label: "pnpm", command: "pnpm add clsx tailwind-merge react-icons" },
+    { label: "bun", command: "bun add clsx tailwind-merge react-icons" },
+    { label: "yarn", command: "yarn add clsx tailwind-merge react-icons" },
   ]}
 />
+
+<Step>Add util file</Step>
+
+`lib/utils.ts`
+
+<CodeBlock 
+code={`import { ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}`
+}/>
 
 <Step>Copy and paste the following code into your project.</Step>
 
 `components/nurui/border-button.tsx`
 
-<CodeBlock
-  componentName="borderButton"
-  fileName="border-button"
-/>
+<CodeBlock componentName="borderButton" fileName="border-button" />
 
 <Step>Update the import paths to match your project setup.</Step>
 
@@ -52,6 +62,7 @@ description: "A stylish border button component for modern UIs, built with acces
 
 ### Props
 
-| Prop   | Type     | Default | Description                               |
-| ------ | -------- | ------- | ----------------------------------------- |
-| `text` | `string` | `-`     | Text content displayed inside the button. |
+| Prop        | Type     | Default | Description                                       |
+| ----------- | -------- | ------- | ------------------------------------------------- |
+| `text`      | `string` | `-`     | Text content displayed inside the button.         |
+| `className` | `string` | `-`     | Custom Tailwind class names for styling override. |

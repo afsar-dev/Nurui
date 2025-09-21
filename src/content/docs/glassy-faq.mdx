@@ -1,0 +1,62 @@
+---
+title: "glassy-faq"
+description: "A stylish glassy-faq component for modern UIs, built with accessibility and animation in mind."
+---
+
+<ComponentPreview componentName="glassyFaq" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <Cli />
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+<Cli
+  dependencies={[
+    { label: "npm", command: "npm i react-icons" },
+    { label: "pnpm", command: "pnpm add react-icons" },
+    { label: "bun", command: "bun add react-icons" },
+    { label: "yarn", command: "yarn add react-icons" },
+  ]}
+/>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+`components/nurui/glassy-faq.tsx`
+
+<CodeBlock componentName="glassyFaq" fileName="glassy-faq" />
+
+`components/nurui/question-answer.tsx`
+
+<CodeBlock componentName="glassyFaq" fileName="question-answer" />
+
+<Step>Update the import paths to fit your project setup</Step>
+ 
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+### Props
+
+| Prop             | Type         | Default | Description                                                              |
+| ---------------- | ------------ | ------- | ------------------------------------------------------------------------ |
+| `question`       | `string`     | —       | The FAQ question text.                                                   |
+| `answer`         | `string`     | —       | The corresponding answer text for the question.                          |
+| `questionNumber` | `number`     | —       | The index/number of the question used for ordering and identification.   |
+| `openKey`        | `number`     | —       | The currently opened question number. Used to determine expand/collapse. |
+| `setOpenKey`     | `() => void` | —       | Function to update the `openKey` state when toggling a question.         |

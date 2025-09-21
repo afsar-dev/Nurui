@@ -1,6 +1,5 @@
 import React from "react";
-import PlayButton from "./play-button";
-
+import PlayButton from "@/components/nurui/play-button";
 
 const PlayButtonDemo = () => {
   return (

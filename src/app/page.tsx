@@ -1,4 +1,4 @@
-import FaqSection from "@/components/pages/about-us/FaqSection";
+import FaqSection from "@/components/nurui/glassy-faq";
 import AllComponentSection from "@/components/pages/Home/AllComponentSection";
 import ComponentDemosSection from "@/components/pages/Home/ComponentDemosSection";
 import HeroSection from "@/components/pages/Home/HeroSection";

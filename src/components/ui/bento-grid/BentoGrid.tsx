@@ -7,16 +7,18 @@ interface IProps {
     description: string;
     href: string;
     previewComponentName: string;
-    v0ComponentName: string;
-    cli: string;
-    className: string;
+    v0ComponentName?: string;
+    cli?: string;
+    className?: string;
     background: React.JSX.Element;
   }[];
+  container?: boolean;
+  className?: string;
 }
 
-const BentoDemo: React.FC<IProps> = ({ features }) => {
+const BentoDemo: React.FC<IProps> = ({ features, container, className }) => {
   return (
-    <BentoGrid>
+    <BentoGrid container={container} className={className}>
       {features.map((feature, idx) => (
         <BentoCard key={idx} {...feature} />
       ))}

@@ -1,6 +1,6 @@
 {
   "name": "nurui",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "Add beautiful components with one command",
   "bin": {
     "nurui": "./bin/index.js"
@@ -24,7 +24,7 @@
     "execa": "^9.6.0",
     "node-fetch": "^3.3.2",
     "picocolors": "^1.1.1",
-    "prettier": "^3.6.1",
+    "prettier": "^3.6.2",
     "typescript": "^5.8.3"
   }
 }

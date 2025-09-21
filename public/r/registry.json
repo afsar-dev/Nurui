@@ -21,6 +21,30 @@
       ]
     },
     {
+<<<<<<< HEAD
+=======
+      "name": "neobrutalism-faq",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": ["react-icons"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/glassy-faq-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/glassy-faq.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/question-answer.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+>>>>>>> 985fe5c7728e26a96522f49c9d93e1c86e4d70f1
       "name": "premium-testimonial",
       "type": "registry:component",
       "devDependencies": [],
@@ -124,6 +148,26 @@
         }
       ]
     },
+<<<<<<< HEAD
+=======
+    {
+      "name": "news-letter",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": ["react-icons"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/news-letter.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/animate-Input.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+>>>>>>> 985fe5c7728e26a96522f49c9d93e1c86e4d70f1
 
     {
       "name": "future-navbar",
@@ -565,6 +609,43 @@
         }
       ]
     },
+<<<<<<< HEAD
+=======
+    {
+      "name": "play-button",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": ["react-icons"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/play-button-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/play-button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "copy-button",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": ["lucide-react", "lottie-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/copy-button-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/copy-button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+>>>>>>> 985fe5c7728e26a96522f49c9d93e1c86e4d70f1
 
     {
       "name": "playing-card",
@@ -1230,6 +1311,7 @@
           "type": "registry:component"
         }
       ]
+<<<<<<< HEAD
     },
     {
       "name": "ripple",
@@ -1247,6 +1329,8 @@
           "type": "registry:component"
         }
       ]
+=======
+>>>>>>> 985fe5c7728e26a96522f49c9d93e1c86e4d70f1
     }
   ]
 }

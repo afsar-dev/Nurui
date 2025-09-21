@@ -1,6 +1,6 @@
-import AnimateInput from "./AnimateInput";
+import AnimateInput from "@/components/nurui/animate-Input";
 
-const NewsLetterSection = () => {
+const NewsLetter = () => {
   return (
     <section className="sm:container">
       <div className="shadow-xl dark:shadow-none bg-gradient-to-r from-[var(--white-color)] dark:from-[var(--glass-color)] via-[var(--white-color)] dark:via-[var(--glass-color)] to-[var(--primary-color)] dark:to-[var(--primary-color-2)] py-6 md:py-10 lg:py-20 px-2.5 md:px-20 sm:rounded-xl flex flex-col items-center xl:items-start justify-center text-left gap-3.5">
@@ -21,7 +21,7 @@ const NewsLetterSection = () => {
   );
 };
 
-export default NewsLetterSection;
+export default NewsLetter;
 
 const newsLetter = {
   title: "Subscribe to our newsletter",

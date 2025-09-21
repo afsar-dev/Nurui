@@ -1,5 +1,5 @@
 import React from "react";
-import CopyButton from "./copy-button";
+import CopyButton from "@/components/nurui/copy-button";
 
 const CopyButtonDemo = () => {
   return (

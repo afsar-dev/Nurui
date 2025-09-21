@@ -1,5 +1,3 @@
-"use client";
-
 export function ColorChangingButton({ text = "Hover me" }) {
   return (
     <button className="relative h-10">
