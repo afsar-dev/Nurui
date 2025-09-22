@@ -35,10 +35,12 @@ export default function CopyPage({ text, slug }: CopyWithMenuProps) {
     window.open(`${githubBase}/${slug}.mdx`, "_blank");
   };
 
+
   const handleAI = (provider: AIProvider, slug: string) => {
     const mdxUrl = `https://nurui.vercel.app/docs/${slug}.mdx`; // full public URL
     const prompt = `Read ${mdxUrl}, I want to ask questions about it.`;
     const encoded = encodeURIComponent(prompt);
+
 
     let baseUrl = "";
 

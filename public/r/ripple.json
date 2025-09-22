@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ripple",
+  "type": "registry:component",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "./src/components/nurui/ripple-loader-demo.tsx",
+      "content": "import React from \"react\";\r\nimport RippleLoader from \"./ripple-loader\";\r\n\r\n\r\nconst RippleLoaderDemo = () => {\r\n  return (\r\n    <div className=\"flex items-center justify-center min-h-[30rem]\">\r\n      <RippleLoader />\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default RippleLoaderDemo;\r\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "./src/components/nurui/ripple-loader.tsx",
+      "content": "\"use client\";\r\nimport React from \"react\";\r\n\r\nconst RippleLoader = () => {\r\n  const colors = [\r\n    \"#cce4fc\", // very light\r\n    \"#99c9fa\",\r\n    \"#66afe0\",\r\n    \"#3ca2fa\", // base color\r\n    \"#1f8de6\",\r\n    \"#1073d1\",\r\n    \"#095abf\",\r\n    \"#0347aa\",\r\n    \"#012f82\", // darkest\r\n  ];\r\n\r\n  // Mapping the same animation delays as the original\r\n  const delays = [\r\n    0, // d-0\r\n    100, // d-1\r\n    200, // d-2\r\n    100, // d-1\r\n    200, // d-2\r\n    200, // d-2\r\n    300, // d-3\r\n    300, // d-3\r\n    400, // d-4\r\n  ];\r\n\r\n  return (\r\n    <>\r\n      <style jsx>{`\r\n        @keyframes ripple {\r\n          0% {\r\n            background-color: transparent;\r\n          }\r\n          30% {\r\n            background-color: var(--cell-color);\r\n          }\r\n          60% {\r\n            background-color: transparent;\r\n          }\r\n          100% {\r\n            background-color: transparent;\r\n          }\r\n        }\r\n      `}</style>\r\n\r\n      <div className=\"flex flex-wrap w-[162px] h-[162px]\">\r\n        {colors.map((color, index) => (\r\n          <div\r\n            key={index}\r\n            style={\r\n              {\r\n                \"--cell-color\": color,\r\n                animationName: \"ripple\",\r\n                animationDuration: \"1.5s\",\r\n                animationTimingFunction: \"ease\",\r\n                animationIterationCount: \"infinite\",\r\n                animationDelay: `${delays[index]}ms`,\r\n              } as React.CSSProperties\r\n            }\r\n            className=\"flex-none w-[52px] h-[52px] m-[1px] rounded-md\"\r\n          />\r\n        ))}\r\n      </div>\r\n    </>\r\n  );\r\n};\r\n\r\nexport default RippleLoader;\r\n",
+      "type": "registry:component"
+    }
+  ]
+}

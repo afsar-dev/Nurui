@@ -144,12 +144,20 @@ export const componentsPreviewRegistry: Record<
       ),
     ),
   },
-  "play-button": {
+  
+   "play-button": {
     component: dynamic(() => import("@/components/nurui/play-button-demo")),
   },
   "copy-button": {
     component: dynamic(() => import("@/components/nurui/copy-button-demo")),
   },
+  // loaders
+
+   "ripple-loader": {
+    component: dynamic(() => import("@/components/nurui/ripple-loader-demo")),
+  },
+ 
+
   // cards
   "playing-card": {
     component: dynamic(() => import("@/components/nurui/playing-card-demo")),

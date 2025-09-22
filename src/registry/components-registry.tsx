@@ -198,6 +198,11 @@ import HoverFooter from "@/components/nurui/hover-footer";
 import HoverFooterCode from "@/components/nurui/hover-footer.tsx?raw";
 import TextHoverEffectCode from "@/components/nurui/text-hover-effect.tsx?raw";
 import FooterBackgroundGradient from "@/components/nurui/footer-background-gradient.tsx?raw";
+
+import RippleLoaderCode from "@/components/nurui/ripple-loader.tsx?raw";
+import RippleLoaderDemo from "@/components/nurui/ripple-loader-demo";
+import RippleLoaderDemoCode from "@/components/nurui/ripple-loader-demo.tsx?raw";
+
 import GlassyFaqDemo from "@/components/nurui/glassy-faq-demo";
 import GlassyFaqDemoCode from "@/components/nurui/glassy-faq-demo.tsx?raw";
 import GlassyFaqCode from "@/components/nurui/glassy-faq.tsx?raw";
@@ -205,6 +210,7 @@ import QuestionAnswerCode from "@/components/nurui/question-answer.tsx?raw";
 import NewsLetter from "@/components/nurui/news-letter";
 import NewsLetterCode from "@/components/nurui/news-letter.tsx?raw";
 import AnimateInputCode from "@/components/nurui/animate-Input.tsx?raw";
+
 
 type CodeEntry = {
   fileName: string;
@@ -393,6 +399,14 @@ export const Index: Record<string, ComponentEntry> = {
     code: CopyButtonDemoCode,
     othersCode: [{ fileName: "copy-button", code: CopyButtonCode }],
   },
+
+// Loaders
+ RippleLoader: {
+  preview: <RippleLoaderDemo />,
+  code: RippleLoaderDemoCode,
+  othersCode: [{ fileName: "ripple-loader", code: RippleLoaderCode }],
+ },
+
 
   // cards
   playingCard: {

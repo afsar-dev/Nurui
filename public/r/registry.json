@@ -21,6 +21,8 @@
       ]
     },
     {
+<<<<<<< HEAD
+=======
       "name": "neobrutalism-faq",
       "type": "registry:component",
       "devDependencies": [],
@@ -42,6 +44,7 @@
       ]
     },
     {
+>>>>>>> 985fe5c7728e26a96522f49c9d93e1c86e4d70f1
       "name": "premium-testimonial",
       "type": "registry:component",
       "devDependencies": [],
@@ -145,6 +148,8 @@
         }
       ]
     },
+<<<<<<< HEAD
+=======
     {
       "name": "news-letter",
       "type": "registry:component",
@@ -162,6 +167,7 @@
         }
       ]
     },
+>>>>>>> 985fe5c7728e26a96522f49c9d93e1c86e4d70f1
 
     {
       "name": "future-navbar",
@@ -603,6 +609,8 @@
         }
       ]
     },
+<<<<<<< HEAD
+=======
     {
       "name": "play-button",
       "type": "registry:component",
@@ -637,6 +645,7 @@
         }
       ]
     },
+>>>>>>> 985fe5c7728e26a96522f49c9d93e1c86e4d70f1
 
     {
       "name": "playing-card",
@@ -1302,6 +1311,26 @@
           "type": "registry:component"
         }
       ]
+<<<<<<< HEAD
+    },
+    {
+      "name": "ripple",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/ripple-loader-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/ripple-loader.tsx",
+          "type": "registry:component"
+        }
+      ]
+=======
+>>>>>>> 985fe5c7728e26a96522f49c9d93e1c86e4d70f1
     }
   ]
 }

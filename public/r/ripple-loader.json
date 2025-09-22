@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ripple-loader",
+  "type": "registry:component",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "./src/components/nurui/ripple-loader-demo.tsx",
+      "content": "import RippleLoader from \"@/components/nurui/ripple-loader\";\n\nconst RippleLoaderDemo = () => {\n  return (\n    <>\n      <p className=\"text-3xl text-center pt-4 text-[#00FF87] font-bold\">\n        Watch the ripple animation.\n      </p>\n      <RippleLoader />\n    </>\n  );\n};\n\nexport default RippleLoaderDemo;\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "./src/components/nurui/ripple-loader.tsx",
+    "content": "\"use client\";\nimport React from \"react\";\n\nconst RippleLoader = () => {\n  const colors = [\n    \"#cce4fc\",\n    \"#99c9fa\",\n    \"#66afe0\",\n    \"#3ca2fa\",\n    \"#1f8de6\",\n    \"#1073d1\",\n    \"#095abf\",\n    \"#0347aa\",\n    \"#012f82\"\n  ];\n\n  const delays = [0, 100, 200, 100, 200, 200, 300, 300, 400];\n\n  return (\n    <>\n      <style jsx>{`\\n        @keyframes ripple {\\n          0% { background-color: transparent; }\\n          30% { background-color: var(--cell-color); }\\n          60% { background-color: transparent; }\\n          100% { background-color: transparent; }\\n        }\\n      `}</style>\n\n      <div className=\"flex flex-wrap w-[162px] h-[162px]\">\n        {colors.map((color, index) => (\n          <div\n            key={index}\n            style={{\n              \"--cell-color\": color,\n              animationDelay: `${delays[index]}ms`,\n              animation: \"ripple 1.5s ease infinite\"\n            } as React.CSSProperties}\n            className=\"flex-none w-[52px] h-[52px] m-[1px] rounded-md\"\n          />\n        ))}\n      </div>\n    </>\n  );\n};\n\nexport default RippleLoader;",
+      "type": "registry:component"
+    }
+  ]
+}
