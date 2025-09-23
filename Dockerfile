@@ -1,4 +1,4 @@
-# syntax=docker.io/docker/dockerfile:1
+FROM ubuntu
 
 FROM node:20-alpine AS base
 
