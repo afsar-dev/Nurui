@@ -1319,6 +1319,7 @@
           "type": "registry:component"
         }
       ]
+
     },
     {
   "name": "counter-loading",
@@ -1336,6 +1337,7 @@
     {
       "path": "./src/components/nurui/counter-loading.tsx",
       "type": "registry:component"
+
     }
   ]
 }

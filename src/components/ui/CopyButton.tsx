@@ -16,8 +16,7 @@ type AIProvider = "chatgpt" | "scira" | "claude" | "t3";
 export default function CopyPage({ text, slug }: CopyWithMenuProps) {
   const [copied, setCopied] = useState(false);
   const [open, setOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null); // ref for menu
-
+  const menuRef = useRef<HTMLDivElement>(null);
   const githubBase =
     "https://github.com/afsar-dev/Nurui/blob/main/src/content/docs";
 
@@ -35,12 +34,13 @@ export default function CopyPage({ text, slug }: CopyWithMenuProps) {
     window.open(`${githubBase}/${slug}.mdx`, "_blank");
   };
 
-
   const handleAI = (provider: AIProvider, slug: string) => {
+
     const mdxUrl = `https://raw.githubusercontent.com/afsar-dev/Nurui/refs/heads/main/src/content/docs/${slug}.mdx`; // full public URL
+
+
     const prompt = `Read ${mdxUrl}, I want to ask questions about it.`;
     const encoded = encodeURIComponent(prompt);
-
 
     let baseUrl = "";
 
