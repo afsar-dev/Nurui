@@ -1302,6 +1302,23 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "ripple",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/ripple-loader-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/ripple-loader.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
