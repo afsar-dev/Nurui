@@ -110,6 +110,7 @@ export const navigation = [
     title: "Loaders",
     submenu: [
       { name: "Ripple Loader", href: `${baseUrl}/ripple-loader` },
+      { name: "Counter Loader", href: `${baseUrl}/counter-loading` },
     ],
   },
   // cards
