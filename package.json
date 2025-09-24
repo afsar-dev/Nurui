@@ -29,7 +29,7 @@
     "gsap": "^3.13.0",
     "lodash": "^4.17.21",
     "lottie-react": "^2.4.1",
-    "lucide-react": "^0.523.0",
+    "lucide-react": "^0.542.0",
     "matter-js": "^0.20.0",
     "mini-svg-data-uri": "^1.4.4",
     "motion": "^12.4.7",
