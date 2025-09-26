@@ -1,0 +1,54 @@
+---
+title: "counter-loading"
+description: "A visually engaging counter animation component using CSS grid and keyframe animations."
+---
+
+<ComponentPreview componentName="CounterLoading" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <Cli />
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+<Cli
+  dependencies={[
+    { label: "npm", command: "npm i styled-components" },
+    { label: "pnpm", command: "pnpm add styled-components" },
+    { label: "bun", command: "bun add styled-components" },
+    { label: "yarn", command: "yarn add styled-components" },
+  ]}
+/>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+`components/nurui/counter-loading.tsx`
+
+<CodeBlock componentName="CounterLoading" fileName="counter-loading" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+### Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `-`  | `-`  | `-`     | This component has no props. It simply displays the animated counter grid. |

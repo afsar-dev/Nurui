@@ -1017,6 +1017,19 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "counter-loading",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": ["styled-components"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/counter-loading.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

@@ -1304,7 +1304,7 @@
       ]
     },
     {
-      "name": "ripple",
+      "name": "ripple-loader",
       "type": "registry:component",
       "devDependencies": [],
       "dependencies": [],
@@ -1319,6 +1319,28 @@
           "type": "registry:component"
         }
       ]
+
+    },
+    {
+  "name": "counter-loading",
+  "type": "registry:component",
+  "devDependencies": [],
+  "dependencies": [
+    "styled-components"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "./src/components/nurui/counter-loading-demo.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "./src/components/nurui/counter-loading.tsx",
+      "type": "registry:component"
+
     }
+  ]
+}
+
   ]
 }
