@@ -26,6 +26,7 @@ const CounterLoading = () => {
   );
 };
 
+
 const StyledWrapper = styled.div`
   width: 100vw;
   height: 30rem;
