@@ -35,7 +35,10 @@ export default function CopyPage({ text, slug }: CopyWithMenuProps) {
   };
 
   const handleAI = (provider: AIProvider, slug: string) => {
-    const mdxUrl = `https://raw.githubusercontent.com/afsar-dev/Nurui/refs/heads/main/src/content/docs/${slug}.mdx`;
+
+    const mdxUrl = `https://raw.githubusercontent.com/afsar-dev/Nurui/refs/heads/main/src/content/docs/${slug}.mdx`; // full public URL
+
+
     const prompt = `Read ${mdxUrl}, I want to ask questions about it.`;
     const encoded = encodeURIComponent(prompt);
 

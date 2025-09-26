@@ -210,6 +210,9 @@ import QuestionAnswerCode from "@/components/nurui/question-answer.tsx?raw";
 import NewsLetter from "@/components/nurui/news-letter";
 import NewsLetterCode from "@/components/nurui/news-letter.tsx?raw";
 import AnimateInputCode from "@/components/nurui/animate-Input.tsx?raw";
+import CounterLoadingDemo from "@/components/nurui/counter-loading-demo";
+import CounterLoadingDemoCode from "@/components/nurui/counter-loading-demo.tsx?raw";
+import CounterLoadingCode from "@/components/nurui/counter-loading.tsx?raw";
 
 
 type CodeEntry = {
@@ -405,6 +408,11 @@ export const Index: Record<string, ComponentEntry> = {
   preview: <RippleLoaderDemo />,
   code: RippleLoaderDemoCode,
   othersCode: [{ fileName: "ripple-loader", code: RippleLoaderCode }],
+ },
+ CounterLoading: {
+  preview: <CounterLoadingDemo/>,
+  code: CounterLoadingDemoCode,
+  othersCode: [{ fileName: "counter-loading", code: CounterLoadingCode }],
  },
 
 

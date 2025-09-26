@@ -156,6 +156,9 @@ export const componentsPreviewRegistry: Record<
    "ripple-loader": {
     component: dynamic(() => import("@/components/nurui/ripple-loader-demo")),
   },
+   "counter-loading": {
+    component: dynamic(() => import("@/components/nurui/counter-loading-demo")),
+  },
  
 
   // cards
