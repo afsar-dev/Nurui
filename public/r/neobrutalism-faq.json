@@ -20,9 +20,7 @@
     },
     {
       "path": "./src/components/nurui/question-answer.tsx",
-
       "content": "import { FC } from \"react\";\r\nimport { SlArrowDown, SlArrowUp } from \"react-icons/sl\";\r\n\r\ninterface PropsType {\r\n  question: string;\r\n  answer: string;\r\n  questionNumber: number;\r\n  setOpenKey: () => void;\r\n  openKey: number;\r\n}\r\n\r\nconst QuestionAnswer: FC<PropsType> = ({\r\n  question,\r\n  answer,\r\n  questionNumber,\r\n  openKey,\r\n  setOpenKey,\r\n}) => {\r\n  return (\r\n    <div className=\"bg-[var(--primary-color-2)] dark:bg-[var(--primary-color-4)] rounded-xl \">\r\n      <div\r\n        className=\"flex items-center justify-between gap-1 pl-2 lg:pl-6 pr-4 py-6 border border-[var(--primary-color)] rounded-xl cursor-pointer\"\r\n        onClick={() => setOpenKey()}\r\n      >\r\n        <h6 className=\"lg:text-lg font-semibold\">\r\n          <span>{questionNumber}</span>. <span>{question}</span>\r\n        </h6>\r\n        <button>\r\n          {openKey === questionNumber ? (\r\n            <SlArrowDown className=\"cursor-pointer text-[var(--primary-color)]\" />\r\n          ) : (\r\n            <SlArrowUp className=\"cursor-pointer text-[var(--primary-color)]\" />\r\n          )}\r\n        </button>\r\n      </div>\r\n      {openKey === questionNumber && (\r\n        <p className=\"p-2 lg:p-5 text-[17px] leading-relaxed text-[var(--opacity-text-color)] text-balance lg:text-pretty\">\r\n          {answer}\r\n        </p>\r\n      )}\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default QuestionAnswer;\r\n",
-
       "type": "registry:component"
     }
   ]
