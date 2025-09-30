@@ -213,6 +213,9 @@ import AnimateInputCode from "@/components/nurui/animate-Input.tsx?raw";
 import CounterLoadingDemo from "@/components/nurui/counter-loading-demo";
 import CounterLoadingDemoCode from "@/components/nurui/counter-loading-demo.tsx?raw";
 import CounterLoadingCode from "@/components/nurui/counter-loading.tsx?raw";
+import QuadRingLoaderDemo from "@/components/nurui/quad-ring-loader-demo";
+import QuadRingLoaderDemoCode from "@/components/nurui/quad-ring-loader-demo.tsx?raw";
+import QuadRingLoaderCode from "@/components/nurui/quad-ring-loader.tsx?raw";
 
 
 type CodeEntry = {
@@ -413,6 +416,11 @@ export const Index: Record<string, ComponentEntry> = {
   preview: <CounterLoadingDemo/>,
   code: CounterLoadingDemoCode,
   othersCode: [{ fileName: "counter-loading", code: CounterLoadingCode }],
+ },
+ QuadRingLoader: {
+  preview: <QuadRingLoaderDemo/>,
+  code: QuadRingLoaderDemoCode,
+  othersCode: [{ fileName: "quad-ring-loader", code: QuadRingLoaderCode }],
  },
 
 

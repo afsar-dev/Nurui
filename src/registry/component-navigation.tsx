@@ -111,6 +111,7 @@ export const navigation = [
     submenu: [
       { name: "Ripple Loader", href: `${baseUrl}/ripple-loader` },
       { name: "Counter Loader", href: `${baseUrl}/counter-loading` },
+      { name: "Quad Ring Loader", href: `${baseUrl}/quad-ring-loader` },
     ],
   },
   // cards
