@@ -159,6 +159,9 @@ export const componentsPreviewRegistry: Record<
    "counter-loading": {
     component: dynamic(() => import("@/components/nurui/counter-loading-demo")),
   },
+   "quad-ring-loader": {
+    component: dynamic(() => import("@/components/nurui/quad-ring-loader-demo")),
+  },
  
 
   // cards

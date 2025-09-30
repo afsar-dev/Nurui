@@ -1338,6 +1338,25 @@
       "type": "registry:component"
     }
   ]
+},
+    {
+  "name": "quad-ring-loader",
+  "type": "registry:component",
+  "devDependencies": [],
+  "dependencies": [
+    "styled-components"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "./src/components/nurui/quad-ring-loader-demo.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "./src/components/nurui/quad-ring-loader.tsx",
+      "type": "registry:component"
+    }
+  ]
 }
 
   ]

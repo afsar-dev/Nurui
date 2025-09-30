@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "quad-ring-loader",
+  "type": "registry:component",
+  "dependencies": [
+    "styled-components"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "./src/components/nurui/quad-ring-loader-demo.tsx",
+      "content": "import React from 'react';\nimport QuadRingLoader from './quad-ring-loader';\n\nconst QuadRingLoaderDemo = () => {\n  return (\n    <div className=\"flex items-center justify-center min-h-[30rem]\">\n      <QuadRingLoader />\n    </div>\n  );\n};\n\nexport default QuadRingLoaderDemo;\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "./src/components/nurui/quad-ring-loader.tsx",
+      "content": "\"use client\";\nimport React from 'react';\nimport styled from 'styled-components';\n\nconst QuadRingLoader = () => {\n  return (\n    <StyledWrapper>\n      <svg className=\"pl\" viewBox=\"0 0 128 128\" width=\"128px\" height=\"128px\">\n        <g fill=\"none\" strokeWidth=\"8\" strokeLinecap=\"round\">\n          <circle className=\"pl__ring pl__ring--a\" r=\"56\" cx=\"64\" cy=\"64\" />\n          <circle className=\"pl__ring pl__ring--b\" r=\"56\" cx=\"64\" cy=\"64\" />\n          <circle className=\"pl__ring pl__ring--c\" r=\"56\" cx=\"64\" cy=\"64\" />\n          <circle className=\"pl__ring pl__ring--d\" r=\"56\" cx=\"64\" cy=\"64\" />\n        </g>\n      </svg>\n    </StyledWrapper>\n  );\n};\n\nconst StyledWrapper = styled.div`\n  .pl {\n    display: block;\n    margin: auto;\n  }\n  .pl__ring {\n    animation: ringA 2s linear infinite;\n  }\n  .pl__ring--a { stroke: #ff0080; animation-name: ringA; }\n  .pl__ring--b { stroke: #7928ca; animation-name: ringB; }\n  .pl__ring--c { stroke: #00f5ff; animation-name: ringC; }\n  .pl__ring--d { stroke: #00ff85; animation-name: ringD; }\n\n  @keyframes ringA {\n    0% { stroke-dasharray: 0 352; stroke-dashoffset: 0; }\n    50% { stroke-dasharray: 176 176; stroke-dashoffset: -88; }\n    100% { stroke-dasharray: 0 352; stroke-dashoffset: -352; }\n  }\n\n  @keyframes ringB {\n    0% { stroke-dasharray: 0 352; stroke-dashoffset: 0; }\n    50% { stroke-dasharray: 176 176; stroke-dashoffset: -176; }\n    100% { stroke-dasharray: 0 352; stroke-dashoffset: -352; }\n  }\n\n  @keyframes ringC {\n    0% { stroke-dasharray: 0 352; stroke-dashoffset: 0; }\n    50% { stroke-dasharray: 176 176; stroke-dashoffset: -264; }\n    100% { stroke-dasharray: 0 352; stroke-dashoffset: -352; }\n  }\n\n  @keyframes ringD {\n    0% { stroke-dasharray: 0 352; stroke-dashoffset: 0; }\n    50% { stroke-dasharray: 176 176; stroke-dashoffset: -352; }\n    100% { stroke-dasharray: 0 352; stroke-dashoffset: -352; }\n  }\n`;\n\nexport default QuadRingLoader;\n",
+      "type": "registry:component"
+    }
+  ]
+}
