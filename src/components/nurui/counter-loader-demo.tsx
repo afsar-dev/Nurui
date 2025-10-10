@@ -1,7 +1,5 @@
 import React from "react";
-import CounterLoading from "./counter-loading";
-
-
+import CounterLoading from "./counter-loader";
 
 const CounterLoadingDemo = () => {
   return (

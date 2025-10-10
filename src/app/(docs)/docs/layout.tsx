@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { IChildren } from "@/types/types";
+import { IChildren } from "@/types/common.type";
 import ComponentsRightSidebar from "@/components/layout/components-layout/ComponentsRightSidebar";
 import { useAppContext } from "@/context/AppContext";
 import ComponentsFooter from "@/components/layout/components-layout/ComponentsFooter";
@@ -22,9 +22,7 @@ const Layout = ({ children }: IChildren) => {
           "xl:w-[calc(100%-18rem)]": !isLeftSideBar,
         })}
       >
-        <main className="px-6 md:px-12 py-8">
-          {children}
-        </main>
+        <main className="px-6 md:px-12 py-8">{children}</main>
         <ComponentsFooter />
       </div>
       <ComponentsRightSidebar />

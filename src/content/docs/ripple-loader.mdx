@@ -3,7 +3,7 @@ title: "ripple-loader"
 description: "A colorful ripple loader component built with React and Tailwind CSS, supporting custom colors, cell sizes, and animation delays."
 ---
 
-<ComponentPreview componentName="RippleLoader" />
+<ComponentPreview componentName="rippleLoader" />
 
 ## Installation
 
@@ -26,7 +26,7 @@ description: "A colorful ripple loader component built with React and Tailwind C
 
 `components/nurui/ripple-loader.tsx`
 
-<CodeBlock componentName="RippleLoader" fileName="ripple-loader" />
+<CodeBlock componentName="rippleLoader" fileName="ripple-loader" />
 
 <Step>Update the import paths to fit your project setup</Step>
  
@@ -38,9 +38,9 @@ description: "A colorful ripple loader component built with React and Tailwind C
 
 ### Props
 
-| Prop       | Type        | Default                        | Description                                                                                   |
-| ---------- | ----------- | ------------------------------ | --------------------------------------------------------------------------------------------- |
-| `colors`   | `string[]`  | `["#00FF87", "#0CFD95", "#17FBA2", "#23F9B2", "#30F7C3", "#3DF5D4", "#45F4DE", "#53F1F0", "#60EFFF"]` | Array of colors for the ripple cells.                                                         |
-| `cellSize` | `number`    | `52`                           | Size in pixels of each ripple cell.                                                          |
-| `cells`    | `number`    | `3`                            | Number of cells per row/column (creates a `cells x cells` grid).                             |
-| `delayStep`| `number`    | `100`                          | Delay in milliseconds between the animations of consecutive cells.                            |
+| Prop        | Type       | Default                                                                                               | Description                                                        |
+| ----------- | ---------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `colors`    | `string[]` | `["#00FF87", "#0CFD95", "#17FBA2", "#23F9B2", "#30F7C3", "#3DF5D4", "#45F4DE", "#53F1F0", "#60EFFF"]` | Array of colors for the ripple cells.                              |
+| `cellSize`  | `number`   | `52`                                                                                                  | Size in pixels of each ripple cell.                                |
+| `cells`     | `number`   | `3`                                                                                                   | Number of cells per row/column (creates a `cells x cells` grid).   |
+| `delayStep` | `number`   | `100`                                                                                                 | Delay in milliseconds between the animations of consecutive cells. |

@@ -101,7 +101,6 @@ export const navigation = [
       { name: "Text", href: `${baseUrl}/text-button` },
       { name: "future", href: `${baseUrl}/future-button` },
       { name: "Play", href: `${baseUrl}/play-button` },
-      { name: "Copy", href: `${baseUrl}/copy-button` },
     ],
   },
   // loaders
@@ -110,7 +109,7 @@ export const navigation = [
     title: "Loaders",
     submenu: [
       { name: "Ripple Loader", href: `${baseUrl}/ripple-loader` },
-      { name: "Counter Loader", href: `${baseUrl}/counter-loading` },
+      { name: "Counter Loader", href: `${baseUrl}/counter-loader` },
     ],
   },
   // cards

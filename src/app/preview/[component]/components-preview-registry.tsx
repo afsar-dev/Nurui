@@ -25,17 +25,13 @@ export const componentsPreviewRegistry: Record<
     ),
   },
   "animated-pricing": {
-    component: dynamic(() =>
-      import("@/components/nurui/animated-pricing-demo").then(
-        (mod) => mod.AnimatedPricingDemo,
-      ),
+    component: dynamic(
+      () => import("@/components/nurui/animated-pricing-demo"),
     ),
   },
   "creative-pricing": {
-    component: dynamic(() =>
-      import("@/components/nurui/creative-pricing-demo").then(
-        (mod) => mod.CreativePricingDemo,
-      ),
+    component: dynamic(
+      () => import("@/components/nurui/creative-pricing-demo"),
     ),
   },
   "grid-feature": {
@@ -56,18 +52,10 @@ export const componentsPreviewRegistry: Record<
     ),
   },
   "following-eye": {
-    component: dynamic(() =>
-      import("@/components/nurui/following-eye-demo").then(
-        (mod) => mod.FollowingEyeDemo,
-      ),
-    ),
+    component: dynamic(() => import("@/components/nurui/following-eye-demo")),
   },
   "animated-list": {
-    component: dynamic(() =>
-      import("@/components/nurui/animated-list-demo").then(
-        (mod) => mod.AnimatedListDemo,
-      ),
-    ),
+    component: dynamic(() => import("@/components/nurui/animated-list-demo")),
   },
   banner: {
     component: dynamic(() => import("@/components/nurui/banner-demo")),
@@ -144,22 +132,18 @@ export const componentsPreviewRegistry: Record<
       ),
     ),
   },
-  
-   "play-button": {
+
+  "play-button": {
     component: dynamic(() => import("@/components/nurui/play-button-demo")),
   },
-  "copy-button": {
-    component: dynamic(() => import("@/components/nurui/copy-button-demo")),
-  },
-  // loaders
 
-   "ripple-loader": {
+  // loaders
+  "ripple-loader": {
     component: dynamic(() => import("@/components/nurui/ripple-loader-demo")),
   },
-   "counter-loading": {
-    component: dynamic(() => import("@/components/nurui/counter-loading-demo")),
+  "counter-loader": {
+    component: dynamic(() => import("@/components/nurui/counter-loader-demo")),
   },
- 
 
   // cards
   "playing-card": {

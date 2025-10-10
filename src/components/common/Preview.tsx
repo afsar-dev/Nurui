@@ -3,11 +3,11 @@ import OpenInV0Button from "./OpenInV0Button";
 import FullScreenPreview from "./FullScreenPreview";
 
 const Preview = ({
-  component,
+  Component,
   v0ComponentName,
   previewComponentName,
 }: {
-  component: React.ReactNode;
+  Component: React.ComponentType;
   v0ComponentName?: string;
   previewComponentName?: string;
 }) => {
@@ -21,7 +21,7 @@ const Preview = ({
         className="absolute right-2 top-2"
         v0ComponentName={v0ComponentName}
       />
-      {component}
+      {<Component />}
     </div>
   );
 };

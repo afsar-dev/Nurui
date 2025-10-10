@@ -1,5 +1,12 @@
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
+import withBundleAnalyzer from "@next/bundle-analyzer";
+
+const isAnalyzerEnabled = process.env.ANALYZE === "true";
+
+const analyzer = withBundleAnalyzer({
+  enabled: isAnalyzerEnabled,
+});
 
 const nextConfig: NextConfig = {
   images: {
@@ -50,4 +57,5 @@ const withMDX = createMDX({
 });
 
 // Merge MDX config with Next.js config
-export default withMDX(nextConfig);
+// export default withMDX(nextConfig);
+export default analyzer(withMDX(nextConfig));

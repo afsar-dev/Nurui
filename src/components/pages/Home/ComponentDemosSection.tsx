@@ -11,8 +11,8 @@ import GradientBarsDemo from "@/components/nurui/bars-background-demo";
 import GradientText from "@/components/nurui/gradient-text";
 import ShinyCardDemo from "@/components/nurui/shiny-card-demo";
 import { FollowingEye } from "@/components/nurui/following-eye";
-import { AnimatedListDemo } from "@/components/nurui/animated-list-demo";
 import { ProgressBarDemo } from "@/components/nurui/progress-bar-demo";
+import AnimatedListDemo from "@/components/nurui/animated-list-demo";
 
 const ComponentDemosSection = () => {
   return (

@@ -6,7 +6,6 @@ import { GradientGridHero } from "@/components/nurui/gradient-grid-hero";
 import { FollowingEye } from "@/components/nurui/following-eye";
 import { TerminalDemo } from "@/components/nurui/terminal-demo";
 import { ProgressBarDemo } from "@/components/nurui/progress-bar-demo";
-import { AnimatedListDemo } from "@/components/nurui/animated-list-demo";
 import { Marquee } from "@/components/nurui/marque";
 import { cn } from "@/lib/utils";
 import GlowingCard from "@/components/nurui/glowing-card";
@@ -16,6 +15,7 @@ import BorderAnimationButton from "@/components/nurui/border-button";
 import { InfoCardDemo } from "@/components/nurui/info-card-demo";
 import WaveCard from "@/components/nurui/wave-card";
 import HackerBackground from "@/components/nurui/hacker-background";
+import AnimatedListDemo from "@/components/nurui/animated-list-demo";
 
 const ComponentsPage = () => {
   return (

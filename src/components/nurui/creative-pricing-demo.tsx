@@ -53,4 +53,4 @@ function CreativePricingDemo() {
   );
 }
 
-export { CreativePricingDemo };
+export default CreativePricingDemo;

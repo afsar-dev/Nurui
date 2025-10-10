@@ -4,4 +4,4 @@ const FollowingEyeDemo = () => {
   return <FollowingEye />;
 };
 
-export { FollowingEyeDemo };
+export default  FollowingEyeDemo ;

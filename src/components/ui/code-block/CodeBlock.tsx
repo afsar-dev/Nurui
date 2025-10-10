@@ -29,19 +29,26 @@ export const CodeBlock = ({
 }: CodeBlockProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("TypeScript (.tsx)");
-  const [sourceCode, setSourceCode] = useState(code);
+  const [sourceCode, setSourceCode] = useState(code || "");
   const [copied, setCopied] = React.useState(false);
   const selectedLang = languages.find((lang) => lang.name === selectedLanguage);
   const { theme } = useTheme();
 
   useEffect(() => {
-    if (!code && componentName && fileName) {
-      const matched = Index[componentName]?.othersCode?.find(
-        (otherCode) => otherCode.fileName === fileName,
-      );
-      const content = matched?.code || Index[componentName]?.code || "";
-      setSourceCode(content);
-    }
+    const loadCode = async () => {
+      if (!code && componentName && fileName) {
+        const matched = Index[componentName]?.othersCode?.find(
+          (otherCode) => otherCode.fileName === fileName,
+        );
+        const loader = matched?.code || Index[componentName]?.code;
+        if (loader) {
+          const result = await loader();
+          setSourceCode(result.default);
+        }
+      }
+    };
+
+    loadCode();
   }, [code, componentName, fileName]);
 
   const copyToClipboard = async () => {
@@ -67,8 +74,11 @@ export const CodeBlock = ({
         const matched = Index[componentName]?.othersCode?.find(
           (otherCode) => otherCode.fileName === fileName,
         );
-        const content = matched?.code || Index[componentName]?.code || "";
-        setSourceCode(content);
+        const loader = matched?.code || Index[componentName]?.code;
+        if (loader) {
+          const result = await loader();
+          setSourceCode(result.default);
+        }
       }
     }
   };

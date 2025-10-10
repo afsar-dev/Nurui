@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { FaTerminal } from "react-icons/fa";
 import { cn } from "@/lib/utils";
-import IClassName from "@/types/types";
+import IClassName from "@/types/common.type";
 import { FaCheck } from "react-icons/fa6";
 
 interface ClipboardButtonProps extends IClassName {

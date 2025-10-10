@@ -1,11 +1,16 @@
-import React from "react";
+"use client";
+import React, { useEffect, useMemo, useState } from "react";
 import AnimatedTabs from "./AnimatedTabs";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaCode } from "react-icons/fa";
 import Preview from "./Preview";
 import ComponentPreviewIntro from "./ComponentPreviewIntro";
-import { CodeBlock } from "../ui/code-block/CodeBlock";
 import { Index } from "@/registry/components-registry";
+import dynamic from "next/dynamic";
+const LazyCodeBlock = dynamic<{ code: string }>(
+  () => import("../ui/code-block/CodeBlock").then((mod) => mod.CodeBlock),
+  { ssr: false },
+);
 
 interface ComponentPreviewProps {
   componentName: keyof typeof Index;
@@ -23,7 +28,45 @@ const ComponentPreview = ({
   previewComponentName,
 }: ComponentPreviewProps) => {
   const DemoComponent = Index[componentName]?.preview;
-  const sourceCode = Index[componentName]?.code ?? "";
+  // const sourceCode = Index[componentName]?.code ?? "";
+  const [sourceCode, setSourceCode] = useState("");
+
+  // Load raw code dynamically
+  useEffect(() => {
+    const loadCode = async () => {
+      const importer = Index[componentName]?.code;
+      if (typeof importer === "function") {
+        const mod = await importer();
+        setSourceCode(mod.default || ""); // ?raw exports default string
+      }
+    };
+    loadCode();
+  }, [componentName]);
+
+  const tabs = useMemo(() => {
+    if (!DemoComponent) return [];
+
+    return [
+      {
+        id: "Preview",
+        icon: <IoEyeOutline />,
+        label: "Preview",
+        content: (
+          <Preview
+            Component={DemoComponent}
+            v0ComponentName={v0ComponentName}
+            previewComponentName={previewComponentName}
+          />
+        ),
+      },
+      {
+        id: "Code",
+        icon: <FaCode />,
+        label: "Code",
+        content: <LazyCodeBlock code={sourceCode} />,
+      },
+    ];
+  }, [DemoComponent, sourceCode, v0ComponentName, previewComponentName]);
 
   if (!DemoComponent) {
     return (
@@ -33,26 +76,6 @@ const ComponentPreview = ({
     );
   }
 
-  const tabs = [
-    {
-      id: "Preview",
-      icon: <IoEyeOutline />,
-      label: "Preview",
-      content: (
-        <Preview
-          component={DemoComponent}
-          v0ComponentName={v0ComponentName}
-          previewComponentName={previewComponentName}
-        />
-      ),
-    },
-    {
-      id: "Code",
-      icon: <FaCode />,
-      label: "Code",
-      content: <CodeBlock code={sourceCode} />,
-    },
-  ];
   return (
     <div>
       {introName ? (
