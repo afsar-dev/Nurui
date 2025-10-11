@@ -38,7 +38,10 @@ export const Index: Record<string, ComponentEntry> = {
     "halomot-button",
   ]),
   followingEye: createEntry("following-eye", ["following-eye"]),
-  animatedList: createEntry("animated-list", ["animated-list", "notification"]),
+  animatedList: createEntry("animated-list", [
+    "animated-lists",
+    "notification",
+  ]),
   progressBar: createEntry("progress-bar", ["progress-bar"]),
   banner: createEntry("banner", ["banner", "button"]),
   terminal: createEntry("terminal", ["terminal"]),

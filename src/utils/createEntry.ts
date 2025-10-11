@@ -26,6 +26,12 @@ export const createEntry = (
   },
   othersCode: others.map((file) => ({
     fileName: file,
-    code: () => import(`@/components/nurui/${file}.tsx?raw`),
+    code: async () => {
+      try {
+        return await import(`@/components/nurui/${file}.tsx?raw`);
+      } catch {
+        return { default: `// Failed to load ${file}.tsx` };
+      }
+    },
   })),
 });

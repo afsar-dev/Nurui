@@ -1,4 +1,4 @@
-import { Marquee } from "@/components/nurui/marque";
+import { Marquee } from "@/components/nurui/marquee";
 import TestimonialCard from "@/components/nurui/testimonial-card";
 import { testimonialData } from "@/data/testimonial";
 

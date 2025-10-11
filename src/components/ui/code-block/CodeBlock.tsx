@@ -11,6 +11,7 @@ import { BiLogoTypescript } from "react-icons/bi";
 import { Index } from "@/registry/components-registry";
 import { convertTsxToJsx } from "@/utils/convertTsxToJsx";
 import { useTheme } from "next-themes";
+import { Spinner } from "@/components/nurui/spinner";
 
 type CodeBlockProps = {
   language?: string;
@@ -32,22 +33,27 @@ export const CodeBlock = ({
   const [sourceCode, setSourceCode] = useState(code || "");
   const [copied, setCopied] = React.useState(false);
   const selectedLang = languages.find((lang) => lang.name === selectedLanguage);
+  const [loading, setLoading] = useState(!code);
   const { theme } = useTheme();
 
   useEffect(() => {
     const loadCode = async () => {
       if (!code && componentName && fileName) {
-        const matched = Index[componentName]?.othersCode?.find(
-          (otherCode) => otherCode.fileName === fileName,
-        );
-        const loader = matched?.code || Index[componentName]?.code;
-        if (loader) {
-          const result = await loader();
-          setSourceCode(result.default);
+        setLoading(true);
+        try {
+          const matched = Index[componentName]?.othersCode?.find(
+            (otherCode) => otherCode.fileName === fileName,
+          );
+          const loader = matched?.code || Index[componentName]?.code;
+          if (loader) {
+            const result = await loader();
+            setSourceCode(result.default);
+          }
+        } finally {
+          setLoading(false);
         }
       }
     };
-
     loadCode();
   }, [code, componentName, fileName]);
 
@@ -82,6 +88,14 @@ export const CodeBlock = ({
       }
     }
   };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-64 border border-[var(--primary-color)] dark:border-[var(--primary-color-3)] rounded-2xl bg-white dark:bg-[var(--primary-color-5)]">
+        <Spinner className="text-[var(--primary-color)] size-6"/>
+      </div>
+    );
+  }
 
   return (
     <div className="border border-[var(--primary-color)] dark:border-[var(--primary-color-3)] rounded-2xl max-h-[30rem] overflow-auto w-full text-sm">

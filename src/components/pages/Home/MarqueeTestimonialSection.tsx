@@ -1,4 +1,4 @@
-import { Marquee } from "@/components/nurui/marque";
+import { Marquee } from "@/components/nurui/marquee";
 import TestimonialCard from "@/components/nurui/testimonial-card";
 import { testimonialData } from "@/data/testimonial";
 
@@ -29,7 +29,13 @@ export default function MarqueeTestimonialSection() {
         {[
           { testimonialData: testimonialData?.slice(0, 10), reverse: true },
           { testimonialData: testimonialData?.slice(10, 20), reverse: false },
-          { testimonialData: testimonialData?.slice(20, testimonialData?.length), reverse: true },
+          {
+            testimonialData: testimonialData?.slice(
+              20,
+              testimonialData?.length,
+            ),
+            reverse: true,
+          },
         ].map((item, idx) => (
           <Marquee
             key={idx}
@@ -77,5 +83,3 @@ export default function MarqueeTestimonialSection() {
     </section>
   );
 }
-
-
