@@ -1,5 +1,5 @@
 import FaqSection from "@/components/nurui/glassy-faq";
-import AllComponentSection from "@/components/pages/Home/AllComponentSection";
+import AllTechnologySection from "@/components/pages/Home/AllTechnologySection";
 import ComponentDemosSection from "@/components/pages/Home/ComponentDemosSection";
 import HeroSection from "@/components/pages/Home/HeroSection";
 import MarqueeTestimonialSection from "@/components/pages/Home/MarqueeTestimonialSection";
@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <main className="section-gap">
       <HeroSection />
-      <AllComponentSection />
+      <AllTechnologySection />
       <ComponentDemosSection />
       <MarqueeTestimonialSection />
       <FaqSection />

@@ -62,7 +62,7 @@ let notifications = [
 ];
 notifications = Array.from({ length: 10 }, () => notifications).flat();
 
-export function AnimatedListDemo({ className }: { className?: string }) {
+function AnimatedListDemo({ className }: { className?: string }) {
   return (
     <div
       className={cn(
@@ -80,3 +80,5 @@ export function AnimatedListDemo({ className }: { className?: string }) {
     </div>
   );
 }
+
+export default AnimatedListDemo;

@@ -35,9 +35,7 @@ export default function CopyPage({ text, slug }: CopyWithMenuProps) {
   };
 
   const handleAI = (provider: AIProvider, slug: string) => {
-
     const mdxUrl = `https://raw.githubusercontent.com/afsar-dev/Nurui/refs/heads/main/src/content/docs/${slug}.mdx`; // full public URL
-
 
     const prompt = `Read ${mdxUrl}, I want to ask questions about it.`;
     const encoded = encodeURIComponent(prompt);
@@ -99,7 +97,7 @@ export default function CopyPage({ text, slug }: CopyWithMenuProps) {
       </button>
 
       {open && (
-        <div className="absolute top-12 left-0 w-56 bg-gray-100 border text-black border-gray-700 rounded-xl shadow-lg p-2 space-y-1 z-50 dark:bg-gray-900 dark:text-white">
+        <div className="absolute top-12 left-0 w-56 bg-gray-100 border text-black border-gray-700 rounded-xl shadow-lg p-2 space-y-1 z-[999] dark:bg-gray-900 dark:text-white ">
           <button
             onClick={handleGitHub}
             className="flex items-center justify-between w-full px-3 py-2 rounded-lg hover:bg-gray-200 transition dark:hover:bg-gray-800"

@@ -1,4 +1,4 @@
-import { Marquee } from "@/components/nurui/marque";
+import { Marquee } from "@/components/nurui/marquee";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 

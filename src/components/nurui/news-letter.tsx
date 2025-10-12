@@ -1,5 +1,4 @@
-import AnimateInput from "@/components/nurui/animate-Input";
-
+import AnimatedInput from "@/components/nurui/animated-input";
 const NewsLetter = () => {
   return (
     <section className="sm:container">
@@ -10,7 +9,7 @@ const NewsLetter = () => {
         <p className="max-w-2xl text-center xl:text-start text-balance sm:text-pretty">
           {newsLetter?.description}
         </p>
-        <AnimateInput
+        <AnimatedInput
           className="w-full max-w-2xl mt-2"
           onBlurTitle="subscribe to our newsletter"
           onFocusTitle="We won't spam you!"

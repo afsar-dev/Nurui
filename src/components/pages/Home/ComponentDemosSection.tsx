@@ -4,15 +4,15 @@ import ButtonsMarquee from "./ButtonsMarquee";
 import BentoDemo from "@/components/ui/bento-grid/BentoGrid";
 import { TerminalDemo } from "@/components/nurui/terminal-demo";
 import { cn } from "@/lib/utils";
-import { Marquee } from "@/components/nurui/marque";
+import { Marquee } from "@/components/nurui/marquee";
 import { GradientGridHero } from "@/components/nurui/gradient-grid-hero";
 import GlowingCard from "@/components/nurui/glowing-card";
 import GradientBarsDemo from "@/components/nurui/bars-background-demo";
 import GradientText from "@/components/nurui/gradient-text";
 import ShinyCardDemo from "@/components/nurui/shiny-card-demo";
 import { FollowingEye } from "@/components/nurui/following-eye";
-import { AnimatedListDemo } from "@/components/nurui/animated-list-demo";
 import { ProgressBarDemo } from "@/components/nurui/progress-bar-demo";
+import AnimatedListDemo from "@/components/nurui/animated-list-demo";
 
 const ComponentDemosSection = () => {
   return (

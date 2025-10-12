@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in contributing to Nurui. We're happy to have you here.
+Thanks for your interest in contributing to Nur/ui. We're happy to have you here.
 
 This document will guide you through the process of setting up the project locally, contributing components, and following our commit conventions.
 
@@ -61,13 +61,14 @@ Please ensure that:
 - Any pull request made directly to the `main` branch **will be rejected**.
 
 #### Correct PR:
+
 `your-feature-branch ➡️ dev`
 
 #### Not Allowed:
+
 `your-feature-branch ➡️ main`
 
 This helps us keep the `main` branch stable and production-ready.
-
 
 ## Folder Structure
 
@@ -140,7 +141,7 @@ NURUI/
 
 ## How to Add a New Component to Nurui
 
-Follow these 4 simple steps to add a new UI component to the library.
+Follow these 7 simple steps to add a new UI component to the library.
 
 ---
 
@@ -166,25 +167,21 @@ shiny-button-demo.tsx    # Demo preview component
 
 ### Step 3: Register in componentRegistry.ts
 
-Open `src/registry/componentRegistry.ts` and add the following:
+Nur/ui now uses a dynamic registry system useing the function createEntry().
+
+Open `src/registry/componentRegistry.ts` and add your entry:
 
 Import the files:
 
 ```bash
-import ShinyButtonCode from "@/components/nurui/shiny-button.tsx?raw";
-import ShinyButtonDemo from "@/components/nurui/shiny-button-demo";
-import ShinyButtonDemoCode from "@/components/nurui/shiny-button-demo.tsx?raw";
+import { createEntry } from "@/utils/createEntry";
 
+export const componentsRegistry = {
+  shinyButton: createEntry("shiny-button", ["shiny-button"]),
+};
 
-Add entry to the Index object:
-
-shinyButton: {
-  preview: <ShinyButtonDemo />,
-  code: ShinyButtonDemoCode,
-  othersCode: [
-    { fileName: "shiny-button", code: ShinyButtonCode },
-  ],
-},
+## This automatically loads your preview and raw code dynamically.
+## If your component doesn’t follow the -demo pattern, the system will handle it conditionally.
 ```
 
 ### Step 4: Create .mdx File for Docs
@@ -238,6 +235,103 @@ description: "A glowing button component with customizable animations."
 | `variant`  | `string`   | `"glow"`  | Type of glow animation        |
 | `children` | `ReactNode`| —         | Button text or nested content |
 | ...props   | `button`   | —     | Standard button props         |
+```
+
+### Step 5: Add to registry.json
+
+This powers the web registry for component open in the v0.
+
+Open `registry.json` and add your entry:
+
+Import the files:
+
+```bash
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "nurui",
+  "homepage": "https://nurui.vercel.app",
+  "items": [
+   {
+      "name": "shiny-button",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": ["react-icons", "clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/shiny-button-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/shiny-button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}
+## Also you can add more dependencies and files if needed.
+```
+
+### Step 6: Add to registry-cli.json (for CLI Support)
+
+This enables users to install via:
+
+```bash
+npx nurui add shiny-button
+```
+
+Open `registry-cli.json` and add your entry:
+
+Import the files:
+
+```bash
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "nurui",
+  "homepage": "https://nurui.vercel.app",
+  "items": [
+   {
+      "name": "shiny-button",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": ["react-icons"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/shiny-button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}
+## Also you can add more dependencies and files if needed.
+## Note: do not need to add the demo file
+```
+
+### Step 7: Add Preview Page (Full Page Support)
+
+NurUI supports live previews for each component at `/preview/[component]`
+
+Open `src/app/preview/[component]/components-preview-registry.tsx` and add your entry:
+
+```bash
+import React from "react";
+import dynamic from "next/dynamic";
+
+export const componentsPreviewRegistry: Record<
+  string,
+  { component: React.ComponentType }
+> = {
+  "shiny-button": {
+    component: dynamic(
+      () => import("@/components/nurui/shiny-button-demo"),
+    ),
+  }}
+
+## If this component is not default export then use likt this:
+import("@/components/nurui/shiny-button-demo").then((mod) => mod.TextButtonDemo)
 ```
 
 🔚 Done!

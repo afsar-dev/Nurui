@@ -56,4 +56,4 @@ const AnimatedPricingDemo = () => {
   );
 };
 
-export { AnimatedPricingDemo };
+export default AnimatedPricingDemo;

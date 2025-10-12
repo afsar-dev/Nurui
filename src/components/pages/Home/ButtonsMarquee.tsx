@@ -20,7 +20,7 @@ import LinkWithProgress from "@/components/common/LinkWithProgress";
 import OutLineAnimationButton from "@/components/nurui/outline-animation-button";
 import BorderAnimationButton from "@/components/nurui/border-button";
 import HoverShadowButton from "@/components/nurui/shadow-button";
-import { Marquee } from "@/components/nurui/marque";
+import { Marquee } from "@/components/nurui/marquee";
 
 const ButtonsMarquee = () => {
   return (

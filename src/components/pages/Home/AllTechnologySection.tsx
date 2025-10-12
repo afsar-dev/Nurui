@@ -15,7 +15,7 @@ import MotionIcon from "@/components/icons/MotionIcon";
 import AnimeJsIcon from "@/components/icons/AnimeJsIcon";
 import ReactSpringIcon from "@/components/icons/ReactSpringIcon";
 
-export default function AllComponentSection() {
+export default function AllTechnologySection() {
   const icons = [
     {
       icon: (

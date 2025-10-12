@@ -34,7 +34,7 @@
     "src/cli/utils/convertTsxToJsx.js",
     "src/content/docs/info-card.mdx",
     "src/content/docs/animated-form.mdx"
-  ],
+, "src/scripts/generateMetadata.ts"  ],
   "typeRoots": ["./types", "./node_modules/@types"],
   "exclude": ["node_modules"]
 }

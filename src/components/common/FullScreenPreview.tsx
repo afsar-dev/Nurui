@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import { siteLink } from "@/config/site";
 import { cn } from "@/lib/utils";
-import IClassName from "@/types/types";
+import IClassName from "@/types/common.type";
 import { usePathname } from "next/navigation";
 
 const FullScreenPreview = ({

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "cross-env ANALYZE=true next build"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -25,6 +26,7 @@
     "@vercel/analytics": "^1.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cross-env": "^10.1.0",
     "dotted-map": "^2.2.3",
     "gsap": "^3.13.0",
     "lodash": "^4.17.21",
@@ -61,6 +63,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@next/bundle-analyzer": "^15.5.4",
     "@react-three/drei": "^10.6.1",
     "@types/lodash": "^4.17.15",
     "@types/matter-js": "^0.20.0",
@@ -75,6 +78,7 @@
     "eslint-config-next": "15.1.7",
     "postcss": "^8",
     "raw-loader": "^4.0.2",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2"
   }
 }

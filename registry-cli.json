@@ -470,19 +470,7 @@
         }
       ]
     },
-    {
-      "name": "copy-button",
-      "type": "registry:component",
-      "devDependencies": [],
-      "dependencies": ["lucide-react", "lottie-react"],
-      "registryDependencies": [],
-      "files": [
-        {
-          "path": "./src/components/nurui/copy-button.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
+    
 
     {
       "name": "playing-card",

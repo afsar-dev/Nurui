@@ -23,7 +23,7 @@ import ReactSpringIcon from "../../icons/ReactSpringIcon";
 import ZDogIcon from "../../icons/ZDogIcon";
 import RatingStars from "@/components/nurui/rating-star";
 import UserByCompanies from "@/components/common/UserByCompanies";
-import { getContributors } from "@/lib/github";
+import { getContributors } from "@/utils/github";
 
 const HeroSection = async () => {
   const contributors = await getContributors();

@@ -9,7 +9,7 @@ interface IProps {
   buttonTitle: string;
 }
 
-const AnimateInput: FC<IProps> = ({
+const AnimatedInput: FC<IProps> = ({
   className,
   onBlurTitle,
   onFocusTitle,
@@ -58,4 +58,4 @@ const AnimateInput: FC<IProps> = ({
   );
 };
 
-export default AnimateInput;
+export default AnimatedInput;

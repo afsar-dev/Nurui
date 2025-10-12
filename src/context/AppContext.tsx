@@ -1,5 +1,5 @@
 "use client";
-import { IChildren } from "@/types/types";
+import { IChildren } from "@/types/common.type";
 import { createContext, useContext, useState } from "react";
 
 interface IAppContextProps {
