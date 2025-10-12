@@ -39,7 +39,7 @@ export const Index: Record<string, ComponentEntry> = {
   ]),
   followingEye: createEntry("following-eye", ["following-eye"]),
   animatedList: createEntry("animated-list", [
-    "animated-lists",
+    "animated-list-items",
     "notification",
   ]),
   progressBar: createEntry("progress-bar", ["progress-bar"]),
@@ -89,7 +89,7 @@ export const Index: Record<string, ComponentEntry> = {
   wavesHero: createEntry("waves-hero", ["waves-hero", "button"]),
   digitalHero: createEntry("digital-hero", ["digital-hero"]),
   researchHero: createEntry("research-hero", [
-    "sparkles-core",
+    "sparkles",
     "research-hero",
     "floating-paper",
     "robo-animation",

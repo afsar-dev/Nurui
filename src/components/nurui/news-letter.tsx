@@ -1,4 +1,4 @@
-import AnimatedInput from "./animated-Input";
+import AnimatedInput from "@/components/nurui/animated-input";
 const NewsLetter = () => {
   return (
     <section className="sm:container">
