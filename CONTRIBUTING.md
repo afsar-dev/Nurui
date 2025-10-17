@@ -310,7 +310,13 @@ Import the files:
 ## Note: do not need to add the demo file
 ```
 
-### Step 7: Add Preview Page (Full Page Support)
+### Step 7: Run shadcn command:
+
+```bash
+npx shadcn build
+```
+
+### Step 8: Add Preview Page (Full Page Support)
 
 NurUI supports live previews for each component at `/preview/[component]`
 

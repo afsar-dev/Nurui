@@ -24,8 +24,8 @@ const nunito = Nunito({
 export const generateMetadata = async (): Promise<Metadata> => {
   return {
     title: {
-      default: "Nur UI",
-      template: "%s | Nur UI",
+      default: "Nur/ui",
+      template: "%s | Nur/ui",
     },
     icons: {
       icon: [
