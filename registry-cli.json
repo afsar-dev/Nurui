@@ -130,7 +130,11 @@
       "name": "future-navbar",
       "type": "registry:component",
       "devDependencies": [],
-      "dependencies": ["lucide-react", "class-variance-authority"],
+      "dependencies": [
+        "lucide-react",
+        "class-variance-authority",
+        "@left4code/svg-renderer"
+      ],
       "registryDependencies": [],
       "files": [
         {
@@ -470,7 +474,6 @@
         }
       ]
     },
-    
 
     {
       "name": "playing-card",
