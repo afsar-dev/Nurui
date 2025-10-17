@@ -25,17 +25,17 @@ function CreativePricing({
 }) {
   return (
     <div className="w-full max-w-6xl mx-auto px-4">
-      <div className="text-center space-y-6 mb-16">
-        <div className="font-handwritten text-xl text-blue-500 rotate-[-1deg]">
+      <div className="text-center space-y-6 mb-6 lg:mb-16">
+        <div className="font-handwritten text-xl text-blue-500 rotate-[-1deg] hidden lg:block">
           {tag}
         </div>
         <div className="relative">
-          <h2 className="text-4xl md:text-5xl font-bold font-handwritten text-zinc-900 dark:text-white rotate-[-1deg]">
+          <h2 className="text-2xl md:text-5xl font-bold font-handwritten text-zinc-900 dark:text-white rotate-[-1deg]">
             {title}
-            <div className="absolute -right-12 top-0 text-amber-500 rotate-12">
+            <div className="absolute -right-12 top-0 text-amber-500 rotate-12 hidden lg:block">
               ✨
             </div>
-            <div className="absolute -left-8 bottom-0 text-blue-500 -rotate-12">
+            <div className="absolute -left-8 bottom-0 text-blue-500 -rotate-12 hidden lg:block">
               ⭐️
             </div>
           </h2>
@@ -156,7 +156,7 @@ function CreativePricing({
           </div>
         ))}
       </div>
-      <div className="absolute -z-10 inset-0 overflow-hidden">
+      <div className="absolute -z-10 inset-0 overflow-hidden hidden lg:block">
         <div className="absolute top-40 left-20 text-4xl rotate-12">✎</div>
         <div className="absolute bottom-40 right-20 text-4xl -rotate-12">
           ✏️

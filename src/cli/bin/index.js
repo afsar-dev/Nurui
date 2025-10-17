@@ -135,8 +135,13 @@ try {
     process.exit(1);
   }
 
+  const hasSrc = fs.existsSync(path.join(process.cwd(), "src"));
+  const baseLibDir = hasSrc
+    ? path.join(process.cwd(), "src", "lib")
+    : path.join(process.cwd(), "lib");
+
   const cnContent = {
-    ts: `import { ClassValue, clsx } from "clsx";
+    ts: `import { type ClassValue, clsx } from "clsx";
     import { twMerge } from "tailwind-merge";
 
     export function cn(...inputs: ClassValue[]) {
@@ -150,16 +155,22 @@ try {
     }`,
   };
 
-  const utilsPath = path.join(process.cwd(), "lib");
   const cnPath = path.join(
-    utilsPath,
+    baseLibDir,
     `utils.${language === "js" ? "js" : "ts"}`,
   );
 
+  let utilsCreated = false;
+  // Create utils file if it doesn't exist
   if (!fs.existsSync(cnPath)) {
-    await fs.promises.mkdir(utilsPath, { recursive: true });
+    await fs.promises.mkdir(baseLibDir, { recursive: true });
     await fs.promises.writeFile(cnPath, cnContent[language], "utf8");
-    console.log(colors.green(`🛠️ Created lib/utils${language}`));
+    console.log(
+      colors.green(
+        `🛠️ Created ${hasSrc ? "src/lib" : "lib"}/utils.${language}`,
+      ),
+    );
+    utilsCreated = true;
   }
 
   for (const file of match.files) {
@@ -171,19 +182,28 @@ try {
   if (match?.dependencies?.length) {
     const pm = detectPackageManager();
     const s2 = spinner();
-    s2.start(
-      `📦 Installing dependencies with ${pm}: ${match.dependencies.join(", ")}`,
-    );
 
-    const cmd = ["add", ...match.dependencies];
-    const fallback = ["install", ...match.dependencies];
+    const deps = [...(match.dependencies || [])];
+    if (utilsCreated) {
+      deps.push("clsx", "tailwind-merge");
+    }
 
-    try {
-      await execa(pm, pm === "npm" ? fallback : cmd, { stdio: "inherit" });
-      s2.stop(colors.green("✅ Dependencies installed."));
-    } catch (err) {
-      s2.stop(colors.red("❌ Failed to install dependencies."));
-      console.error(err);
+    if (deps.length > 0) {
+      const uniqueDeps = [...new Set(deps)];
+      s2.start(
+        `📦 Installing dependencies with ${pm}: ${uniqueDeps.join(", ")}`,
+      );
+
+      const cmd = ["add", ...uniqueDeps];
+      const fallback = ["install", ...uniqueDeps];
+
+      try {
+        await execa(pm, pm === "npm" ? fallback : cmd, { stdio: "inherit" });
+        s2.stop(colors.green("✅ Dependencies installed."));
+      } catch (err) {
+        s2.stop(colors.red("❌ Failed to install dependencies."));
+        console.error(err);
+      }
     }
   }
 
