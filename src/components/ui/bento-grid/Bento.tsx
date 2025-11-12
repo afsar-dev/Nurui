@@ -102,7 +102,7 @@ const BentoCard = ({
     >
       <Link
         href={props?.href}
-        className="flex items-center text-sm pointer-events-auto hover:bg-[var(--glass-color-2)] p-2 rounded-xl"
+        className="flex items-center text-sm pointer-events-auto hover:bg-[var(--glass-color-2)] hover:text-white p-2 rounded-xl"
       >
         <span>View</span>
         <ArrowRightIcon className="ms-2 h-4 w-4" />
