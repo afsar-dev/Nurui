@@ -1,145 +1,114 @@
-import ShadowAnimationButton from "../../common/ShadowAnimationButton";
+"use client";
 import { BiCustomize, BiMobileVibration } from "react-icons/bi";
 import { MdOutlineDarkMode } from "react-icons/md";
-import LabelWithIcon from "../../common/LabelWithIcon";
+import { GrOptimize } from "react-icons/gr";
 import BackgroundGridBeam from "../../ui/background-grid-beam/BackgroundGridBeam";
 import AnimatedGradientText from "../../ui/animated-gradient-button/AnimatedGradientText";
-import HtmlIcon from "../../icons/HtmlIcon";
-import { CssIcon } from "../../icons/CssIcon";
-import TailwindIcon from "../../icons/TailwindIcon";
-import JavaScriptIcon from "../../icons/JavaScriptIcon";
-import NextJsIcon from "../../icons/NextJsIcon";
-import TypescriptIcon from "../../icons/TypescriptIcon";
-import SassIcon from "../../icons/SassIcon";
+import LabelWithIcon from "../../common/LabelWithIcon";
+import { motion } from "motion/react";
 import ReactIcon from "../../icons/ReactIcon";
-import { AnimatedTooltip } from "../../common/AnimatedTooltip";
-import CollMode from "../../ui/cool-mode/CollMode";
-import { GrOptimize } from "react-icons/gr";
-import GsapIcon from "../../icons/GsapIcon";
-import ThreeJsIcon from "../../icons/ThreeJsIcon";
-import AnimeJsIcon from "../../icons/AnimeJsIcon";
-import MotionIcon from "../../icons/MotionIcon";
-import ReactSpringIcon from "../../icons/ReactSpringIcon";
-import ZDogIcon from "../../icons/ZDogIcon";
+import NextJsIcon from "../../icons/NextJsIcon";
+import TailwindIcon from "../../icons/TailwindIcon";
+import TypescriptIcon from "../../icons/TypescriptIcon";
 import RatingStars from "@/components/nurui/rating-star";
 import UserByCompanies from "@/components/common/UserByCompanies";
-import { getContributors } from "@/utils/github";
+import Link from "next/link";
 
-const HeroSection = async () => {
-  const contributors = await getContributors();
-  const lastFiveContributors = contributors.slice(
-    contributors.length - 5,
-    contributors.length,
-  );
-
+const HeroSection = () => {
   return (
     <BackgroundGridBeam>
-      <section className="flex justify-evenly px-4 md:px-20 pt-7 md:pt-16 lg:pt-24 pb-7 md:pb-4 lg:pb-10 ">
-        {/* left side icons */}
-        <div className="hidden 2xl:flex gap-x-4 h-96 w-60 icon-animation">
-          <div className="flex flex-col justify-around relative right-4">
-            <ZDogIcon className="relative left-6 icon-animation5" />
-            <SassIcon className="icon-animation6" />
-            <GsapIcon className="relative left-6 icon-animation7" />
-          </div>
-          <div className="flex flex-col justify-center gap-12 relative left-3">
-            <CssIcon className="icon-animation3" />
-            <TailwindIcon className="icon-animation4" />
-          </div>
-          <div className="flex flex-col justify-between">
-            <HtmlIcon className="icon-animation1" />
-            <JavaScriptIcon className="icon-animation2" />
-          </div>
+      <section className="relative flex flex-col items-center justify-center text-center px-6 pt-20 pb-24 md:pb-32">
+        {/* Gradient title label */}
+        <AnimatedGradientText
+          href="/docs/gradient-button"
+          title={"Build Faster. Design Smarter."}
+          textGradient="bg-gradient-to-r from-[var(--secondary-color)] via-[var(--primary-color)] to-[var(--secondary-color)]"
+          borderGradient="bg-gradient-to-r from-[#80EEB4]/70 via-[#3CA2FA] to-[#80EEB4]/70"
+        />
+
+        {/* Headline */}
+        <h1 className="font-extrabold tracking-tight uppercase text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] max-w-4xl mt-8 text-balance">
+          All Your{" "}
+          <span className="text-[var(--primary-color)]">Components</span>
+          <br className="hidden sm:block" /> in One Place
+          <span className="text-[var(--primary-color)]">!</span>
+        </h1>
+
+        {/* Description */}
+        <p className="text-[var(--opacity-text-color)] mt-6 md:mt-8 max-w-2xl text-base sm:text-lg md:text-xl leading-relaxed">
+          A modern, minimal, and responsive React + Next.js component library —
+          <br className="hidden sm:block" />
+          crafted for developers who value{" "}
+          <span className="text-[var(--primary-color)] font-medium">
+            aesthetics
+          </span>{" "}
+          and
+          <span className="text-[var(--primary-color)] font-medium">
+            {" "}
+            speed
+          </span>
+          .
+        </p>
+
+        {/* Feature list */}
+        <div className="bg-[var(--glass-color)] shadow-md dark:shadow-none px-6 py-3 mt-8 rounded-2xl hidden md:flex items-center gap-6 capitalize backdrop-blur-sm">
+          {[
+            { icon: <BiMobileVibration />, label: "Responsive" },
+            { icon: <MdOutlineDarkMode />, label: "Dark mode" },
+            { icon: <BiCustomize />, label: "Customizable" },
+            { icon: <GrOptimize />, label: "Lightweight" },
+          ].map(({ icon, label }, i) => (
+            <LabelWithIcon key={i} icon={icon} label={label} />
+          ))}
         </div>
-        {/* content */}
-        <div className="flex flex-col items-center gap-y-4 md:gap-y-6 lg::gap-y-7 text-center text-[var(--text-primary-color)]">
-          <AnimatedGradientText
-            href="/docs/gradient-button"
-            title={"Introducing Gradient Button"}
-            textGradient="bg-[var(--black-color)] dark:bg-gradient-to-r from-[var(--secondary-color)] via-[var(--primary-color)] to-[var(--secondary-color)]"
-            borderGradient="bg-gradient-to-r from-[#80EEB4] dark:from-[#80EEB4]/60 via-[#3CA2FA] dark:via-[#3CA2FA]/100 to-[#80EEB4] dark:to-[#80EEB4]/60"
-          />
-          {/* title */}
-          <h1 className="text-3xl md:text-5xl lg:text-7xl xl:text-5xl 2xl:text-7xl max-w-[62rem] font-bold uppercase leading-[1.1] text-balance">
-            All Your Component in One{" "}
-            <span className="text-[var(--primary-color)]">Place!</span>
-          </h1>
-          {/* description */}
-          <p className="lg:text-xl max-w-2xl text-[var(--opacity-text-color)] text-balance">
-            React and Next.js based UI library with CLI scaffolding, TS-to-JS
-            conversion, and v0 live previews.
+
+        {/* CTA */}
+        <div className="mt-10">
+          <Link
+            href="/docs/components"
+            className="px-8 py-3 rounded-xl text-lg   font-medium 
+    bg-white/10 backdrop-blur-md border border-white/20 
+    text-[var(--text-primary-color)]
+    hover:bg-white/20 hover:border-white/30 
+    transition-all duration-300"
+          >
+            Explore Components
+          </Link>
+        </div>
+
+        {/* Tech icons animation */}
+        <div className="relative mt-20 flex items-center justify-center">
+          <motion.div
+            className="grid grid-cols-4 gap-8"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+          >
+            {[ReactIcon, NextJsIcon, TailwindIcon, TypescriptIcon].map(
+              (Icon, idx) => (
+                <motion.div
+                  key={idx}
+                  whileHover={{ scale: 1.1 }}
+                  className="flex justify-center items-center"
+                >
+                  <Icon className="w-12 h-12 md:w-16 md:h-16 opacity-80 hover:opacity-100 transition-all duration-300" />
+                </motion.div>
+              ),
+            )}
+          </motion.div>
+        </div>
+
+        {/* Rating + Companies */}
+        <div className="mt-12 flex flex-col items-center gap-4">
+          <RatingStars />
+          <p className="text-[var(--opacity-text-color)] font-medium">
+            Trusted by
+            <span className="text-[var(--text-primary-color)] font-semibold">
+              500+
+            </span>
+            developers
           </p>
-          {/* features */}
-          <div className="bg-[var(--glass-color)] shadow-lg dark:shadow-none px-6 py-3 rounded-2xl hidden md:flex items-center gap-4 capitalize">
-            {[
-              { icon: <BiMobileVibration />, label: "responsive" },
-              { icon: <MdOutlineDarkMode />, label: "Dark mode" },
-              { icon: <BiCustomize />, label: "customizable" },
-              { icon: <GrOptimize />, label: "Lightweight" },
-            ].map(({ icon, label }, i) => (
-              <LabelWithIcon key={i} icon={icon} label={label} />
-            ))}
-          </div>
-
-          {/* action & offer & avatar & rating */}
-          <div className="flex flex-col items-center gap-3">
-            <CollMode
-              options={{
-                particle: [
-                  "https://res.cloudinary.com/dz1fy2tof/image/upload/v1747489777/icons8-tailwindcss-480_qnf2sy.png",
-                  "https://res.cloudinary.com/dz1fy2tof/image/upload/v1751019213/CSS3_enijzz.png",
-                  "https://res.cloudinary.com/dz1fy2tof/image/upload/v1747489474/atom_eieqee.png",
-                  "https://res.cloudinary.com/dz1fy2tof/image/upload/v1747489870/icons8-javascript-480_nqbmlo.png",
-                  "https://res.cloudinary.com/dz1fy2tof/image/upload/v1747489887/icons8-typescript-480_gxf8zq.png",
-                  "https://res.cloudinary.com/dz1fy2tof/image/upload/v1747490019/icons8-sass-480_colnli.png",
-                  "https://res.cloudinary.com/dz1fy2tof/image/upload/v1751018871/zdog_xc145m.png",
-                ],
-              }}
-            >
-              <ShadowAnimationButton
-                href={"/docs/components"}
-                title="Get Started"
-              />
-            </CollMode>
-
-            <p className="flex items-center gap-1 font-bold">
-              <span className="text-[var(--primary-color)]">
-                Get Early Access
-              </span>{" "}
-              to New UI
-            </p>
-
-            <div className="flex flex-col md:flex-row items-center pt-4 md:pt-6">
-              <AnimatedTooltip items={lastFiveContributors} />
-              <div className="flex flex-col items-center md:items-start gap-1 mt-5 md:mt-0 md:ml-5">
-                <RatingStars />
-                <p className="ml-3 text-[var(--opacity-text-color)] font-semibold">
-                  Trusted by{" "}
-                  <span className="text-[var(--text-primary-color)]">500+</span>{" "}
-                  developers
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* used by */}
           <UserByCompanies />
-        </div>
-        {/* right side icons */}
-        <div className="hidden 2xl:flex gap-x-4 h-96 w-60 icon-animation mr-8">
-          <div className="flex flex-col justify-between">
-            <ThreeJsIcon className="icon-animation8" />
-            <ReactIcon className="icon-animation9" />
-          </div>
-          <div className="flex flex-col justify-center gap-12 relative right-3">
-            <NextJsIcon className="icon-animation10" />
-            <TypescriptIcon className="icon-animation11" />
-          </div>
-          <div className="flex flex-col justify-around relative right-2">
-            <MotionIcon className="icon-animation12" />
-            <AnimeJsIcon className="icon-animation13 relative left-7" />
-            <ReactSpringIcon className="icon-animation14" />
-          </div>
         </div>
       </section>
     </BackgroundGridBeam>
