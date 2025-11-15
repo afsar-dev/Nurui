@@ -1,0 +1,24 @@
+services:
+  nurui:
+    image: nurui:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=production
+    container_name: nurui-app
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.production
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+      - ANALYZE=false
+    restart: unless-stopped
+    networks:
+      - nurui-network
+
+networks:
+  nurui-network:
+    driver: bridge

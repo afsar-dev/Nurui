@@ -1,6 +1,6 @@
-import type { NextConfig } from "next";
-import createMDX from "@next/mdx";
 import withBundleAnalyzer from "@next/bundle-analyzer";
+import createMDX from "@next/mdx";
+import type { NextConfig } from "next";
 
 const isAnalyzerEnabled = process.env.ANALYZE === "true";
 
@@ -9,6 +9,7 @@ const analyzer = withBundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   images: {
     remotePatterns: [
       {
