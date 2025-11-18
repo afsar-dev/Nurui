@@ -7,7 +7,21 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "analyze": "cross-env ANALYZE=true next build"
+    "analyze": "cross-env ANALYZE=true next build",
+    "docker:build": "docker build -t nurui:latest .",
+    "docker:run": "docker run -d -p 3000:3000 --name nurui-container --env-file .env.production nurui:latest",
+    "docker:stop": "docker stop nurui-container && docker rm nurui-container",
+    "docker:logs": "docker logs -f nurui-container",
+    "docker:restart": "yarn docker:stop && yarn docker:build && yarn docker:run",
+    "docker:compose:up": "docker compose up -d",
+    "docker:compose:build": "docker compose build",
+    "docker:compose:rebuild": "docker compose up -d --build",
+    "docker:compose:down": "docker compose down",
+    "docker:compose:restart": "docker compose restart",
+    "docker:compose:logs": "docker compose logs -f",
+    "docker:compose:ps": "docker compose ps",
+    "docker:clean": "docker system prune -af",
+    "docker:clean:all": "docker compose down && docker system prune -af --volumes"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

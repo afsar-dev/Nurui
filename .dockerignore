@@ -1,7 +1,55 @@
+# dependencies
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# testing
+coverage
+
+# next.js
+.next/
+out/
+build
+dist
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+*.log
+
+# local env files - DO NOT copy to container
+.env
+.env.local
+.env.development
+.env*.local
+
+# Only .env.production will be used in Docker
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+
+# git
+.git
+.gitignore
+README.md
+CONTRIBUTING.md
+SECURITY.md
+LICENSE
+
+# docker
 Dockerfile
 .dockerignore
-node_modules
-npm-debug.log
-README.md
-.next
-.git
+docker-compose.yml
+
+# IDE
+.vscode
+.idea
+
+# GitHub
+.github

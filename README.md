@@ -14,15 +14,58 @@
 
 Visit https://nurui.vercel.app/docs/installation to view the documentation.
 
-## 🛠️ Project Setup
+## 🚀 Quick Start
+
+### Option 1: Using Docker (Recommended for Production)
+
+Prerequisite: Docker & Docker Compose installed.
 
 ```bash
 # 1. Clone the repository
 git clone https://github.com/afsar-dev/Nurui.git
 cd Nurui
 
-# 2. Create a .env file in the root directory and add:
-NODE_ENV=development
+# 2. Create production environment file
+cat .env.production
+#  The project uses the existing .env.production file.
+#  You can modify it if needed.
+
+# 3. Build and start with Docker Compose
+yarn docker:compose:up
+# Or manually:
+docker compose up -d
+
+# The production application will be available at http://localhost:3000
+```
+
+### Option 1.1 — Run With Docker (Without Compose)
+
+If you prefer to run Nurui using standard Docker commands:
+
+```bash
+# 1. Build Docker Image
+yarn docker:build
+# Or manually:
+docker build -t nurui:latest .
+
+# 2. Run Container
+yarn docker:run
+# Or manually:
+docker run -d \ --name nurui \ -p 3000:3000 \ --env-file .env.production \ nurui:latest
+```
+
+### Option 2: Local Development Setup
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/afsar-dev/Nurui.git
+cd Nurui
+
+# 2. Create a .env.development file (or .env) file in the root directory
+cat .env
+
+# Add to .env file:
+# NODE_ENV=development
 
 # 3. Install dependencies
 yarn install
@@ -33,9 +76,22 @@ yarn dev
 # The application will be available at http://localhost:3000
 ```
 
-<!-- ## Activity
+## 🔧 Environment Variables
 
-![Alt](https://repobeats.axiom.co/api/embed/35271c3244e24efbae34731d1ee21d0988f8fc0e.svg "Repobeats analytics image") -->
+Create a `.env.production` file for Docker deployment:
+
+```bash
+NODE_ENV=production
+ANALYZE=false
+NEXT_TELEMETRY_DISABLED=1
+```
+
+For local Development (.env or .env.development):
+
+```
+NODE_ENV=development
+ANALYZE=false
+```
 
 ## License
 
