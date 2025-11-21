@@ -38,6 +38,7 @@
 
   --font-nunito: "Nunito";
   --font-creepster: "Creepster";
+  --font-geist: "Geist";
 }
 
 .light {
@@ -72,6 +73,10 @@
 
 .font-nunito {
   font-family: var(--font-nunito);
+}
+
+.font-geist {
+  font-family: var(--font-Geist);
 }
 
 .clip-path-auth-layout {

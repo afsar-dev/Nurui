@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Nunito } from "next/font/google";
+
+import { Geist } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import "../styles/footer.css";
@@ -16,6 +18,13 @@ import Banner from "@/components/ui/Banner";
 const nunito = Nunito({
   variable: "--font-nunito",
   weight: ["400", "600", "900", "1000"],
+  subsets: ["latin"],
+  style: ["normal"],
+  display: "swap",
+});
+const geist = Geist({
+  variable: "--font-geist",
+  weight: ["400", "600", "900", "900"],
   subsets: ["latin"],
   style: ["normal"],
   display: "swap",
@@ -92,7 +101,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${nunito.variable} antialiased bg-[var(--background-color)] flex flex-col min-h-screen font-nunito`}
+        className={` ${nunito.variable} ${geist.variable} antialiased bg-[var(--background-color)] flex flex-col min-h-screen font-geist`}
       >
         <AppProvider>
           <ThemeProvider>
