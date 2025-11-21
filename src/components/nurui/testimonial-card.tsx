@@ -1,6 +1,6 @@
-import { FaQuoteLeft } from "react-icons/fa6";
-import Image from "next/image";
 import RatingStars from "@/components/nurui/rating-star";
+import Image from "next/image";
+import { FaQuoteLeft } from "react-icons/fa6";
 
 interface IProps {
   position: string;
@@ -8,6 +8,7 @@ interface IProps {
   review: string;
   marginTop?: string;
   src: string;
+  rating: number;
 }
 
 export default function TestimonialCard({
@@ -16,6 +17,7 @@ export default function TestimonialCard({
   review,
   marginTop,
   src,
+  rating,
 }: IProps) {
   return (
     <div
@@ -30,11 +32,10 @@ export default function TestimonialCard({
         <div className="flex flex-col lg:flex-row items-center gap-2.5">
           <Image
             src={src}
-            alt=""
-            className="size-8 rounded-full"
-            height={0}
-            width={0}
-            unoptimized
+            alt={name}
+            width={40}
+            height={40}
+            className="size-8 rounded-full object-cover"
           />
           <div className="text-center lg:text-start">
             <h2 className="text- font-[600]">{name}</h2>
@@ -42,7 +43,7 @@ export default function TestimonialCard({
           </div>
         </div>
 
-        <RatingStars size="size-3" />
+        <RatingStars size="size-3" rating={rating} />
       </div>
       <FaQuoteLeft className=" absolute -bottom-2 right-[5%] rotate-[180deg] text-[1.3rem] text-[#727272]" />
     </div>

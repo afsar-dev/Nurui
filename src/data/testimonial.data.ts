@@ -13,7 +13,7 @@ export const testimonialData = [
     testimonial: "Looks promising",
     image:
       "https://res.cloudinary.com/dz1fy2tof/image/upload/v1754662308/user_2_1_tblfh5.jpg",
-    rating: 4.5,
+    rating: 5,
   },
   {
     name: "Tyler",
@@ -177,7 +177,7 @@ export const testimonialData = [
     testimonial: "Looks promising",
     image:
       "https://res.cloudinary.com/dz1fy2tof/image/upload/v1754662308/user_2_1_tblfh5.jpg",
-    rating: 4.5,
+    rating: 5,
   },
   {
     name: "Tyler",
@@ -226,7 +226,7 @@ export const testimonialData = [
       "Very elegant, thank you for sharing a layout that breaks away from the ordinary and delivers a modern, refined interface.",
     image:
       "https://res.cloudinary.com/dz1fy2tof/image/upload/v1754766545/user-8_1_jsqbf1.jpg",
-    rating: 4.3,
+    rating: 5,
   },
   {
     name: "Muhammad Alamin Ibrahim",
