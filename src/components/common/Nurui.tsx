@@ -1,5 +1,5 @@
+import NuruiLogo from "../nurui/nurui-logo";
 import LinkWithProgress from "./LinkWithProgress";
-import NuruiLogo from "./NuruiLogo";
 type ClassType = { textSize?: string };
 
 const Nurui = ({ textSize }: ClassType) => {
@@ -12,7 +12,6 @@ const Nurui = ({ textSize }: ClassType) => {
     >
       <NuruiLogo />
       <span>Nur/ui</span>
-      {/* <span>Nur.ui</span> */}
     </LinkWithProgress>
   );
 };

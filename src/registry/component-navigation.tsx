@@ -1,4 +1,13 @@
-import { TfiHelpAlt } from "react-icons/tfi";
+import { AiOutlineFileSearch } from "react-icons/ai";
+import { BiLoader } from "react-icons/bi";
+import { DiHtml53dEffects } from "react-icons/di";
+import { FaWpforms } from "react-icons/fa";
+import { GrDrawer, GrInstallOption } from "react-icons/gr";
+import { IoTextSharp } from "react-icons/io5";
+import { MdLegendToggle } from "react-icons/md";
+import { PiCursorClickDuotone } from "react-icons/pi";
+import { RxComponent2, RxSection } from "react-icons/rx";
+import { SiApacherocketmq } from "react-icons/si";
 import {
   TbBackground,
   TbCards,
@@ -6,15 +15,7 @@ import {
   TbHandClick,
   TbLayoutNavbarCollapse,
 } from "react-icons/tb";
-import { BiLoader } from "react-icons/bi";
-import { GrDrawer, GrInstallOption } from "react-icons/gr";
-import { AiOutlineFileSearch } from "react-icons/ai";
-import { FaWpforms } from "react-icons/fa";
-import { RxComponent2, RxSection } from "react-icons/rx";
-import { PiCursorClickDuotone } from "react-icons/pi";
-import { SiApacherocketmq } from "react-icons/si";
-import { IoTextSharp } from "react-icons/io5";
-import { MdLegendToggle } from "react-icons/md";
+import { TfiHelpAlt } from "react-icons/tfi";
 
 const baseUrl = "/docs";
 
@@ -59,7 +60,10 @@ export const navigation = [
   {
     icon: <MdLegendToggle />,
     title: "Footer",
-    submenu: [{ name: "hover", href: `${baseUrl}/hover-footer` }],
+    submenu: [
+      { name: "hover", href: `${baseUrl}/hover-footer` },
+      { name: "rocket", href: `${baseUrl}/rocket-footer` },
+    ],
   },
   // components
   {
@@ -76,6 +80,15 @@ export const navigation = [
       { name: "Story", href: `${baseUrl}/story` },
     ],
   },
+  {
+    icon: <DiHtml53dEffects />,
+    title: "3D",
+    submenu: [
+      { name: "glob map", href: `${baseUrl}/glob-map` },
+      { name: "rotating earth", href: `${baseUrl}/rotating-earth` },
+    ],
+  },
+
   // backgrounds
   {
     icon: <TbBackground />,

@@ -53,7 +53,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "./src/components/nurui/marque.tsx",
+          "path": "./src/components/nurui/marquee.tsx",
           "type": "registry:component"
         },
         {
@@ -120,7 +120,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "./src/components/nurui/animate-Input.tsx",
+          "path": "./src/components/nurui/animated-input.tsx",
           "type": "registry:component"
         }
       ]
@@ -147,6 +147,7 @@
         }
       ]
     },
+
     {
       "name": "hover-footer",
       "type": "registry:component",
@@ -160,6 +161,27 @@
         },
         {
           "path": "./src/components/nurui/footer-background-gradient.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "rocket-footer",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": ["clsx", "tailwind-merge", "react-icons"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/rocket-footer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/nurui-logo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/rocket-scroll-to-top.tsx",
           "type": "registry:component"
         }
       ]
@@ -286,6 +308,42 @@
       "files": [
         {
           "path": "./src/components/nurui/following-eye.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+
+    {
+      "name": "glob-map",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": [
+        "d3",
+        "@radix-ui/react-slot",
+        "class-variance-authority",
+        "topojson-client"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/glob-map.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "rotating-earth",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": ["d3"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/rotating-earth.tsx",
           "type": "registry:component"
         }
       ]
@@ -1010,14 +1068,14 @@
       ]
     },
     {
-      "name": "counter-loading",
+      "name": "counter-loader",
       "type": "registry:component",
       "devDependencies": [],
       "dependencies": ["styled-components"],
       "registryDependencies": [],
       "files": [
         {
-          "path": "./src/components/nurui/counter-loading.tsx",
+          "path": "./src/components/nurui/counter-loader.tsx",
           "type": "registry:component"
         }
       ]

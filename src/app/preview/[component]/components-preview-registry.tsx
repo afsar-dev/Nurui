@@ -1,5 +1,5 @@
-import React from "react";
 import dynamic from "next/dynamic";
+import React from "react";
 
 export const componentsPreviewRegistry: Record<
   string,
@@ -45,6 +45,9 @@ export const componentsPreviewRegistry: Record<
   "hover-footer": {
     component: dynamic(() => import("@/components/nurui/hover-footer")),
   },
+  "rocket-footer": {
+    component: dynamic(() => import("@/components/nurui/rocket-footer-demo")),
+  },
   // components
   "project-showcase": {
     component: dynamic(
@@ -84,6 +87,13 @@ export const componentsPreviewRegistry: Record<
     component: dynamic(() =>
       import("@/components/nurui/story-demo").then((mod) => mod.StoryDemo),
     ),
+  },
+
+  "glob-map": {
+    component: dynamic(() => import("@/components/nurui/glob-map-demo")),
+  },
+  "rotating-earth": {
+    component: dynamic(() => import("@/components/nurui/rotating-earth-demo")),
   },
   // background
   "bars-background": {

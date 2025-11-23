@@ -4,6 +4,7 @@ import { getContributors } from "@/utils/github";
 import { BiCustomize, BiMobileVibration } from "react-icons/bi";
 import { GrOptimize } from "react-icons/gr";
 import { MdOutlineDarkMode } from "react-icons/md";
+import "../../../styles/hero.css";
 import { AnimatedTooltip } from "../../common/AnimatedTooltip";
 import LabelWithIcon from "../../common/LabelWithIcon";
 import ShadowAnimationButton from "../../common/ShadowAnimationButton";

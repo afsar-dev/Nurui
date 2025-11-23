@@ -1,12 +1,12 @@
 "use client";
-import { navigationActive } from "@/utils/navigationActive";
-import { usePathname } from "next/navigation";
+import LinkWithProgress from "@/components/common/LinkWithProgress";
 import Nurui from "@/components/common/Nurui";
 import RoundedButton from "@/components/common/RoundedButton";
-import { FaDiscord, FaGithub } from "react-icons/fa";
 import VaulDrawer from "@/components/ui/drawer/VaulDrawer";
-import LinkWithProgress from "@/components/common/LinkWithProgress";
+import { navigationActive } from "@/utils/navigationActive";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FaDiscord, FaGithub } from "react-icons/fa";
 import ThemeSwitcher from "../common/ThemeSwitcher";
 
 const Navbar = () => {
@@ -33,7 +33,7 @@ const Navbar = () => {
         <div className="flex items-center justify-center gap-1">
           <Nurui textSize="text-2xl lg:text-3xl" />
           <p className="bg-[var(--primary-color-2)] text-[var(--primary-color)] rounded-full font-semibold px-1.5 text-[0.65rem] hidden lg:block">
-            Beta
+            Basic
           </p>
         </div>
         <div

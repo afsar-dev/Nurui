@@ -9,8 +9,6 @@ import { Nunito } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import MainContent from "../components/common/MainContent";
 import ThemeProvider from "../provider/ThemeProvider";
-import "../styles/footer.css";
-import "../styles/hero.css";
 import "./globals.css";
 
 const nunito = Nunito({

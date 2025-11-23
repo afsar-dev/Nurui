@@ -1,0 +1,96 @@
+---
+title: "glob-map"
+description: "Interactive Globe-to-Map transformation component for modern UIs, built with D3.js for smooth globe and map animations."
+keywords:
+  - globe
+  - map
+  - visualization
+  - d3
+  - animation
+  - interactive
+  - react
+  - nurui
+---
+
+<ComponentPreview componentName="globMap" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <Cli />
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+<Cli
+  dependencies={[
+    {
+      label: "npm",
+      command:
+        "npm i d3 @radix-ui/react-slot class-variance-authority topojson-client clsx tailwind-merge",
+    },
+    {
+      label: "pnpm",
+      command:
+        "pnpm add d3 @radix-ui/react-slot class-variance-authority topojson-client clsx tailwind-merge",
+    },
+    {
+      label: "bun",
+      command:
+        "bun add d3 @radix-ui/react-slot class-variance-authority topojson-client clsx tailwind-merge",
+    },
+    {
+      label: "yarn",
+      command:
+        "yarn add d3 @radix-ui/react-slot class-variance-authority topojson-client clsx tailwind-merge",
+    },
+  ]}
+/>
+
+<Step>Add util file</Step>
+
+`lib/utils.ts`
+
+<CodeBlock 
+code={`import { ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}`
+}/>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+`components/nurui/glob-map.tsx`
+
+<CodeBlock componentName="globMap" fileName="glob-map" />
+
+`components/nurui/button.tsx`
+
+<CodeBlock componentName="globMap" fileName="button" />
+
+<Step>Update the import paths to fit your project setup</Step>
+ 
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+### Props
+
+| Prop       | Type | Default | Description                               |
+| ---------- | ---- | ------- | ----------------------------------------- |
+| _No props_ | –    | –       | This component does not accept any props. |
