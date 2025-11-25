@@ -181,6 +181,10 @@
           "type": "registry:component"
         },
         {
+          "path": "./src/components/nurui/styles/footer.css",
+          "type": "registry:component"
+        },
+        {
           "path": "./src/components/nurui/rocket-scroll-to-top.tsx",
           "type": "registry:component"
         }
