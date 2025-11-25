@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "./src/components/nurui/following-eye-demo.tsx",
-      "content": "import { FollowingEye } from \"@/components/nurui/following-eye\";\n\nconst FollowingEyeDemo = () => {\n  return <FollowingEye />;\n};\n\nexport { FollowingEyeDemo };\n",
+      "content": "import { FollowingEye } from \"@/components/nurui/following-eye\";\n\nconst FollowingEyeDemo = () => {\n  return <FollowingEye />;\n};\n\nexport default  FollowingEyeDemo ;\n",
       "type": "registry:component"
     },
     {

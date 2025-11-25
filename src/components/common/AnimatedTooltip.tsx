@@ -1,13 +1,14 @@
 "use client";
-import Image from "next/image";
-import React, { useState } from "react";
+import cloudinaryLoader from "@/lib/cloudinaryLoader";
 import {
-  motion,
-  useTransform,
   AnimatePresence,
+  motion,
   useMotionValue,
   useSpring,
+  useTransform,
 } from "framer-motion";
+import Image from "next/image";
+import React, { useState } from "react";
 
 export const AnimatedTooltip = ({
   items,
@@ -74,17 +75,24 @@ export const AnimatedTooltip = ({
                 <div className="font-bold text-white relative z-30 text-base">
                   {item.login}
                 </div>
-                <div className="text-white text-xs">{item.login}</div>
               </motion.div>
             )}
           </AnimatePresence>
           <Image
             onMouseMove={handleMouseMove}
-            height={100}
-            width={100}
+            height={56}
+            width={56}
             src={item.avatar_url}
             alt={item.login}
-            className="object-cover !m-0 !p-0 object-top rounded-full h-14 w-14 border-2 group-hover:scale-105 group-hover:z-30 border-white  relative transition duration-500"
+            className="object-cover !m-0 !p-0 object-top rounded-full h-14 w-14 border-2 group-hover:scale-105 group-hover:z-30 border-white relative transition duration-500"
+            loader={({ src, width }) =>
+              src.startsWith("https://res.cloudinary.com")
+                ? cloudinaryLoader({ src, width })
+                : src
+            }
+            unoptimized={
+              !item.avatar_url.startsWith("https://res.cloudinary.com")
+            }
           />
         </div>
       ))}

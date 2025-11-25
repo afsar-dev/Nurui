@@ -1,17 +1,15 @@
+import NProgressProvider from "@/components/common/NProgressProvider";
+import Footer from "@/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Banner from "@/components/ui/Banner";
+import { AppProvider } from "@/context/AppContext";
+import VercelAnalytics from "@/provider/AnalyticsProvider";
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/next";
 import { Nunito } from "next/font/google";
 import { Toaster } from "react-hot-toast";
-import "./globals.css";
-import "../styles/footer.css";
-import "../styles/hero.css";
-import ThemeProvider from "../provider/ThemeProvider";
-import NProgressProvider from "@/components/common/NProgressProvider";
 import MainContent from "../components/common/MainContent";
-import { AppProvider } from "@/context/AppContext";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import Banner from "@/components/ui/Banner";
+import ThemeProvider from "../provider/ThemeProvider";
+import "./globals.css";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -102,7 +100,7 @@ export default function RootLayout({
             <Navbar />
             <MainContent>{children}</MainContent>
             <Footer />
-            <Analytics />
+            <VercelAnalytics />
           </ThemeProvider>
         </AppProvider>
       </body>

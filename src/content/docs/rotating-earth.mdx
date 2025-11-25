@@ -1,0 +1,81 @@
+---
+title: "rotating-earth"
+description: "A fully interactive 3D Rotating Earth component built with D3.js, featuring smooth globe rotation, responsive sizing, and elegant map projection transitions for modern React UIs."
+keywords:
+  - rotating earth
+  - 3d globe
+  - d3
+  - earth visualization
+  - world map
+  - projection
+  - animation
+  - interactive globe
+  - react
+  - nurui
+---
+
+<ComponentPreview componentName="rotatingEarth" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <Cli />
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+<Cli
+  dependencies={[
+    {
+      label: "npm",
+      command: "npm i d3",
+    },
+    {
+      label: "pnpm",
+      command: "pnpm add d3",
+    },
+    {
+      label: "bun",
+      command: "bun add d3",
+    },
+    {
+      label: "yarn",
+      command: "yarn add d3",
+    },
+  ]}
+/>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+`components/nurui/rotating-earth.tsx`
+
+<CodeBlock componentName="rotatingEarth" fileName="rotating-earth" />
+
+<Step>Update the import paths to fit your project setup</Step>
+ 
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+### Props
+
+`RotatingEarth`
+
+| Prop        | Type     | Default | Description                                                                |
+| ----------- | -------- | ------- | -------------------------------------------------------------------------- |
+| `width`     | `number` | `800`   | Width of the Earth canvas container. Responsive limits are applied.        |
+| `height`    | `number` | `600`   | Height of the Earth canvas container. Responsive limits are applied.       |
+| `className` | `string` | `""`    | Additional Tailwind/utility classes for customizing the wrapper container. |

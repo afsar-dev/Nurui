@@ -1,29 +1,37 @@
-import ShadowAnimationButton from "../../common/ShadowAnimationButton";
-import { BiCustomize, BiMobileVibration } from "react-icons/bi";
-import { MdOutlineDarkMode } from "react-icons/md";
-import LabelWithIcon from "../../common/LabelWithIcon";
-import BackgroundGridBeam from "../../ui/background-grid-beam/BackgroundGridBeam";
-import AnimatedGradientText from "../../ui/animated-gradient-button/AnimatedGradientText";
-import HtmlIcon from "../../icons/HtmlIcon";
-import { CssIcon } from "../../icons/CssIcon";
-import TailwindIcon from "../../icons/TailwindIcon";
-import JavaScriptIcon from "../../icons/JavaScriptIcon";
-import NextJsIcon from "../../icons/NextJsIcon";
-import TypescriptIcon from "../../icons/TypescriptIcon";
-import SassIcon from "../../icons/SassIcon";
-import ReactIcon from "../../icons/ReactIcon";
-import { AnimatedTooltip } from "../../common/AnimatedTooltip";
-import CollMode from "../../ui/cool-mode/CollMode";
-import { GrOptimize } from "react-icons/gr";
-import GsapIcon from "../../icons/GsapIcon";
-import ThreeJsIcon from "../../icons/ThreeJsIcon";
-import AnimeJsIcon from "../../icons/AnimeJsIcon";
-import MotionIcon from "../../icons/MotionIcon";
-import ReactSpringIcon from "../../icons/ReactSpringIcon";
-import ZDogIcon from "../../icons/ZDogIcon";
-import RatingStars from "@/components/nurui/rating-star";
 import UserByCompanies from "@/components/common/UserByCompanies";
+import RatingStars from "@/components/nurui/rating-star";
 import { getContributors } from "@/utils/github";
+import { BiCustomize, BiMobileVibration } from "react-icons/bi";
+import { GrOptimize } from "react-icons/gr";
+import { MdOutlineDarkMode } from "react-icons/md";
+import "../../../styles/hero.css";
+import { AnimatedTooltip } from "../../common/AnimatedTooltip";
+import LabelWithIcon from "../../common/LabelWithIcon";
+import ShadowAnimationButton from "../../common/ShadowAnimationButton";
+import AnimeJsIcon from "../../icons/AnimeJsIcon";
+import { CssIcon } from "../../icons/CssIcon";
+import GsapIcon from "../../icons/GsapIcon";
+import HtmlIcon from "../../icons/HtmlIcon";
+import JavaScriptIcon from "../../icons/JavaScriptIcon";
+import MotionIcon from "../../icons/MotionIcon";
+import NextJsIcon from "../../icons/NextJsIcon";
+import ReactIcon from "../../icons/ReactIcon";
+import ReactSpringIcon from "../../icons/ReactSpringIcon";
+import SassIcon from "../../icons/SassIcon";
+import TailwindIcon from "../../icons/TailwindIcon";
+import ThreeJsIcon from "../../icons/ThreeJsIcon";
+import TypescriptIcon from "../../icons/TypescriptIcon";
+import ZDogIcon from "../../icons/ZDogIcon";
+import AnimatedGradientText from "../../ui/animated-gradient-button/AnimatedGradientText";
+import BackgroundGridBeam from "../../ui/background-grid-beam/BackgroundGridBeam";
+import CollMode from "../../ui/cool-mode/CollMode";
+
+const features = [
+  { icon: <BiMobileVibration />, label: "responsive" },
+  { icon: <MdOutlineDarkMode />, label: "Dark mode" },
+  { icon: <BiCustomize />, label: "customizable" },
+  { icon: <GrOptimize />, label: "Lightweight" },
+];
 
 const HeroSection = async () => {
   const contributors = await getContributors();
@@ -71,12 +79,7 @@ const HeroSection = async () => {
           </p>
           {/* features */}
           <div className="bg-[var(--glass-color)] shadow-lg dark:shadow-none px-6 py-3 rounded-2xl hidden md:flex items-center gap-4 capitalize">
-            {[
-              { icon: <BiMobileVibration />, label: "responsive" },
-              { icon: <MdOutlineDarkMode />, label: "Dark mode" },
-              { icon: <BiCustomize />, label: "customizable" },
-              { icon: <GrOptimize />, label: "Lightweight" },
-            ].map(({ icon, label }, i) => (
+            {features.map(({ icon, label }, i) => (
               <LabelWithIcon key={i} icon={icon} label={label} />
             ))}
           </div>
@@ -112,7 +115,7 @@ const HeroSection = async () => {
             <div className="flex flex-col md:flex-row items-center pt-4 md:pt-6">
               <AnimatedTooltip items={lastFiveContributors} />
               <div className="flex flex-col items-center md:items-start gap-1 mt-5 md:mt-0 md:ml-5">
-                <RatingStars />
+                <RatingStars rating={5} />
                 <p className="ml-3 text-[var(--opacity-text-color)] font-semibold">
                   Trusted by{" "}
                   <span className="text-[var(--text-primary-color)]">500+</span>{" "}

@@ -1,13 +1,12 @@
 "use client";
-import React from "react";
-import Nurui from "@/components/common/Nurui";
+import LinkWithProgress from "@/components/common/LinkWithProgress";
 import MenuItem from "@/components/common/MenuItem";
+import Nurui from "@/components/common/Nurui";
+import NuruiLogo from "@/components/nurui/nurui-logo";
 import { useAppContext } from "@/context/AppContext";
+import { navigation } from "@/registry/component-navigation";
 import SimpleBar from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
-import { navigation } from "@/registry/component-navigation";
-import LinkWithProgress from "@/components/common/LinkWithProgress";
-import NuruiLogo from "@/components/common/NuruiLogo";
 
 const ComponentsLeftSidebar = () => {
   const { sideBar } = useAppContext();
@@ -25,7 +24,7 @@ const ComponentsLeftSidebar = () => {
               <div className="flex items-center justify-center gap-1">
                 <Nurui />
                 <p className="bg-[var(--primary-color-2)] text-[var(--primary-color)] rounded-full font-semibold px-1.5 text-[0.65rem]">
-                  Beta
+                  Basic
                 </p>
               </div>
             ) : (

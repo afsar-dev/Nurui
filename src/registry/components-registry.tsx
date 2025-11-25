@@ -31,6 +31,11 @@ export const Index: Record<string, ComponentEntry> = {
     "text-hover-effect",
     "footer-background-gradient",
   ]),
+  rocketFooter: createEntry("rocket-footer", [
+    "rocket-footer",
+    "nurui-logo",
+    "rocket-scroll-to-top",
+  ]),
 
   // components
   projectShowCase: createEntry("project-showcase", [
@@ -48,6 +53,10 @@ export const Index: Record<string, ComponentEntry> = {
   bannerCloseExample: createEntry("banner-close", ["banner-close"]),
   story: createEntry("story", ["story", "story-button", "story-dialog"]),
   newsLetter: createEntry("news-letter", ["animated-input"]),
+
+  // 3D
+  globMap: createEntry("glob-map", ["glob-map", "button"]),
+  rotatingEarth: createEntry("rotating-earth", ["rotating-earth"]),
 
   // buttons
   gradientButton: createEntry("gradient-button", ["gradient-button"]),

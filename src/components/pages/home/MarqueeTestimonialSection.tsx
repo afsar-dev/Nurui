@@ -1,6 +1,6 @@
 import { Marquee } from "@/components/nurui/marquee";
 import TestimonialCard from "@/components/nurui/testimonial-card";
-import { testimonialData } from "@/data/testimonial";
+import { testimonialData } from "@/data/testimonial.data";
 
 export default function MarqueeTestimonialSection() {
   return (
@@ -52,6 +52,7 @@ export default function MarqueeTestimonialSection() {
                 name={tes?.name}
                 review={tes?.testimonial}
                 marginTop={i + 1 === 1 ? "mt-4" : ""}
+                rating={tes?.rating}
               />
             ))}
           </Marquee>
@@ -75,6 +76,7 @@ export default function MarqueeTestimonialSection() {
                 name={tes?.name}
                 review={tes?.testimonial}
                 marginTop={i + 1 === 1 ? "mt-4" : ""}
+                rating={tes?.rating}
               />
             ))}
           </Marquee>
