@@ -20,7 +20,7 @@ const Footer = () => {
 
   return (
     <div className="bg-[var(--white-color)] dark:bg-transparent border-t border-[var(--border-color)] w-full text-[var(--text-primary-color)] mt-auto rounded-tl-[50px] lg:rounded-tl-[80px] xl:rounded-tl-[110px] rocket-animation">
-      <RocketScrollToTop className=" bg-[var(--background-color)] max-w-24 mx-auto  rounded-full -mt-16 hidden md:block" />
+      <RocketScrollToTop className="bg-[var(--background-color)] max-w-24 mx-auto  rounded-full -mt-16 hidden md:block" />
       <div className="container">
         <div className=" grid md:grid-cols-2 lg:grid-cols-4 xl:flex flex-col md:flex-row 2xl:justify-between gap-10 xl:gap-14 2xl:gap-24 py-7 xl:py-16 pl-1 xl:pl-0">
           <div className="space-y-3 lg:space-y-4 xl:space-y-6 max-w-80 col-span-full">

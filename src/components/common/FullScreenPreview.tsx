@@ -1,10 +1,9 @@
 "use client";
-import { Fullscreen } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import React from "react";
 import { siteLink } from "@/config/site";
 import { cn } from "@/lib/utils";
 import IClassName from "@/types/common.type";
+import { Fullscreen } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 const FullScreenPreview = ({
@@ -20,7 +19,7 @@ const FullScreenPreview = ({
       aria-label="Full Screen Preview"
       asChild
       className={cn(
-        "z-40 text-[var(--primary-colo)] bg-[var(--primary-color)] rounded-lg shadow-none px-2.5",
+        "z-40 text-white bg-[var(--primary-color)] rounded-lg shadow-none px-2.5",
         className,
       )}
     >

@@ -3,8 +3,8 @@ import RoundedButton from "@/components/common/RoundedButton";
 import ThemeSwitcher from "@/components/common/ThemeSwitcher";
 import VaulDrawer from "@/components/ui/drawer/VaulDrawer";
 import { useAppContext } from "@/context/AppContext";
-import React, { useEffect, useState } from "react";
-import { FaDiscord, FaGithub } from "react-icons/fa6";
+import { useEffect, useState } from "react";
+import { FaGithub, FaXTwitter } from "react-icons/fa6";
 import { GoSidebarCollapse, GoSidebarExpand } from "react-icons/go";
 
 const ComponentsNavbar = () => {
@@ -47,9 +47,9 @@ const ComponentsNavbar = () => {
         <VaulDrawer />
         <div className="flex items-center md:gap-3.5">
           <RoundedButton
-            href="https://discord.gg/XzAh8V3S"
+            href="https://x.com/md_afsar_mahmud"
             icon={
-              <FaDiscord className="text-2xl text-[var(--white-color)] dark:text-[var(--primary-color)]" />
+              <FaXTwitter className="text-2xl text-[var(--white-color)] dark:text-[var(--primary-color)]" />
             }
           />
           <RoundedButton
