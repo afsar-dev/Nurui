@@ -1,7 +1,7 @@
 "use client";
 import RoundedButton from "@/components/common/RoundedButton";
 import ThemeSwitcher from "@/components/common/ThemeSwitcher";
-import DashboardSearch from "@/components/layout/DashboardSearch";
+import ComponentSearchbar from "@/components/layout/ComponentSearchbar";
 import VaulDrawer from "@/components/ui/drawer/VaulDrawer";
 import { useAppContext } from "@/context/AppContext";
 import { useEffect, useState } from "react";
@@ -48,7 +48,7 @@ const ComponentsNavbar = () => {
           )}
           <VaulDrawer />
           <div className="hidden md:block w-64">
-            <DashboardSearch />
+            <ComponentSearchbar />
           </div>
         </div>
 
