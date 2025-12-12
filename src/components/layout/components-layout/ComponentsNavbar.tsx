@@ -6,6 +6,7 @@ import { useAppContext } from "@/context/AppContext";
 import { useEffect, useState } from "react";
 import { FaGithub, FaXTwitter } from "react-icons/fa6";
 import { GoSidebarCollapse, GoSidebarExpand } from "react-icons/go";
+import ComponentSearchbar from "./ComponentSearchbar";
 
 const ComponentsNavbar = () => {
   const { sideBar, setSideBar } = useAppContext();
@@ -22,6 +23,7 @@ const ComponentsNavbar = () => {
 
     fetchStars();
   }, []);
+
   return (
     <div
       className={`fixed top-0 xl:right-0 z-50 ${
@@ -30,8 +32,9 @@ const ComponentsNavbar = () => {
           : "w-full xl:w-[calc(100vw-5rem)]"
       }`}
     >
-      <nav className="w-full h-16 py-2 px-5 flex items-center justify-between border-b border-[var(--primary-color)] dark:border-[var(--primary-color-1)] border-dashed bg-[var(--background-color)] lg:bg-transparent lg:backdrop-blur-md lg:overflow-hidden">
-        <>
+      <nav className="w-full h-16 py-2 px-5 flex items-center justify-between border-b border-[var(--primary-color)] dark:border-[var(--primary-color-1)] border-dashed bg-[var(--background-color)] lg:bg-transparent lg:backdrop-blur-md">
+        {/* Left Group: Sidebar Toggle + VaulDrawer + Search */}
+        <div className="flex items-center gap-4">
           {sideBar ? (
             <GoSidebarExpand
               className="text-2xl cursor-pointer hidden xl:block"
@@ -43,9 +46,14 @@ const ComponentsNavbar = () => {
               onClick={() => setSideBar(true)}
             />
           )}
-        </>
-        <VaulDrawer />
-        <div className="flex items-center md:gap-3.5">
+          <VaulDrawer />
+          <div className="hidden md:block w-64">
+            <ComponentSearchbar />
+          </div>
+        </div>
+
+        {/* Right Group: Social Icons + Theme Switcher */}
+        <div className="flex items-center gap-3.5">
           <RoundedButton
             href="https://x.com/md_afsar_mahmud"
             icon={
@@ -59,7 +67,6 @@ const ComponentsNavbar = () => {
             }
             iconInfo={stars || 0}
           />
-
           <ThemeSwitcher />
         </div>
       </nav>
