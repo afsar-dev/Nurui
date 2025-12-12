@@ -1,12 +1,12 @@
 "use client";
 import RoundedButton from "@/components/common/RoundedButton";
 import ThemeSwitcher from "@/components/common/ThemeSwitcher";
-import ComponentSearchbar from "@/components/layout/ComponentSearchbar";
 import VaulDrawer from "@/components/ui/drawer/VaulDrawer";
 import { useAppContext } from "@/context/AppContext";
 import { useEffect, useState } from "react";
 import { FaGithub, FaXTwitter } from "react-icons/fa6";
 import { GoSidebarCollapse, GoSidebarExpand } from "react-icons/go";
+import ComponentSearchbar from "./ComponentSearchbar";
 
 const ComponentsNavbar = () => {
   const { sideBar, setSideBar } = useAppContext();
