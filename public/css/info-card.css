@@ -1,0 +1,35 @@
+@import "tw-animate-css";
+
+:root {
+  --border-color-1: #ff5613;
+  --border-color-2: #9f4eff;
+  --border-color-3: #2196f3;
+  --border-bg-color: #f5f5f5;
+  --card-bg-color: #fff;
+  --shadow-color: #e0e0e0;
+  --text-color: #242424;
+  --hover-text-color-1: #000;
+  --hover-text-color-2: #fff;
+  --hover-text-color-3: #fff;
+  --font-family: "Roboto Mono", monospace;
+  --rtl-font-family: "Montserrat", sans-serif;
+  --pattern-color1: rgba(200, 200, 200, 0.1);
+  --pattern-color2: rgba(220, 220, 220, 0.1);
+}
+
+.dark {
+  --border-color-1: #daff3e;
+  --border-color-2: #9f4eff;
+  --border-color-3: #2196f3;
+  --border-bg-color: #242424;
+  --card-bg-color: #000;
+  --shadow-color: #242424;
+  --text-color: #f5f5f5;
+  --hover-text-color-1: #242424;
+  --hover-text-color-2: #000;
+  --hover-text-color-3: #242424;
+  --font-family: "Roboto Mono", monospace;
+  --rtl-font-family: "Montserrat", sans-serif;
+  --pattern-color1: rgba(230, 230, 230, 0.15);
+  --pattern-color2: rgba(240, 240, 240, 0.15);
+}

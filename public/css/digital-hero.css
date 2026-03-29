@@ -1,0 +1,25 @@
+.grow-underline {
+  animation: growUnderline 1.5s ease-in-out forwards;
+}
+
+.scanline {
+  animation: scanlineAnim 4s linear infinite;
+}
+
+@keyframes growUnderline {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes scanlineAnim {
+  0% {
+    transform: translateY(-100vh);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
