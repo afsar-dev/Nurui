@@ -21,6 +21,13 @@ export const MonacoEditor = ({
   const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const isUpdatingRef = useRef(false);
+  const onChangeRef = useRef(onChange);
+  const initialValueRef = useRef(value);
+  const initialLanguageRef = useRef(language);
+
+  useEffect(() => {
+    onChangeRef.current = onChange;
+  }, [onChange]);
 
   // Initialize editor
   useEffect(() => {
@@ -28,8 +35,8 @@ export const MonacoEditor = ({
 
     // Create editor instance
     editorRef.current = monaco.editor.create(containerRef.current, {
-      value,
-      language,
+      value: initialValueRef.current,
+      language: initialLanguageRef.current,
       theme: "vs-dark",
       ...MONACO_OPTIONS,
     });
@@ -40,7 +47,7 @@ export const MonacoEditor = ({
       model.onDidChangeContent(() => {
         if (!isUpdatingRef.current) {
           const newValue = editorRef.current?.getValue() || "";
-          onChange(newValue);
+          onChangeRef.current(newValue);
         }
       });
     }
@@ -49,6 +56,13 @@ export const MonacoEditor = ({
       editorRef.current?.dispose();
     };
   }, []); // Only run once on mount
+
+  useEffect(() => {
+    const model = editorRef.current?.getModel();
+    if (model) {
+      monaco.editor.setModelLanguage(model, language);
+    }
+  }, [language]);
 
   // Update editor value when prop changes (e.g., switching files)
   useEffect(() => {

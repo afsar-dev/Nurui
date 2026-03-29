@@ -6,7 +6,7 @@ export class ComponentImportService {
   /**
    * Fix import paths in code to work in playground
    */
-  private fixImportPaths(code: string, fileName: string): string {
+  private fixImportPaths(code: string): string {
     let fixed = code;
 
     // Remove "use client" directive
@@ -76,7 +76,7 @@ export class ComponentImportService {
       });
 
       // Fix import paths
-      mainCode = this.fixImportPaths(mainCode, "App.tsx");
+      mainCode = this.fixImportPaths(mainCode);
 
       // Ensure default export
       mainCode = this.ensureDefaultExport(mainCode);
@@ -101,7 +101,7 @@ export class ComponentImportService {
             let code = codeModule.default || "";
 
             // Fix import paths in dependencies too
-            code = this.fixImportPaths(code, other.fileName);
+            code = this.fixImportPaths(code);
 
             // Ensure dependencies have proper exports
             if (

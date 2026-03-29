@@ -159,7 +159,7 @@ export const Playground = () => {
     try {
       await copyShareUrl(state);
       alert("✅ Link copied to clipboard!");
-    } catch (error) {
+    } catch {
       alert("❌ Failed to copy link");
     }
   };
