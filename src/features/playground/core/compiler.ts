@@ -17,6 +17,28 @@ const NEXT_SHIMS = new Set([
 ]);
 
 const ESBUILD_EXTENSIONS = [".tsx", ".ts", ".jsx", ".js"];
+const INTERNAL_SHIMS = new Set(["@/utils/use-mouse-position"]);
+
+const PACKAGE_VERSIONS: Record<string, string> = {
+  "lucide-react": "0.523.0",
+  motion: "12.4.7",
+  "react-icons": "5.4.0",
+  "class-variance-authority": "0.7.1",
+  clsx: "2.1.1",
+  "tailwind-merge": "3.3.1",
+  gsap: "3.13.0",
+  "@gsap/react": "2.1.2",
+  "@radix-ui/react-avatar": "1.1.10",
+  "@radix-ui/react-collapsible": "1.1.11",
+  "@radix-ui/react-icons": "1.3.2",
+  "@radix-ui/react-label": "2.1.7",
+  "@radix-ui/react-slot": "1.2.3",
+  "@radix-ui/react-tabs": "1.1.12",
+  "@radix-ui/react-visually-hidden": "1.2.3",
+  "@react-three/fiber": "9.0.0-alpha.8",
+  three: "0.176.0",
+  "next-themes": "0.4.4",
+};
 
 const isBareModuleSpecifier = (path: string) =>
   !path.startsWith(".") &&
@@ -26,10 +48,17 @@ const isBareModuleSpecifier = (path: string) =>
   !path.startsWith("https://");
 
 const createEsmUrl = (specifier: string) => {
-  const encodedSpecifier = specifier
+  const segments = specifier.split("/");
+  const packageName = specifier.startsWith("@")
+    ? segments.slice(0, 2).join("/")
+    : segments[0];
+  const subpath = specifier.slice(packageName.length);
+  const version = PACKAGE_VERSIONS[packageName];
+  const packageWithVersion = version ? `${packageName}@${version}` : packageName;
+  const encodedSpecifier = `${packageWithVersion}${subpath}`
     .split("/")
     .map((segment, index) =>
-      index === 0 && specifier.startsWith("@")
+      index === 0 && packageWithVersion.startsWith("@")
         ? segment
         : encodeURIComponent(segment),
     )
@@ -123,9 +152,12 @@ export class TypeScriptCompiler {
                   return { path: args.path, namespace: "css-stub" };
                 }
 
-                // Handle @/components/nurui/* imports
-                if (args.path.startsWith("@/components/nurui/")) {
-                  const fileName = args.path.replace("@/components/nurui/", "");
+                // Handle in-memory alias imports
+                if (
+                  args.path.startsWith("@/components/nurui/") ||
+                  args.path.startsWith("@/components/ui/")
+                ) {
+                  const fileName = args.path.split("/").pop() || "";
                   const resolvedPath = resolveVirtualPath(`/${fileName}`);
 
                   if (resolvedPath) {
@@ -144,6 +176,10 @@ export class TypeScriptCompiler {
                 if (args.path === "@/lib/utils") {
                   // Inline the cn utility
                   return { path: args.path, namespace: "utils" };
+                }
+
+                if (INTERNAL_SHIMS.has(args.path)) {
+                  return { path: args.path, namespace: "internal-shim" };
                 }
 
                 // Handle relative imports (./component or ../component)
@@ -215,6 +251,37 @@ export function cn(...inputs) {
                 contents: "export default {};",
                 loader: "js",
               }));
+
+              build.onLoad(
+                { filter: /.*/, namespace: "internal-shim" },
+                (args) => {
+                  const shims: Record<string, { contents: string; loader: "ts" }> = {
+                    "@/utils/use-mouse-position": {
+                      loader: "ts",
+                      contents: `
+import { useEffect, useState } from "react";
+
+export function useMousePosition() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const updateMousePosition = (event: MouseEvent) => {
+      setMousePosition({ x: event.clientX, y: event.clientY });
+    };
+
+    window.addEventListener("mousemove", updateMousePosition);
+    return () => window.removeEventListener("mousemove", updateMousePosition);
+  }, []);
+
+  return mousePosition;
+}
+                      `,
+                    },
+                  };
+
+                  return shims[args.path];
+                },
+              );
 
               build.onLoad({ filter: /.*/, namespace: "next-shim" }, (args) => {
                 const shims: Record<string, { contents: string; loader: "tsx" | "ts" }> = {

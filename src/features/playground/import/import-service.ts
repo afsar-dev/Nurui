@@ -50,6 +50,14 @@ export class ComponentImportService {
       },
     );
 
+    fixed = fixed.replace(
+      /@\/components\/ui\/([a-zA-Z0-9-_]+)/g,
+      (match, componentName) => {
+        console.log(`🔧 Fixing UI import: ${match} → ./${componentName}`);
+        return `./${componentName}`;
+      },
+    );
+
     // Fix @/lib/utils import
     fixed = fixed.replace(
       /from ["']@\/lib\/utils["']/g,
@@ -69,12 +77,13 @@ export class ComponentImportService {
     }
 
     // Try to find the main component
-    const componentMatch = code.match(
-      /(?:export\s+)?(?:const|function)\s+(\w+)/,
+    const componentMatches = Array.from(
+      code.matchAll(/(?:export\s+)?(?:const|function)\s+([A-Z]\w*)/g),
+      (match) => match[1],
     );
 
-    if (componentMatch) {
-      const componentName = componentMatch[1];
+    if (componentMatches.length > 0) {
+      const componentName = componentMatches[0];
       console.log(`✅ Adding default export for: ${componentName}`);
       return code + `\n\nexport default ${componentName};`;
     }
