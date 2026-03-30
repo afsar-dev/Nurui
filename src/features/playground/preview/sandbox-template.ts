@@ -33,17 +33,12 @@ export const createSandboxHtml = (code: string, cssFiles: string[]): string => {
   <script type="importmap">
   {
     "imports": {
-      "react": "https://esm.sh/react@18.2.0",
-      "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime",
-      "react-dom": "https://esm.sh/react-dom@18.2.0",
-      "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
-      "framer-motion": "https://esm.sh/framer-motion@10",
-      "react-icons/fa": "https://esm.sh/react-icons@5.0.1/fa",
-      "react-icons/fa6": "https://esm.sh/react-icons@5.0.1/fa6",
-      "react-icons/bs": "https://esm.sh/react-icons@5.0.1/bs",
-      "react-icons/gi": "https://esm.sh/react-icons@5.0.1/gi",
-      "react-icons/io5": "https://esm.sh/react-icons@5.0.1/io5",
-      "lucide-react": "https://esm.sh/lucide-react@0.263.1"
+      "react": "https://esm.sh/react@19.2.0",
+      "react/": "https://esm.sh/react@19.2.0/",
+      "react/jsx-runtime": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "react/jsx-dev-runtime": "https://esm.sh/react@19.2.0/jsx-dev-runtime",
+      "react-dom": "https://esm.sh/react-dom@19.2.0",
+      "react-dom/client": "https://esm.sh/react-dom@19.2.0/client"
     }
   }
   </script>

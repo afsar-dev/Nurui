@@ -2,6 +2,42 @@
 // src/features/playground/core/compiler.ts
 import * as esbuild from "esbuild-wasm";
 
+const REACT_EXTERNALS = new Set([
+  "react",
+  "react-dom",
+  "react/jsx-runtime",
+  "react/jsx-dev-runtime",
+]);
+
+const NEXT_SHIMS = new Set([
+  "next/image",
+  "next/link",
+  "next/navigation",
+  "next/dynamic",
+]);
+
+const ESBUILD_EXTENSIONS = [".tsx", ".ts", ".jsx", ".js"];
+
+const isBareModuleSpecifier = (path: string) =>
+  !path.startsWith(".") &&
+  !path.startsWith("/") &&
+  !path.startsWith("@/") &&
+  !path.startsWith("http://") &&
+  !path.startsWith("https://");
+
+const createEsmUrl = (specifier: string) => {
+  const encodedSpecifier = specifier
+    .split("/")
+    .map((segment, index) =>
+      index === 0 && specifier.startsWith("@")
+        ? segment
+        : encodeURIComponent(segment),
+    )
+    .join("/");
+
+  return `https://esm.sh/${encodedSpecifier}?external=react,react-dom`;
+};
+
 export class TypeScriptCompiler {
   private static instance: TypeScriptCompiler | null = null;
   private static initializationPromise: Promise<void> | null = null;
@@ -46,6 +82,16 @@ export class TypeScriptCompiler {
     // Create virtual file system
     const fileMap = new Map(files.map((f) => [`/${f.name}`, f.content]));
 
+    const resolveVirtualPath = (path: string) => {
+      const possiblePaths = [
+        path,
+        ...ESBUILD_EXTENSIONS.map((extension) => `${path}${extension}`),
+        ...ESBUILD_EXTENSIONS.map((extension) => `${path}/index${extension}`),
+      ];
+
+      return possiblePaths.find((candidate) => fileMap.has(candidate));
+    };
+
     console.log("📁 Virtual file system:", Array.from(fileMap.keys()));
 
     try {
@@ -65,37 +111,33 @@ export class TypeScriptCompiler {
               build.onResolve({ filter: /.*/ }, (args) => {
                 console.log("🔍 Resolving:", args.path, "from:", args.importer);
 
-                // Skip external modules
-                const externalModules = [
-                  "react",
-                  "react-dom",
-                  "react/jsx-runtime",
-                  "framer-motion",
-                  "lucide-react",
-                  "react-icons",
-                  "@gsap/react",
-                  "gsap/SplitText",
-                  "gsap",
-                ];
-
-                if (externalModules.some((mod) => args.path.startsWith(mod))) {
+                if (REACT_EXTERNALS.has(args.path)) {
                   return { path: args.path, external: true };
+                }
+
+                if (NEXT_SHIMS.has(args.path)) {
+                  return { path: args.path, namespace: "next-shim" };
+                }
+
+                if (args.path.endsWith(".css")) {
+                  return { path: args.path, namespace: "css-stub" };
                 }
 
                 // Handle @/components/nurui/* imports
                 if (args.path.startsWith("@/components/nurui/")) {
                   const fileName = args.path.replace("@/components/nurui/", "");
-                  const possiblePaths = [`/${fileName}.tsx`, `/${fileName}`];
+                  const resolvedPath = resolveVirtualPath(`/${fileName}`);
 
-                  for (const path of possiblePaths) {
-                    if (fileMap.has(path)) {
-                      console.log("✅ Resolved @/ import to:", path);
-                      return { path, namespace: "virtual" };
-                    }
+                  if (resolvedPath) {
+                    console.log("✅ Resolved @/ import to:", resolvedPath);
+                    return { path: resolvedPath, namespace: "virtual" };
                   }
 
                   console.warn("⚠️ Could not resolve:", args.path);
-                  return { path: args.path, external: true };
+                  return {
+                    path: createEsmUrl(args.path.replace("@/", "")),
+                    external: true,
+                  };
                 }
 
                 // Handle @/lib/utils
@@ -118,24 +160,24 @@ export class TypeScriptCompiler {
                     resolved = `${importerDir}/${args.path.slice(2)}`;
                   }
 
-                  // Try with and without .tsx
-                  const possiblePaths = [resolved, `${resolved}.tsx`];
+                  const resolvedPath = resolveVirtualPath(resolved);
 
-                  for (const path of possiblePaths) {
-                    if (fileMap.has(path)) {
-                      console.log("✅ Resolved relative import to:", path);
-                      return { path, namespace: "virtual" };
-                    }
+                  if (resolvedPath) {
+                    console.log("✅ Resolved relative import to:", resolvedPath);
+                    return { path: resolvedPath, namespace: "virtual" };
                   }
                 }
 
                 // Try direct lookup
-                if (fileMap.has(args.path)) {
-                  return { path: args.path, namespace: "virtual" };
+                const directPath = resolveVirtualPath(args.path);
+                if (directPath) {
+                  return { path: directPath, namespace: "virtual" };
                 }
 
-                if (fileMap.has(`${args.path}.tsx`)) {
-                  return { path: `${args.path}.tsx`, namespace: "virtual" };
+                if (isBareModuleSpecifier(args.path)) {
+                  const externalUrl = createEsmUrl(args.path);
+                  console.log("🌐 Externalizing module to:", externalUrl);
+                  return { path: externalUrl, external: true };
                 }
 
                 console.warn("⚠️ Unresolved import:", args.path);
@@ -168,6 +210,137 @@ export function cn(...inputs) {
                   };
                 }
               });
+
+              build.onLoad({ filter: /.*/, namespace: "css-stub" }, () => ({
+                contents: "export default {};",
+                loader: "js",
+              }));
+
+              build.onLoad({ filter: /.*/, namespace: "next-shim" }, (args) => {
+                const shims: Record<string, { contents: string; loader: "tsx" | "ts" }> = {
+                  "next/image": {
+                    loader: "tsx",
+                    contents: `
+import * as React from "react";
+
+type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> & {
+  fill?: boolean;
+  priority?: boolean;
+  placeholder?: string;
+  blurDataURL?: string;
+  quality?: number;
+  sizes?: string;
+  src: string | { src?: string } | undefined;
+};
+
+const Image = React.forwardRef<HTMLImageElement, ImageProps>(function Image(
+  { src, alt = "", fill, style, ...props },
+  ref,
+) {
+  const resolvedSrc =
+    typeof src === "string" ? src : src?.src || "";
+
+  const resolvedStyle = fill
+    ? {
+        position: "absolute" as const,
+        inset: 0,
+        width: "100%",
+        height: "100%",
+        ...style,
+      }
+    : style;
+
+  return <img ref={ref} src={resolvedSrc} alt={alt} style={resolvedStyle} {...props} />;
+});
+
+export default Image;
+                    `,
+                  },
+                  "next/link": {
+                    loader: "tsx",
+                    contents: `
+import * as React from "react";
+
+type LinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+  href?: string | { pathname?: string };
+};
+
+const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(
+  { href, children, ...props },
+  ref,
+) {
+  const resolvedHref =
+    typeof href === "string" ? href : href?.pathname || "#";
+
+  return (
+    <a ref={ref} href={resolvedHref} {...props}>
+      {children}
+    </a>
+  );
+});
+
+export default Link;
+                    `,
+                  },
+                  "next/navigation": {
+                    loader: "ts",
+                    contents: `
+const noop = async () => undefined;
+
+export const usePathname = () => "/";
+export const useSearchParams = () => new URLSearchParams();
+export const useParams = () => ({});
+export const useRouter = () => ({
+  push: noop,
+  replace: noop,
+  refresh: noop,
+  prefetch: noop,
+  back: () => undefined,
+  forward: () => undefined,
+});
+                    `,
+                  },
+                  "next/dynamic": {
+                    loader: "tsx",
+                    contents: `
+import * as React from "react";
+
+type LoaderResult<TProps> =
+  | { default?: React.ComponentType<TProps> }
+  | React.ComponentType<TProps>;
+
+export default function dynamic<TProps>(
+  loader: () => Promise<LoaderResult<TProps>>,
+  options?: {
+    loading?: React.ComponentType<TProps>;
+    ssr?: boolean;
+  },
+) {
+  const LazyComponent = React.lazy(async () => {
+    const mod = await loader();
+    return {
+      default:
+        (typeof mod === "function" ? mod : mod.default) ||
+        (() => null),
+    };
+  });
+
+  return function DynamicComponent(props: TProps) {
+    const Fallback = options?.loading;
+
+    return (
+      <React.Suspense fallback={Fallback ? <Fallback {...props} /> : null}>
+        <LazyComponent {...props} />
+      </React.Suspense>
+    );
+  };
+}
+                    `,
+                  },
+                };
+
+                return shims[args.path];
+              });
             },
           },
         ],
@@ -176,17 +349,7 @@ export function cn(...inputs) {
           "react",
           "react-dom",
           "react/jsx-runtime",
-          "framer-motion",
-          "lucide-react",
-          "react-icons/fa",
-          "react-icons/fa6",
-          "react-icons/bs",
-          "react-icons/gi",
-          "react-icons/io5",
-          "gsap",
-          "@gsap/react",
-          "clsx",
-          "tailwind-merge",
+          "react/jsx-dev-runtime",
         ],
       });
 

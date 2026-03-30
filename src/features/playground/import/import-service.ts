@@ -3,6 +3,31 @@ import { ComponentName, Index } from "@/registry/components-registry";
 import { PlaygroundFile } from "../types";
 
 export class ComponentImportService {
+  private readonly publicCssFiles = new Set([
+    "ai-button.css",
+    "digital-hero.css",
+    "dynamic-card.css",
+    "footer.css",
+    "gradient-button.css",
+    "info-card.css",
+    "playing-card.css",
+    "shiny-card.css",
+    "wave-card.css",
+  ]);
+
+  private extractCssDependencies(code: string): string[] {
+    const imports = Array.from(
+      code.matchAll(/import\s+["']([^"']+\.css)["'];?/g),
+      (match) => match[1],
+    );
+
+    return imports
+      .map((importPath) => importPath.split("/").pop())
+      .filter((fileName): fileName is string => Boolean(fileName))
+      .filter((fileName) => this.publicCssFiles.has(fileName))
+      .map((fileName) => `/css/${fileName}`);
+  }
+
   /**
    * Fix import paths in code to work in playground
    */
@@ -11,6 +36,9 @@ export class ComponentImportService {
 
     // Remove "use client" directive
     fixed = fixed.replace(/["']use client["'];?\s*/g, "");
+
+    // Strip CSS imports. Matching files are injected separately into the iframe.
+    fixed = fixed.replace(/import\s+["'][^"']+\.css["'];?\s*/g, "");
 
     // Fix @/components/nurui/* imports to relative imports
     // Example: @/components/nurui/button → ./button
@@ -63,11 +91,14 @@ export class ComponentImportService {
     if (!entry) throw new Error(`Component ${name} not found`);
 
     const files: PlaygroundFile[] = [];
+    const cssFiles = new Set<string>();
 
     try {
       // Get the demo/main component code
       const mainCodeModule = await entry.code();
       let mainCode = mainCodeModule.default || "";
+
+      this.extractCssDependencies(mainCode).forEach((file) => cssFiles.add(file));
 
       console.log("📄 Main code loaded:", {
         name,
@@ -99,6 +130,10 @@ export class ComponentImportService {
           try {
             const codeModule = await other.code();
             let code = codeModule.default || "";
+
+            this.extractCssDependencies(code).forEach((file) =>
+              cssFiles.add(file),
+            );
 
             // Fix import paths in dependencies too
             code = this.fixImportPaths(code);
@@ -132,12 +167,13 @@ export class ComponentImportService {
         }
       }
 
-      const cssFiles = await this.getCssDependencies(name);
+      const inferredCssFiles = await this.getCssDependencies(name);
+      inferredCssFiles.forEach((file) => cssFiles.add(file));
 
       console.log("✅ Import complete:", {
         name,
         filesCount: files.length,
-        cssFilesCount: cssFiles.length,
+        cssFilesCount: cssFiles.size,
         files: files.map((f) => ({
           name: f.name,
           size: f.content.length,
@@ -145,7 +181,7 @@ export class ComponentImportService {
         })),
       });
 
-      return { files, cssFiles };
+      return { files, cssFiles: Array.from(cssFiles) };
     } catch (error) {
       console.error("❌ Import error:", error);
       throw new Error(`Failed to import ${name}: ${error}`);
