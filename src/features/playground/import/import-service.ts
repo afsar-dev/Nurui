@@ -28,6 +28,154 @@ export class ComponentImportService {
       .map((fileName) => `/css/${fileName}`);
   }
 
+  private extractImportSpecifiers(code: string): string[] {
+    const matches = [
+      ...Array.from(
+        code.matchAll(/from\s+["']([^"']+)["']/g),
+        (match) => match[1],
+      ),
+      ...Array.from(
+        code.matchAll(/import\s+["']([^"']+)["']/g),
+        (match) => match[1],
+      ),
+    ];
+
+    return Array.from(new Set(matches));
+  }
+
+  private isLocalDependency(specifier: string): boolean {
+    return (
+      specifier.startsWith("./") ||
+      specifier.startsWith("../") ||
+      specifier.startsWith("@/components/nurui/") ||
+      specifier.startsWith("@/components/ui/") ||
+      specifier.startsWith("@/data/") ||
+      specifier.startsWith("@/utils/")
+    );
+  }
+
+  private normalizeDependencyName(specifier: string): string {
+    return specifier.split("/").pop() || specifier;
+  }
+
+  private async loadRawDependency(specifier: string): Promise<{
+    fileName: string;
+    content: string;
+  } | null> {
+    const dependencyName = this.normalizeDependencyName(specifier);
+
+    const candidates = [
+      {
+        fileName: `${dependencyName}.tsx`,
+        load: () => import(`@/components/nurui/${dependencyName}.tsx?raw`),
+      },
+      {
+        fileName: `${dependencyName}.ts`,
+        load: () => import(`@/components/nurui/${dependencyName}.ts?raw`),
+      },
+      {
+        fileName: `${dependencyName}.tsx`,
+        load: () => import(`@/components/ui/${dependencyName}.tsx?raw`),
+      },
+      {
+        fileName: `${dependencyName}.ts`,
+        load: () => import(`@/components/ui/${dependencyName}.ts?raw`),
+      },
+      {
+        fileName: `${dependencyName}.ts`,
+        load: () => import(`@/utils/${dependencyName}.ts?raw`),
+      },
+      {
+        fileName: `${dependencyName}.tsx`,
+        load: () => import(`@/utils/${dependencyName}.tsx?raw`),
+      },
+      {
+        fileName: `${dependencyName}.ts`,
+        load: () => import(`@/data/${dependencyName}.ts?raw`),
+      },
+      {
+        fileName: `${dependencyName}.tsx`,
+        load: () => import(`@/data/${dependencyName}.tsx?raw`),
+      },
+    ];
+
+    for (const candidate of candidates) {
+      try {
+        const loadedModule = await candidate.load();
+        return {
+          fileName: candidate.fileName,
+          content: loadedModule.default || "",
+        };
+      } catch {
+        continue;
+      }
+    }
+
+    return null;
+  }
+
+  private async loadNestedDependencies(
+    files: PlaygroundFile[],
+    cssFiles: Set<string>,
+  ): Promise<PlaygroundFile[]> {
+    const queue = [...files];
+    const seen = new Set(files.map((file) => file.name));
+
+    while (queue.length > 0) {
+      const currentFile = queue.shift();
+      if (!currentFile) continue;
+
+      const imports = this.extractImportSpecifiers(currentFile.content).filter(
+        (specifier) => this.isLocalDependency(specifier),
+      );
+
+      for (const specifier of imports) {
+        const loaded = await this.loadRawDependency(specifier);
+        if (!loaded || seen.has(loaded.fileName)) {
+          continue;
+        }
+
+        this.extractCssDependencies(loaded.content).forEach((file) =>
+          cssFiles.add(file),
+        );
+
+        let content = this.fixImportPaths(loaded.content);
+
+        if (
+          !content.includes("export default") &&
+          !content.includes("export {") &&
+          !content.includes("export const") &&
+          !content.includes("export function") &&
+          !content.includes("export class") &&
+          !content.includes("export interface") &&
+          !content.includes("export type")
+        ) {
+          const componentMatches = Array.from(
+            content.matchAll(/(?:const|function)\s+([A-Z]\w*)/g),
+            (match) => match[1],
+          );
+
+          if (componentMatches.length > 0) {
+            content += `\n\nexport default ${componentMatches[0]};`;
+          }
+        }
+
+        const dependencyFile: PlaygroundFile = {
+          id: loaded.fileName.replace(/\.(tsx|ts|jsx|js)$/, ""),
+          name: loaded.fileName,
+          content,
+          language: "typescript",
+        };
+
+        files.push(dependencyFile);
+        queue.push(dependencyFile);
+        seen.add(dependencyFile.name);
+      }
+    }
+
+    return files;
+  }
+
   /**
    * Fix import paths in code to work in playground
    */
@@ -55,6 +203,22 @@ export class ComponentImportService {
       (match, componentName) => {
         console.log(`🔧 Fixing UI import: ${match} → ./${componentName}`);
         return `./${componentName}`;
+      },
+    );
+
+    fixed = fixed.replace(
+      /@\/data\/([a-zA-Z0-9-_.]+)/g,
+      (match, fileName) => {
+        console.log(`🔧 Fixing data import: ${match} → ./${fileName}`);
+        return `./${fileName}`;
+      },
+    );
+
+    fixed = fixed.replace(
+      /@\/utils\/([a-zA-Z0-9-_.]+)/g,
+      (match, fileName) => {
+        console.log(`🔧 Fixing util import: ${match} → ./${fileName}`);
+        return `./${fileName}`;
       },
     );
 
@@ -175,6 +339,8 @@ export class ComponentImportService {
           }
         }
       }
+
+      await this.loadNestedDependencies(files, cssFiles);
 
       const inferredCssFiles = await this.getCssDependencies(name);
       inferredCssFiles.forEach((file) => cssFiles.add(file));

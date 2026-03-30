@@ -50,8 +50,12 @@ export const Index: Record<string, ComponentEntry> = {
   progressBar: createEntry("progress-bar", ["progress-bar"]),
   banner: createEntry("banner", ["banner", "button"]),
   terminal: createEntry("terminal", ["terminal"]),
-  bannerCloseExample: createEntry("banner-close", ["banner-close"]),
-  story: createEntry("story", ["story", "story-button", "story-dialog"]),
+  bannerCloseExample: createEntry("banner-close", [
+    "banner-close",
+    "banner",
+    "button",
+  ]),
+  story: createEntry("story", ["story", "story-button", "story-dialog", "avatar"]),
   newsLetter: createEntry("news-letter", ["animated-input"]),
 
   // 3D
@@ -63,8 +67,8 @@ export const Index: Record<string, ComponentEntry> = {
   borderButton: createEntry("border-button", ["border-button"]),
   shadowButton: createEntry("shadow-button", ["shadow-button"]),
   textButton: createEntry("text-button", ["text-button"]),
-  magnetButton: createEntry("magnet-button", ["magnet-button"]),
-  futureButton: createEntry("future-button", ["future-button", "future-frame"]),
+  magnetButton: createEntry("magnet-button", ["magnet-button", "button"]),
+  futureButton: createEntry("future-button", ["future-button", "frame"]),
   playButton: createEntry("play-button", ["play-button"]),
 
   // Loaders
