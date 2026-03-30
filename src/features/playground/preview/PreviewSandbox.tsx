@@ -145,7 +145,7 @@ export const PreviewSandbox = ({ code, cssFiles = [] }: Props) => {
 
   return (
     <iframe
-      sandbox="allow-scripts"
+      sandbox="allow-scripts allow-same-origin"
       srcDoc={srcDoc}
       className="w-full h-full border-none bg-black"
       title="preview"

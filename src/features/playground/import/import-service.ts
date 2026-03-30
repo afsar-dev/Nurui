@@ -240,14 +240,28 @@ export class ComponentImportService {
       return code;
     }
 
-    // Try to find the main component
+    // Prefer actual component declarations over any uppercase constant.
     const componentMatches = Array.from(
+      code.matchAll(
+        /(?:export\s+)?function\s+([A-Z]\w*)\s*\(|(?:export\s+)?const\s+([A-Z]\w*)\s*=\s*(?:async\s*)?(?:\([^)]*\)|[A-Za-z_$][\w$]*)\s*=>/g,
+      ),
+      (match) => match[1] || match[2],
+    ).filter(Boolean);
+
+    if (componentMatches.length > 0) {
+      const componentName = componentMatches[0];
+      console.log(`✅ Adding default export for: ${componentName}`);
+      return code + `\n\nexport default ${componentName};`;
+    }
+
+    // Fallback to PascalCase declarations if the file uses a less common style.
+    const fallbackMatches = Array.from(
       code.matchAll(/(?:export\s+)?(?:const|function)\s+([A-Z]\w*)/g),
       (match) => match[1],
     );
 
-    if (componentMatches.length > 0) {
-      const componentName = componentMatches[0];
+    if (fallbackMatches.length > 0) {
+      const componentName = fallbackMatches[0];
       console.log(`✅ Adding default export for: ${componentName}`);
       return code + `\n\nexport default ${componentName};`;
     }
