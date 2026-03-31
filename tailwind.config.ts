@@ -1,7 +1,7 @@
-import type { Config } from "tailwindcss";
-import plugin from "tailwindcss/plugin";
-import { default as flattenColorPalette } from "tailwindcss/lib/util/flattenColorPalette";
 import svgToDataUri from "mini-svg-data-uri";
+import type { Config } from "tailwindcss";
+import { default as flattenColorPalette } from "tailwindcss/lib/util/flattenColorPalette";
+import plugin from "tailwindcss/plugin";
 
 export default {
   darkMode: "class",
@@ -16,6 +16,7 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "var(--primary-color)",
       },
       animation: {
         "background-position-spin":

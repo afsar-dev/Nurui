@@ -183,7 +183,7 @@ export const Playground = () => {
   };
 
   return (
-    <div className="h-screen w-full bg-neutral-950 text-white flex flex-col">
+    <div className="h-screen w-full text-white flex flex-col">
       <Toolbar
         onImport={() => setIsImportOpen(true)}
         onShare={handleShare}
@@ -224,7 +224,7 @@ export const Playground = () => {
             initialRatio={state.splitRatio}
             onRatioChange={setSplitRatio}
             left={
-              <div className="h-full flex flex-col bg-[#1e1e1e]">
+              <div className="h-full flex flex-col border-r border-[var(--primary-color-3)]">
                 {isCompiling && (
                   <div className="bg-yellow-500/10 border-b border-yellow-500/20 px-4 py-1 text-xs text-yellow-400">
                     ⚡ Compiling...
@@ -236,11 +236,11 @@ export const Playground = () => {
                     {errors[0]?.message}
                   </div>
                 )}
-                {compiled && (
+                {/* {compiled && (
                   <div className="bg-green-500/10 border-b border-green-500/20 px-4 py-1 text-xs text-green-400">
                     ✅ Compiled ({compiled.length} chars)
                   </div>
-                )}
+                )} */}
                 <div className="flex-1">
                   {activeFile ? (
                     <MonacoEditor
@@ -259,7 +259,7 @@ export const Playground = () => {
               </div>
             }
             right={
-              <div className="h-full bg-white">
+              <div className="h-full ">
                 {compiled ? (
                   <PreviewSandbox
                     key={compiled.substring(0, 100)} // Force re-render when code changes

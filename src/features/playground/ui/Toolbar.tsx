@@ -17,11 +17,11 @@ export const Toolbar = ({
   onLoadFromUrl,
 }: ToolbarProps) => {
   return (
-    <div className="flex items-center justify-between border-b border-neutral-800 bg-neutral-900 px-4 py-2">
+    <div className="flex items-center justify-between border-b border-[var(--primary-color-2)] bg-[var(--primary-color-4)] px-3 py-2.5">
       <div className="flex items-center gap-2">
         <button
           onClick={onImport}
-          className="flex items-center gap-2 rounded-lg bg-blue-600 px-3 py-1.5 text-sm text-white hover:bg-blue-700 transition-colors"
+          className="flex items-center gap-1.5 rounded-lg bg-[var(--primary-color-3)] px-3 py-2 text-sm text-[var(--primary-color)] hover:bg-[var(--primary-color-2)] transition-colors"
         >
           <Package size={16} />
           Import Component
@@ -29,7 +29,7 @@ export const Toolbar = ({
 
         <button
           onClick={onLoadFromUrl}
-          className="flex items-center gap-2 rounded-lg bg-neutral-800 px-3 py-1.5 text-sm text-white hover:bg-neutral-700 transition-colors"
+          className="flex items-center gap-2 rounded-lg  px-3 py-1.5 text-sm text-[var(--white-color)] hover:text-[var(--primary-color)] transition-colors"
         >
           <Upload size={16} />
           Load from URL
@@ -39,7 +39,7 @@ export const Toolbar = ({
       <div className="flex items-center gap-2">
         <button
           onClick={onShare}
-          className="p-2 text-neutral-400 hover:text-white transition-colors"
+          className="p-2 text-[var(--primary-color)] transition-colors"
           title="Share"
         >
           <Share2 size={18} />
@@ -47,7 +47,7 @@ export const Toolbar = ({
 
         <button
           onClick={onExport}
-          className="p-2 text-neutral-400 hover:text-white transition-colors"
+          className="p-2 text-[var(--primary-color)] transition-colors"
           title="Export"
         >
           <Download size={18} />
@@ -55,7 +55,7 @@ export const Toolbar = ({
 
         <button
           onClick={onReset}
-          className="p-2 text-neutral-400 hover:text-white transition-colors"
+          className="p-2 text-[var(--primary-color)] transition-colors"
           title="Reset"
         >
           <RefreshCw size={18} />

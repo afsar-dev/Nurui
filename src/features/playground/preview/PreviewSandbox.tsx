@@ -25,7 +25,7 @@ export const PreviewSandbox = ({ code, cssFiles = [] }: Props) => {
     ${cssFiles.map((href) => `<link rel="stylesheet" href="${href}" />`).join("\n    ")}
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { margin: 0; padding: 0; overflow: auto; background: #000; }
+      body { margin: 0; padding: 0; overflow: auto; background: #010313; }
       #root { width: 100%; min-height: 100vh; }
       #error { 
         padding: 20px; 

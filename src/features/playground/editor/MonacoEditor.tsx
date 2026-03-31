@@ -33,11 +33,50 @@ export const MonacoEditor = ({
   useEffect(() => {
     if (!containerRef.current) return;
 
+    const resolvedBackground =
+      getComputedStyle(document.documentElement)
+        .getPropertyValue("--background-color")
+        .trim() || "#1e1e1e";
+
+    // const resolvedPrimary =
+    //   getComputedStyle(document.documentElement)
+    //     .getPropertyValue("--primary-color")
+    //     .trim() || "#3b82f6";
+
+    // const resolvedPrimary100 =
+    //   getComputedStyle(document.documentElement)
+    //     .getPropertyValue("--primary-color-1")
+    //     .trim() || "#3b82f6";
+
+    const resolvedPrimary200 =
+      getComputedStyle(document.documentElement)
+        .getPropertyValue("--primary-color-2")
+        .trim() || "#3b82f6";
+        
+    const resolvedPrimary300 =
+      getComputedStyle(document.documentElement)
+        .getPropertyValue("--primary-color-3")
+        .trim() || "#3ca2fa33";
+
+    monaco.editor.defineTheme("nurui-editor-theme", {
+      base: "vs-dark",
+      inherit: true,
+      rules: [],
+      colors: {
+        "editor.background": resolvedBackground,
+        "editor.lineHighlightBorder": resolvedPrimary300,
+        "scrollbarSlider.background": resolvedPrimary200,
+        "scrollbarSlider.hoverBackground": resolvedPrimary200,
+        "scrollbarSlider.activeBackground": resolvedPrimary200,
+        "scrollbar.shadow": resolvedPrimary300,
+      },
+    });
+
     // Create editor instance
     editorRef.current = monaco.editor.create(containerRef.current, {
       value: initialValueRef.current,
       language: initialLanguageRef.current,
-      theme: "vs-dark",
+      theme: "nurui-editor-theme",
       ...MONACO_OPTIONS,
     });
 
