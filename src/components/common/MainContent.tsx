@@ -3,6 +3,7 @@ import { MAIN_CONTENT_EXCLUDED_PATHS } from "@/config/paths";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import React from "react";
+import { TooltipProvider } from "../ui/tooltip";
 
 const MainContent = ({ children }: { children: React.ReactNode }) => {
   const pathName = usePathname();
@@ -12,7 +13,7 @@ const MainContent = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <main className={cn(!isExcluded && "pb-12 lg:pb-16 xl:pb-20 2xl:pb-24")}>
-      {children}
+      <TooltipProvider>{children}</TooltipProvider>
     </main>
   );
 };
