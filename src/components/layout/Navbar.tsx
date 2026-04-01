@@ -6,8 +6,7 @@ import VaulDrawer from "@/components/ui/drawer/VaulDrawer";
 import { navigationActive } from "@/utils/navigationActive";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaGithub } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import ThemeSwitcher from "../common/ThemeSwitcher";
 
 const Navbar = () => {
@@ -58,9 +57,9 @@ const Navbar = () => {
 
         <div className="hidden xl:flex items-center gap-3.5">
           <RoundedButton
-            href="https://x.com/md_afsar_mahmud"
+            href="https://www.linkedin.com/in/md-afsar-mahmud"
             icon={
-              <FaXTwitter className="text-2xl text-[var(--white-color)] dark:text-[var(--primary-color)]" />
+              <FaLinkedinIn className="text-2xl text-[var(--white-color)] dark:text-[var(--primary-color)]" />
             }
           />
           <RoundedButton

@@ -1,0 +1,247 @@
+.glowing-box {
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 16px;
+  display: inline-block;
+  position: relative;
+  transition: 0.4s cubic-bezier(0.77, -0.68, 0.62, 1.23);
+}
+
+.glowing-box:hover {
+  transition: 0.4s cubic-bezier(0.77, -0.68, 0.62, 1.23);
+  box-shadow: 1px 1px 20px 1px rgba(194, 156, 255, 0.05);
+}
+
+.glowing-box-active .glowing-box-animations,
+.glowing-box-active .glowing-box-borders-masker {
+  opacity: 1;
+}
+.glowing-box-animations {
+  opacity: 0;
+  pointer-events: none;
+  transition: 1s ease opacity;
+}
+.glowing-box-animations,
+.glowing-box-borders {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.glowing-box-animations:before,
+.glowing-box-borders:before {
+  content: "";
+  float: left;
+  padding-top: 100%;
+}
+.glowing-box-animations {
+  opacity: 0;
+  pointer-events: none;
+  transition: 1s ease opacity;
+}
+
+.glowing-box-glow {
+  filter: blur(10px);
+  opacity: 0.1;
+}
+
+.glowing-box-animations * {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.glowing-box-stars-masker {
+  /* I used BASE 64 to add the background pattern to the URL mask, but you can download the background here: i.imgur.com/oOtlWvp.png */
+  -webkit-mask: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMjgnIGhlaWdodD0nMjQnIHZpZXdCb3g9JzAgMCAyOCAyNCcgZmlsbD0nbm9uZScgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cGF0aCBkPSdNMTQuMDUzNCAxNS43MzJDMTMuODQ0NCAxNS4yODMgMTQuMjg0OCAxNC44NDg5IDE0LjczMjYgMTUuMDUxQzE0LjgyOTYgMTUuMDk1OSAxNC45MDQzIDE1LjE3MDcgMTQuOTQ5IDE1LjI2OEMxNS4xNTA2IDE1LjcxNyAxNC43MTc3IDE2LjE1MTEgMTQuMjY5OCAxNS45NDlDMTQuMTcyOCAxNS45MDQxIDE0LjA5ODIgMTUuODI5MyAxNC4wNTM0IDE1LjczMlonIGZpbGw9J2JsYWNrJy8+PHBhdGggZD0nTTE4LjgwMDEgMTMuNTA5M0MxOS4wMDE2IDEzLjA2MDMgMTguNTY4NyAxMi42MjYzIDE4LjEyMDkgMTIuODI4M0MxOC4wMjM5IDEyLjg3MzIgMTcuOTQ5MiAxMi45NDgxIDE3LjkwNDUgMTMuMDQ1M0MxNy42OTU1IDEzLjQ5NDQgMTguMTM1OCAxMy45Mjg0IDE4LjU4MzcgMTMuNzI2NEMxOC42ODA3IDEzLjY4MTUgMTguNzU1MyAxMy42MDY2IDE4LjgwMDEgMTMuNTA5M1onIGZpbGw9J2JsYWNrJy8+PHBhdGggZD0nTTAuOTQ5MDQzIDIuNzMyQzEuMTUwNTcgMi4yODI5NyAwLjcxNzY2MyAxLjg0ODkxIDAuMjY5ODM2IDIuMDUwOTdDMC4xNzI4MDYgMi4wOTU4NyAwLjA5ODE2MiAyLjE3MDcxIDAuMDUzMzc5MyAyLjI2OEMtMC4xNTU2MDcgMi43MTcwMyAwLjI4NDc1OSAzLjE1MTA5IDAuNzMyNTg3IDIuOTQ5MDNDMC44Mjk2MTYgMi45MDQxMyAwLjkwNDI2IDIuODI5MjkgMC45NDkwNDMgMi43MzJaJyBmaWxsPSdibGFjaycvPjxwYXRoIGQ9J00yNi45NDg5IDcuNzMyQzI3LjE1MSA3LjI4Mjk3IDI2LjcxNjkgNi44NDg5MSAyNi4yNjc5IDcuMDUwOTdDMjYuMTcwNiA3LjA5NTg3IDI2LjA5NTggNy4xNzA3MSAyNi4wNTA4IDcuMjY4QzI1Ljg0ODggNy43MTcwMyAyNi4yODI4IDguMTUxMDkgMjYuNzMxOSA3Ljk0OTAzQzI2LjgyOTIgNy45MDQxMyAyNi45MDQgNy44MjkyOSAyNi45NDg5IDcuNzMyWicgZmlsbD0nYmxhY2snLz48cGF0aCBkPSdNMTMuMDUzNCA1LjczMkMxMi44NDQ0IDUuMjgyOTcgMTMuMjg0OCA0Ljg0ODkxIDEzLjczMjYgNS4wNTA5N0MxMy44Mjk2IDUuMDk1ODcgMTMuOTA0MyA1LjE3MDcxIDEzLjk0OSA1LjI2OEMxNC4xNTA2IDUuNzE3MDMgMTMuNzE3NyA2LjE1MTA5IDEzLjI2OTggNS45NDkwM0MxMy4xNzI4IDUuOTA0MTMgMTMuMDk4MiA1LjgyOTI5IDEzLjA1MzQgNS43MzJaJyBmaWxsPSdibGFjaycvPjxwYXRoIGQ9J00xMC4wNTM0IDE3LjczMkM5Ljg0NDM5IDE3LjI4MyAxMC4yODQ4IDE2Ljg0ODkgMTAuNzMyNiAxNy4wNTFDMTAuODI5NiAxNy4wOTU5IDEwLjkwNDMgMTcuMTcwNyAxMC45NDkgMTcuMjY4QzExLjE1MDYgMTcuNzE3IDEwLjcxNzcgMTguMTUxMSAxMC4yNjk4IDE3Ljk0OUMxMC4xNzI4IDE3LjkwNDEgMTAuMDk4MiAxNy44MjkzIDEwLjA1MzQgMTcuNzMyWicgZmlsbD0nYmxhY2snLz48cGF0aCBkPSdNMTUuMDUzNCAyMS43MzJDMTQuODQ0NCAyMS4yODMgMTUuMjg0OCAyMC44NDg5IDE1LjczMjYgMjEuMDUxQzE1LjgyOTYgMjEuMDk1OSAxNS45MDQzIDIxLjE3MDcgMTUuOTQ5IDIxLjI2OEMxNi4xNTA2IDIxLjcxNyAxNS43MTc3IDIyLjE1MTEgMTUuMjY5OCAyMS45NDlDMTUuMTcyOCAyMS45MDQxIDE1LjA5ODIgMjEuODI5MyAxNS4wNTM0IDIxLjczMlonIGZpbGw9J2JsYWNrJy8+PC9zdmc+Cg==);
+  mask: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMjgnIGhlaWdodD0nMjQnIHZpZXdCb3g9JzAgMCAyOCAyNCcgZmlsbD0nbm9uZScgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cGF0aCBkPSdNMTQuMDUzNCAxNS43MzJDMTMuODQ0NCAxNS4yODMgMTQuMjg0OCAxNC44NDg5IDE0LjczMjYgMTUuMDUxQzE0LjgyOTYgMTUuMDk1OSAxNC45MDQzIDE1LjE3MDcgMTQuOTQ5IDE1LjI2OEMxNS4xNTA2IDE1LjcxNyAxNC43MTc3IDE2LjE1MTEgMTQuMjY5OCAxNS45NDlDMTQuMTcyOCAxNS45MDQxIDE0LjA5ODIgMTUuODI5MyAxNC4wNTM0IDE1LjczMlonIGZpbGw9J2JsYWNrJy8+PHBhdGggZD0nTTE4LjgwMDEgMTMuNTA5M0MxOS4wMDE2IDEzLjA2MDMgMTguNTY4NyAxMi42MjYzIDE4LjEyMDkgMTIuODI4M0MxOC4wMjM5IDEyLjg3MzIgMTcuOTQ5MiAxMi45NDgxIDE3LjkwNDUgMTMuMDQ1M0MxNy42OTU1IDEzLjQ5NDQgMTguMTM1OCAxMy45Mjg0IDE4LjU4MzcgMTMuNzI2NEMxOC42ODA3IDEzLjY4MTUgMTguNzU1MyAxMy42MDY2IDE4LjgwMDEgMTMuNTA5M1onIGZpbGw9J2JsYWNrJy8+PHBhdGggZD0nTTAuOTQ5MDQzIDIuNzMyQzEuMTUwNTcgMi4yODI5NyAwLjcxNzY2MyAxLjg0ODkxIDAuMjY5ODM2IDIuMDUwOTdDMC4xNzI4MDYgMi4wOTU4NyAwLjA5ODE2MiAyLjE3MDcxIDAuMDUzMzc5MyAyLjI2OEMtMC4xNTU2MDcgMi43MTcwMyAwLjI4NDc1OSAzLjE1MTA5IDAuNzMyNTg3IDIuOTQ5MDNDMC44Mjk2MTYgMi45MDQxMyAwLjkwNDI2IDIuODI5MjkgMC45NDkwNDMgMi43MzJaJyBmaWxsPSdibGFjaycvPjxwYXRoIGQ9J00yNi45NDg5IDcuNzMyQzI3LjE1MSA3LjI4Mjk3IDI2LjcxNjkgNi44NDg5MSAyNi4yNjc5IDcuMDUwOTdDMjYuMTcwNiA3LjA5NTg3IDI2LjA5NTggNy4xNzA3MSAyNi4wNTA4IDcuMjY4QzI1Ljg0ODggNy43MTcwMyAyNi4yODI4IDguMTUxMDkgMjYuNzMxOSA3Ljk0OTAzQzI2LjgyOTIgNy45MDQxMyAyNi45MDQgNy44MjkyOSAyNi45NDg5IDcuNzMyWicgZmlsbD0nYmxhY2snLz48cGF0aCBkPSdNMTMuMDUzNCA1LjczMkMxMi44NDQ0IDUuMjgyOTcgMTMuMjg0OCA0Ljg0ODkxIDEzLjczMjYgNS4wNTA5N0MxMy44Mjk2IDUuMDk1ODcgMTMuOTA0MyA1LjE3MDcxIDEzLjk0OSA1LjI2OEMxNC4xNTA2IDUuNzE3MDMgMTMuNzE3NyA2LjE1MTA5IDEzLjI2OTggNS45NDkwM0MxMy4xNzI4IDUuOTA0MTMgMTMuMDk4MiA1LjgyOTI5IDEzLjA1MzQgNS43MzJaJyBmaWxsPSdibGFjaycvPjxwYXRoIGQ9J00xMC4wNTM0IDE3LjczMkM5Ljg0NDM5IDE3LjI4MyAxMC4yODQ4IDE2Ljg0ODkgMTAuNzMyNiAxNy4wNTFDMTAuODI5NiAxNy4wOTU5IDEwLjkwNDMgMTcuMTcwNyAxMC45NDkgMTcuMjY4QzExLjE1MDYgMTcuNzE3IDEwLjcxNzcgMTguMTUxMSAxMC4yNjk4IDE3Ljk0OUMxMC4xNzI4IDE3LjkwNDEgMTAuMDk4MiAxNy44MjkzIDEwLjA1MzQgMTcuNzMyWicgZmlsbD0nYmxhY2snLz48cGF0aCBkPSdNMTUuMDUzNCAyMS43MzJDMTQuODQ0NCAyMS4yODMgMTUuMjg0OCAyMC44NDg5IDE1LjczMjYgMjEuMDUxQzE1LjgyOTYgMjEuMDk1OSAxNS45MDQzIDIxLjE3MDcgMTUuOTQ5IDIxLjI2OEMxNi4xNTA2IDIxLjcxNyAxNS43MTc3IDIyLjE1MTEgMTUuMjY5OCAyMS45NDlDMTUuMTcyOCAyMS45MDQxIDE1LjA5ODIgMjEuODI5MyAxNS4wNTM0IDIxLjczMlonIGZpbGw9J2JsYWNrJy8+PC9zdmc+Cg==);
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+  -webkit-mask-size: 13%;
+  mask-size: 13%;
+}
+
+.glowing-box-animations * {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.glowing-box-borders,
+.glowing-box-glow,
+.glowing-box-stars {
+  animation: borderTurn var(--animation-speed) infinite linear;
+  background-image: conic-gradient(
+    from 0 at 50% 50%,
+    rgba(60, 162, 250, 10) 0deg,
+    rgba(60, 162, 250, 0) 60deg,
+    rgba(60, 162, 250, 0) 310deg,
+    rgba(60, 162, 250, 10) 360deg
+  );
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.glowing-box-animations * {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.glowing-box-animations:after,
+.glowing-box-borders:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+.glowing-box-active .glowing-box-animations,
+.glowing-box-active .glowing-box-borders-masker {
+  opacity: 1;
+}
+.glowing-box-borders-masker {
+  border-radius: 16px;
+  content: "";
+
+  inset: 0;
+  left: 0;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  padding: 0.5px;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transition: 1s ease opacity;
+}
+
+.glowing-box-borders {
+  animation-name: borderTurnWithTranslate;
+}
+
+.glowing-box-animations,
+.glowing-box-borders {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.glowing-box-animations:before,
+.glowing-box-borders:before {
+  content: "";
+  float: left;
+  padding-top: 100%;
+}
+
+.glowing-box-animations:after,
+.glowing-box-borders:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+.glowing-box-button {
+  background:
+    radial-gradient(107.5% 107.5% at 50% 215%, #3ca2fa1a 0%, #3ca2fa1a 100%),
+    #3ca2fa1a;
+  border: 1px solid #3ca2fa33;
+  border-radius: 16px;
+  cursor: pointer;
+  padding: 7px 24px;
+  position: relative;
+  z-index: 1;
+}
+.glowing-box-button {
+  font-feature-settings:
+    "cv06" on,
+    "calt" off,
+    "liga" off;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 24px;
+}
+
+.glowing-box .glowing-box-button {
+  overflow: visible;
+}
+glowing-box-button {
+  background-color: transparent;
+  border: 1px solid transparent;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+.glowing-box .glowing-box .glowing-box-button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  cursor: pointer;
+}
+
+.glowing-box-button:after {
+  background: radial-gradient(
+    73% 117% at 50% 126%,
+    rgb(38 3 95 / 82%) 0%,
+    rgb(255 255 255 / 0%) 100%
+  );
+  border-radius: 16px;
+  content: "";
+  height: calc(100% + 4px);
+  left: -2px;
+  opacity: 0;
+  position: absolute;
+  top: -2px;
+  transition: 1s all;
+  width: calc(100% + 4px);
+}
+
+.glowing-box-button .glowing-span {
+  background: linear-gradient(180deg, #fff 8.85%, #fff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  display: block;
+}
+
+.glowing-box-button:hover:after {
+  opacity: 0.7;
+}
+
+@keyframes borderTurnWithTranslate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes borderTurn {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,3 +1,5 @@
+import { Playground } from "@/features/playground/Playground";
+
 export const metadata = {
   title: "Playground",
   description:
@@ -13,10 +15,7 @@ export const metadata = {
 };
 
 const page = () => {
-  const working = true;
-  if (working)
-    return <div>Playground page is under development. Coming soon!</div>;
-  return <div></div>;
+  return <Playground />;
 };
 
 export default page;
