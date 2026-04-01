@@ -1,0 +1,23 @@
+@import "tw-animate-css";
+
+:root {
+  --playingcard-bg: #18192b;
+  --playingcard-fg: #f8fafc;
+  --playingcard-outline-color: #3d3759;
+  --playingcard-hover-outline-color: #7c6ee6;
+  --playingcard-canvas-bg: #23244a;
+  --playingcard-canvas-colors: "143,108,255;99,102,241;80,115,184";
+  --playingcard-inscription-color: #00a9fe;
+  --playingcard-inscription-color-hover: #8F04A7;
+}
+
+.dark {
+  --playingcard-bg: #f8fafc;
+  --playingcard-fg: #0f172a;
+  --playingcard-outline-color: #ddd;
+  --playingcard-hover-outline-color: #aaa;
+  --playingcard-canvas-bg: #f8fafc;
+  --playingcard-canvas-colors: "236,72,153;232,121,249";
+  --playingcard-inscription-color: #3662f4;
+  --playingcard-inscription-color-hover: #f12b30;
+}

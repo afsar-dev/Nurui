@@ -1,5 +1,6 @@
 import withBundleAnalyzer from "@next/bundle-analyzer";
 import createMDX from "@next/mdx";
+import MonacoWebpackPlugin from "monaco-editor-webpack-plugin";
 import type { NextConfig } from "next";
 
 const isAnalyzerEnabled = process.env.ANALYZE === "true";
@@ -42,12 +43,21 @@ const nextConfig: NextConfig = {
   },
   compress: true,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
-  webpack(config) {
+  webpack(config, { isServer }) {
     config.module.rules.push({
       test: /\.tsx?$/,
       resourceQuery: /raw/, // *.tsx?raw
       use: "raw-loader",
     });
+
+    if (!isServer) {
+      config.plugins.push(
+        new MonacoWebpackPlugin({
+          languages: ["typescript", "javascript", "css", "json"],
+          filename: "static/[name].worker.js",
+        }),
+      );
+    }
     return config;
   },
   compiler: {
