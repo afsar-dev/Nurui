@@ -1,5 +1,5 @@
 "use client";
-import { Download, Package, RefreshCw, Share2, Upload } from "lucide-react";
+import { Download, Package, RefreshCw, Share2 } from "lucide-react";
 
 interface ToolbarProps {
   onImport: () => void;
@@ -14,6 +14,7 @@ export const Toolbar = ({
   onShare,
   onReset,
   onExport,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onLoadFromUrl,
 }: ToolbarProps) => {
   return (
@@ -27,13 +28,13 @@ export const Toolbar = ({
           Import Component
         </button>
 
-        <button
+        {/* <button
           onClick={onLoadFromUrl}
           className="flex items-center gap-2 rounded-lg  px-3 py-1.5 text-sm text-[var(--white-color)] hover:text-[var(--primary-color)] transition-colors"
         >
           <Upload size={16} />
           Load from URL
-        </button>
+        </button> */}
       </div>
 
       <div className="flex items-center gap-2">

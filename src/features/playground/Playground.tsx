@@ -247,6 +247,7 @@ export const Playground = () => {
                       key={activeFile.id}
                       value={activeFile.content}
                       language={activeFile.language}
+                      fileName={activeFile.name}
                       onChange={(value) => updateFile(activeFile.id, value)}
                       errors={errors}
                     />

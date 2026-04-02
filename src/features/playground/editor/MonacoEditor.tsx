@@ -8,6 +8,7 @@ import { CompilationError } from "../types";
 interface MonacoEditorProps {
   value: string;
   language: string;
+  fileName?: string;
   onChange: (value: string) => void;
   errors?: CompilationError[];
 }
@@ -15,6 +16,7 @@ interface MonacoEditorProps {
 export const MonacoEditor = ({
   value,
   language,
+  fileName,
   onChange,
   errors = [],
 }: MonacoEditorProps) => {
@@ -24,6 +26,17 @@ export const MonacoEditor = ({
   const onChangeRef = useRef(onChange);
   const initialValueRef = useRef(value);
   const initialLanguageRef = useRef(language);
+
+  const resolveMonacoLanguage = (lang: string, name?: string): string => {
+    const normalizedName = name?.toLowerCase() || "";
+
+    if (normalizedName.endsWith(".tsx")) return "typescript";
+    if (normalizedName.endsWith(".ts")) return "typescript";
+    if (normalizedName.endsWith(".jsx")) return "javascript";
+    if (normalizedName.endsWith(".js")) return "javascript";
+
+    return lang === "javascript" ? "javascript" : "typescript";
+  };
 
   useEffect(() => {
     onChangeRef.current = onChange;
@@ -58,13 +71,66 @@ export const MonacoEditor = ({
         .getPropertyValue("--primary-color-3")
         .trim() || "#3ca2fa33";
 
+    monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
+      ...monaco.languages.typescript.typescriptDefaults.getCompilerOptions(),
+      jsx: monaco.languages.typescript.JsxEmit.ReactJSX,
+      allowNonTsExtensions: true,
+      target: monaco.languages.typescript.ScriptTarget.ESNext,
+      module: monaco.languages.typescript.ModuleKind.ESNext,
+      moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
+      esModuleInterop: true,
+      noEmit: true,
+    });
+    monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
+      ...monaco.languages.typescript.typescriptDefaults.getDiagnosticsOptions(),
+      noSemanticValidation: true,
+      noSuggestionDiagnostics: true,
+      noSyntaxValidation: false,
+    });
+    monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true);
+
+    monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
+      ...monaco.languages.typescript.javascriptDefaults.getCompilerOptions(),
+      jsx: monaco.languages.typescript.JsxEmit.ReactJSX,
+      allowNonTsExtensions: true,
+      target: monaco.languages.typescript.ScriptTarget.ESNext,
+      module: monaco.languages.typescript.ModuleKind.ESNext,
+      moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
+      esModuleInterop: true,
+      noEmit: true,
+    });
+    monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
+      ...monaco.languages.typescript.javascriptDefaults.getDiagnosticsOptions(),
+      noSemanticValidation: true,
+      noSuggestionDiagnostics: true,
+      noSyntaxValidation: false,
+    });
+    monaco.languages.typescript.javascriptDefaults.setEagerModelSync(true);
+
     monaco.editor.defineTheme("nurui-editor-theme", {
       base: "vs-dark",
       inherit: true,
-      rules: [],
+      rules: [
+        { token: "keyword", foreground: "7dd3fc", fontStyle: "bold" },
+        { token: "type.identifier", foreground: "a78bfa" },
+        { token: "identifier", foreground: "e2e8f0" },
+        { token: "string", foreground: "86efac" },
+        { token: "number", foreground: "fda4af" },
+        { token: "comment", foreground: "64748b", fontStyle: "italic" },
+        { token: "delimiter", foreground: "93c5fd" },
+        { token: "tag", foreground: "22d3ee" },
+        { token: "attribute.name", foreground: "f9a8d4" },
+      ],
       colors: {
         "editor.background": resolvedBackground,
+        "editor.foreground": "#e5e7eb",
+        "editorCursor.foreground": "#3ca2fa",
+        "editor.lineHighlightBackground": "#3ca2fa1a",
         "editor.lineHighlightBorder": resolvedPrimary300,
+        "editor.selectionBackground": "#3ca2fa33",
+        "editor.inactiveSelectionBackground": "#3ca2fa1a",
+        "editorIndentGuide.background1": "#3ca2fa1a",
+        "editorIndentGuide.activeBackground1": "#3ca2fa4d",
         "scrollbarSlider.background": resolvedPrimary200,
         "scrollbarSlider.hoverBackground": resolvedPrimary200,
         "scrollbarSlider.activeBackground": resolvedPrimary200,
@@ -72,18 +138,30 @@ export const MonacoEditor = ({
       },
     });
 
+    const initialLanguage = resolveMonacoLanguage(
+      initialLanguageRef.current,
+      fileName,
+    );
+    const modelPath =
+      fileName || (initialLanguage === "javascript" ? "App.js" : "App.tsx");
+    const modelUri = monaco.Uri.file(modelPath);
+    const model = monaco.editor.createModel(
+      initialValueRef.current,
+      initialLanguage,
+      modelUri,
+    );
+
     // Create editor instance
     editorRef.current = monaco.editor.create(containerRef.current, {
-      value: initialValueRef.current,
-      language: initialLanguageRef.current,
+      model,
       theme: "nurui-editor-theme",
       ...MONACO_OPTIONS,
     });
 
-    const model = editorRef.current.getModel();
-    if (model) {
+    const createdModel = editorRef.current.getModel();
+    if (createdModel) {
       // Listen for content changes
-      model.onDidChangeContent(() => {
+      createdModel.onDidChangeContent(() => {
         if (!isUpdatingRef.current) {
           const newValue = editorRef.current?.getValue() || "";
           onChangeRef.current(newValue);
@@ -92,6 +170,7 @@ export const MonacoEditor = ({
     }
 
     return () => {
+      editorRef.current?.getModel()?.dispose();
       editorRef.current?.dispose();
     };
   }, []); // Only run once on mount
@@ -99,9 +178,12 @@ export const MonacoEditor = ({
   useEffect(() => {
     const model = editorRef.current?.getModel();
     if (model) {
-      monaco.editor.setModelLanguage(model, language);
+      monaco.editor.setModelLanguage(
+        model,
+        resolveMonacoLanguage(language, fileName),
+      );
     }
-  }, [language]);
+  }, [language, fileName]);
 
   // Update editor value when prop changes (e.g., switching files)
   useEffect(() => {
@@ -145,7 +227,7 @@ export const MonacoEditor = ({
           : monaco.MarkerSeverity.Warning,
     }));
 
-    monaco.editor.setModelMarkers(model, "typescript", markers);
+    monaco.editor.setModelMarkers(model, "playground-compiler", markers);
   }, [errors]);
 
   return <div ref={containerRef} className="h-full w-full" />;
