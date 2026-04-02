@@ -2,6 +2,7 @@
 "use client";
 
 import { ComponentName } from "@/registry/components-registry";
+import { convertTsxToJsx } from "@/utils/convertTsxToJsx";
 import { useCallback, useEffect, useState } from "react";
 import { TypeScriptCompiler } from "./core/compiler";
 import { MonacoEditor } from "./editor/MonacoEditor";
@@ -17,7 +18,7 @@ import {
 } from "./ui/LanguageSwitcher";
 import { SplitPanel } from "./ui/SplitPanel";
 import { Toolbar } from "./ui/Toolbar";
-import { convertTsxToJsx } from "@/utils/convertTsxToJsx";
+import { toast } from "sonner";
 
 const compiler = TypeScriptCompiler.getInstance();
 const importService = new ComponentImportService();
@@ -90,7 +91,7 @@ export const Playground = () => {
     return () => {
       cancelled = true;
     };
-  }, [activeFileId, editorLanguageMode]);
+  }, [activeFile, activeFileId, editorLanguageMode]);
 
   useEffect(() => {
     let cancelled = false;
@@ -213,16 +214,18 @@ export const Playground = () => {
   const handleShare = async () => {
     try {
       await copyShareUrl(state);
-      alert("✅ Link copied to clipboard!");
+      toast("Playground link copied", {
+        description: "Your share URL is now in the clipboard.",
+      });
     } catch {
-      alert("❌ Failed to copy link");
+      toast("Failed to copy link", {
+        description: "Please try again.",
+      });
     }
   };
 
   const handleReset = () => {
-    if (confirm("Reset playground? This will clear all your code.")) {
-      window.location.href = window.location.pathname;
-    }
+    window.location.href = window.location.pathname;
   };
 
   const handleExport = () => {

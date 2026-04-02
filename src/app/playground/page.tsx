@@ -1,5 +1,4 @@
 import { Playground } from "@/features/playground/Playground";
-
 export const metadata = {
   title: "Playground",
   description:
@@ -14,8 +13,8 @@ export const metadata = {
   ],
 };
 
-const page = () => {
+const PlaygroundPage = () => {
   return <Playground />;
 };
 
-export default page;
+export default PlaygroundPage;
