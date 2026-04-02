@@ -1,4 +1,3 @@
-// src/features/playground/import/import-service.ts
 import { ComponentName, Index } from "@/registry/components-registry";
 import { PlaygroundFile } from "../types";
 
@@ -206,21 +205,15 @@ export class ComponentImportService {
       },
     );
 
-    fixed = fixed.replace(
-      /@\/data\/([a-zA-Z0-9-_.]+)/g,
-      (match, fileName) => {
-        console.log(`🔧 Fixing data import: ${match} → ./${fileName}`);
-        return `./${fileName}`;
-      },
-    );
+    fixed = fixed.replace(/@\/data\/([a-zA-Z0-9-_.]+)/g, (match, fileName) => {
+      console.log(`🔧 Fixing data import: ${match} → ./${fileName}`);
+      return `./${fileName}`;
+    });
 
-    fixed = fixed.replace(
-      /@\/utils\/([a-zA-Z0-9-_.]+)/g,
-      (match, fileName) => {
-        console.log(`🔧 Fixing util import: ${match} → ./${fileName}`);
-        return `./${fileName}`;
-      },
-    );
+    fixed = fixed.replace(/@\/utils\/([a-zA-Z0-9-_.]+)/g, (match, fileName) => {
+      console.log(`🔧 Fixing util import: ${match} → ./${fileName}`);
+      return `./${fileName}`;
+    });
 
     // Fix @/lib/utils import
     fixed = fixed.replace(
@@ -285,7 +278,9 @@ export class ComponentImportService {
       const mainCodeModule = await entry.code();
       let mainCode = mainCodeModule.default || "";
 
-      this.extractCssDependencies(mainCode).forEach((file) => cssFiles.add(file));
+      this.extractCssDependencies(mainCode).forEach((file) =>
+        cssFiles.add(file),
+      );
 
       console.log("📄 Main code loaded:", {
         name,

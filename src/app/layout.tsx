@@ -6,7 +6,8 @@ import { AppProvider } from "@/context/AppContext";
 import VercelAnalytics from "@/provider/AnalyticsProvider";
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
-import { Toaster } from "react-hot-toast";
+import { Toaster as SonnerToaster } from "@/components/ui/sonner";
+import { Toaster as HotToaster } from "react-hot-toast";
 import MainContent from "../components/common/MainContent";
 import ThemeProvider from "../provider/ThemeProvider";
 import "./globals.css";
@@ -94,7 +95,8 @@ export default function RootLayout({
       >
         <AppProvider>
           <ThemeProvider>
-            <Toaster />
+            <HotToaster />
+            <SonnerToaster />
             <NProgressProvider />
             <Banner />
             <Navbar />

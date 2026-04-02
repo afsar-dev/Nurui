@@ -26,6 +26,26 @@ export const PreviewSandbox = ({ code, cssFiles = [] }: Props) => {
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body { margin: 0; padding: 0; overflow: auto; background: #010313; }
+      html, body, #root, * {
+        scrollbar-width: thin;
+        scrollbar-color: #3ca2fa66 #010313;
+      }
+      *::-webkit-scrollbar {
+        width: 20px;
+        height: 10px;
+      }
+      *::-webkit-scrollbar-track {
+        background: #010313;
+      }
+      *::-webkit-scrollbar-thumb {
+        background: #3ca2fa66;
+        border: 1px solid #3ca2fa33;
+        border-radius: 9999px;
+      }
+      *::-webkit-scrollbar-thumb:hover,
+      *::-webkit-scrollbar-thumb:active {
+        background: #3ca2fa66;
+      }
       #root { width: 100%; min-height: 100vh; }
       #error { 
         padding: 20px; 

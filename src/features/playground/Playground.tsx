@@ -2,6 +2,7 @@
 "use client";
 
 import { ComponentName } from "@/registry/components-registry";
+import { convertTsxToJsx } from "@/utils/convertTsxToJsx";
 import { useCallback, useEffect, useState } from "react";
 import { TypeScriptCompiler } from "./core/compiler";
 import { MonacoEditor } from "./editor/MonacoEditor";
@@ -11,8 +12,13 @@ import { ComponentImportService } from "./import/import-service";
 import { PreviewSandbox } from "./preview/PreviewSandbox";
 import { copyShareUrl, loadFromUrl } from "./storage/url-storage";
 import { FileTabs } from "./ui/FileTabs";
+import {
+  LanguageSwitcher,
+  PlaygroundLanguageMode,
+} from "./ui/LanguageSwitcher";
 import { SplitPanel } from "./ui/SplitPanel";
 import { Toolbar } from "./ui/Toolbar";
+import { toast } from "sonner";
 
 const compiler = TypeScriptCompiler.getInstance();
 const importService = new ComponentImportService();
@@ -34,8 +40,58 @@ export const Playground = () => {
   const [errors, setErrors] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isCompiling, setIsCompiling] = useState(false);
+  const [editorLanguageMode, setEditorLanguageMode] =
+    useState<PlaygroundLanguageMode>("ts");
+  const [editorDisplayValue, setEditorDisplayValue] = useState("");
 
   const activeFile = state.files.find((f) => f.id === state.activeFileId);
+  const activeFileId = activeFile?.id;
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const updateEditorDisplayValue = async () => {
+      if (!activeFile) {
+        setEditorDisplayValue("");
+        return;
+      }
+
+      if (editorLanguageMode === "ts") {
+        setEditorDisplayValue(activeFile.content);
+        return;
+      }
+
+      const lowerName = activeFile.name.toLowerCase();
+      const canConvert =
+        lowerName.endsWith(".tsx") ||
+        lowerName.endsWith(".ts") ||
+        lowerName.endsWith(".jsx") ||
+        lowerName.endsWith(".js");
+
+      if (!canConvert) {
+        setEditorDisplayValue(activeFile.content);
+        return;
+      }
+
+      try {
+        const converted = await convertTsxToJsx(activeFile.content);
+        if (!cancelled) {
+          setEditorDisplayValue(converted);
+        }
+      } catch (error) {
+        console.error("❌ Failed to convert TSX to JSX:", error);
+        if (!cancelled) {
+          setEditorDisplayValue(activeFile.content);
+        }
+      }
+    };
+
+    updateEditorDisplayValue();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [activeFile, activeFileId, editorLanguageMode]);
 
   useEffect(() => {
     let cancelled = false;
@@ -158,16 +214,18 @@ export const Playground = () => {
   const handleShare = async () => {
     try {
       await copyShareUrl(state);
-      alert("✅ Link copied to clipboard!");
+      toast("Playground link copied", {
+        description: "Your share URL is now in the clipboard.",
+      });
     } catch {
-      alert("❌ Failed to copy link");
+      toast("Failed to copy link", {
+        description: "Please try again.",
+      });
     }
   };
 
   const handleReset = () => {
-    if (confirm("Reset playground? This will clear all your code.")) {
-      window.location.href = window.location.pathname;
-    }
+    window.location.href = window.location.pathname;
   };
 
   const handleExport = () => {
@@ -202,6 +260,7 @@ export const Playground = () => {
         activeFileId={state.activeFileId}
         onSelectFile={setActiveFile}
         onCloseFile={removeFile}
+        languageMode={editorLanguageMode}
         onAddFile={() => {
           const newFile = {
             id: `file-${Date.now()}`,
@@ -211,6 +270,14 @@ export const Playground = () => {
             language: "typescript" as const,
           };
           addFile(newFile);
+        }}
+        languageSwitcher={{
+          render: (
+            <LanguageSwitcher
+              value={editorLanguageMode}
+              onChange={setEditorLanguageMode}
+            />
+          ),
         }}
       />
 
@@ -244,9 +311,15 @@ export const Playground = () => {
                 <div className="flex-1">
                   {activeFile ? (
                     <MonacoEditor
-                      key={activeFile.id}
-                      value={activeFile.content}
+                      value={editorDisplayValue}
                       language={activeFile.language}
+                      fileName={activeFile.name}
+                      languageOverride={
+                        editorLanguageMode === "js"
+                          ? "javascript"
+                          : "typescript"
+                      }
+                      readOnly={false}
                       onChange={(value) => updateFile(activeFile.id, value)}
                       errors={errors}
                     />
