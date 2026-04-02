@@ -11,8 +11,13 @@ import { ComponentImportService } from "./import/import-service";
 import { PreviewSandbox } from "./preview/PreviewSandbox";
 import { copyShareUrl, loadFromUrl } from "./storage/url-storage";
 import { FileTabs } from "./ui/FileTabs";
+import {
+  LanguageSwitcher,
+  PlaygroundLanguageMode,
+} from "./ui/LanguageSwitcher";
 import { SplitPanel } from "./ui/SplitPanel";
 import { Toolbar } from "./ui/Toolbar";
+import { convertTsxToJsx } from "@/utils/convertTsxToJsx";
 
 const compiler = TypeScriptCompiler.getInstance();
 const importService = new ComponentImportService();
@@ -34,8 +39,57 @@ export const Playground = () => {
   const [errors, setErrors] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isCompiling, setIsCompiling] = useState(false);
+  const [editorLanguageMode, setEditorLanguageMode] =
+    useState<PlaygroundLanguageMode>("ts");
+  const [editorDisplayValue, setEditorDisplayValue] = useState("");
 
   const activeFile = state.files.find((f) => f.id === state.activeFileId);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const updateEditorDisplayValue = async () => {
+      if (!activeFile) {
+        setEditorDisplayValue("");
+        return;
+      }
+
+      if (editorLanguageMode === "ts") {
+        setEditorDisplayValue(activeFile.content);
+        return;
+      }
+
+      const lowerName = activeFile.name.toLowerCase();
+      const canConvert =
+        lowerName.endsWith(".tsx") ||
+        lowerName.endsWith(".ts") ||
+        lowerName.endsWith(".jsx") ||
+        lowerName.endsWith(".js");
+
+      if (!canConvert) {
+        setEditorDisplayValue(activeFile.content);
+        return;
+      }
+
+      try {
+        const converted = await convertTsxToJsx(activeFile.content);
+        if (!cancelled) {
+          setEditorDisplayValue(converted);
+        }
+      } catch (error) {
+        console.error("❌ Failed to convert TSX to JSX:", error);
+        if (!cancelled) {
+          setEditorDisplayValue(activeFile.content);
+        }
+      }
+    };
+
+    updateEditorDisplayValue();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [activeFile, editorLanguageMode]);
 
   useEffect(() => {
     let cancelled = false;
@@ -202,6 +256,7 @@ export const Playground = () => {
         activeFileId={state.activeFileId}
         onSelectFile={setActiveFile}
         onCloseFile={removeFile}
+        languageMode={editorLanguageMode}
         onAddFile={() => {
           const newFile = {
             id: `file-${Date.now()}`,
@@ -211,6 +266,14 @@ export const Playground = () => {
             language: "typescript" as const,
           };
           addFile(newFile);
+        }}
+        languageSwitcher={{
+          render: (
+            <LanguageSwitcher
+              value={editorLanguageMode}
+              onChange={setEditorLanguageMode}
+            />
+          ),
         }}
       />
 
@@ -244,12 +307,20 @@ export const Playground = () => {
                 <div className="flex-1">
                   {activeFile ? (
                     <MonacoEditor
-                      key={activeFile.id}
-                      value={activeFile.content}
+                      value={editorDisplayValue}
                       language={activeFile.language}
                       fileName={activeFile.name}
-                      onChange={(value) => updateFile(activeFile.id, value)}
-                      errors={errors}
+                      languageOverride={
+                        editorLanguageMode === "js"
+                          ? "javascript"
+                          : "typescript"
+                      }
+                      readOnly={editorLanguageMode === "js"}
+                      onChange={(value) => {
+                        if (editorLanguageMode === "js") return;
+                        updateFile(activeFile.id, value);
+                      }}
+                      errors={editorLanguageMode === "js" ? [] : errors}
                     />
                   ) : (
                     <div className="h-full flex items-center justify-center text-neutral-400">

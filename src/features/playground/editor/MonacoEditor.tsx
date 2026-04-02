@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // src/features/playground/editor/MonacoEditor.tsx
+// cspell:ignore nurui efac
 "use client";
 import * as monaco from "monaco-editor";
 import { useEffect, useRef } from "react";
@@ -9,6 +11,8 @@ interface MonacoEditorProps {
   value: string;
   language: string;
   fileName?: string;
+  languageOverride?: "typescript" | "javascript";
+  readOnly?: boolean;
   onChange: (value: string) => void;
   errors?: CompilationError[];
 }
@@ -17,17 +21,29 @@ export const MonacoEditor = ({
   value,
   language,
   fileName,
+  languageOverride,
+  readOnly = false,
   onChange,
   errors = [],
 }: MonacoEditorProps) => {
   const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const editorMountRef = useRef<HTMLDivElement | null>(null);
   const isUpdatingRef = useRef(false);
   const onChangeRef = useRef(onChange);
   const initialValueRef = useRef(value);
   const initialLanguageRef = useRef(language);
+  const initialFileNameRef = useRef(fileName);
+  const initialLanguageOverrideRef = useRef(languageOverride);
+  const initialReadOnlyRef = useRef(readOnly);
 
-  const resolveMonacoLanguage = (lang: string, name?: string): string => {
+  const resolveMonacoLanguage = (
+    lang: string,
+    name?: string,
+    override?: "typescript" | "javascript",
+  ): string => {
+    if (override) return override;
+
     const normalizedName = name?.toLowerCase() || "";
 
     if (normalizedName.endsWith(".tsx")) return "typescript";
@@ -45,6 +61,16 @@ export const MonacoEditor = ({
   // Initialize editor
   useEffect(() => {
     if (!containerRef.current) return;
+    const hostElement = containerRef.current;
+
+    // Always mount Monaco in a fresh inner node to avoid
+    // "Element already has context attribute" on dev remounts.
+    hostElement.innerHTML = "";
+    const mountNode = document.createElement("div");
+    mountNode.style.width = "100%";
+    mountNode.style.height = "100%";
+    hostElement.appendChild(mountNode);
+    editorMountRef.current = mountNode;
 
     const resolvedBackground =
       getComputedStyle(document.documentElement)
@@ -71,41 +97,54 @@ export const MonacoEditor = ({
         .getPropertyValue("--primary-color-3")
         .trim() || "#3ca2fa33";
 
-    monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
-      ...monaco.languages.typescript.typescriptDefaults.getCompilerOptions(),
-      jsx: monaco.languages.typescript.JsxEmit.ReactJSX,
-      allowNonTsExtensions: true,
-      target: monaco.languages.typescript.ScriptTarget.ESNext,
-      module: monaco.languages.typescript.ModuleKind.ESNext,
-      moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
-      esModuleInterop: true,
-      noEmit: true,
-    });
-    monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
-      ...monaco.languages.typescript.typescriptDefaults.getDiagnosticsOptions(),
-      noSemanticValidation: true,
-      noSuggestionDiagnostics: true,
-      noSyntaxValidation: false,
-    });
-    monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true);
+    // Monaco typings vary by version; access TS language service API via runtime bridge.
+    const tsApi = (monaco.languages as any)?.typescript;
 
-    monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
-      ...monaco.languages.typescript.javascriptDefaults.getCompilerOptions(),
-      jsx: monaco.languages.typescript.JsxEmit.ReactJSX,
-      allowNonTsExtensions: true,
-      target: monaco.languages.typescript.ScriptTarget.ESNext,
-      module: monaco.languages.typescript.ModuleKind.ESNext,
-      moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
-      esModuleInterop: true,
-      noEmit: true,
-    });
-    monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
-      ...monaco.languages.typescript.javascriptDefaults.getDiagnosticsOptions(),
-      noSemanticValidation: true,
-      noSuggestionDiagnostics: true,
-      noSyntaxValidation: false,
-    });
-    monaco.languages.typescript.javascriptDefaults.setEagerModelSync(true);
+    if (tsApi?.typescriptDefaults) {
+      tsApi.typescriptDefaults.setCompilerOptions({
+        ...tsApi.typescriptDefaults.getCompilerOptions(),
+        ...(tsApi.JsxEmit?.ReactJSX !== undefined
+          ? { jsx: tsApi.JsxEmit.ReactJSX }
+          : {}),
+        allowNonTsExtensions: true,
+        ...(tsApi.ScriptTarget?.ESNext !== undefined
+          ? { target: tsApi.ScriptTarget.ESNext }
+          : {}),
+        ...(tsApi.ModuleKind?.ESNext !== undefined
+          ? { module: tsApi.ModuleKind.ESNext }
+          : {}),
+        esModuleInterop: true,
+        noEmit: true,
+      });
+      tsApi.typescriptDefaults.setDiagnosticsOptions({
+        noSemanticValidation: true,
+        noSyntaxValidation: false,
+      });
+      tsApi.typescriptDefaults.setEagerModelSync(true);
+    }
+
+    if (tsApi?.javascriptDefaults) {
+      tsApi.javascriptDefaults.setCompilerOptions({
+        ...tsApi.javascriptDefaults.getCompilerOptions(),
+        ...(tsApi.JsxEmit?.ReactJSX !== undefined
+          ? { jsx: tsApi.JsxEmit.ReactJSX }
+          : {}),
+        allowNonTsExtensions: true,
+        ...(tsApi.ScriptTarget?.ESNext !== undefined
+          ? { target: tsApi.ScriptTarget.ESNext }
+          : {}),
+        ...(tsApi.ModuleKind?.ESNext !== undefined
+          ? { module: tsApi.ModuleKind.ESNext }
+          : {}),
+        esModuleInterop: true,
+        noEmit: true,
+      });
+      tsApi.javascriptDefaults.setDiagnosticsOptions({
+        noSemanticValidation: true,
+        noSyntaxValidation: false,
+      });
+      tsApi.javascriptDefaults.setEagerModelSync(true);
+    }
 
     monaco.editor.defineTheme("nurui-editor-theme", {
       base: "vs-dark",
@@ -140,11 +179,30 @@ export const MonacoEditor = ({
 
     const initialLanguage = resolveMonacoLanguage(
       initialLanguageRef.current,
-      fileName,
+      initialFileNameRef.current,
+      initialLanguageOverrideRef.current,
     );
-    const modelPath =
-      fileName || (initialLanguage === "javascript" ? "App.js" : "App.tsx");
+    const normalizeModelPath = (name: string | undefined, lang: string) => {
+      const fallbackName = lang === "javascript" ? "App.js" : "App.tsx";
+      const base = name || fallbackName;
+
+      if (lang === "javascript") {
+        if (base.endsWith(".tsx")) return base.replace(/\.tsx$/, ".jsx");
+        if (base.endsWith(".ts")) return base.replace(/\.ts$/, ".js");
+      } else {
+        if (base.endsWith(".jsx")) return base.replace(/\.jsx$/, ".tsx");
+        if (base.endsWith(".js")) return base.replace(/\.js$/, ".ts");
+      }
+
+      return base;
+    };
+
+    const modelPath = normalizeModelPath(initialFileNameRef.current, initialLanguage);
     const modelUri = monaco.Uri.file(modelPath);
+    const existingModel = monaco.editor.getModel(modelUri);
+    if (existingModel) {
+      existingModel.dispose();
+    }
     const model = monaco.editor.createModel(
       initialValueRef.current,
       initialLanguage,
@@ -152,9 +210,10 @@ export const MonacoEditor = ({
     );
 
     // Create editor instance
-    editorRef.current = monaco.editor.create(containerRef.current, {
+    editorRef.current = monaco.editor.create(mountNode, {
       model,
       theme: "nurui-editor-theme",
+      readOnly: initialReadOnlyRef.current,
       ...MONACO_OPTIONS,
     });
 
@@ -170,8 +229,11 @@ export const MonacoEditor = ({
     }
 
     return () => {
-      editorRef.current?.getModel()?.dispose();
-      editorRef.current?.dispose();
+      // Monaco can throw "Canceled: Canceled" during React dev remount cleanup.
+      // Keep cleanup non-throwing to avoid crashing the playground.
+      editorRef.current = null;
+      editorMountRef.current = null;
+      hostElement.innerHTML = "";
     };
   }, []); // Only run once on mount
 
@@ -180,10 +242,14 @@ export const MonacoEditor = ({
     if (model) {
       monaco.editor.setModelLanguage(
         model,
-        resolveMonacoLanguage(language, fileName),
+        resolveMonacoLanguage(language, fileName, languageOverride),
       );
     }
-  }, [language, fileName]);
+  }, [language, fileName, languageOverride]);
+
+  useEffect(() => {
+    editorRef.current?.updateOptions({ readOnly });
+  }, [readOnly]);
 
   // Update editor value when prop changes (e.g., switching files)
   useEffect(() => {
