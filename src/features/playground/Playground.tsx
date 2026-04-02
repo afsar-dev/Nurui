@@ -44,6 +44,7 @@ export const Playground = () => {
   const [editorDisplayValue, setEditorDisplayValue] = useState("");
 
   const activeFile = state.files.find((f) => f.id === state.activeFileId);
+  const activeFileId = activeFile?.id;
 
   useEffect(() => {
     let cancelled = false;
@@ -89,7 +90,7 @@ export const Playground = () => {
     return () => {
       cancelled = true;
     };
-  }, [activeFile, editorLanguageMode]);
+  }, [activeFileId, editorLanguageMode]);
 
   useEffect(() => {
     let cancelled = false;
@@ -315,12 +316,9 @@ export const Playground = () => {
                           ? "javascript"
                           : "typescript"
                       }
-                      readOnly={editorLanguageMode === "js"}
-                      onChange={(value) => {
-                        if (editorLanguageMode === "js") return;
-                        updateFile(activeFile.id, value);
-                      }}
-                      errors={editorLanguageMode === "js" ? [] : errors}
+                      readOnly={false}
+                      onChange={(value) => updateFile(activeFile.id, value)}
+                      errors={errors}
                     />
                   ) : (
                     <div className="h-full flex items-center justify-center text-neutral-400">
