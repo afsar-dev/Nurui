@@ -34,7 +34,7 @@ export const FileTabs = ({
   };
 
   return (
-    <div className="flex items-center gap- border-b border-[var(--primary-color-2)] bg-[var(--primary-color-4)]">
+    <div className="flex items-center gap-0 border-b border-[var(--border-color)] dark:border-[var(--primary-color-2)] bg-[var(--glass-color)] dark:bg-[var(--primary-color-4)]">
       {files.map((file) => (
         <button
           key={file.id}
@@ -43,8 +43,8 @@ export const FileTabs = ({
             group flex items-center gap-2 px-3 py-2.5 text-sm transition-colors
             ${
               activeFileId === file.id
-                ? "bg-[var(--primary-color)] text-[var(--white-color)] dark:bg-[var(--primary-color-3)] dark:hover:bg-[var(--primary-color-2)] dark:text-[var(--primary-color)] "
-                : "hover:text-[var(--primary-color)] text-[var(--white-color)]"
+                ? "bg-[var(--primary-color)] text-[var(--white-color)] dark:bg-[var(--primary-color-3)] dark:hover:bg-[var(--primary-color-2)] dark:text-[var(--primary-color)]"
+                : "text-[var(--text-primary-color)] dark:hover:bg-[var(--primary-color-4)] hover:text-[var(--primary-color)]"
             }
           `}
         >
@@ -52,7 +52,7 @@ export const FileTabs = ({
           {files.length > 1 && (
             <X
               size={20}
-              className="hover:bg-[var(--primary-color-2)] p-0.5 rounded"
+              className="dark:hover:bg-[var(--primary-color-2)] p-0.5 rounded"
               onClick={(e) => {
                 e.stopPropagation();
                 onCloseFile(file.id);
@@ -63,7 +63,7 @@ export const FileTabs = ({
       ))}
       <button
         onClick={onAddFile}
-        className="p-3 text-[var(--white-color)]  hover:text-[var(--primary-color)] transition-colors"
+        className="p-3 text-[var(--text-primary-color)] hover:bg-[var(--primary-color-4)] hover:text-[var(--primary-color)] transition-colors"
         title="Add file"
       >
         <Plus size={16} />

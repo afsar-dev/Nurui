@@ -241,7 +241,7 @@ export const Playground = () => {
   };
 
   return (
-    <div className="h-screen w-full text-white flex flex-col">
+    <div className="h-screen w-full bg-[var(--background-color)] text-[var(--text-primary-color)] flex flex-col">
       <Toolbar
         onImport={() => setIsImportOpen(true)}
         onShare={handleShare}
@@ -283,15 +283,17 @@ export const Playground = () => {
 
       <div className="flex-1 overflow-hidden">
         {isLoading ? (
-          <div className="h-full flex items-center justify-center">
-            <div className="text-white text-lg">Loading component...</div>
+          <div className="h-full flex items-center justify-center bg-[var(--background-color)]">
+            <div className="text-[var(--text-primary-color)] text-lg">
+              Loading component...
+            </div>
           </div>
         ) : (
           <SplitPanel
             initialRatio={state.splitRatio}
             onRatioChange={setSplitRatio}
             left={
-              <div className="h-full flex flex-col border-r border-[var(--primary-color-3)]">
+              <div className="h-full flex flex-col border-r border-[var(--border-color)] dark:border-[var(--primary-color-3)]">
                 {isCompiling && (
                   <div className="bg-yellow-500/10 border-b border-yellow-500/20 px-4 py-1 text-xs text-yellow-400">
                     ⚡ Compiling...
@@ -324,7 +326,7 @@ export const Playground = () => {
                       errors={errors}
                     />
                   ) : (
-                    <div className="h-full flex items-center justify-center text-neutral-400">
+                    <div className="h-full flex items-center justify-center text-[var(--opacity-text-color)]">
                       No file selected
                     </div>
                   )}
@@ -340,15 +342,15 @@ export const Playground = () => {
                     cssFiles={cssFiles}
                   />
                 ) : (
-                  <div className="h-full flex items-center justify-center text-neutral-400 bg-gradient-to-br from-blue-500 to-purple-600">
-                    <div className="text-center text-white">
+                  <div className="h-full flex items-center justify-center border-l border-[var(--border-color)] dark:border-[var(--primary-color-3)] bg-gradient-to-br from-[var(--primary-color-4)] via-[var(--glass-color)] to-[var(--background-color)]">
+                    <div className="text-center text-[var(--text-primary-color)]">
                       <h1 className="text-3xl font-bold mb-4">
                         Welcome to Nurui Playground
                       </h1>
-                      <p className="text-white/80 mb-6">
+                      <p className="text-[var(--opacity-text-color)] mb-6">
                         Click Import Component to get started
                       </p>
-                      <p className="text-xs text-white/60">
+                      <p className="text-xs text-[var(--opacity-text-color)]">
                         Open browser console (F12) to see debug logs
                       </p>
                     </div>
