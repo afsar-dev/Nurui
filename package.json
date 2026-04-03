@@ -106,7 +106,6 @@
     "ts-node": "^10.9.2"
   },
   "resolutions": {
-    "minimatch": "^9.0.5",
     "picomatch": "^4.0.2",
     "dompurify": "^3.1.6",
     "yaml": "^2.4.2"
