@@ -58,27 +58,27 @@ export const ComponentImportModal = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/45 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-4xl max-h-[80vh] overflow-hidden rounded-lg border border-[var(--primary-color-2)] bg-[var(--primary-color-4)] shadow-xl"
+        className="w-full max-w-4xl max-h-[80vh] overflow-hidden rounded-lg border border-[var(--border-color)] dark:border-[var(--primary-color-2)] bg-[var(--background-color)] dark:bg-[var(--primary-color-4)] shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between border-b border-[var(--primary-color-2)] p-4">
-          <h2 className="text-lg font-semibold text-[var(--white-color)]">
+        <div className="flex items-center justify-between border-b border-[var(--border-color)] dark:border-[var(--primary-color-2)] p-4">
+          <h2 className="text-lg font-semibold text-[var(--text-primary-color)]">
             Import Component
           </h2>
           <button
             onClick={onClose}
-            className="rounded p-1 text-[var(--white-color-2)] transition-colors hover:bg-[var(--primary-color-3)] hover:text-[var(--primary-color)]"
+            className="rounded p-1 text-[var(--opacity-text-color)] transition-colors hover:bg-[var(--primary-color-3)] hover:text-[var(--primary-color)]"
           >
             <X size={20} />
           </button>
         </div>
 
-        <div className="border-b border-[var(--primary-color-2)] p-4">
-          <div className="flex h-11 items-center overflow-hidden rounded-lg border border-[var(--primary-color-2)] ">
+        <div className="border-b border-[var(--border-color)] dark:border-[var(--primary-color-2)] p-4">
+          <div className="flex h-11 items-center overflow-hidden rounded-lg border border-[var(--border-color)] dark:border-[var(--primary-color-2)] bg-[var(--glass-color)]">
             <div className="flex h-full w-12 items-center justify-center bg-[var(--primary-color)] text-[var(--white-color)]">
               <Search size={18} />
             </div>
@@ -87,10 +87,10 @@ export const ComponentImportModal = ({
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search components..."
-              className="h-full flex-1 bg-transparent px-4 text-[var(--white-color)] placeholder:uppercase placeholder:tracking-[0.18em] placeholder:text-[var(--white-color-2)] focus:outline-none"
+              className="h-full flex-1 bg-transparent px-4 text-[var(--text-primary-color)] placeholder:uppercase placeholder:tracking-[0.18em] placeholder:text-[var(--opacity-text-color)] focus:outline-none"
               autoFocus
             />
-            <div className="mr-2 flex items-center gap-2 text-[var(--white-color-2)]">
+            <div className="mr-2 flex items-center gap-2 text-[var(--opacity-text-color)]">
               <Tooltip>
                 <TooltipTrigger asChild>
                   <button
@@ -130,7 +130,7 @@ export const ComponentImportModal = ({
               </Tooltip>
             </div>
           </div>
-          <div className="mt-2 text-sm text-[var(--white-color-2)]">
+          <div className="mt-2 text-sm text-[var(--opacity-text-color)]">
             {filtered.length} component{filtered.length !== 1 ? "s" : ""} found
           </div>
         </div>
@@ -151,10 +151,10 @@ export const ComponentImportModal = ({
               >
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
-                    <div className="mb-1 text-sm font-bold text-[var(--white-color)]">
+                    <div className="mb-1 text-sm font-bold text-[var(--text-primary-color)]">
                       {formatName(name)}
                     </div>
-                    <div className="text-xs text-[var(--white-color)]">
+                    <div className="text-xs text-[var(--opacity-text-color)]">
                       {getCategoryFromName(name)}
                     </div>
                   </div>
@@ -167,7 +167,7 @@ export const ComponentImportModal = ({
           </div>
 
           {filtered.length === 0 && (
-            <div className="py-12 text-center text-[var(--white-color-2)]">
+            <div className="py-12 text-center text-[var(--opacity-text-color)]">
               No components found matching {search}
             </div>
           )}

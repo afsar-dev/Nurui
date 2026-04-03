@@ -72,30 +72,65 @@ export const MonacoEditor = ({
     hostElement.appendChild(mountNode);
     editorMountRef.current = mountNode;
 
-    const resolvedBackground =
-      getComputedStyle(document.documentElement)
-        .getPropertyValue("--background-color")
-        .trim() || "#1e1e1e";
+    const setEditorTheme = () => {
+      const root = document.documentElement;
+      const rootStyles = getComputedStyle(root);
+      const isLightTheme = root.classList.contains("light");
+      const resolvedBackground =
+        rootStyles.getPropertyValue("--background-color").trim() ||
+        (isLightTheme ? "#f7f7f7" : "#010313");
+      const resolvedPrimary200 =
+        rootStyles.getPropertyValue("--primary-color-2").trim() || "#3ca2fa4d";
+      const resolvedPrimary300 =
+        rootStyles.getPropertyValue("--primary-color-3").trim() || "#3ca2fa33";
 
-    // const resolvedPrimary =
-    //   getComputedStyle(document.documentElement)
-    //     .getPropertyValue("--primary-color")
-    //     .trim() || "#3b82f6";
+      monaco.editor.defineTheme("nurui-editor-theme", {
+        base: isLightTheme ? "vs" : "vs-dark",
+        inherit: true,
+        rules: isLightTheme
+          ? [
+              { token: "keyword", foreground: "0058b5", fontStyle: "bold" },
+              { token: "type.identifier", foreground: "4c1d95" },
+              { token: "identifier", foreground: "111827" },
+              { token: "string", foreground: "047857" },
+              { token: "number", foreground: "be123c" },
+              { token: "comment", foreground: "6b7280", fontStyle: "italic" },
+              { token: "delimiter", foreground: "1d4ed8" },
+              { token: "tag", foreground: "0f766e" },
+              { token: "attribute.name", foreground: "be185d" },
+            ]
+          : [
+              { token: "keyword", foreground: "7dd3fc", fontStyle: "bold" },
+              { token: "type.identifier", foreground: "a78bfa" },
+              { token: "identifier", foreground: "e2e8f0" },
+              { token: "string", foreground: "86efac" },
+              { token: "number", foreground: "fda4af" },
+              { token: "comment", foreground: "64748b", fontStyle: "italic" },
+              { token: "delimiter", foreground: "93c5fd" },
+              { token: "tag", foreground: "22d3ee" },
+              { token: "attribute.name", foreground: "f9a8d4" },
+            ],
+        colors: {
+          "editor.background": resolvedBackground,
+          "editor.foreground": isLightTheme ? "#111827" : "#e5e7eb",
+          "editorCursor.foreground": "#3ca2fa",
+          "editor.lineHighlightBackground": isLightTheme
+            ? "#3ca2fa0d"
+            : "#3ca2fa1a",
+          "editor.lineHighlightBorder": resolvedPrimary300,
+          "editor.selectionBackground": "#3ca2fa33",
+          "editor.inactiveSelectionBackground": "#3ca2fa1a",
+          "editorIndentGuide.background1": "#3ca2fa1a",
+          "editorIndentGuide.activeBackground1": "#3ca2fa4d",
+          "scrollbarSlider.background": resolvedPrimary200,
+          "scrollbarSlider.hoverBackground": resolvedPrimary200,
+          "scrollbarSlider.activeBackground": resolvedPrimary200,
+          "scrollbar.shadow": resolvedPrimary300,
+        },
+      });
 
-    // const resolvedPrimary100 =
-    //   getComputedStyle(document.documentElement)
-    //     .getPropertyValue("--primary-color-1")
-    //     .trim() || "#3b82f6";
-
-    const resolvedPrimary200 =
-      getComputedStyle(document.documentElement)
-        .getPropertyValue("--primary-color-2")
-        .trim() || "#3b82f6";
-        
-    const resolvedPrimary300 =
-      getComputedStyle(document.documentElement)
-        .getPropertyValue("--primary-color-3")
-        .trim() || "#3ca2fa33";
+      monaco.editor.setTheme("nurui-editor-theme");
+    };
 
     // Monaco typings vary by version; access TS language service API via runtime bridge.
     const tsApi = (monaco.languages as any)?.typescript;
@@ -146,36 +181,7 @@ export const MonacoEditor = ({
       tsApi.javascriptDefaults.setEagerModelSync(true);
     }
 
-    monaco.editor.defineTheme("nurui-editor-theme", {
-      base: "vs-dark",
-      inherit: true,
-      rules: [
-        { token: "keyword", foreground: "7dd3fc", fontStyle: "bold" },
-        { token: "type.identifier", foreground: "a78bfa" },
-        { token: "identifier", foreground: "e2e8f0" },
-        { token: "string", foreground: "86efac" },
-        { token: "number", foreground: "fda4af" },
-        { token: "comment", foreground: "64748b", fontStyle: "italic" },
-        { token: "delimiter", foreground: "93c5fd" },
-        { token: "tag", foreground: "22d3ee" },
-        { token: "attribute.name", foreground: "f9a8d4" },
-      ],
-      colors: {
-        "editor.background": resolvedBackground,
-        "editor.foreground": "#e5e7eb",
-        "editorCursor.foreground": "#3ca2fa",
-        "editor.lineHighlightBackground": "#3ca2fa1a",
-        "editor.lineHighlightBorder": resolvedPrimary300,
-        "editor.selectionBackground": "#3ca2fa33",
-        "editor.inactiveSelectionBackground": "#3ca2fa1a",
-        "editorIndentGuide.background1": "#3ca2fa1a",
-        "editorIndentGuide.activeBackground1": "#3ca2fa4d",
-        "scrollbarSlider.background": resolvedPrimary200,
-        "scrollbarSlider.hoverBackground": resolvedPrimary200,
-        "scrollbarSlider.activeBackground": resolvedPrimary200,
-        "scrollbar.shadow": resolvedPrimary300,
-      },
-    });
+    setEditorTheme();
 
     const initialLanguage = resolveMonacoLanguage(
       initialLanguageRef.current,
@@ -228,11 +234,20 @@ export const MonacoEditor = ({
       });
     }
 
+    const themeObserver = new MutationObserver(() => {
+      setEditorTheme();
+    });
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
     return () => {
       // Monaco can throw "Canceled: Canceled" during React dev remount cleanup.
       // Keep cleanup non-throwing to avoid crashing the playground.
       editorRef.current = null;
       editorMountRef.current = null;
+      themeObserver.disconnect();
       hostElement.innerHTML = "";
     };
   }, []); // Only run once on mount

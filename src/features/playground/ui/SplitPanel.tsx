@@ -55,7 +55,7 @@ export const SplitPanel = ({
 
       <div
         onMouseDown={() => setIsDragging(true)}
-        className="w-1 cursor-col-resize bg-neutral-800 hover:bg-blue-500 transition-colors"
+        className="w-1 cursor-col-resize bg-[var(--border-color)] dark:bg-[var(--primary-color-3)] hover:bg-[var(--primary-color)] transition-colors"
       />
 
       <div

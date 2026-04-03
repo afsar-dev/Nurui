@@ -1,7 +1,7 @@
 // src/features/playground/preview/PreviewSandbox.tsx
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type Props = {
   code: string;
@@ -9,7 +9,31 @@ type Props = {
 };
 
 export const PreviewSandbox = ({ code, cssFiles = [] }: Props) => {
+  const [isLightTheme, setIsLightTheme] = useState(false);
+
+  useEffect(() => {
+    const syncTheme = () => {
+      setIsLightTheme(document.documentElement.classList.contains("light"));
+    };
+
+    syncTheme();
+
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const srcDoc = useMemo(() => {
+    const sandboxBackground = isLightTheme ? "#f7f7f7" : "#010313";
+    const scrollbarThumb = "rgba(60, 162, 250, 0.4)";
+    const scrollbarTrack = isLightTheme ? "#edf2f7" : "#010313";
+    const errorBackground = isLightTheme ? "#fff1f2" : "#fee";
+    const errorText = "#c00";
+
     const escapedCode = code
       .replace(/\\/g, "\\\\")
       .replace(/`/g, "\\`")
@@ -25,32 +49,32 @@ export const PreviewSandbox = ({ code, cssFiles = [] }: Props) => {
     ${cssFiles.map((href) => `<link rel="stylesheet" href="${href}" />`).join("\n    ")}
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { margin: 0; padding: 0; overflow: auto; background: #010313; }
+      body { margin: 0; padding: 0; overflow: auto; background: ${sandboxBackground}; }
       html, body, #root, * {
         scrollbar-width: thin;
-        scrollbar-color: #3ca2fa66 #010313;
+        scrollbar-color: ${scrollbarThumb} ${scrollbarTrack};
       }
       *::-webkit-scrollbar {
         width: 20px;
         height: 10px;
       }
       *::-webkit-scrollbar-track {
-        background: #010313;
+        background: ${scrollbarTrack};
       }
       *::-webkit-scrollbar-thumb {
-        background: #3ca2fa66;
+        background: ${scrollbarThumb};
         border: 1px solid #3ca2fa33;
         border-radius: 9999px;
       }
       *::-webkit-scrollbar-thumb:hover,
       *::-webkit-scrollbar-thumb:active {
-        background: #3ca2fa66;
+        background: ${scrollbarThumb};
       }
       #root { width: 100%; min-height: 100vh; }
       #error { 
         padding: 20px; 
-        background: #fee; 
-        color: #c00;
+        background: ${errorBackground}; 
+        color: ${errorText};
         white-space: pre-wrap;
         font-family: monospace;
         display: none;
@@ -161,13 +185,13 @@ export const PreviewSandbox = ({ code, cssFiles = [] }: Props) => {
   </body>
 </html>
 `;
-  }, [code, cssFiles]);
+  }, [code, cssFiles, isLightTheme]);
 
   return (
     <iframe
       sandbox="allow-scripts allow-same-origin"
       srcDoc={srcDoc}
-      className="w-full h-full border-none bg-black"
+      className="w-full h-full border-none bg-[var(--background-color)]"
       title="preview"
     />
   );

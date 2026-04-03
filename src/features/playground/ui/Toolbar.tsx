@@ -51,11 +51,11 @@ export const Toolbar = ({
   }, [isResetOpen]);
 
   return (
-    <div className="flex items-center justify-between border-b border-[var(--primary-color-2)] bg-[var(--primary-color-4)] px-3 py-2.5">
+    <div className="flex items-center justify-between border-b border-[var(--border-color)] dark:border-[var(--primary-color-2)] bg-[var(--glass-color)] dark:bg-[var(--primary-color-4)] px-3 py-2.5">
       <div className="flex items-center gap-2">
         <button
           onClick={onImport}
-          className="flex items-center gap-1.5 rounded-lg bg-[var(--primary-color-3)] px-3 py-2 text-sm text-[var(--primary-color)] hover:bg-[var(--primary-color-2)] transition-colors"
+          className="flex items-center gap-1.5 rounded-lg bg-[var(--primary-color)] dark:bg-[var(--primary-color-3)] px-3 py-2 text-[var(--white-color)] dark:text-sm dark:text-[var(--primary-color)] dark:hover:bg-[var(--primary-color-2)] transition-colors"
         >
           <Package size={16} />
           Import Component
@@ -96,9 +96,7 @@ export const Toolbar = ({
               <RefreshCw size={18} />
             </button>
           </AlertDialogTrigger>
-          <AlertDialogContent
-            className="rounded-xl border border-[var(--primary-color-2)] bg-[var(--primary-color-4)] p-5 text-[var(--white-color)] shadow-[0_12px_32px_var(--primary-color-4)] backdrop-blur-md"
-          >
+          <AlertDialogContent className="rounded-xl border border-[var(--primary-color-2)] bg-[var(--primary-color-4)] p-5 text-[var(--white-color)] shadow-[0_12px_32px_var(--primary-color-4)] backdrop-blur-md">
             <AlertDialogHeader>
               <AlertDialogTitle className="text-[var(--white-color)] font-bold">
                 Reset playground?
