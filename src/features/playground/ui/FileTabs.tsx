@@ -1,6 +1,8 @@
 "use client";
 import { Plus, X } from "lucide-react";
+import { ReactNode } from "react";
 import { PlaygroundFile } from "../types";
+import { PlaygroundLanguageMode } from "./LanguageSwitcher";
 
 interface FileTabsProps {
   files: PlaygroundFile[];
@@ -8,6 +10,10 @@ interface FileTabsProps {
   onSelectFile: (id: string) => void;
   onCloseFile: (id: string) => void;
   onAddFile: () => void;
+  languageMode?: PlaygroundLanguageMode;
+  languageSwitcher?: {
+    render: ReactNode;
+  };
 }
 
 export const FileTabs = ({
@@ -16,7 +22,17 @@ export const FileTabs = ({
   onSelectFile,
   onCloseFile,
   onAddFile,
+  languageMode = "ts",
+  languageSwitcher,
 }: FileTabsProps) => {
+  const getDisplayFileName = (name: string) => {
+    if (languageMode === "js") {
+      if (name.endsWith(".tsx")) return name.replace(/\.tsx$/, ".jsx");
+      if (name.endsWith(".ts")) return name.replace(/\.ts$/, ".js");
+    }
+    return name;
+  };
+
   return (
     <div className="flex items-center gap- border-b border-[var(--primary-color-2)] bg-[var(--primary-color-4)]">
       {files.map((file) => (
@@ -32,7 +48,7 @@ export const FileTabs = ({
             }
           `}
         >
-          <span>{file.name}</span>
+          <span>{getDisplayFileName(file.name)}</span>
           {files.length > 1 && (
             <X
               size={20}
@@ -52,6 +68,10 @@ export const FileTabs = ({
       >
         <Plus size={16} />
       </button>
+
+      {languageSwitcher && (
+        <div className="ml-auto pr-3">{languageSwitcher.render}</div>
+      )}
     </div>
   );
 };

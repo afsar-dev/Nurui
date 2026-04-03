@@ -233,6 +233,36 @@
   width: 10px !important;
 }
 
+.cn-toast {
+  border: 1px solid var(--primary-color-2) !important;
+  background: var(--primary-color-4) !important;
+  color: var(--white-color) !important;
+  box-shadow: 0 10px 30px var(--primary-color-4) !important;
+  backdrop-filter: blur(8px);
+  border-radius: 8px !important;
+}
+
+.cn-toast-title {
+  color: var(--white-color) !important;
+  font-weight: bold !important;
+}
+
+.cn-toast-description {
+  color: var(--white-color-2) !important;
+}
+
+.cn-toast-action {
+  background: var(--primary-color-3) !important;
+  color: var(--white-color) !important;
+  border: 1px solid var(--primary-color-2) !important;
+}
+
+.cn-toast-cancel {
+  background: transparent !important;
+  color: var(--white-color) !important;
+  border: 1px solid var(--primary-color-2) !important;
+}
+
 /* mdx class */
 .mdx > .steps:first-child > h3:first-child {
   @apply mt-0;
