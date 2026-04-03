@@ -11,6 +11,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    target-branch: "dev"
 
     # Only security updates (optional but recommended)
     security-updates-only: true
@@ -34,3 +35,4 @@ updates:
       interval: "weekly"
 
     security-updates-only: true
+    target-branch: "dev"   
