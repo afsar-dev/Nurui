@@ -18,6 +18,12 @@ const NEXT_SHIMS = new Set([
 
 const ESBUILD_EXTENSIONS = [".tsx", ".ts", ".jsx", ".js"];
 const INTERNAL_SHIMS = new Set(["@/utils/use-mouse-position"]);
+const ESBUILD_VERSION = (esbuild as { version?: string }).version || "0.27.2";
+const ESBUILD_WASM_URLS = [
+  `https://unpkg.com/esbuild-wasm@${ESBUILD_VERSION}/esbuild.wasm`,
+  `https://cdn.jsdelivr.net/npm/esbuild-wasm@${ESBUILD_VERSION}/esbuild.wasm`,
+];
+const ESBUILD_WASM_FETCH_TIMEOUT_MS = 12000;
 
 const PACKAGE_VERSIONS: Record<string, string> = {
   "lucide-react": "0.523.0",
@@ -79,6 +85,51 @@ export class TypeScriptCompiler {
     return TypeScriptCompiler.instance;
   }
 
+  private async fetchWasmModule(url: string): Promise<WebAssembly.Module> {
+    const controller = new AbortController();
+    const timeout = setTimeout(
+      () => controller.abort(),
+      ESBUILD_WASM_FETCH_TIMEOUT_MS,
+    );
+
+    try {
+      const response = await fetch(url, {
+        signal: controller.signal,
+        cache: "force-cache",
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const wasmBinary = await response.arrayBuffer();
+      return WebAssembly.compile(wasmBinary);
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+
+  private async initializeEsbuildWithFallbacks() {
+    const initErrors: string[] = [];
+
+    for (const wasmUrl of ESBUILD_WASM_URLS) {
+      try {
+        const wasmModule = await this.fetchWasmModule(wasmUrl);
+        await esbuild.initialize({
+          wasmModule,
+        });
+        return;
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        initErrors.push(`${wasmUrl} (${message})`);
+      }
+    }
+
+    throw new Error(
+      `Failed to initialize esbuild-wasm v${ESBUILD_VERSION}. Attempts: ${initErrors.join(" | ")}`,
+    );
+  }
+
   private async ensureInitialized() {
     if (this.initialized) {
       return;
@@ -89,10 +140,8 @@ export class TypeScriptCompiler {
       return;
     }
 
-    TypeScriptCompiler.initializationPromise = esbuild
-      .initialize({
-        wasmURL: "https://unpkg.com/esbuild-wasm@0.27.2/esbuild.wasm",
-      })
+    TypeScriptCompiler.initializationPromise = this
+      .initializeEsbuildWithFallbacks()
       .then(() => {
         this.initialized = true;
         TypeScriptCompiler.initializationPromise = null;
