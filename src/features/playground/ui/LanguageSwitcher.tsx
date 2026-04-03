@@ -37,7 +37,7 @@ export const LanguageSwitcher = ({ value, onChange }: LanguageSwitcherProps) => 
     <div className="relative">
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex items-center gap-1 rounded-md p-1 text-[var(--white-color)] hover:bg-[var(--primary-color-3)]"
+        className="flex items-center gap-1 rounded-md p-1 dark:text-[var(--white-color)] hover:bg-[var(--primary-color-3)]"
         title="Select language view"
       >
         <span>{selected.icon}</span>
@@ -45,7 +45,7 @@ export const LanguageSwitcher = ({ value, onChange }: LanguageSwitcherProps) => 
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 z-50 mt-2 w-40 rounded-lg border border-[var(--primary-color-2)] bg-[var(--background-color)] p-1">
+        <div className="absolute left-0 z-50 mt-2 w-40 rounded-lg border border-[var(--border-color)] dark:border-[var(--primary-color-2)] bg-[var(--white-color)] dark:bg-[var(--background-color)] p-1 space-y-1">
           {options.map((option) => (
             <button
               key={option.mode}
@@ -55,8 +55,8 @@ export const LanguageSwitcher = ({ value, onChange }: LanguageSwitcherProps) => 
               }}
               className={`flex w-full items-center gap-2 rounded-md p-2 text-sm text-left transition-colors ${
                 option.mode === value
-                  ? "bg-[var(--primary-color-3)] text-[var(--white-color)]"
-                  : "text-[var(--white-color)] hover:bg-[var(--primary-color-4)]"
+                  ? "bg-[var(--primary-color)] dark:bg-[var(--primary-color-3)] text-[var(--white-color)] font-semibold"
+                  : "text-[var(--black-color)] dark:text-[var(--white-color)] hover:bg-[var(--primary-color-4)]"
               }`}
             >
               <span>{option.icon}</span>
