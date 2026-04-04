@@ -130,7 +130,7 @@ const CtaInspireSection = ({
           {note}
         </p>
 
-        <div ref={ref} className="lg:mt-8 w-full max-w-5xl  pt-6">
+        {/* <div ref={ref} className="lg:mt-8 w-full max-w-5xl  pt-6">
           <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-[var(--primary-color-2)]">
             {stats.map((stat) => (
               <div key={stat.label} className="py-5 text-center">
@@ -149,7 +149,7 @@ const CtaInspireSection = ({
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
