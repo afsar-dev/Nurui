@@ -93,8 +93,8 @@ const navigation = [
   },
   {
     id: 3,
-    name: "About",
-    url: "/about-us",
+    name: "Blocks",
+    url: "/blocks",
   },
   {
     id: 4,

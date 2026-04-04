@@ -73,7 +73,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Nurui",
+      title: "Nur UI",
       description:
         "React and Next.js based UI library with CLI scaffolding, TS-to-JS conversion, and v0 live previews.",
       images: [{ url: "https://nurui.vercel.app/og-image.png" }],
