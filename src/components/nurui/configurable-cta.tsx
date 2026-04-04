@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { Button } from '@/components/nurui/button';
 
 /**
  * Props interface for the ConfigurableCTA component
@@ -188,7 +187,7 @@ export const ConfigurableCTA: React.FC<ConfigurableCTAProps> = ({
             `}
           >
             {/* Primary Button */}
-            <Button
+            <button
               onClick={handlePrimaryClick}
               className={`
                 bg-[var(--primary-color)]
@@ -199,17 +198,19 @@ export const ConfigurableCTA: React.FC<ConfigurableCTAProps> = ({
                 rounded-full
                 transition-all duration-200
                 flex-1 sm:flex-none
+                cursor-pointer
+                disabled:opacity-50
+                disabled:cursor-not-allowed
               `}
               aria-label={primaryButtonText}
             >
               {primaryButtonText}
-            </Button>
+            </button>
 
             {/* Secondary Button */}
             {showSecondaryButton && secondaryButtonText && (
-              <Button
+              <button
                 onClick={handleSecondaryClick}
-                variant="outline"
                 className={`
                   border border-[var(--glass-color-3)]
                   hover:bg-[var(--glass-color-3)]
@@ -219,11 +220,15 @@ export const ConfigurableCTA: React.FC<ConfigurableCTAProps> = ({
                   rounded-full
                   transition-all duration-200
                   flex-1 sm:flex-none
+                  cursor-pointer
+                  bg-transparent
+                  disabled:opacity-50
+                  disabled:cursor-not-allowed
                 `}
                 aria-label={secondaryButtonText}
               >
                 {secondaryButtonText}
-              </Button>
+              </button>
             )}
           </div>
         </div>
