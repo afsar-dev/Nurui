@@ -8,10 +8,10 @@ const Nurui = ({ textSize }: ClassType) => {
       href="/"
       className={`text-[var(--primary-color)] font-black ${
         textSize || "text-3xl"
-      } flex items-center gap-0.05`}
+      } flex items-center gap-0.05 -mb-1 xl:-mb-0`}
     >
       <NuruiLogo />
-      <p className="space-x-1.5 flex items-center">
+      <p className="space-x-1.5 hidden lg:flex items-center">
         <span>Nur</span>
         <span className="-mb-0.">UI</span>
       </p>

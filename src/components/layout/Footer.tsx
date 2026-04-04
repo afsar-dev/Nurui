@@ -67,9 +67,6 @@ const Footer = () => {
             buttonTitle={newsLetter?.subscribe_button.label}
             buttonClassName="bg-[var(--primary-color-4)] border border-[var(--primary-color)] hover:text-[var(--primary-color)] text-[var(--primary-color)] hover:bg-[var(--primary-color-3)]"
           />
-          {/* {footerSections.map((section) => (
-            <FooterSection key={section.title} section={section} />
-          ))} */}
         </div>
 
         <div className="border-t border-[var(--border-color)] border-opacity-20 p-5 flex items-center justify-center lg:justify-between">
