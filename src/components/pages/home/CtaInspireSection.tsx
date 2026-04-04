@@ -3,8 +3,8 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import CountUp from "react-countup";
-import { useInView } from "react-intersection-observer";
+// import CountUp from "react-countup";
+// import { useInView } from "react-intersection-observer";
 
 type CtaAction = {
   label: string;
@@ -41,24 +41,24 @@ const defaultActions: CtaAction[] = [
   },
 ];
 
-const defaultStats: CtaStat[] = [
-  {
-    value: 3,
-    label: "Available slots",
-    suffix: "+",
-  },
-  {
-    value: 7,
-    label: "Sprint delivery mindset",
-    suffix: "Day",
-  },
-  {
-    value: 24,
-    label: "First reply time",
-    prefix: "<",
-    suffix: "Hour",
-  },
-];
+// const defaultStats: CtaStat[] = [
+//   {
+//     value: 3,
+//     label: "Available slots",
+//     suffix: "+",
+//   },
+//   {
+//     value: 7,
+//     label: "Sprint delivery mindset",
+//     suffix: "Day",
+//   },
+//   {
+//     value: 24,
+//     label: "First reply time",
+//     prefix: "<",
+//     suffix: "Hour",
+//   },
+// ];
 
 const CtaInspireSection = ({
   badgeLabel = "You",
@@ -66,9 +66,9 @@ const CtaInspireSection = ({
   description = "Book a free discovery call.",
   note = "We believe in people, not forms. Book a call and let's talk directly.",
   actions = defaultActions,
-  stats = defaultStats,
+  // stats = defaultStats,
 }: CtaInspireSectionProps) => {
-  const { ref, inView } = useInView();
+  // const { ref, inView } = useInView();
 
   return (
     <section className="px-4 md:px-6 lg:px-8">
@@ -130,7 +130,7 @@ const CtaInspireSection = ({
           {note}
         </p>
 
-        <div ref={ref} className="lg:mt-8 w-full max-w-5xl  pt-6">
+        {/* <div ref={ref} className="lg:mt-8 w-full max-w-5xl  pt-6">
           <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-[var(--primary-color-2)]">
             {stats.map((stat) => (
               <div key={stat.label} className="py-5 text-center">
@@ -149,7 +149,7 @@ const CtaInspireSection = ({
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

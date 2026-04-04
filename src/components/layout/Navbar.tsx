@@ -30,14 +30,16 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 z-50 bg-[var(--background-color)] lg:bg-transparent lg:backdrop-blur-lg lg:overflow-hidden w-full border-dashed border-b border-[var(--black-color)] dark:border-white/20 ">
       <nav className="container flex flex-wrap items-center justify-between h-16 lg:h-20">
-        <div className="flex items-center justify-center gap-1">
+        <div className="flex items-center justify-center lg:gap-1">
+          <VaulDrawer />
           <Nurui textSize="text-2xl lg:text-3xl" />
-          <p className="bg-[var(--primary-color)] dark:bg-[var(--primary-color-2)] text-[var(--white-color)] dark:text-[var(--primary-color)] rounded-full font-semibold px-1.5 text-[0.65rem] hidden lg:block">
+          <p className=" bg-[var(--primary-color)] dark:bg-[var(--primary-color-2)] text-[var(--white-color)] dark:text-[var(--primary-color)] rounded-full font-semibold px-1.5 text-[0.65rem] hidden lg:block">
             Basic
           </p>
         </div>
+
         <div
-          className="hidden lg:flex items-center  py-2.5 px-3.5 bg-[var(--glass-color)] dark:bg-[white]/5 border 
+          className="hidden xl:flex items-center  py-2.5 px-3.5 bg-[var(--glass-color)] dark:bg-[white]/5 border 
          border-[var(--border-color)] dark:border-white/15 rounded-full font-semibold"
         >
           {navigation.map((nav) => (
@@ -55,24 +57,23 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="hidden xl:flex items-center gap-3.5">
+        <div className="flex items-center gap-2 lg:gap-3.5">
           <RoundedButton
             href="https://www.linkedin.com/in/md-afsar-mahmud"
             icon={
-              <FaLinkedinIn className="text-2xl text-[var(--white-color)] dark:text-[var(--primary-color)]" />
+              <FaLinkedinIn className="text-xl lg:text-2xl text-[var(--white-color)] dark:text-[var(--primary-color)]" />
             }
           />
           <RoundedButton
             href="https://github.com/afsar-dev/Nurui"
             icon={
-              <FaGithub className="text-2xl text-[var(--white-color)] dark:text-[var(--primary-color)] " />
+              <FaGithub className="text-xl lg:text-2xl text-[var(--white-color)] dark:text-[var(--primary-color)] " />
             }
             iconInfo={stars || 0}
           />
 
           <ThemeSwitcher />
         </div>
-        <VaulDrawer />
       </nav>
     </div>
   );
