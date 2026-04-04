@@ -3,67 +3,12 @@ import LinkWithProgress from "@/components/common/LinkWithProgress";
 import Nurui from "@/components/common/Nurui";
 import RocketScrollToTop from "@/components/nurui/rocket-scroll-to-top";
 import { FOOTER_EXCLUDED_PATHS } from "@/config/paths";
+import { newsLetter } from "@/data/newsletter.data";
 import { cn } from "@/lib/utils";
 import { navigationActive } from "@/utils/navigationActive";
 import { usePathname } from "next/navigation";
-import { IconType } from "react-icons/lib";
 import "../../styles/footer.css";
-
-type FooterLink = {
-  text: string;
-  url: string;
-  external?: boolean;
-  icon?: IconType;
-};
-
-const footerSections: { title: string; links: FooterLink[] }[] = [
-  {
-    title: "Products",
-    links: [
-      { text: "Nur/ui", url: "https://nurui.vercel.app", external: true },
-    ],
-  },
-  {
-    title: "Documentation",
-    links: [
-      {
-        text: "Introduction",
-        url: "https://nurui.vercel.app/docs/introduction",
-      },
-      {
-        text: "Documentation",
-        url: "https://nurui.vercel.app/docs/installation",
-      },
-    ],
-  },
-  {
-    title: "Components",
-    links: [
-      {
-        text: "Gradient Hero",
-        url: "https://nurui.vercel.app/docs/gradient-hero",
-      },
-      {
-        text: "Tech Cursor",
-        url: "https://nurui.vercel.app/docs/tech-cursor",
-      },
-      { text: "Banner", url: "https://nurui.vercel.app/docs/banner" },
-    ],
-  },
-
-  {
-    title: "Community",
-    links: [
-      {
-        text: "Linkedin",
-        url: "https://www.linkedin.com/in/md-afsar-mahmud",
-        external: true,
-      },
-      { text: "GitHub", url: "https://github.com/afsar-dev", external: true },
-      { text: "Twitter", url: "https://x.com/md_afsar_mahmud", external: true },
-    ],
-  },
-];
+import AnimatedInput from "../nurui/animated-input";
 
 const navigation = [
   {
@@ -102,23 +47,29 @@ const Footer = () => {
     <div
       className={cn(
         "bg-[var(--white-color)] dark:bg-transparent border-t border-[var(--border-color)] w-full text-[var(--text-primary-color)] mt-auto",
-        "rounded-tl-[50px] lg:rounded-tl-[80px] xl:rounded-tl-[110px] rocket-animation",
+        "rounded-t-[40px] lg:rounded-t-[70px] xl:rounded-t-[100px] rocket-animation",
       )}
     >
       <RocketScrollToTop className="bg-[var(--background-color)] max-w-24 mx-auto  rounded-full -mt-16 hidden md:block" />
       <div className="container">
-        <div className=" grid md:grid-cols-2 lg:grid-cols-4 xl:flex flex-col md:flex-row 2xl:justify-between gap-10 xl:gap-14 2xl:gap-24 py-7 xl:py-16 pl-1 xl:pl-0">
-          <div className="space-y-3 lg:space-y-4 xl:space-y-6 max-w-80 col-span-full">
-            <Nurui textSize="text-2xl lg:text-3xl" />
-            <p>
-              Beautifully crafted, accessible components built with Tailwind CSS
-              perfect for modern developers and creative teams.
-            </p>
-          </div>
+        <div className="flex flex-col items-center text-center pb-7 pt-7 xl:pb-16 xl:pt-8 gap-2">
+          <Nurui textSize="text-2xl lg:text-3xl" />
 
-          {footerSections.map((section) => (
+          <p className="mx-auto max-w-sm text-center leading-relaxed">
+            React and Next.js based UI library with CLI scaffolding, TS-to-JS
+            conversion, and v0 live previews.
+          </p>
+
+          <AnimatedInput
+            className="mt-3.5 w-full max-w-xl"
+            onBlurTitle={newsLetter?.input_field.onBlur.value}
+            onFocusTitle={newsLetter?.input_field.onFocus.value}
+            buttonTitle={newsLetter?.subscribe_button.label}
+            buttonClassName="bg-[var(--primary-color-4)] border border-[var(--primary-color)] hover:text-[var(--primary-color)] text-[var(--primary-color)] hover:bg-[var(--primary-color-3)]"
+          />
+          {/* {footerSections.map((section) => (
             <FooterSection key={section.title} section={section} />
-          ))}
+          ))} */}
         </div>
 
         <div className="border-t border-[var(--border-color)] border-opacity-20 p-5 flex items-center justify-center lg:justify-between">
@@ -158,29 +109,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-const FooterSection = ({
-  section,
-}: {
-  section: { title: string; links: FooterLink[] };
-}) => {
-  return (
-    <nav className="space-y-4 max-w-80 flex flex-col">
-      <h6 className="font-semibold text-lg text-[var(--primary-color)]">
-        {section.title}
-      </h6>
-      {section.links.map((link) => (
-        <a
-          key={link.url}
-          href={link.url}
-          target={link.external ? "_blank" : "_self"}
-          rel={link.external ? "noopener noreferrer" : undefined}
-          className="cursor-pointer flex items-start gap-2.5 hover:text-[var(--primary-color)] hover:transition-colors"
-        >
-          {link.icon && <link.icon className="flex-shrink-0" />}
-          {link.text}
-        </a>
-      ))}
-    </nav>
-  );
-};

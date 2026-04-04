@@ -15,7 +15,7 @@ npx nurui list
 Example output:
 
 ```
-┌  Welcome to Nurui CLI
+┌  Welcome to Nur UI CLI
 │
 ◇  📦 Available components:
 

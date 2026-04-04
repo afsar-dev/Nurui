@@ -345,7 +345,7 @@ export const Playground = () => {
                   <div className="h-full flex items-center justify-center border-l border-[var(--border-color)] dark:border-[var(--primary-color-3)] bg-gradient-to-br from-[var(--primary-color-4)] via-[var(--glass-color)] to-[var(--background-color)]">
                     <div className="text-center text-[var(--text-primary-color)]">
                       <h1 className="text-3xl font-bold mb-4">
-                        Welcome to Nurui Playground
+                        Welcome to Nur UI Playground
                       </h1>
                       <p className="text-[var(--opacity-text-color)] mb-6">
                         Click Import Component to get started

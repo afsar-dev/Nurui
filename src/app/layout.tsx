@@ -2,11 +2,11 @@ import NProgressProvider from "@/components/common/NProgressProvider";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import Banner from "@/components/ui/Banner";
+import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 import { AppProvider } from "@/context/AppContext";
 import VercelAnalytics from "@/provider/AnalyticsProvider";
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
-import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 import { Toaster as HotToaster } from "react-hot-toast";
 import MainContent from "../components/common/MainContent";
 import ThemeProvider from "../provider/ThemeProvider";
@@ -23,8 +23,8 @@ const nunito = Nunito({
 export const generateMetadata = async (): Promise<Metadata> => {
   return {
     title: {
-      default: "Nur/ui",
-      template: "%s | Nur/ui",
+      default: "Nur UI",
+      template: "%s | Nur UI",
     },
     icons: {
       icon: [
@@ -73,7 +73,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Nurui",
+      title: "Nur UI",
       description:
         "React and Next.js based UI library with CLI scaffolding, TS-to-JS conversion, and v0 live previews.",
       images: [{ url: "https://nurui.vercel.app/og-image.png" }],

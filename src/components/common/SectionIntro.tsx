@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 
 interface IProps {
@@ -27,7 +28,11 @@ const SectionIntro: React.FC<IProps> = ({
   return (
     <div className={`max-w-5xl mx-auto text-center px-4 ${sectionGap}`}>
       <p
-        className={`${sectionNameColor} uppercase font-semibold text-[16px] ${sectionNameStyle} rounded-lg`}
+        className={cn(
+          `uppercase font-semibold text-[16px] rounded-lg`,
+          sectionNameColor,
+          sectionNameStyle,
+        )}
       >
         {sectionName}
       </p>

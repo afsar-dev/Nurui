@@ -62,10 +62,10 @@ export const ComponentImportModal = ({
       onClick={onClose}
     >
       <div
-        className="w-full max-w-4xl max-h-[80vh] overflow-hidden rounded-lg border border-[var(--border-color)] dark:border-[var(--primary-color-2)] bg-[var(--background-color)] dark:bg-[var(--primary-color-4)] shadow-xl"
+        className="w-full max-w-4xl max-h-[80vh] overflow-hidden rounded-lg border border-[var(--primary-color-2)] dark:border-[var(--primary-color-2)] bg-[var(--background-color)] dark:bg-[var(--primary-color-4)] shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between border-b border-[var(--border-color)] dark:border-[var(--primary-color-2)] p-4">
+        <div className="flex items-center justify-between border-b border-[var(--primary-color-2)] dark:border-[var(--primary-color-2)] p-4">
           <h2 className="text-lg font-semibold text-[var(--text-primary-color)]">
             Import Component
           </h2>
@@ -77,8 +77,8 @@ export const ComponentImportModal = ({
           </button>
         </div>
 
-        <div className="border-b border-[var(--border-color)] dark:border-[var(--primary-color-2)] p-4">
-          <div className="flex h-11 items-center overflow-hidden rounded-lg border border-[var(--border-color)] dark:border-[var(--primary-color-2)] bg-[var(--glass-color)]">
+        <div className="border-b border-[var(--primary-color-2)] dark:border-[var(--primary-color-2)] p-4">
+          <div className="flex h-11 items-center overflow-hidden rounded-lg border border-[var(--primary-color-2)] dark:border-[var(--primary-color-2)]">
             <div className="flex h-full w-12 items-center justify-center bg-[var(--primary-color)] text-[var(--white-color)]">
               <Search size={18} />
             </div>
