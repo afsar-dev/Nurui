@@ -184,7 +184,7 @@ const featuresComponents = [
         showBorder={false}
         className="text-6xl font-black mt-16 text-center"
       >
-        Welcome to Nur/ui
+        Welcome to Nur UI
       </GradientText>
     ),
   },

@@ -32,7 +32,7 @@ const Navbar = () => {
       <nav className="container flex flex-wrap items-center justify-between h-16 lg:h-20">
         <div className="flex items-center justify-center gap-1">
           <Nurui textSize="text-2xl lg:text-3xl" />
-          <p className="bg-[var(--primary-color-2)] text-[var(--primary-color)] rounded-full font-semibold px-1.5 text-[0.65rem] hidden lg:block">
+          <p className="bg-[var(--primary-color)] dark:bg-[var(--primary-color-2)] text-[var(--white-color)] dark:text-[var(--primary-color)] rounded-full font-semibold px-1.5 text-[0.65rem] hidden lg:block">
             Basic
           </p>
         </div>

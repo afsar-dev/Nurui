@@ -1,4 +1,5 @@
 "use client";
+import { cn } from "@/lib/utils";
 import { FC, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -7,6 +8,7 @@ interface IProps {
   onBlurTitle: string;
   onFocusTitle: string;
   buttonTitle: string;
+  buttonClassName?: string;
 }
 
 const AnimatedInput: FC<IProps> = ({
@@ -14,6 +16,7 @@ const AnimatedInput: FC<IProps> = ({
   onBlurTitle,
   onFocusTitle,
   buttonTitle,
+  buttonClassName,
 }) => {
   const [placeholder, setPlaceholder] = useState(onBlurTitle);
 
@@ -49,7 +52,12 @@ const AnimatedInput: FC<IProps> = ({
             placeholder={placeholder}
             required
           />
-          <button className="relative z-40 block rounded-lg border border-[var(--border-color)] bg-[var(--glass-color)] px-4 sm:px-8 py-3 text-center text-sm transition duration-200 hover:bg-[var(--glass-color-2)] hover:text-white">
+          <button
+            className={cn(
+              "relative z-40 block rounded-lg border border-[var(--border-color)] bg-[var(--glass-color)] px-4 sm:px-8 py-3 text-center text-sm transition duration-200 hover:bg-[var(--glass-color-2)] hover:text-white",
+              buttonClassName,
+            )}
+          >
             {buttonTitle}
           </button>
         </form>

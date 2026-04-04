@@ -263,6 +263,33 @@
   border: 1px solid var(--primary-color-2) !important;
 }
 
+.light .cn-toast {
+  border: 1px solid var(--primary-color) !important;
+  background: var(--white-color) !important;
+  color: var(--black-color) !important;
+  box-shadow: 0 10px 24px var(--primary-color-4) !important;
+}
+
+.light .cn-toast-title {
+  color: var(--black-color) !important;
+}
+
+.light .cn-toast-description {
+  color: var(--opacity-text-color) !important;
+}
+
+.light .cn-toast-action {
+  background: var(--primary-color) !important;
+  color: var(--white-color) !important;
+  border: 1px solid var(--primary-color) !important;
+}
+
+.light .cn-toast-cancel {
+  background: var(--white-color) !important;
+  color: var(--black-color) !important;
+  border: 1px solid var(--primary-color-2) !important;
+}
+
 /* mdx class */
 .mdx > .steps:first-child > h3:first-child {
   @apply mt-0;
