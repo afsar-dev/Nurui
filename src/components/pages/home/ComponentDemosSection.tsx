@@ -215,7 +215,7 @@ const featuresDataTwo = [
         showBorder={false}
         className="text-6xl font-black mt-16"
       >
-        Welcome to Nur/ui
+        Welcome to Nur UI
       </GradientText>
     ),
   },

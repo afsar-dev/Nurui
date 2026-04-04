@@ -10,7 +10,7 @@ const GradientTextDemo = () => {
         showBorder={false}
         className="text-6xl font-black"
       >
-        Welcome to Nur/ui
+        Welcome to Nur UI
       </GradientText>
     </div>
   );

@@ -96,17 +96,17 @@ export const Toolbar = ({
               <RefreshCw size={18} />
             </button>
           </AlertDialogTrigger>
-          <AlertDialogContent className="rounded-xl border border-[var(--primary-color-2)] bg-[var(--primary-color-4)] p-5 text-[var(--white-color)] shadow-[0_12px_32px_var(--primary-color-4)] backdrop-blur-md">
+          <AlertDialogContent className="rounded-xl border border-[var(--primary-color)] dark:border-[var(--primary-color-2)] bg-[var(--white-color)] dark:bg-[var(--primary-color-4)] p-5 text-[var(--black-color)] dark:text-[var(--white-color)] shadow-[0_12px_32px_var(--primary-color-4)] backdrop-blur-md">
             <AlertDialogHeader>
-              <AlertDialogTitle className="text-[var(--white-color)] font-bold">
+              <AlertDialogTitle className="text-[var(--black-color)] dark:text-[var(--white-color)] font-bold">
                 Reset playground?
               </AlertDialogTitle>
-              <AlertDialogDescription className="text-[var(--white-color-2)]">
+              <AlertDialogDescription className="text-[var(--opacity-text-color)] dark:text-[var(--white-color-2)]">
                 This will clear all your current files and changes.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter className="-mx-0 -mb-0 mt-5 border-0 bg-transparent p-0 sm:justify-end">
-              <AlertDialogCancel className="border-[var(--primary-color-2)] bg-transparent text-[var(--white-color)] hover:bg-[var(--primary-color-4)]">
+              <AlertDialogCancel className="border-[var(--primary-color-2)] bg-transparent text-[var(--black-color)] dark:text-[var(--white-color)] hover:bg-[var(--primary-color-4)]">
                 Cancel
               </AlertDialogCancel>
               <AlertDialogAction
@@ -114,7 +114,7 @@ export const Toolbar = ({
                   setIsResetOpen(false);
                   onReset();
                 }}
-                className="border border-[var(--primary-color-2)] bg-[var(--primary-color-3)] text-[var(--white-color)] "
+                className="border border-[var(--primary-color)] dark:border-[var(--primary-color-2)] bg-[var(--primary-color)] dark:bg-[var(--primary-color-3)] text-[var(--white-color)]"
               >
                 Continue
               </AlertDialogAction>

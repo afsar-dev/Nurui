@@ -4,7 +4,7 @@ import ThemeSwitcher from "@/components/common/ThemeSwitcher";
 import VaulDrawer from "@/components/ui/drawer/VaulDrawer";
 import { useAppContext } from "@/context/AppContext";
 import { useEffect, useState } from "react";
-import { FaGithub, FaXTwitter } from "react-icons/fa6";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { GoSidebarCollapse, GoSidebarExpand } from "react-icons/go";
 import ComponentSearchbar from "./ComponentSearchbar";
 
@@ -55,9 +55,9 @@ const ComponentsNavbar = () => {
         {/* Right Group: Social Icons + Theme Switcher */}
         <div className="flex items-center gap-3.5">
           <RoundedButton
-            href="https://x.com/md_afsar_mahmud"
+            href="https://www.linkedin.com/in/md-afsar-mahmud"
             icon={
-              <FaXTwitter className="text-2xl text-[var(--white-color)] dark:text-[var(--primary-color)]" />
+              <FaLinkedinIn className="text-2xl text-[var(--white-color)] dark:text-[var(--primary-color)]" />
             }
           />
           <RoundedButton
