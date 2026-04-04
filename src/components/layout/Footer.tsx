@@ -47,12 +47,12 @@ const Footer = () => {
     <div
       className={cn(
         "bg-[var(--white-color)] dark:bg-transparent border-t border-[var(--border-color)] w-full text-[var(--text-primary-color)] mt-auto",
-        "rounded-tl-[50px] lg:rounded-tl-[80px] xl:rounded-tl-[110px] rocket-animation",
+        "rounded-t-[40px] lg:rounded-t-[70px] xl:rounded-t-[100px] rocket-animation",
       )}
     >
       <RocketScrollToTop className="bg-[var(--background-color)] max-w-24 mx-auto  rounded-full -mt-16 hidden md:block" />
       <div className="container">
-        <div className="flex flex-col items-center text-center pb-7 pt-7 xl:pb-16 xl:pt-10 gap-2">
+        <div className="flex flex-col items-center text-center pb-7 pt-7 xl:pb-16 xl:pt-8 gap-2">
           <Nurui textSize="text-2xl lg:text-3xl" />
 
           <p className="mx-auto max-w-sm text-center leading-relaxed">

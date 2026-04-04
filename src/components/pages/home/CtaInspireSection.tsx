@@ -1,7 +1,7 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import Link from "next/link";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
@@ -31,12 +31,12 @@ type CtaStat = {
 const defaultActions: CtaAction[] = [
   {
     label: "Email us",
-    href: "mailto:hello@nurui.com",
+    href: "mailto:mdafsar.dev@gmail.com",
     variant: "secondary",
   },
   {
     label: "Book a free call",
-    href: "/contact",
+    href: "/#",
     variant: "primary",
   },
 ];
@@ -72,16 +72,18 @@ const CtaInspireSection = ({
 
   return (
     <section className="px-4 md:px-6 lg:px-8">
-      <div className="flex flex-col items-center mx-auto max-w-6xl rounded-2xl border border-[var(--primary-color-2)] bg-gradient-to-b from-[var(--white-color)] dark:from-[var(--glass-color)] via-[var(--white-color)] dark:via-[var(--glass-color)] to-[var(--primary-color)] dark:to-[var(--primary-color-2)] p-4 md:p-8 shadow-xl dark:shadow-none">
+      <div className="flex flex-col items-center mx-auto max-w-6xl rounded-2xl borde border-[var(--primary-color-2)] bg-gradient-to-b from-[var(--white-color)] dark:from-[var(--glass-color)] via-[var(--white-color)] dark:via-[var(--glass-color)] to-[var(--primary-color)] dark:to-[var(--primary-color-2)] p-4 md:p-8 shadow-xl dark:shadow-none">
         <div className="max-w-5xl w-full rounded-2xl border border-[var(--primary-color-2)] bg-transparent p-4 md:p-5">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <img
-                    className="h-12 w-12 rounded-full border-2 border-[var(--primary-color)] object-cover"
-                    src="https://www.ui-layouts.com/naymur.png"
+                  <Image
+                    className="h-12 w-12 rounded-full border border-[var(--primary-color)] object-cover"
+                    src="/afsar.jpeg"
                     alt="Founder"
+                    width={0}
+                    height={0}
                   />
                   <div className="h-10 w-10 rounded-full absolute bottom-1 -right-4 grid place-items-center border border-[var(--primary-color-2)] bg-[var(--primary-color)] text-sm font-bold text-[var(--white-color)]  px-2 py-0.5">
                     {badgeLabel}
@@ -124,11 +126,11 @@ const CtaInspireSection = ({
           </div>
         </div>
 
-        <p className="max-w-3xl w-full rounded-xl rounded-t-none border border-t-0 border-[var(--primary-color-2)] bg-transparent py-3 text-center text-sm text-[var(--primary-color)] font-semibold">
+        <p className="max-w-3xl w-full rounded-xl rounded-t-none lg:border lg:border-t-0 border-[var(--primary-color-2)] bg-transparent py-3 text-center text-sm text-[var(--primary-color)] font-semibold">
           {note}
         </p>
 
-        <div ref={ref} className="mt-8 w-full max-w-5xl  pt-6">
+        <div ref={ref} className="lg:mt-8 w-full max-w-5xl  pt-6">
           <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-[var(--primary-color-2)]">
             {stats.map((stat) => (
               <div key={stat.label} className="py-5 text-center">
