@@ -1,19 +1,26 @@
+import { cn } from "@/lib/utils";
 import NuruiLogo from "../nurui/nurui-logo";
 import LinkWithProgress from "./LinkWithProgress";
-type ClassType = { textSize?: string };
+type ClassType = { textSize?: string; logoNameClassName?: string };
 
-const Nurui = ({ textSize }: ClassType) => {
+const Nurui = ({ textSize, logoNameClassName }: ClassType) => {
   return (
     <LinkWithProgress
       href="/"
-      className={`text-[var(--primary-color)] font-black ${
-        textSize || "text-3xl"
-      } flex items-center gap-0.05 -mb-1 xl:-mb-0`}
+      className={cn(
+        `text-[var(--primary-color)] text-3xl font-black flex items-center gap-0.05 -mb-1.5 xl:-mb-0`,
+        textSize,
+      )}
     >
       <NuruiLogo />
-      <p className="space-x-1.5 hidden lg:flex items-center">
+      <p
+        className={cn(
+          "space-x-1.5 hidden lg:flex items-center",
+          logoNameClassName,
+        )}
+      >
         <span>Nur</span>
-        <span className="-mb-0.">UI</span>
+        <span>UI</span>
       </p>
     </LinkWithProgress>
   );

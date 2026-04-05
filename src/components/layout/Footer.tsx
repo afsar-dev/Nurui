@@ -53,7 +53,10 @@ const Footer = () => {
       <RocketScrollToTop className="bg-[var(--background-color)] max-w-24 mx-auto  rounded-full -mt-16 hidden md:block" />
       <div className="container">
         <div className="flex flex-col items-center text-center pb-7 pt-7 xl:pb-16 xl:pt-8 gap-2">
-          <Nurui textSize="text-2xl lg:text-3xl" />
+          <Nurui
+            textSize="text-2xl lg:text-3xl -mb-0"
+            logoNameClassName="flex"
+          />
 
           <p className="mx-auto max-w-sm text-center leading-relaxed">
             React and Next.js based UI library with CLI scaffolding, TS-to-JS

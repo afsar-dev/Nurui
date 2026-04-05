@@ -28,8 +28,8 @@ const ComponentsLeftSidebar = () => {
                 </p>
               </div>
             ) : (
-              <LinkWithProgress href="/">
-                <NuruiLogo />
+              <LinkWithProgress href="/" >
+                <NuruiLogo className="-ml-1.5"/>
               </LinkWithProgress>
             )}
             <div className="text-sm px-2 space-y-1">

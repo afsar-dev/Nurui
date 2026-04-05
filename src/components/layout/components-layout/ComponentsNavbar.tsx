@@ -47,13 +47,12 @@ const ComponentsNavbar = () => {
             />
           )}
           <VaulDrawer />
-          <div className="hidden md:block w-64">
-            <ComponentSearchbar />
-          </div>
         </div>
 
         {/* Right Group: Social Icons + Theme Switcher */}
-        <div className="flex items-center gap-3.5">
+        <div className="flex items-center gap-2 lg:gap-3.5">
+          <ComponentSearchbar />
+
           <RoundedButton
             href="https://www.linkedin.com/in/md-afsar-mahmud"
             icon={

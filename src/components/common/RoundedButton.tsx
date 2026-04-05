@@ -1,13 +1,22 @@
+import { cn } from "@/lib/utils";
 import React from "react";
-type TIcon = {
+type TRoundedButton = {
   icon: React.ReactNode;
   href?: string;
   iconInfo?: string | number;
+  parentClassName?: string;
+  onClick?: () => void;
 };
 
-const RoundedButton: React.FC<TIcon> = ({ icon, href, iconInfo }) => {
+const RoundedButton: React.FC<TRoundedButton> = ({
+  icon,
+  href,
+  iconInfo,
+  parentClassName,
+  onClick,
+}) => {
   return (
-    <>
+    <div className={cn(parentClassName)} onClick={onClick}>
       {href ? (
         <a
           href={href}
@@ -18,11 +27,11 @@ const RoundedButton: React.FC<TIcon> = ({ icon, href, iconInfo }) => {
           <span>{icon}</span>
         </a>
       ) : (
-        <div className="bg-[var(--primary-color)] dark:bg-[var(--primary-color-3)] hover:bg-[#3CA2FACC] hover:dark:bg-[var(--primary-color-2)] size-auto p-1 rounded-full flex items-center justify-center cursor-pointer">
+        <div className="bg-[var(--primary-color)] dark:bg-[var(--primary-color-3)] hover:bg-[#3CA2FACC] hover:dark:bg-[var(--primary-color-2)] size-auto p-2 rounded-full flex items-center justify-center cursor-pointer">
           <span>{icon}</span>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
