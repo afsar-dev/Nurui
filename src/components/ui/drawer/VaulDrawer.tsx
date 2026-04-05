@@ -1,19 +1,19 @@
 "use client";
-import { Drawer } from "vaul";
-import React from "react";
-import { CgMenuRight } from "react-icons/cg";
 import MenuItem from "@/components/common/MenuItem";
-import { AiOutlineFileSearch } from "react-icons/ai";
-import { GrInstallOption } from "react-icons/gr";
-import { TbHandClick } from "react-icons/tb";
 import { navigation as componentNavigation } from "@/registry/component-navigation";
+import React from "react";
+import { AiOutlineFileSearch } from "react-icons/ai";
+import { CgMenuRight } from "react-icons/cg";
+import { GrInstallOption } from "react-icons/gr";
 import { SlDocs } from "react-icons/sl";
+import { TbHandClick } from "react-icons/tb";
+import { Drawer } from "vaul";
 
 export default function VaulDrawer() {
   return (
     <Drawer.Root>
-      <Drawer.Trigger className="bg-[var(--primary-color-3)] hover:bg-[var(--primary-color-2)] rounded p-0.5 block xl:hidden">
-        <CgMenuRight className="text-[var(--primary-color)] text-2xl md:text-3xl" />
+      <Drawer.Trigger className="bg-[var(--primary-color)] dark:bg-[var(--primary-color-3)] dark:hover:bg-[var(--primary-color-2)] rounded p-0.5 block xl:hidden">
+        <CgMenuRight className="text-[var(--white-color)] dark:text-[var(--primary-color)] text-2xl md:text-3xl" />
       </Drawer.Trigger>
 
       <Drawer.Portal>
