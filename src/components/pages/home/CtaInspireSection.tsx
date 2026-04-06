@@ -36,7 +36,7 @@ const defaultActions: CtaAction[] = [
   },
   {
     label: "Book a free call",
-    href: "/#",
+    href: "https://cal.com/md-afsar-mahmud",
     variant: "primary",
   },
 ];
@@ -105,10 +105,12 @@ const CtaInspireSection = ({
                 <Link
                   key={`${action.label}-${action.href}`}
                   href={action.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={cn(
                     "inline-flex min-h-10 items-center gap-2 justify-center rounded-full px-5 text-sm font-semibold transition-all duration-300",
                     action.variant === "primary"
-                      ? "bg-[var(--primary-color)] text-[var(--text-primary-color)] hover:bg-[var(--primary-color-1)] font-semibold"
+                      ? "bg-[var(--primary-color)] text-[var(--text-primary-color)] hover:brightness-90 font-semibold"
                       : "bg-[var(--primary-color-4)] border border-[var(--primary-color)] hover:text-[var(--primary-color)] text-[var(--primary-color)] hover:bg-[var(--primary-color-3)]",
                   )}
                 >
