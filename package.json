@@ -54,7 +54,7 @@
     "monaco-editor": "^0.55.1",
     "monaco-editor-webpack-plugin": "^7.1.1",
     "motion": "^12.4.7",
-    "next": "15.5.14",
+    "next": "15.5.15",
     "next-mdx-remote": "^6.0.0",
     "next-themes": "^0.4.6",
     "nprogress": "^0.2.0",
