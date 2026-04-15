@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // src/features/playground/import/import-service.ts
 import { ComponentName, Index } from "@/registry/components-registry";
 import { PlaygroundFile } from "../types";
