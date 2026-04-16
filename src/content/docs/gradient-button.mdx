@@ -29,64 +29,19 @@ keywords:
 
 <Step>Install dependencies</Step>
 
-<Cli
-  dependencies={[
-    { label: "npm", command: "npm i clsx tailwind-merge" },
-    { label: "pnpm", command: "pnpm add clsx tailwind-merge" },
-    { label: "bun", command: "bun add clsx tailwind-merge" },
-    { label: "yarn", command: "yarn add clsx tailwind-merge" },
-  ]}
-/>
+<Cli isManual />
 
 <Step>Add util file</Step>
 
 `lib/utils.ts`
 
-<CodeBlock 
-code={`import { ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}`
-}/>
+<CodeBlock snippetKey="utils-ts" />
 
 <Step>Add the required CSS animations</Step>
 
 Add the following animations to your `globals.css` or others file.
 
-<CodeBlock isLanguage={false} code={` @keyframes rotate-rainbow {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-.rainbow-btn {
-padding: var(--borderWidth);
-border-radius: var(--borderRadius);
-}
-
-.rainbow-btn::before {
-content: "";
-background: conic-gradient(var(--allColors));
-animation: rotate-rainbow var(--duration) linear infinite;
-filter: blur(var(--blur));
-padding: var(--borderWidth);
-position: absolute;
-inset: -200%;
-z-index: 0;
-}
-
-.btn-content {
-border-radius: var(--borderRadius);
-background-color: var(--bgColor);
-z-index: 10;
-position: relative;
-}
-`}/>
+<CodeBlock isLanguage={false} snippetKey="gradient-button-css" />
 
 <Step>Copy and paste the following code into your project.</Step>
 

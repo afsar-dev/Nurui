@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "playing-card",
-  "type": "registry:component",
   "dependencies": [
     "three",
     "@react-three/fiber",
@@ -26,5 +25,6 @@
       "content": "@import \"tw-animate-css\";\n\n:root {\n  --playingcard-bg: #18192b;\n  --playingcard-fg: #f8fafc;\n  --playingcard-outline-color: #3d3759;\n  --playingcard-hover-outline-color: #7c6ee6;\n  --playingcard-canvas-bg: #23244a;\n  --playingcard-canvas-colors: \"143,108,255;99,102,241;80,115,184\";\n  --playingcard-inscription-color: #00a9fe;\n  --playingcard-inscription-color-hover: #8F04A7;\n}\n\n.dark {\n  --playingcard-bg: #f8fafc;\n  --playingcard-fg: #0f172a;\n  --playingcard-outline-color: #ddd;\n  --playingcard-hover-outline-color: #aaa;\n  --playingcard-canvas-bg: #f8fafc;\n  --playingcard-canvas-colors: \"236,72,153;232,121,249\";\n  --playingcard-inscription-color: #3662f4;\n  --playingcard-inscription-color-hover: #f12b30;\n}",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

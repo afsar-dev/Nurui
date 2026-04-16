@@ -24,27 +24,13 @@ description: "A stylish text button component for modern UIs, built with accessi
 
 <Step>Install dependencies</Step>
 
-<Cli
-  dependencies={[
-    { label: "npm", command: "npm i gsap @gsap/react clsx tailwind-merge" },
-    { label: "pnpm", command: "pnpm add gsap @gsap/react clsx tailwind-merge" },
-    { label: "bun", command: "bun add gsap @gsap/react clsx tailwind-merge" },
-    { label: "yarn", command: "yarn add gsap @gsap/react clsx tailwind-merge" },
-  ]}
-/>
+<Cli isManual />
 
 <Step>Add util file</Step>
 
 `lib/utils.ts`
 
-<CodeBlock 
-code={`import { ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}`
-}/>
+<CodeBlock snippetKey="utils-ts" />
 
 <Step>Copy and paste the following code into your project.</Step>
 
@@ -64,8 +50,8 @@ export function cn(...inputs: ClassValue[]) {
 
 | Prop            | Type                          | Default | Description                                                                |
 | --------------- | ----------------------------- | ------- | -------------------------------------------------------------------------- |
-| `effectOnHover` | `boolean`                     | `true`  | Enables the text  animation when the button is hovered.                |
-| `effectOnLoad`  | `boolean`                     | `true`  | Triggers the text  animation once on component load.                   |
+| `effectOnHover` | `boolean`                     | `true`  | Enables the text animation when the button is hovered.                     |
+| `effectOnLoad`  | `boolean`                     | `true`  | Triggers the text animation once on component load.                        |
 | `className`     | `string`                      | `-`     | Custom CSS classes to apply to the button.                                 |
 | `children`      | `React.ReactNode`             | `-`     | Text or elements to display inside the button. Animation is applied to it. |
 | `onClick`       | `(event: MouseEvent) => void` | `-`     | Function called when the button is clicked. Also triggers the animation.   |

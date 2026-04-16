@@ -24,23 +24,7 @@ description: "A stylish project-showcase component for modern UIs, built with ac
 
 <Step>Install dependencies</Step>
 
-<Cli
-  dependencies={[
-    { label: "npm", command: "npm i framer-motion" },
-    {
-      label: "pnpm",
-      command: "pnpm add framer-motion",
-    },
-    {
-      label: "bun",
-      command: "bun add framer-motion",
-    },
-    {
-      label: "yarn",
-      command: "yarn add framer-motion",
-    },
-  ]}
-/>
+<Cli isManual />
 
 <Step>Copy and paste the following code into your project.</Step>
 
@@ -102,7 +86,7 @@ description: "A stylish project-showcase component for modern UIs, built with ac
 | `outlineColor`                   | `string`                                           | `"#33313d"`                                  | Image border color.                                                                    |
 | `hoverOutlineColor`              | `string`                                           | `"#403d4d"`                                  | Image border color on hover.                                                           |
 | `buttonInscriptions`             | `{ previousButton, nextButton, openWebAppButton }` | See default below                            | Labels for the control buttons.                                                        |
-| `halomotButtonGradient`          | `string`                                           | `"linear-gradient(to right, #a123f4, ...)`   | Gradient used for all `HalomotButton`s in the component.                             |
+| `halomotButtonGradient`          | `string`                                           | `"linear-gradient(to right, #a123f4, ...)`   | Gradient used for all `HalomotButton`s in the component.                               |
 | `halomotButtonBackground`        | `string`                                           | `"#111014"`                                  | Inner background color of buttons.                                                     |
 | `halomotButtonTextColor`         | `string`                                           | `"#fff"`                                     | Button text color.                                                                     |
 | `halomotButtonOuterBorderRadius` | `string`                                           | `"6.34px"`                                   | Gradient layer rounding for buttons.                                                   |
