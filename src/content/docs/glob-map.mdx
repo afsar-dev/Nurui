@@ -33,43 +33,13 @@ keywords:
 
 <Step>Install dependencies</Step>
 
-<Cli
-  dependencies={[
-    {
-      label: "npm",
-      command:
-        "npm i d3 @radix-ui/react-slot class-variance-authority topojson-client clsx tailwind-merge",
-    },
-    {
-      label: "pnpm",
-      command:
-        "pnpm add d3 @radix-ui/react-slot class-variance-authority topojson-client clsx tailwind-merge",
-    },
-    {
-      label: "bun",
-      command:
-        "bun add d3 @radix-ui/react-slot class-variance-authority topojson-client clsx tailwind-merge",
-    },
-    {
-      label: "yarn",
-      command:
-        "yarn add d3 @radix-ui/react-slot class-variance-authority topojson-client clsx tailwind-merge",
-    },
-  ]}
-/>
+<Cli isManual />
 
 <Step>Add util file</Step>
 
 `lib/utils.ts`
 
-<CodeBlock 
-code={`import { ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}`
-}/>
+<CodeBlock snippetKey="utils-ts" />
 
 <Step>Copy and paste the following code into your project.</Step>
 

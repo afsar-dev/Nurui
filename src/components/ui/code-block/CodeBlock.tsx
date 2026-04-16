@@ -1,17 +1,20 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { oneLight } from "react-syntax-highlighter/dist/cjs/styles/prism"; // light theme
-import { RxCopy } from "react-icons/rx";
-import { FaCheck } from "react-icons/fa6";
-import { ChevronDown } from "lucide-react";
-import { FaJsSquare } from "react-icons/fa";
-import { BiLogoTypescript } from "react-icons/bi";
+import { Spinner } from "@/components/nurui/spinner";
+import { codeSnippetsMap } from "@/registry/code-snippets";
 import { Index } from "@/registry/components-registry";
 import { convertTsxToJsx } from "@/utils/convertTsxToJsx";
+import { ChevronDown } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Spinner } from "@/components/nurui/spinner";
+import { useEffect, useState } from "react";
+import { BiLogoTypescript } from "react-icons/bi";
+import { FaJsSquare } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa6";
+import { RxCopy } from "react-icons/rx";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import {
+  atomDark,
+  oneLight,
+} from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 type CodeBlockProps = {
   language?: string;
@@ -19,6 +22,7 @@ type CodeBlockProps = {
   componentName?: keyof typeof Index;
   fileName?: string;
   isLanguage?: boolean;
+  snippetKey?: string;
 };
 
 export const CodeBlock = ({
@@ -27,22 +31,43 @@ export const CodeBlock = ({
   componentName,
   fileName,
   isLanguage = true,
+  snippetKey,
 }: CodeBlockProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState("TypeScript (.tsx)");
-  const [sourceCode, setSourceCode] = useState(code || "");
-  const [copied, setCopied] = React.useState(false);
-  const selectedLang = languages.find((lang) => lang.name === selectedLanguage);
-  const [loading, setLoading] = useState(!code);
   const { theme } = useTheme();
 
+  // Resolve snippet from map if key provided
+  const snippet = snippetKey ? codeSnippetsMap[snippetKey] : undefined;
+  const resolvedCode = snippet?.code ?? code;
+  const resolvedLang = snippet?.language ?? language;
+  const resolvedIsLang =
+    snippet !== undefined ? (snippet.isLanguage ?? true) : isLanguage;
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState("TypeScript (.tsx)");
+  const [sourceCode, setSourceCode] = useState(resolvedCode);
+  const [copied, setCopied] = useState(false);
+  const [loading, setLoading] = useState(
+    // only show spinner when we need to fetch from registry
+    !resolvedCode && !!(componentName && fileName),
+  );
+
+  const selectedLang = languages.find((l) => l.name === selectedLanguage);
+
   useEffect(() => {
+    // If code came from snippetKey or direct prop, nothing to fetch
+    if (resolvedCode) {
+      setSourceCode(resolvedCode);
+      setLoading(false);
+      return;
+    }
+
+    // Fetch from registry
     const loadCode = async () => {
-      if (!code && componentName && fileName) {
+      if (componentName && fileName) {
         setLoading(true);
         try {
           const matched = Index[componentName]?.othersCode?.find(
-            (otherCode) => otherCode.fileName === fileName,
+            (o) => o.fileName === fileName,
           );
           const loader = matched?.code || Index[componentName]?.code;
           if (loader) {
@@ -52,10 +77,13 @@ export const CodeBlock = ({
         } finally {
           setLoading(false);
         }
+      } else {
+        setLoading(false);
       }
     };
+
     loadCode();
-  }, [code, componentName, fileName]);
+  }, [resolvedCode, componentName, fileName]);
 
   const copyToClipboard = async () => {
     if (sourceCode) {
@@ -70,15 +98,14 @@ export const CodeBlock = ({
     setIsOpen(false);
 
     if (languageName === "JavaScript (.jsx)" && sourceCode) {
-      const jsxCode = await convertTsxToJsx(sourceCode);
-      setSourceCode(jsxCode);
+      setSourceCode(await convertTsxToJsx(sourceCode));
     } else {
-      // Reload original TS code
-      if (code) {
-        setSourceCode(code);
+      // Restore original TS source
+      if (resolvedCode) {
+        setSourceCode(resolvedCode);
       } else if (componentName && fileName) {
         const matched = Index[componentName]?.othersCode?.find(
-          (otherCode) => otherCode.fileName === fileName,
+          (o) => o.fileName === fileName,
         );
         const loader = matched?.code || Index[componentName]?.code;
         if (loader) {
@@ -92,7 +119,7 @@ export const CodeBlock = ({
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64 border border-[var(--primary-color)] dark:border-[var(--primary-color-3)] rounded-2xl bg-white dark:bg-[var(--primary-color-5)]">
-        <Spinner className="text-[var(--primary-color)] size-6"/>
+        <Spinner className="text-[var(--primary-color)] size-6" />
       </div>
     );
   }
@@ -107,7 +134,7 @@ export const CodeBlock = ({
           {copied ? <FaCheck /> : <RxCopy />}
         </button>
 
-        {isLanguage && (
+        {resolvedIsLang && (
           <div className="relative">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -119,23 +146,21 @@ export const CodeBlock = ({
               />
             </button>
 
-            {/* Dropdown Menu */}
             {isOpen && (
               <div className="absolute z-50 right-0 mt-3.5 border border-[var(--primary-color)] dark:border-[var(--primary-color-3)] rounded-lg min-w-40 bg-white dark:bg-[var(--primary-color-5)] p-1">
-                {languages.map((language, index) => (
+                {languages.map((lang, i) => (
                   <button
-                    key={index}
-                    onClick={() => handleSelect(language?.name)}
+                    key={i}
+                    onClick={() => handleSelect(lang.name)}
                     className="w-full flex items-center gap-1 p-2 z-50 hover:dark:bg-[var(--primary-color-4)] rounded-lg"
                   >
-                    <span>{language.icon}</span>
-                    <span>{language.name}</span>
+                    <span>{lang.icon}</span>
+                    <span>{lang.name}</span>
                   </button>
                 ))}
               </div>
             )}
 
-            {/* Backdrop to close dropdown when clicking outside */}
             {isOpen && (
               <div
                 className="fixed inset-0 z-0"
@@ -147,16 +172,12 @@ export const CodeBlock = ({
       </div>
 
       <SyntaxHighlighter
-        language={language}
+        language={resolvedLang}
         style={theme === "light" ? oneLight : atomDark}
         wrapLines
         PreTag="div"
-        showLineNumbers={true}
-        customStyle={{
-          margin: 0,
-          padding: 16,
-          background: "transparent",
-        }}
+        showLineNumbers
+        customStyle={{ margin: 0, padding: 16, background: "transparent" }}
       >
         {sourceCode.trim() ||
           `Component ${componentName} not found in registry.`}

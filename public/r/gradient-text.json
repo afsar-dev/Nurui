@@ -1,14 +1,13 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "gradient-text",
-  "type": "registry:component",
   "dependencies": [],
   "devDependencies": [],
   "registryDependencies": [],
   "files": [
     {
       "path": "./src/components/nurui/gradient-text-demo.tsx",
-      "content": "import React from \"react\";\nimport GradientText from \"@/components/nurui/gradient-text\";\n\nconst GradientTextDemo = () => {\n  return (\n    <div className=\"p-10\">\n      <GradientText\n        colors={[\"#3ca2fa\", \"#80eeb4\", \"#3ca2fa\", \"#80eeb4\", \"#3ca2fa\"]}\n        animationSpeed={3}\n        showBorder={false}\n        className=\"text-6xl font-black\"\n      >\n        Welcome to Nur/ui\n      </GradientText>\n    </div>\n  );\n};\n\nexport default GradientTextDemo;\n",
+      "content": "import React from \"react\";\nimport GradientText from \"@/components/nurui/gradient-text\";\n\nconst GradientTextDemo = () => {\n  return (\n    <div className=\"p-10\">\n      <GradientText\n        colors={[\"#3ca2fa\", \"#80eeb4\", \"#3ca2fa\", \"#80eeb4\", \"#3ca2fa\"]}\n        animationSpeed={3}\n        showBorder={false}\n        className=\"text-6xl font-black\"\n      >\n        Welcome to Nur UI\n      </GradientText>\n    </div>\n  );\n};\n\nexport default GradientTextDemo;\n",
       "type": "registry:component"
     },
     {
@@ -16,5 +15,6 @@
       "content": "import React, { ReactNode } from \"react\";\n\ninterface GradientTextProps {\n  children: ReactNode;\n  className?: string;\n  colors?: string[];\n  animationSpeed?: number;\n  showBorder?: boolean;\n}\n\nexport default function GradientText({\n  children,\n  className = \"\",\n  colors = [\"#ffaa40\", \"#9c40ff\", \"#ffaa40\"],\n  animationSpeed = 8,\n  showBorder = false,\n}: GradientTextProps) {\n  const gradientStyle = {\n    backgroundImage: `linear-gradient(to right, ${colors.join(\", \")})`,\n    animationDuration: `${animationSpeed}s`,\n  };\n\n  return (\n    <div\n      className={`relative mx-auto flex max-w-fit flex-row items-center justify-center rounded-[1.25rem] font-medium backdrop-blur transition-shadow duration-500 overflow-hidden cursor-pointer ${className}`}\n    >\n      {showBorder && (\n        <div\n          className=\"absolute inset-0 bg-cover z-0 pointer-events-none animate-gradient\"\n          style={{\n            ...gradientStyle,\n            backgroundSize: \"300% 100%\",\n          }}\n        >\n          <div\n            className=\"absolute inset-0 bg-black rounded-[1.25rem] z-[-1]\"\n            style={{\n              width: \"calc(100% - 2px)\",\n              height: \"calc(100% - 2px)\",\n              left: \"50%\",\n              top: \"50%\",\n              transform: \"translate(-50%, -50%)\",\n            }}\n          ></div>\n        </div>\n      )}\n      <div\n        className=\"inline-block relative z-2 text-transparent bg-cover animate-gradient\"\n        style={{\n          ...gradientStyle,\n          backgroundClip: \"text\",\n          WebkitBackgroundClip: \"text\",\n          backgroundSize: \"300% 100%\",\n        }}\n      >\n        {children}\n      </div>\n    </div>\n  );\n}\n",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

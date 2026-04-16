@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "electric-cursor",
-  "type": "registry:component",
   "dependencies": [],
   "devDependencies": [],
   "registryDependencies": [],
@@ -16,5 +15,6 @@
       "content": "\"use client\";\nimport React, { useEffect, useRef } from \"react\";\n\n// Interface for Spark instance\ninterface ISpark {\n  x: number;\n  y: number;\n  length: number;\n  alpha: number;\n  update: () => void;\n  draw: () => void;\n}\n\nconst ElectricCursor: React.FC = () => {\n  const canvasRef = useRef<HTMLCanvasElement | null>(null);\n\n  useEffect(() => {\n    const sparks: ISpark[] = [];\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    canvas.width = window.innerWidth;\n    canvas.height = window.innerHeight;\n\n    class Spark implements ISpark {\n      x: number;\n      y: number;\n      length: number;\n      alpha: number;\n\n      constructor(x: number, y: number) {\n        this.x = x;\n        this.y = y;\n        this.length = Math.random() * 10 + 5;\n        this.alpha = 1;\n      }\n\n      update(): void {\n        this.length -= 0.5;\n        this.alpha -= 0.03;\n      }\n\n      draw(): void {\n        if (!ctx) return;\n        ctx.beginPath();\n        ctx.moveTo(this.x, this.y);\n        ctx.lineTo(\n          this.x + Math.random() * this.length,\n          this.y + Math.random() * this.length,\n        );\n        ctx.strokeStyle = `rgba(0, 200, 255, ${this.alpha})`;\n        ctx.lineWidth = 1;\n        ctx.stroke();\n      }\n    }\n\n    const animate = (): void => {\n      ctx.clearRect(0, 0, canvas.width, canvas.height);\n\n      for (let i = sparks.length - 1; i >= 0; i--) {\n        sparks[i].update();\n        sparks[i].draw();\n        if (sparks[i].alpha <= 0) {\n          sparks.splice(i, 1);\n        }\n      }\n\n      requestAnimationFrame(animate);\n    };\n\n    const onMove = (e: MouseEvent): void => {\n      for (let i = 0; i < 3; i++) {\n        sparks.push(new Spark(e.clientX, e.clientY));\n      }\n    };\n\n    window.addEventListener(\"mousemove\", onMove);\n    animate();\n\n    return () => {\n      window.removeEventListener(\"mousemove\", onMove);\n    };\n  }, []);\n\n  return (\n    <canvas\n      ref={canvasRef}\n      className=\"fixed inset-0 w-full h-full pointer-events-none z-50\"\n    />\n  );\n};\n\nexport default ElectricCursor;\n",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

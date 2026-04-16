@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "money-cursor",
-  "type": "registry:component",
   "dependencies": [],
   "devDependencies": [],
   "registryDependencies": [],
@@ -16,5 +15,6 @@
       "content": "\"use client\";\nimport React, { useEffect, useRef } from \"react\";\n\nconst symbols = [\"$\", \"💸\", \"🪙\", \"💵\"];\n\nclass MoneyParticle {\n  x: number;\n  y: number;\n  alpha: number;\n  char: string;\n\n  constructor(x: number, y: number) {\n    this.x = x;\n    this.y = y;\n    this.alpha = 1;\n    this.char = symbols[Math.floor(Math.random() * symbols.length)];\n  }\n\n  update() {\n    this.y -= 0.3;\n    this.alpha -= 0.02;\n  }\n\n  draw(ctx: CanvasRenderingContext2D) {\n    ctx.fillStyle = `rgba(255, 255, 0, ${this.alpha})`;\n    ctx.font = \"18px sans-serif\";\n    ctx.fillText(this.char, this.x, this.y);\n  }\n}\n\nconst MoneyCursor: React.FC = () => {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n  const particlesRef = useRef<MoneyParticle[]>([]);\n\n  useEffect(() => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    canvas.width = window.innerWidth;\n    canvas.height = window.innerHeight;\n\n    const particles = particlesRef.current;\n\n    const animate = () => {\n      ctx.clearRect(0, 0, canvas.width, canvas.height);\n      for (let i = particles.length - 1; i >= 0; i--) {\n        const p = particles[i];\n        p.update();\n        p.draw(ctx);\n        if (p.alpha <= 0) particles.splice(i, 1);\n      }\n      requestAnimationFrame(animate);\n    };\n\n    animate();\n\n    const handleMove = (e: MouseEvent) => {\n      for (let i = 0; i < 2; i++) {\n        particles.push(new MoneyParticle(e.clientX, e.clientY));\n      }\n    };\n\n    window.addEventListener(\"mousemove\", handleMove);\n\n    return () => {\n      window.removeEventListener(\"mousemove\", handleMove);\n    };\n  }, []);\n\n  return (\n    <canvas\n      ref={canvasRef}\n      className=\"fixed top-0 left-0 w-full h-full pointer-events-none z-50\"\n    />\n  );\n};\n\nexport default MoneyCursor;",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }
