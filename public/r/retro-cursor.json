@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "retro-cursor",
-  "type": "registry:component",
   "dependencies": [
     "framer-motion"
   ],
@@ -18,5 +17,6 @@
       "content": "\"use client\";\nimport { useEffect, useState } from \"react\";\nimport { motion } from \"framer-motion\";\n\ninterface RetroCursorProps {\n  position: { x: number; y: number };\n}\n\nexport function RetroCursor({ position }: RetroCursorProps) {\n  const [trail, setTrail] = useState<\n    Array<{ x: number; y: number; id: number }>\n  >([]);\n  const [isActive, setIsActive] = useState(false);\n\n  useEffect(() => {\n    if (position.x === 0 && position.y === 0) return;\n\n    // Only start tracking after the mouse has moved\n    if (!isActive && (position.x !== 0 || position.y !== 0)) {\n      setIsActive(true);\n    }\n\n    if (isActive) {\n      setTrail((prevTrail) => {\n        const newTrail = [\n          { x: position.x, y: position.y, id: Date.now() },\n          ...prevTrail.slice(0, 5), // Keep only 6 trail positions\n        ];\n        return newTrail;\n      });\n    }\n  }, [position, isActive]);\n\n  // Hide real cursor\n  useEffect(() => {\n    document.body.style.cursor = \"none\";\n    return () => {\n      document.body.style.cursor = \"auto\";\n    };\n  }, []);\n\n  // Return if mouse hasn't moved yet\n  if (!isActive) return null;\n\n  return (\n    <div className=\"pointer-events-none fixed inset-0 z-[9999]\">\n      {/* Trail effects */}\n      {trail.map((pos, index) => (\n        <motion.div\n          key={pos.id}\n          className=\"absolute w-1 h-1 rounded-full bg-cyan-500\"\n          style={{\n            left: pos.x,\n            top: pos.y,\n            opacity: 1 - index * 0.15,\n          }}\n          initial={{ scale: 1 }}\n          animate={{ scale: 1 - index * 0.15 }}\n        />\n      ))}\n\n      {/* Main cursor */}\n      <motion.div\n        className=\"absolute w-6 h-6 pointer-events-none z-50\"\n        style={{\n          left: position.x - 2,\n          top: position.y - 2,\n          backgroundImage: `url(\"data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 1L7 17L11 13H17L7 1Z' fill='white' stroke='black' strokeWidth='1'/%3E%3C/svg%3E\")`,\n          backgroundRepeat: \"no-repeat\",\n        }}\n      />\n    </div>\n  );\n}",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

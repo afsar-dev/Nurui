@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "hover-footer",
-  "type": "registry:component",
   "dependencies": [
     "clsx",
     "tailwind-merge",
@@ -26,5 +25,6 @@
       "content": "import React from \"react\";\n\nconst FooterBackgroundGradient = () => {\n  return (\n    <div\n      className=\"absolute inset-0 z-0\"\n      style={{\n        background:\n          \"radial-gradient(125% 125% at 50% 10%, #0F0F1166 50%, #3ca2fa33 100%)\",\n      }}\n    />\n  );\n};\n\nexport default FooterBackgroundGradient;\n",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

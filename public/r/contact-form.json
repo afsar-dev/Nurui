@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "contact-form",
-  "type": "registry:component",
   "dependencies": [
     "framer-motion",
     "clsx",
@@ -35,5 +34,6 @@
       "content": "\"use client\";\nimport { useState, useRef, ReactNode } from \"react\";\nimport { motion, useMotionValue, useTransform } from \"framer-motion\";\nimport { cn } from \"@/lib/utils\";\n\nconst ShinyTextArea = ({\n  className,\n  icon,\n  placeholder,\n  name,\n  rows = 4,\n  required,\n  borderHoverAnimation = \"1px solid var(--primary-color)\",\n  focus = \"focus:border-[var(--primary-color)]\",\n}: {\n  className?: string;\n  icon?: ReactNode;\n  placeholder: string;\n  name: string;\n  rows?: number;\n  required?: boolean;\n  borderHoverAnimation?: string;\n  focus?: string;\n}) => {\n  const divRef = useRef<HTMLTextAreaElement | null>(null);\n  const [, setIsFocused] = useState(false);\n  const positionX = useMotionValue(0);\n  const positionY = useMotionValue(0);\n  const [opacity, setOpacity] = useState(0);\n\n  const handleMouseMove = (e: React.MouseEvent<HTMLTextAreaElement>) => {\n    if (divRef.current) {\n      const rect = divRef.current.getBoundingClientRect();\n      positionX.set(e.clientX - rect.left);\n      positionY.set(e.clientY - rect.top);\n    }\n  };\n\n  const handleFocus = () => {\n    setIsFocused(true);\n    setOpacity(1);\n  };\n\n  const handleBlur = () => {\n    setIsFocused(false);\n    setOpacity(0);\n  };\n\n  const handleMouseEnter = () => setOpacity(1);\n  const handleMouseLeave = () => setOpacity(0);\n\n  const shineBorder = useTransform(\n    [positionX, positionY],\n    ([x, y]) =>\n      `radial-gradient(30% 30px at ${x}px ${y}px, black 45%, transparent)`,\n  );\n\n  return (\n    <div className={cn(\"relative z-40\", className)}>\n      <textarea\n        onMouseMove={handleMouseMove}\n        onFocus={handleFocus}\n        onBlur={handleBlur}\n        onMouseEnter={handleMouseEnter}\n        onMouseLeave={handleMouseLeave}\n        autoComplete=\"off\"\n        placeholder={placeholder}\n        name={name}\n        rows={rows}\n        required={required}\n        className={`w-full cursor-pointer h-36 rounded-md border border-[var(--glass-color)] bg-[var(--glass-color)] p-3.5 \n        text-[var(--black-color)] dark:text-[var(--white-color)] transition-colors duration-500 placeholder:select-none placeholder:text-[var(--placeholder-color)] ${focus} focus:outline-none resize-none`}\n      />\n\n      <motion.textarea\n        ref={divRef}\n        disabled\n        style={{\n          border: borderHoverAnimation,\n          opacity,\n          WebkitMaskImage: shineBorder,\n          maskImage: shineBorder,\n        }}\n        aria-hidden=\"true\"\n        className=\"pointer-events-none absolute h-36 left-0 top-0 z-10 w-full cursor-default rounded-md border border-[var(--secondary-color)] bg-transparent p-3.5 opacity-0 transition-opacity duration-500 placeholder:select-none\"\n      />\n      {icon}\n    </div>\n  );\n};\n\nexport default ShinyTextArea;",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

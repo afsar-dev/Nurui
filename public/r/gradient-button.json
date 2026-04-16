@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "gradient-button",
-  "type": "registry:component",
   "dependencies": [
     "clsx",
     "tailwind-merge"
@@ -24,5 +23,6 @@
       "content": " @keyframes rotate-rainbow {\n    0% {\n      transform: rotate(0deg);\n    }\n    100% {\n      transform: rotate(360deg);\n    }\n  }\n\n  .rainbow-btn {\n    padding: var(--borderWidth);\n    border-radius: var(--borderRadius);\n  }\n\n  .rainbow-btn::before {\n    content: \"\";\n    background: conic-gradient(var(--allColors));\n    animation: rotate-rainbow var(--duration) linear infinite;\n    filter: blur(var(--blur));\n    padding: var(--borderWidth);\n    position: absolute;\n    inset: -200%;\n    z-index: 0;\n  }\n\n  .btn-content {\n    border-radius: var(--borderRadius);\n    background-color: var(--bgColor);\n    z-index: 10;\n    position: relative;\n  }",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

@@ -24,39 +24,13 @@ description: "A stylish flow-form component for modern UIs, built with accessibi
 
 <Step>Install dependencies</Step>
 
-<Cli
-  dependencies={[
-    {
-      label: "npm",
-      command: "npm i @react-three/fiber framer-motion clsx tailwind-merge",
-    },
-    {
-      label: "pnpm",
-      command: "pnpm add @react-three/fiber framer-motion clsx tailwind-merge",
-    },
-    {
-      label: "bun",
-      command: "bun add @react-three/fiber framer-motion clsx tailwind-merge",
-    },
-    {
-      label: "yarn",
-      command: "yarn add @react-three/fiber framer-motion clsx tailwind-merge",
-    },
-  ]}
-/>
+<Cli isManual />
 
 <Step>Add util file</Step>
 
 `lib/utils.ts`
 
-<CodeBlock 
-code={`import { ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}`
-}/>
+<CodeBlock snippetKey="utils-ts" />
 
 <Step>Copy and paste the following code into your project.</Step>
 
@@ -72,7 +46,6 @@ export function cn(...inputs: ClassValue[]) {
 
 </Tabs>
 
-
 ### Props
 
 `CanvasRevealEffect`
@@ -86,7 +59,6 @@ export function cn(...inputs: ClassValue[]) {
 | `dotSize`            | `number`     | `3`                                                | Diameter of each dot in the dot matrix.                                                       |
 | `showGradient`       | `boolean`    | `true`                                             | Whether to show a subtle gradient overlay on top of the canvas for visual depth.              |
 | `reverse`            | `boolean`    | `false`                                            | Controls animation direction: `false` = intro (dots appear), `true` = outro (dots disappear). |
-
 
 `DotMatrix`
 

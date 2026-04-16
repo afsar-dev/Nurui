@@ -24,69 +24,19 @@ description: "A stylish playing-card component for modern UIs, built with access
 
 <Step>Install dependencies</Step>
 
-<Cli
-  dependencies={[
-    {
-      label: "npm",
-      command: "npm i clsx tailwind-merge three @react-three/fiber tw-animate-css",
-    },
-    {
-      label: "pnpm",
-      command: "pnpm add clsx tailwind-merge three @react-three/fiber tw-animate-css",
-    },
-    {
-      label: "bun",
-      command: "bun add clsx tailwind-merge three @react-three/fiber tw-animate-css",
-    },
-    {
-      label: "yarn",
-      command: "yarn add clsx tailwind-merge three @react-three/fiber tw-animate-css",
-    },
-  ]}
-/>
+<Cli isManual />
 
 <Step>Add util file</Step>
 
 `lib/utils.ts`
 
-<CodeBlock 
-code={`import { ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}`
-}/>
+<CodeBlock snippetKey="utils-ts" />
 
 <Step>Add the required CSS animations</Step>
 
 Add the following animations to your `globals.css` or others file.
 
-<CodeBlock isLanguage={false} code={`
-@import "tw-animate-css";
-
-:root {
---playingcard-bg: #18192b;
---playingcard-fg: #f8fafc;
---playingcard-outline-color: #3d3759;
---playingcard-hover-outline-color: #7c6ee6;
---playingcard-canvas-bg: #23244a;
---playingcard-canvas-colors: "143,108,255;99,102,241;80,115,184";
---playingcard-inscription-color: #00a9fe;
---playingcard-inscription-color-hover: #8F04A7;
-}
-
-.dark {
---playingcard-bg: #f8fafc;
---playingcard-fg: #0f172a;
---playingcard-outline-color: #ddd;
---playingcard-hover-outline-color: #aaa;
---playingcard-canvas-bg: #f8fafc;
---playingcard-canvas-colors: "236,72,153;232,121,249";
---playingcard-inscription-color: #3662f4;
---playingcard-inscription-color-hover: #f12b30;
-}
-`}/>
+<CodeBlock isLanguage={false} snippetKey="playing-card-css" />
 
 <Step>Copy and paste the following code into your project.</Step>
 
