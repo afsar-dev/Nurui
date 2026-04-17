@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { navigationActive } from "@/utils/navigationActive";
 import { usePathname } from "next/navigation";
 import "../../styles/footer.css";
+import LaunchpadBadges from "../common/LaunchpadBadges";
 import AnimatedInput from "../nurui/animated-input";
 
 const navigation = [
@@ -52,7 +53,7 @@ const Footer = () => {
     >
       <RocketScrollToTop className="bg-[var(--background-color)] max-w-24 mx-auto  rounded-full -mt-16 hidden md:block" />
       <div className="container">
-        <div className="flex flex-col items-center text-center pb-7 pt-7 xl:pb-16 xl:pt-8 gap-2">
+        <div className="flex flex-col items-center text-center pb-7 pt-7 xl:pb-14 xl:pt-8 gap-2">
           <Nurui
             textSize="text-2xl lg:text-3xl -mb-0"
             logoNameClassName="flex"
@@ -70,6 +71,8 @@ const Footer = () => {
             buttonTitle={newsLetter?.subscribe_button.label}
             buttonClassName="bg-[var(--primary-color-4)] border border-[var(--primary-color)] hover:text-[var(--primary-color)] text-[var(--primary-color)] hover:bg-[var(--primary-color-3)]"
           />
+
+          <LaunchpadBadges />
         </div>
 
         <div className="border-t border-[var(--border-color)] border-opacity-20 p-5 flex items-center justify-center lg:justify-between">
