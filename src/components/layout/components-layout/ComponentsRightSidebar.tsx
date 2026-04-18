@@ -1,4 +1,5 @@
 "use client";
+import SponsorAd from "@/components/common/SponsorAd";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaRegLightbulb } from "react-icons/fa6";
@@ -81,8 +82,8 @@ const ComponentsRightSidebar = () => {
 
   return (
     <div className="fixed top-16 right-0 hidden xl:block">
-      <div className="w-72 min-h-screen border-l border-[var(--primary-color)] dark:border-[var(--primary-color-1)] border-dashed p-4 space-y-3">
-        <div className="flex flex-col gap-y-2">
+      <div className="w-72 h-[calc(100vh-4rem)] border-l border-[var(--primary-color)] dark:border-[var(--primary-color-1)] border-dashed p-4 flex flex-col overflow-y-auto">
+        <div className="flex flex-col gap-y-2 mb-3">
           <h3 className="font-semibold pb-1">On this page</h3>
           {navigation?.onThisPage?.map((nav) => (
             <a
@@ -109,6 +110,8 @@ const ComponentsRightSidebar = () => {
             </a>
           ))}
         </div>
+
+        <SponsorAd className="mt-auto" />
       </div>
     </div>
   );
