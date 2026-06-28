@@ -12,6 +12,7 @@ export function BadgeDemo({ className }: { className?: string }) {
       <Badge variant="info">Info</Badge>
       <Badge variant="light">Light</Badge>
       <Badge variant="dark">Dark</Badge>
+      <Badge variant="outline">Outline</Badge>
     </div>
   );
 }
