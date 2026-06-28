@@ -1,0 +1,54 @@
+---
+title: "Badge"
+description: "Displays a badge or a component that looks like a badge."
+---
+
+<ComponentPreview componentName="badge" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <Cli />
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies</Step>
+
+<Cli isManual />
+
+<Step>Add util file</Step>
+
+`lib/utils.ts`
+
+<CodeBlock snippetKey="utils-ts" />
+
+<Step>Copy and paste the following code into your project.</Step>
+
+`components/nurui/badge.tsx`
+
+<CodeBlock componentName="badge" fileName="badge" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+### Props
+
+| Prop        | Type     | Default     | Description                                                    |
+| ----------- | -------- | ----------- | -------------------------------------------------------------- |
+| `variant`   | `string` | `"default"` | The visual variant of the badge (default, secondary, destructive, outline). |
+| `className` | `string` | `""`        | Additional custom classes for positioning or styling the badge.|

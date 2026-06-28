@@ -50,6 +50,7 @@ export const Index: Record<string, ComponentEntry> = {
   progressBar: createEntry("progress-bar", ["progress-bar"]),
   banner: createEntry("banner", ["banner", "button"]),
   terminal: createEntry("terminal", ["terminal"]),
+  badge: createEntry("badge", ["badge"]),
   bannerCloseExample: createEntry("banner-close", [
     "banner-close",
     "banner",
