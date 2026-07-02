@@ -37,6 +37,11 @@ const navigation = [
     name: "Playground",
     url: "/playground",
   },
+  {
+    id: 6,
+    name: "Showcase",
+    url: "/showcase",
+  },
 ];
 
 const Footer = () => {

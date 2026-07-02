@@ -103,4 +103,9 @@ const navigation = [
     name: "playground",
     url: "/playground",
   },
+  {
+    id: 5,
+    name: "Showcase",
+    url: "/showcase",
+  },
 ];

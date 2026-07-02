@@ -97,6 +97,7 @@
     "@types/react-dom": "^19",
     "@types/react-lottie": "^1.2.10",
     "@types/react-syntax-highlighter": "^15.5.13",
+    "@types/stylis": "^4.2.7",
     "@types/topojson-client": "^3.1.5",
     "eslint": "^9",
     "eslint-config-next": "15.1.7",
