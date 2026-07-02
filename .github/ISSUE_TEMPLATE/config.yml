@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Nur UI Docs
+    url: https://nurui.vercel.app/docs
+    about: Read the documentation and component guides
+  - name: Discord / Community
+    url: https://github.com/afsar-dev/Nurui
+    about: Visit the repository for updates and discussions

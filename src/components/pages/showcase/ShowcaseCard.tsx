@@ -1,77 +1,71 @@
 import ImageComponent from "@/components/common/Image";
 import { IShowcaseItem } from "@/types/showcase.type";
-import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import React from "react";
 
-interface ShowcaseCardProps {
+const DEFAULT_ACCENT_COLORS = ["#e85d04", "#6b7280", "#a78bfa", "#3ca2fa"];
+
+interface IShowcaseCardProps {
   item: IShowcaseItem;
+  index: number;
 }
 
-export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({ item }) => {
-  // Safe parsing of the hostname for display
-  let displayDomain = "";
+function getDisplayDomain(websiteUrl: string): string {
   try {
-    displayDomain = new URL(item.websiteUrl).hostname;
+    return new URL(websiteUrl).hostname.replace(/^www\./, "");
   } catch {
-    displayDomain = item.websiteUrl;
+    return websiteUrl;
   }
+}
+
+function getCardSubtitle(item: IShowcaseItem): string {
+  return item.subtitle ?? item.tags?.[0] ?? item.description;
+}
+
+export function ShowcaseCard({ item, index }: IShowcaseCardProps) {
+  const accentColor =
+    item.accentColor ?? DEFAULT_ACCENT_COLORS[index % DEFAULT_ACCENT_COLORS.length];
+  const displayDomain = getDisplayDomain(item.websiteUrl);
+  const subtitle = getCardSubtitle(item);
 
   return (
-    <Link
-      href={`/showcase/${item.slug}`}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--border-color)] bg-[var(--glass-color)] transition-all duration-300 hover:border-[var(--primary-color)] hover:shadow-[0_0_30px_rgba(60,162,250,0.15)] h-full"
-      aria-label={`View details for ${item.name}`}
-    >
-      {/* Image container with fixed aspect ratio to prevent CLS */}
-      <div className="relative aspect-video w-full overflow-hidden border-b border-[var(--border-color)] bg-[var(--background-color-2)]">
-        <ImageComponent
-          src={item.image}
-          alt={`Screenshot preview of ${item.name}`}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        {/* Hover overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--background-color)]/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-      </div>
-
-      {/* Card Content */}
-      <div className="p-5 flex flex-col flex-grow justify-between">
-        <div>
-          {/* Tags */}
-          {item.tags && item.tags.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 mb-3">
-              {item.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full bg-[var(--primary-color-4)] px-2.5 py-0.5 text-xs font-semibold text-[var(--primary-color)] border border-[var(--primary-color-3)]"
-                >
-                  {tag}
-                </span>
-              ))}
+    <article className="group">
+      <Link
+        href={item.websiteUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block"
+        aria-label={`Visit ${displayDomain}`}
+      >
+        <div
+          className="relative overflow-hidden rounded-2xl px-5 pb-0 pt-8 sm:px-7 sm:pt-10"
+          style={{ backgroundColor: accentColor }}
+        >
+          <div className="overflow-hidden rounded-t-xl border border-white/20 bg-[var(--background-color)] shadow-[0_20px_50px_rgba(0,0,0,0.35)] ring-1 ring-black/10 transition-transform duration-300 ease-out group-hover:-translate-y-1">
+            <div className="flex items-center gap-1.5 border-b border-[var(--border-color)] bg-[var(--background-color-2)] px-3 py-2">
+              <span className="size-2 rounded-full bg-red-500/80" />
+              <span className="size-2 rounded-full bg-yellow-500/80" />
+              <span className="size-2 rounded-full bg-green-500/80" />
             </div>
-          )}
 
-          {/* Title and Icon */}
-          <div className="flex items-start justify-between gap-2">
-            <h3 className="text-lg font-bold text-[var(--text-primary-color)] group-hover:text-[var(--primary-color)] transition-colors duration-200">
-              {item.name}
-            </h3>
-            <span className="text-[var(--opacity-text-color)] group-hover:text-[var(--primary-color)] transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-              <ArrowUpRight size={20} />
-            </span>
+            <div className="relative aspect-[16/10] w-full overflow-hidden">
+              <ImageComponent
+                src={item.image}
+                alt={`Screenshot preview of ${item.name}`}
+                className="h-full w-full object-cover object-top"
+              />
+            </div>
           </div>
+        </div>
 
-          {/* Description */}
-          <p className="mt-2 text-sm text-[var(--opacity-text-color)] line-clamp-2 leading-relaxed">
-            {item.description}
+        <div className="mt-4 px-1">
+          <h3 className="text-base font-semibold tracking-tight text-[var(--text-primary-color)] transition-colors group-hover:text-[var(--primary-color)]">
+            {displayDomain}
+          </h3>
+          <p className="mt-1 text-sm text-[var(--opacity-text-color)]">
+            {subtitle}
           </p>
         </div>
-
-        {/* Domain name indicator */}
-        <div className="mt-4 text-xs font-semibold text-[var(--primary-color)] opacity-60 group-hover:opacity-100 transition-opacity">
-          {displayDomain}
-        </div>
-      </div>
-    </Link>
+      </Link>
+    </article>
   );
-};
+}
