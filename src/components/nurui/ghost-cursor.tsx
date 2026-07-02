@@ -60,6 +60,8 @@ const GhostTrailCursor = () => {
       }
     }
 
+    let animationId: number;
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((p, index) => {
@@ -67,7 +69,7 @@ const GhostTrailCursor = () => {
         p.draw();
         if (p.alpha <= 0) particles.splice(index, 1);
       });
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
     };
     animate();
 
@@ -80,6 +82,7 @@ const GhostTrailCursor = () => {
     return () => {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("resize", resize);
+      cancelAnimationFrame(animationId);
     };
   }, []);
 

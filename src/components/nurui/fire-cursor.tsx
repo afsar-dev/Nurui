@@ -6,7 +6,11 @@ const FireCursor = () => {
 
   useEffect(() => {
     // Particle will be defined inside useEffect, so we need to use a type assertion here
-    const particles: Array<{ update: () => void; draw: () => void; alpha: number }> = [];
+    const particles: Array<{
+      update: () => void;
+      draw: () => void;
+      alpha: number;
+    }> = [];
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -47,6 +51,8 @@ const FireCursor = () => {
       }
     }
 
+    let animationId: number;
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((p, i) => {
@@ -54,7 +60,7 @@ const FireCursor = () => {
         p.draw();
         if (p.alpha <= 0) particles.splice(i, 1);
       });
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
     };
 
     animate();
@@ -69,6 +75,7 @@ const FireCursor = () => {
 
     return () => {
       window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(animationId);
     };
   }, []);
 

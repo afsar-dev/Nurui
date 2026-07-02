@@ -34,12 +34,15 @@ export function GradientGridHero() {
     let mouseY = 0
     let targetX = 0
     let targetY = 0
+    let animationId: number
 
-    window.addEventListener("mousemove", (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect()
       targetX = e.clientX - rect.left
       targetY = e.clientY - rect.top
-    })
+    }
+
+    window.addEventListener("mousemove", handleMouseMove)
 
     // Particle class
     class Particle {
@@ -162,7 +165,7 @@ export function GradientGridHero() {
         }
       }
 
-      requestAnimationFrame(animate)
+      animationId = requestAnimationFrame(animate)
     }
 
     animate()
@@ -173,6 +176,8 @@ export function GradientGridHero() {
     return () => {
       window.removeEventListener("resize", setCanvasDimensions)
       window.removeEventListener("resize", init)
+      window.removeEventListener("mousemove", handleMouseMove)
+      cancelAnimationFrame(animationId)
     }
   }, [])
 

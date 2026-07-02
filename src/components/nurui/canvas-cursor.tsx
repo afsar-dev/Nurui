@@ -9,7 +9,10 @@ import { useEffect } from "react";
 
 export default function CanvasCursor() {
   useEffect(() => {
-    renderCanvas();
+    const cleanup = renderCanvas();
+    return () => {
+      cleanup();
+    };
   }, []);
   return (
     <canvas
@@ -139,35 +142,40 @@ Line.prototype = {
 };
 
 // @ts-ignore
+function c(e) {
+  if (e.touches) {
+    pos.x = e.touches[0].pageX;
+    pos.y = e.touches[0].pageY;
+  } else {
+    pos.x = e.clientX;
+    pos.y = e.clientY;
+  }
+  e.preventDefault();
+}
+
+// @ts-ignore
+function l(e) {
+  if (e.touches.length == 1) {
+    pos.x = e.touches[0].pageX;
+    pos.y = e.touches[0].pageY;
+  }
+}
+
+// @ts-ignore
 function onMousemove(e) {
   function o() {
     lines = [];
     for (let e = 0; e < E.trails; e++)
       lines.push(new Line({ spring: 0.45 + (e / E.trails) * 0.025 }));
   }
-  // @ts-ignore
-  function c(e) {
-    (e.touches
-      ? // @ts-ignore
-        ((pos.x = e.touches[0].pageX), (pos.y = e.touches[0].pageY))
-      : // @ts-ignore
-        ((pos.x = e.clientX), (pos.y = e.clientY)),
-      e.preventDefault());
-  }
-  // @ts-ignore
-  function l(e) {
-    // @ts-ignore
-    1 == e.touches.length &&
-      ((pos.x = e.touches[0].pageX), (pos.y = e.touches[0].pageY));
-  }
-  (document.removeEventListener("mousemove", onMousemove),
-    document.removeEventListener("touchstart", onMousemove),
-    document.addEventListener("mousemove", c),
-    document.addEventListener("touchmove", c),
-    document.addEventListener("touchstart", l),
-    c(e),
-    o(),
-    render());
+  document.removeEventListener("mousemove", onMousemove);
+  document.removeEventListener("touchstart", onMousemove);
+  document.addEventListener("mousemove", c);
+  document.addEventListener("touchmove", c);
+  document.addEventListener("touchstart", l);
+  c(e);
+  o();
+  render();
 }
 
 function render() {
@@ -235,21 +243,37 @@ export const renderCanvas = function () {
     frequency: 0.0015,
     offset: 285,
   });
+
+  const handleFocus = () => {
+    if (!ctx.running) {
+      ctx.running = true;
+      render();
+    }
+  };
+
+  const handleBlur = () => {
+    ctx.running = false;
+  };
+
   document.addEventListener("mousemove", onMousemove);
   document.addEventListener("touchstart", onMousemove);
   document.body.addEventListener("orientationchange", resizeCanvas);
   window.addEventListener("resize", resizeCanvas);
-  window.addEventListener("focus", () => {
-    // @ts-ignore
-    if (!ctx.running) {
-      // @ts-ignore
-      ctx.running = true;
-      render();
-    }
-  });
-  window.addEventListener("blur", () => {
-    // @ts-ignore
-    ctx.running = true;
-  });
+  window.addEventListener("focus", handleFocus);
+  window.addEventListener("blur", handleBlur);
+
   resizeCanvas();
+
+  return () => {
+    ctx.running = false;
+    document.removeEventListener("mousemove", onMousemove);
+    document.removeEventListener("touchstart", onMousemove);
+    document.removeEventListener("mousemove", c);
+    document.removeEventListener("touchmove", c);
+    document.removeEventListener("touchstart", l);
+    document.body.removeEventListener("orientationchange", resizeCanvas);
+    window.removeEventListener("resize", resizeCanvas);
+    window.removeEventListener("focus", handleFocus);
+    window.removeEventListener("blur", handleBlur);
+  };
 };

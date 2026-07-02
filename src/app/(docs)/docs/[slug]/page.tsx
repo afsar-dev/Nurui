@@ -5,6 +5,7 @@ import { getMDXComponents } from "../../../../../mdx-components";
 import { Metadata } from "next";
 import remarkGfm from "remark-gfm";
 import CopyPage from "@/components/ui/CopyButton";
+import { notFound } from "next/navigation";
 
 interface AsyncParams {
   params: Promise<{ slug: string }>;
@@ -21,6 +22,12 @@ export async function generateMetadata({
   params,
 }: AsyncParams): Promise<Metadata> {
   const { slug } = await params;
+
+  // Whitelist validation: only allow alphanumeric, hyphens, and underscores to prevent path traversal
+  if (!/^[a-zA-Z0-9_-]+$/.test(slug)) {
+    notFound();
+  }
+
   const filePath = path.join(
     process.cwd(),
     "src",
@@ -29,7 +36,20 @@ export async function generateMetadata({
     `${slug}.mdx`,
   );
 
-  const content = await fs.readFile(filePath, "utf-8");
+  let content: string;
+  try {
+    content = await fs.readFile(filePath, "utf-8");
+  } catch (error) {
+    if (
+      error &&
+      typeof error === "object" &&
+      "code" in error &&
+      error.code === "ENOENT"
+    ) {
+      notFound();
+    }
+    throw error;
+  }
 
   const { frontmatter } = await compileMDX<Frontmatter>({
     source: content,
@@ -86,6 +106,12 @@ export async function generateStaticParams() {
 
 const Page = async ({ params }: AsyncParams) => {
   const { slug } = await params;
+
+  // Whitelist validation: only allow alphanumeric, hyphens, and underscores to prevent path traversal
+  if (!/^[a-zA-Z0-9_-]+$/.test(slug)) {
+    notFound();
+  }
+
   const filePath = path.join(
     process.cwd(),
     "src",
@@ -93,7 +119,20 @@ const Page = async ({ params }: AsyncParams) => {
     "docs",
     `${slug}.mdx`,
   );
-  const rawMDX = await fs.readFile(filePath, "utf-8");
+  let rawMDX: string;
+  try {
+    rawMDX = await fs.readFile(filePath, "utf-8");
+  } catch (error) {
+    if (
+      error &&
+      typeof error === "object" &&
+      "code" in error &&
+      error.code === "ENOENT"
+    ) {
+      notFound();
+    }
+    throw error;
+  }
   const { content } = await compileMDX<Frontmatter>({
     source: rawMDX,
     options: {

@@ -52,6 +52,8 @@ const CodeCursor = () => {
       }
     }
 
+    let animationId: number;
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((p, i) => {
@@ -59,7 +61,7 @@ const CodeCursor = () => {
         p.draw();
         if (p.alpha <= 0) particles.splice(i, 1);
       });
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
     };
 
     animate();
@@ -74,6 +76,7 @@ const CodeCursor = () => {
 
     return () => {
       window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(animationId);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
