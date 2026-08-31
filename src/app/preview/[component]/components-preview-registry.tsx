@@ -274,4 +274,16 @@ export const componentsPreviewRegistry: Record<
   "fire-cursor": {
     component: dynamic(() => import("@/components/nurui/fire-cursor-demo")),
   },
+
+  // carousels
+  "card-swipe-carousel": {
+    component: dynamic(
+      () => import("@/components/nurui/card-swipe-carousel-demo"),
+    ),
+  },
+  "perspective-carousel": {
+    component: dynamic(
+      () => import("@/components/nurui/perspective-carousel-demo"),
+    ),
+  },
 };

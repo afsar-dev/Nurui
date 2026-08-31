@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "perspective-carousel",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "lucide-react",
+    "framer-motion",
+    "swiper"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "src/components/nurui/perspective-carousel-demo.tsx",
+      "content": "\"use client\";\nimport PerspectiveCarousel from \"./perspective-carousel\";\n\nconst PerspectiveCarouselDemo = () => {\n  const images = [\n    {\n      src: \"/carousel/swipe-card-1.jpeg\",\n      alt: \"Carousel image 1\",\n    },\n    {\n      src: \"/carousel/swipe-card-2.jpeg\",\n      alt: \"Carousel image 2\",\n    },\n    {\n      src: \"/carousel/swipe-card-3.jpeg\",\n      alt: \"Carousel image 3\",\n    },\n    {\n      src: \"/carousel/swipe-card-4.jpeg\",\n      alt: \"Carousel image 4\",\n    },\n    {\n      src: \"/carousel/swipe-card-5.jpg\",\n      alt: \"Carousel image 5\",\n    },\n    {\n      src: \"/carousel/swipe-card-6.jpg\",\n      alt: \"Carousel image 6\",\n    },\n  ];\n\n  return (\n    <div className=\"flex h-full w-full items-center justify-center overflow-hidden\">\n      <PerspectiveCarousel className=\"\" images={images} showPagination loop />\n    </div>\n  );\n};\n\nexport default PerspectiveCarouselDemo;\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/components/nurui/perspective-carousel.tsx",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/utils\";\nimport { motion } from \"framer-motion\";\nimport { ChevronLeftIcon, ChevronRightIcon } from \"lucide-react\";\nimport \"swiper/css\";\nimport \"swiper/css/effect-coverflow\";\nimport \"swiper/css/navigation\";\nimport \"swiper/css/pagination\";\nimport { Autoplay, EffectCoverflow, Navigation, Pagination } from \"swiper/modules\";\nimport { Swiper, SwiperSlide } from \"swiper/react\";\n\nconst PerspectiveCarousel = ({\n  images,\n  className,\n  showPagination = false,\n  showNavigation = false,\n  loop = true,\n  autoplay = false,\n  spaceBetween = 40,\n  slidesPerView = 2.43,\n}: {\n  images: { src: string; alt: string }[];\n  className?: string;\n  showPagination?: boolean;\n  showNavigation?: boolean;\n  loop?: boolean;\n  autoplay?: boolean;\n  spaceBetween?: number;\n  slidesPerView?: number;\n}) => {\n  const css = `\n  .Carousal_003 {\n    padding-bottom: 50px !important;\n  }\n  `;\n  return (\n    <motion.div\n      initial={{ opacity: 0, translateY: 20 }}\n      animate={{ opacity: 1, translateY: 0 }}\n      transition={{\n        duration: 0.3,\n        delay: 0.5,\n      }}\n      className={cn(\"relative w-full max-w-3xl\", className)}\n    >\n      <style>{css}</style>\n\n      <Swiper\n        spaceBetween={spaceBetween}\n        autoplay={\n          autoplay\n            ? {\n                delay: 1500,\n                disableOnInteraction: false,\n              }\n            : false\n        }\n        effect=\"coverflow\"\n        grabCursor={true}\n        centeredSlides={true}\n        loop={loop}\n        slidesPerView={slidesPerView}\n        coverflowEffect={{\n          rotate: 0,\n          slideShadows: false,\n          stretch: 0,\n          depth: 100,\n          modifier: 2.5,\n        }}\n        pagination={\n          showPagination\n            ? {\n                clickable: true,\n              }\n            : false\n        }\n        navigation={\n          showNavigation\n            ? {\n                nextEl: \".swiper-button-next\",\n                prevEl: \".swiper-button-prev\",\n              }\n            : false\n        }\n        className=\"Carousal_003\"\n        modules={[EffectCoverflow, Autoplay, Pagination, Navigation]}\n      >\n        {images.map((image, index) => (\n          <SwiperSlide key={index} className=\"!h-[320px] w-full overflow-hidden rounded-2xl\">\n            <img\n              className=\"h-full w-full object-cover\"\n              src={image.src}\n              alt={image.alt}\n            />\n          </SwiperSlide>\n        ))}\n        {showNavigation && (\n          <div>\n            <div className=\"swiper-button-next after:hidden\">\n              <ChevronRightIcon className=\"h-6 w-6 text-white\" />\n            </div>\n            <div className=\"swiper-button-prev after:hidden\">\n              <ChevronLeftIcon className=\"h-6 w-6 text-white\" />\n            </div>\n          </div>\n        )}\n      </Swiper>\n    </motion.div>\n  );\n};\n\nexport default PerspectiveCarousel;\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

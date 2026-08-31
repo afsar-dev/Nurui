@@ -1,0 +1,60 @@
+---
+title: "Perspective Carousel"
+description: "A coverflow-effect carousel with perspective depth and smooth slide transitions"
+---
+
+<ComponentPreview componentName="perspectiveCarousel" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <Cli />
+</TabsContent>
+
+<TabsContent value="manual">
+  <Steps>
+    <Step>Install dependencies</Step>
+    <Cli
+      dependencies={[
+        { label: "npm", command: "npm i framer-motion swiper lucide-react clsx tailwind-merge" },
+        { label: "yarn", command: "yarn add framer-motion swiper lucide-react clsx tailwind-merge" },
+      ]}
+    />
+  <Step>Add util file</Step>
+
+`lib/utils.ts`
+
+<CodeBlock snippetKey="utils-ts" />
+
+<Step>Copy and paste the following code into your project.</Step>
+
+`components/nurui/perspective-carousel.tsx`
+
+<CodeBlock
+  componentName="perspectiveCarousel"
+  fileName="perspective-carousel"
+/>
+  </Steps>
+</TabsContent>
+
+</Tabs>
+
+### Props
+
+| Prop             | Type                             | Default | Description                                        |
+| ---------------- | -------------------------------- | ------- | -------------------------------------------------- |
+| `images`         | `{ src: string; alt: string }[]` | —       | Array of image objects to display in the carousel  |
+| `className`      | `string`                         | —       | Additional CSS classes for the wrapper             |
+| `showPagination` | `boolean`                        | `false` | Show clickable pagination dots                     |
+| `showNavigation` | `boolean`                        | `false` | Show previous/next navigation arrows               |
+| `loop`           | `boolean`                        | `true`  | Enable infinite looping of slides                  |
+| `autoplay`       | `boolean`                        | `false` | Enable automatic slide progression                 |
+| `spaceBetween`   | `number`                         | `40`    | Space in pixels between slides                     |
+| `slidesPerView`  | `number`                         | `2.43`  | Number of slides visible at once (supports decimals) |

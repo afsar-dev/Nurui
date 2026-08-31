@@ -1,0 +1,59 @@
+---
+title: "Card Swipe Carousel"
+description: "A swipeable card stack component with smooth animations and touch gestures"
+---
+
+<ComponentPreview componentName="CardSwipeCarousel" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <Cli />
+</TabsContent>
+
+<TabsContent value="manual">
+  <Steps>
+    <Step>Install dependencies</Step>
+    <Cli
+      dependencies={[
+        { label: "npm", command: "npm i ..." },
+        { label: "yarn", command: "yarn add ..." },
+      ]}
+    />
+  <Step>Add util file</Step>
+
+`lib/utils.ts`
+
+<CodeBlock snippetKey="utils-ts" />
+
+<Step>Copy and paste the following code into your project.</Step>
+
+`components/nurui/card-swipe-carousel.tsx`
+
+<CodeBlock
+  componentName="CardSwipeCarousel"
+  fileName="card-swipe-carousel"
+/>
+  </Steps>
+</TabsContent>
+
+</Tabs>
+
+### Props
+
+| Prop             | Type                             | Default | Description                                       |
+| ---------------- | -------------------------------- | ------- | ------------------------------------------------- |
+| `images`         | `{ src: string; alt: string }[]` | —       | Array of image objects to display in the carousel |
+| `className`      | `string`                         | —       | Additional CSS classes for the wrapper            |
+| `showPagination` | `boolean`                        | `false` | Show clickable pagination dots                    |
+| `showNavigation` | `boolean`                        | `false` | Show previous/next navigation arrows              |
+| `loop`           | `boolean`                        | `true`  | Enable infinite looping of slides                 |
+| `autoplay`       | `boolean`                        | `false` | Enable automatic slide progression                |
+| `spaceBetween`   | `number`                         | `40`    | Space in pixels between slides                    |

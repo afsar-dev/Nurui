@@ -55,7 +55,12 @@ export const Index: Record<string, ComponentEntry> = {
     "banner",
     "button",
   ]),
-  story: createEntry("story", ["story", "story-button", "story-dialog", "avatar"]),
+  story: createEntry("story", [
+    "story",
+    "story-button",
+    "story-dialog",
+    "avatar",
+  ]),
   newsLetter: createEntry("news-letter", ["animated-input"]),
 
   // 3D
@@ -140,6 +145,14 @@ export const Index: Record<string, ComponentEntry> = {
   techCursor: createEntry("tech-cursor", ["tech-cursor"]),
   ghostCursor: createEntry("ghost-cursor", ["ghost-cursor"]),
   fireCursor: createEntry("fire-cursor", ["fire-cursor"]),
+
+  //carousel,
+  CardSwipeCarousel: createEntry("card-swipe-carousel", [
+    "card-swipe-carousel",
+  ]),
+  perspectiveCarousel: createEntry("perspective-carousel", [
+    "perspective-carousel",
+  ]),
 } as const;
 
 export type ComponentName = keyof typeof Index;

@@ -216,7 +216,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "./src/components/nurui/animated-list.tsx",
+          "path": "./src/components/nurui/animated-list-demo.tsx",
           "type": "registry:component"
         },
         {
@@ -413,7 +413,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "./src/components/nurui/backer-background.tsx",
+          "path": "./src/components/nurui/hacker-background.tsx",
           "type": "registry:component"
         }
       ]
@@ -1080,6 +1080,45 @@
       "files": [
         {
           "path": "./src/components/nurui/counter-loader.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+
+    {
+      "name": "card-swipe-carousel",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "lucide-react",
+        "framer-motion",
+        "swiper"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/card-swipe-carousel.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "perspective-carousel",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "lucide-react",
+        "framer-motion",
+        "swiper"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/perspective-carousel.tsx",
           "type": "registry:component"
         }
       ]

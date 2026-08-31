@@ -21,7 +21,7 @@
       ]
     },
     {
-      "name": "neobrutalism-faq",
+      "name": "glassy-faq",
       "type": "registry:component",
       "devDependencies": [],
       "dependencies": ["react-icons"],
@@ -1387,6 +1387,52 @@
         },
         {
           "path": "./src/components/nurui/counter-loader.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "card-swipe-carousel",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "lucide-react",
+        "framer-motion",
+        "swiper"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/card-swipe-carousel-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/card-swipe-carousel.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "perspective-carousel",
+      "type": "registry:component",
+      "devDependencies": [],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "lucide-react",
+        "framer-motion",
+        "swiper"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "./src/components/nurui/perspective-carousel-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "./src/components/nurui/perspective-carousel.tsx",
           "type": "registry:component"
         }
       ]

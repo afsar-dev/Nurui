@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card-swipe-carousel",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "lucide-react",
+    "framer-motion",
+    "swiper"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "src/components/nurui/card-swipe-carousel-demo.tsx",
+      "content": "\"use client\";\r\nimport CardSwipeCarousel from \"./card-swipe-carousel\";\r\n\r\nconst CardSwipeCarouselDemo = () => {\r\n  const images = [\r\n    {\r\n      src: \"/carousel/swipe-card-4.jpeg\",\r\n      alt: \"Some illustrations by my fav AarzooAly\",\r\n    },\r\n    {\r\n      src: \"/carousel/swipe-card-2.jpeg\",\r\n      alt: \"Illustrations by my fav AarzooAly\",\r\n    },\r\n    {\r\n      src: \"/carousel/swipe-card-3.jpeg\",\r\n      alt: \"Illustrations by my fav AarzooAly\",\r\n    },\r\n    {\r\n      src: \"/carousel/swipe-card-5.jpg\",\r\n      alt: \"Illustrations by my fav AarzooAly\",\r\n    },\r\n    {\r\n      src: \"/carousel/swipe-card-2.jpeg\",\r\n      alt: \"Illustrations by my fav AarzooAly\",\r\n    },\r\n    {\r\n      src: \"/carousel/swipe-card-4.jpeg\",\r\n      alt: \"Illustrations by my fav AarzooAly\",\r\n    },\r\n    {\r\n      src: \"/carousel/swipe-card-2.jpeg\",\r\n      alt: \"Illustrations by my fav AarzooAly\",\r\n    },\r\n    {\r\n      src: \"/carousel/swipe-card-3.jpeg\",\r\n      alt: \"Illustrations by my fav AarzooAly\",\r\n    },\r\n    {\r\n      src: \"/carousel/swipe-card-5.jpg\",\r\n      alt: \"Illustrations by my fav AarzooAly\",\r\n    },\r\n    {\r\n      src: \"/carousel/swipe-card-6.jpg\",\r\n      alt: \"Illustrations by my fav AarzooAly\",\r\n    },\r\n  ];\r\n\r\n  return (\r\n    <div className=\"flex h-full w-full items-center justify-center overflow-hidden \">\r\n      <CardSwipeCarousel className=\"\" images={images} loop />\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default CardSwipeCarouselDemo;\r\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/components/nurui/card-swipe-carousel.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\r\nimport { motion } from \"framer-motion\";\r\nimport { ChevronLeftIcon, ChevronRightIcon } from \"lucide-react\";\r\nimport \"swiper/css\";\r\nimport \"swiper/css/effect-cards\";\r\nimport \"swiper/css/navigation\";\r\nimport \"swiper/css/pagination\";\r\nimport { Autoplay, EffectCards, Navigation, Pagination } from \"swiper/modules\";\r\nimport { Swiper, SwiperSlide } from \"swiper/react\";\r\n\r\nconst CardSwipeCarousel = ({\r\n  images,\r\n  className,\r\n  showPagination = false,\r\n  showNavigation = false,\r\n  loop = true,\r\n  autoplay = false,\r\n  spaceBetween = 40,\r\n}: {\r\n  images: { src: string; alt: string }[];\r\n  className?: string;\r\n  showPagination?: boolean;\r\n  showNavigation?: boolean;\r\n  loop?: boolean;\r\n  autoplay?: boolean;\r\n  spaceBetween?: number;\r\n}) => {\r\n  const css = `\r\n  .Carousal_002 {\r\n    padding-bottom: 50px !important;\r\n  }\r\n  `;\r\n  return (\r\n    <motion.div\r\n      initial={{ opacity: 0, translateY: 20 }}\r\n      animate={{ opacity: 1, translateY: 0 }}\r\n      transition={{\r\n        duration: 0.3,\r\n        delay: 0.5,\r\n      }}\r\n      className={cn(\"relative w-full max-w-3xl\", className)}\r\n    >\r\n      <style>{css}</style>\r\n\r\n      <Swiper\r\n        spaceBetween={spaceBetween}\r\n        autoplay={\r\n          autoplay\r\n            ? {\r\n                delay: 1000,\r\n                disableOnInteraction: false,\r\n              }\r\n            : false\r\n        }\r\n        effect=\"cards\"\r\n        grabCursor={true}\r\n        loop={loop}\r\n        pagination={\r\n          showPagination\r\n            ? {\r\n                clickable: true,\r\n              }\r\n            : false\r\n        }\r\n        navigation={\r\n          showNavigation\r\n            ? {\r\n                nextEl: \".swiper-button-next\",\r\n                prevEl: \".swiper-button-prev\",\r\n              }\r\n            : false\r\n        }\r\n        className=\"Carousal_002 h-[380px] w-[260px]\"\r\n        modules={[EffectCards, Autoplay, Pagination, Navigation]}\r\n      >\r\n        {images.map((image, index) => (\r\n          <SwiperSlide key={index} className=\"rounded-3xl\">\r\n            <img\r\n              className=\"h-full w-full object-cover\"\r\n              src={image.src}\r\n              alt={image.alt}\r\n            />\r\n          </SwiperSlide>\r\n        ))}\r\n        {showNavigation && (\r\n          <div>\r\n            <div className=\"swiper-button-next after:hidden\">\r\n              <ChevronRightIcon className=\"h-6 w-6 text-white\" />\r\n            </div>\r\n            <div className=\"swiper-button-prev after:hidden\">\r\n              <ChevronLeftIcon className=\"h-6 w-6 text-white\" />\r\n            </div>\r\n          </div>\r\n        )}\r\n      </Swiper>\r\n    </motion.div>\r\n  );\r\n};\r\n\r\nexport default CardSwipeCarousel;\r\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

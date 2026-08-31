@@ -11,6 +11,7 @@ import { SiApacherocketmq } from "react-icons/si";
 import {
   TbBackground,
   TbCards,
+  TbCarouselHorizontal,
   TbComponents,
   TbHandClick,
   TbLayoutNavbarCollapse,
@@ -100,6 +101,15 @@ export const navigation = [
       { name: "gradient", href: `${baseUrl}/gradient-background` },
       { name: "hacker", href: `${baseUrl}/hacker-background` },
       { name: "neural", href: `${baseUrl}/neural-background` },
+    ],
+  },
+  // carousel
+  {
+    icon: <TbCarouselHorizontal />,
+    title: "Carousel",
+    submenu: [
+      { name: "Card Swipe", href: `${baseUrl}/card-swipe-carousel` },
+      { name: "Perspective", href: `${baseUrl}/perspective-carousel` },
     ],
   },
   // buttons
