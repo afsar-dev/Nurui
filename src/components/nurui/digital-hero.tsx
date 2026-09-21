@@ -43,6 +43,8 @@ export default function DigitalHero() {
       }
     };
 
+    let animationId: number;
+
     const animateParticles = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -62,7 +64,7 @@ export default function DigitalHero() {
         if (p.y < 0) p.y = canvas.height;
       }
 
-      requestAnimationFrame(animateParticles);
+      animationId = requestAnimationFrame(animateParticles);
     };
 
     createParticles();
@@ -77,6 +79,7 @@ export default function DigitalHero() {
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      cancelAnimationFrame(animationId);
     };
   }, []);
 

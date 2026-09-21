@@ -24,39 +24,13 @@ description: "A stylish spotlight-hero component for modern UIs, built with acce
 
 <Step>Install dependencies</Step>
 
-<Cli
-  dependencies={[
-    {
-      label: "npm",
-      command: "npm i lucide-react @radix-ui/react-slot class-variance-authority clsx tailwind-merge",
-    },
-    {
-      label: "pnpm",
-      command: "pnpm add lucide-react @radix-ui/react-slot class-variance-authority clsx tailwind-merge",
-    },
-    {
-      label: "bun",
-      command: "bun add lucide-react @radix-ui/react-slot class-variance-authority clsx tailwind-merge",
-    },
-    {
-      label: "yarn",
-      command: "yarn add lucide-react @radix-ui/react-slot class-variance-authority clsx tailwind-merge",
-    },
-  ]}
-/>
+<Cli isManual />
 
 <Step>Add util file</Step>
 
 `lib/utils.ts`
 
-<CodeBlock 
-code={`import { ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}`
-}/>
+<CodeBlock snippetKey="utils-ts" />
 
 <Step>Copy and paste the following code into your project.</Step>
 
@@ -80,4 +54,4 @@ export function cn(...inputs: ClassValue[]) {
 
 | Prop       | Type | Default | Description                               |
 | ---------- | ---- | ------- | ----------------------------------------- |
-| *No props* | –    | –       | This component does not accept any props. |
+| _No props_ | –    | –       | This component does not accept any props. |

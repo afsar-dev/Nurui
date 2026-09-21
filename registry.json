@@ -21,7 +21,7 @@
       ]
     },
     {
-      "name": "neobrutalism-faq",
+      "name": "glassy-faq",
       "type": "registry:component",
       "devDependencies": [],
       "dependencies": ["react-icons"],

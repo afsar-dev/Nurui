@@ -24,43 +24,13 @@ description: "A stylish tech-hero component for modern UIs, built with accessibi
 
 <Step>Install dependencies</Step>
 
-<Cli
-  dependencies={[
-    {
-      label: "npm",
-      command:
-        "npm i framer-motion lucide-react @radix-ui/react-slot class-variance-authority clsx tailwind-merge",
-    },
-    {
-      label: "pnpm",
-      command:
-        "pnpm add framer-motion lucide-react @radix-ui/react-slot class-variance-authority clsx tailwind-merge",
-    },
-    {
-      label: "bun",
-      command:
-        "bun add framer-motion lucide-react @radix-ui/react-slot class-variance-authority clsx tailwind-merge",
-    },
-    {
-      label: "yarn",
-      command:
-        "yarn add framer-motion lucide-react @radix-ui/react-slot class-variance-authority clsx tailwind-merge",
-    },
-  ]}
-/>
+<Cli isManual />
 
 <Step>Add util file</Step>
 
 `lib/utils.ts`
 
-<CodeBlock 
-code={`import { ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}`
-}/>
+<CodeBlock snippetKey="utils-ts" />
 
 <Step>Copy and paste the following code into your project.</Step>
 

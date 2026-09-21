@@ -284,6 +284,18 @@ const Gravity = forwardRef<GravityRef, GravityProps>(
       });
 
       const mouse = Mouse.create(render.current.canvas);
+
+      // Prevent Matter.js from hijacking the scroll / mousewheel events on the canvas,
+      // which blocks normal page scrolling when hovering over the container.
+      const preventHijack = (e: Event) => {
+        e.stopImmediatePropagation();
+      };
+      if (render.current.canvas) {
+        render.current.canvas.addEventListener("wheel", preventHijack, { capture: true });
+        render.current.canvas.addEventListener("mousewheel", preventHijack, { capture: true });
+        render.current.canvas.addEventListener("DOMMouseScroll", preventHijack, { capture: true });
+      }
+
       mouseConstraint.current = MouseConstraint.create(engine.current, {
         mouse: mouse,
         constraint: {

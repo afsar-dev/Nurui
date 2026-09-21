@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "jump-background",
-  "type": "registry:component",
   "dependencies": [
     "clsx",
     "tailwind-merge",
@@ -20,5 +19,6 @@
       "content": "\"use client\";\n\nimport type React from \"react\";\nimport { useMemo, type HTMLAttributes } from \"react\";\nimport { motion } from \"motion/react\";\nimport { cn } from \"@/lib/utils\";\n\ninterface JumpsBackgroundProps extends HTMLAttributes<HTMLDivElement> {\n  children: React.ReactNode;\n  speed?: number;\n  color?: string;\n  height?: number;\n  line?: number;\n}\n\nconst WarpLine = ({\n  angle,\n  delay,\n  color,\n  height,\n  duration,\n}: {\n  angle: number;\n  delay: number;\n  color: string;\n  height: number;\n  duration: number;\n}) => {\n  return (\n    <motion.div\n      className=\"absolute\"\n      style={{\n        left: \"50%\",\n        top: \"50%\",\n        transformOrigin: \"0 50%\",\n        transform: `rotate(${angle}deg)`,\n        width: \"0px\",\n        height: `${height}px`,\n        background: `linear-gradient(to right, transparent, ${color}, transparent)`,\n      }}\n      initial={{\n        width: \"0px\",\n        opacity: 0,\n      }}\n      animate={{\n        width: \"200vw\",\n        opacity: [0, 0.5, 0],\n      }}\n      transition={{\n        duration,\n        delay,\n        repeat: Number.POSITIVE_INFINITY,\n        ease: \"easeOut\",\n      }}\n    />\n  );\n};\n\nexport const JumpsBackground: React.FC<JumpsBackgroundProps> = ({\n  children,\n  className,\n  speed = 1,\n  height = 1,\n  color = \"#3ca2fa\",\n  line = 50,\n  ...props\n}) => {\n  const warpLines = useMemo(() => {\n    return Array.from({ length: line }, (_, i) => ({\n      id: i,\n      angle: (360 / line) * i + Math.random(),\n      delay: Math.random() * speed * 2,\n      duration: speed * 2 + Math.random(),\n    }));\n  }, [speed, line]);\n\n  return (\n    <div className={cn(\"relative w-full h-full\", className)} {...props}>\n      {warpLines.map((line) => (\n        <WarpLine\n          key={`line-${line.id}`}\n          angle={line.angle}\n          delay={line.delay}\n          duration={line.duration}\n          color={color}\n          height={height}\n        />\n      ))}\n      <div className=\"relative z-10 p-8\">{children}</div>\n    </div>\n  );\n};\n",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

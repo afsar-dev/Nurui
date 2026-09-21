@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "digital-hero",
-  "type": "registry:component",
   "dependencies": [],
   "devDependencies": [],
   "registryDependencies": [],
@@ -21,5 +20,6 @@
       "content": ".grow-underline {\n  animation: growUnderline 1.5s ease-in-out forwards;\n}\n\n.scanline {\n  animation: scanlineAnim 4s linear infinite;\n}\n\n@keyframes growUnderline {\n  0% {\n    width: 0%;\n  }\n  100% {\n    width: 100%;\n  }\n}\n\n@keyframes scanlineAnim {\n  0% {\n    transform: translateY(-100vh);\n  }\n  100% {\n    transform: translateY(100vh);\n  }\n}",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

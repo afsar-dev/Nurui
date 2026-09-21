@@ -1,5 +1,10 @@
 "use client";
-import { type HTMLAttributes, useEffect, useState } from "react";
+import {
+  type CSSProperties,
+  type HTMLAttributes,
+  useEffect,
+  useState,
+} from "react";
 import { X } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -123,21 +128,18 @@ const maskImage =
   "linear-gradient(to bottom,white,transparent), radial-gradient(circle at top center, white, transparent)";
 
 function flow({ colors }: { colors: string[] }) {
+  const flowBannerStyle: CSSProperties = {
+    maskImage,
+    maskComposite: "intersect",
+    animation: "fd-moving-banner 20s linear infinite",
+    backgroundImage: `repeating-linear-gradient(70deg, ${[...colors, colors[0]].map((color, i) => `${color} ${(i * 50) / colors.length}%`).join(", ")})`,
+    backgroundSize: "200% 100%",
+    filter: "saturate(2)",
+  };
+
   return (
     <>
-      <div
-        className="absolute inset-0 z-[-1]"
-        style={
-          {
-            maskImage,
-            maskComposite: "intersect",
-            animation: "fd-moving-banner 20s linear infinite",
-            backgroundImage: `repeating-linear-gradient(70deg, ${[...colors, colors[0]].map((color, i) => `${color} ${(i * 50) / colors.length}%`).join(", ")})`,
-            backgroundSize: "200% 100%",
-            filter: "saturate(2)",
-          } as object
-        }
-      />
+      <div className="absolute inset-0 z-[-1]" style={flowBannerStyle} />
       <style>
         {`@keyframes fd-moving-banner {
             from { background-position: 0% 0;  }

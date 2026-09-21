@@ -230,7 +230,7 @@ export const ProjectShowCase = ({
                         rotate: randomRotateY()
                       }}
                       transition={{ duration: 0.4, ease: "easeInOut" }}
-                      className="absolute inset-0 origin-bottom"
+                      className="absolute inset-0 origin-bottom z-[]"
                     >
                       <ImageContainer
                         src={testimonial.src}

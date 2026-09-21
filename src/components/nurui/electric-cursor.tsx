@@ -57,6 +57,8 @@ const ElectricCursor: React.FC = () => {
       }
     }
 
+    let animationId: number;
+
     const animate = (): void => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -68,7 +70,7 @@ const ElectricCursor: React.FC = () => {
         }
       }
 
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
     };
 
     const onMove = (e: MouseEvent): void => {
@@ -82,6 +84,7 @@ const ElectricCursor: React.FC = () => {
 
     return () => {
       window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(animationId);
     };
   }, []);
 

@@ -26,33 +26,7 @@ description: "A stylish digital-hero component for modern UIs, built with access
 
 Add the following animations to your `globals.css` or others file.
 
-<CodeBlock isLanguage={false} code={`
-.grow-underline {
-  animation: growUnderline 1.5s ease-in-out forwards;
-}
-
-.scanline {
-  animation: scanlineAnim 4s linear infinite;
-}
-
-@keyframes growUnderline {
-  0% {
-    width: 0%;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
-@keyframes scanlineAnim {
-  0% {
-    transform: translateY(-100vh);
-  }
-  100% {
-    transform: translateY(100vh);
-  }
-}
-`}/>
+<CodeBlock isLanguage={false} snippetKey="digital-hero-css" />
 
 <Step>Copy and paste the following code into your project.</Step>
 
@@ -72,4 +46,4 @@ Add the following animations to your `globals.css` or others file.
 
 | Prop       | Type | Default | Description                               |
 | ---------- | ---- | ------- | ----------------------------------------- |
-| *No props* | –    | –       | This component does not accept any props. |
+| _No props_ | –    | –       | This component does not accept any props. |

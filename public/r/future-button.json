@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "future-button",
-  "type": "registry:component",
   "dependencies": [
     "class-variance-authority",
     "clsx",
@@ -26,5 +25,6 @@
       "content": "import { useRef, useEffect } from \"react\";\nimport { twMerge } from \"tailwind-merge\";\nimport { type Paths, setupSvgRenderer } from \"@left4code/svg-renderer\";\n\nfunction Frame({\n  className,\n  paths,\n  enableBackdropBlur,\n  enableViewBox,\n  ...props\n}: {\n  paths: Paths;\n  enableBackdropBlur?: boolean;\n  enableViewBox?: boolean;\n} & React.ComponentProps<\"svg\">) {\n  const svgRef = useRef<SVGSVGElement | null>(null);\n\n  useEffect(() => {\n    if (svgRef.current && svgRef.current.parentElement) {\n      const instance = setupSvgRenderer({\n        el: svgRef.current,\n        paths,\n        enableBackdropBlur,\n        enableViewBox,\n      });\n\n      return () => instance.destroy();\n    }\n  }, [paths, enableViewBox, enableBackdropBlur]);\n\n  return (\n    <svg\n      {...props}\n      className={twMerge([\"absolute inset-0 size-full\", className])}\n      xmlns=\"http://www.w3.org/2000/svg\"\n      ref={svgRef}\n    />\n  );\n}\n\nexport { Frame };\n",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

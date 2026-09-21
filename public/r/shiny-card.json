@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "shiny-card",
-  "type": "registry:component",
   "dependencies": [
     "react-icons"
   ],
@@ -23,5 +22,6 @@
       "content": ".shiny-card {\n  --white: hsl(0, 0%, 100%);\n  --black: hsl(240, 15%, 9%);\n  --paragraph: hsl(0, 0%, 83%);\n  --line: hsl(240, 9%, 17%);\n  --primary: var(--primary-color);\n  gap: 1rem;\n  padding: 1rem;\n  background-color: hsla(240, 15%, 9%, 1);\n  background-image:\n    radial-gradient(at 88% 40%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),\n    radial-gradient(at 49% 30%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),\n    radial-gradient(at 14% 26%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),\n    radial-gradient(at 0% 64%, hsl(189, 99%, 26%) 0px, transparent 85%),\n    radial-gradient(at 41% 94%, hsl(189, 97%, 36%) 0px, transparent 85%),\n    radial-gradient(at 100% 99%, hsl(188, 94%, 13%) 0px, transparent 85%);\n\n  border-radius: 1rem;\n  box-shadow: 0px -16px 24px 0px rgba(255, 255, 255, 0.25) inset;\n\n  border: 2px solid var(--primary);\n  animation: border-color-change 3s linear infinite;\n}\n\n@keyframes border-color-change {\n  0% {\n    border-color: var(--primary);\n  }\n\n  50% {\n    border-color: var(--line);\n  }\n\n  100% {\n    border-color: var(--primary);\n  }\n}\n",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

@@ -21,10 +21,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
-          cache: "yarn"
+          # cache: "yarn"
 
+      - name: Enable Corepack 
+        run: corepack enable
+  
+      - name: Install Yarn from packageManager 
+        run: corepack install
+  
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --immutable
 
       - name: Run lint
         run: yarn lint
@@ -46,10 +52,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
-          cache: "yarn"
+          # cache: "yarn"
 
+      - name: Enable Corepack 
+        run: corepack enable
+  
+      - name: Install Yarn from packageManager 
+        run: corepack install
+  
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --immutable
 
       - name: Build the app
         run: yarn build

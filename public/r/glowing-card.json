@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "glowing-card",
-  "type": "registry:component",
   "dependencies": [
     "clsx",
     "tailwind-merge"
@@ -19,5 +18,6 @@
       "content": "\"use client\";\nimport { cn } from \"@/lib/utils\";\nimport { useEffect, useState } from \"react\";\n\nexport default function GlowingCard({ className }: { className?: string }) {\n  const [angle, setAngle] = useState(0);\n\n  useEffect(() => {\n    const interval = setInterval(() => {\n      setAngle((prev) => (prev + 1) % 360);\n    }, 10); // smooth rotation\n    return () => clearInterval(interval);\n  }, []);\n\n  return (\n    <div className={cn(\"flex flex-col justify-center items-center\", className)}>\n      <div className=\"relative overflow-hidden w-[min(14.5em,80vmin)] aspect-square rounded-xl grid place-items-center p-2 text-[#ededed] text-center uppercase text-balance text-[clamp(1em,2vw+2vh,2em)]\">\n        I glow :)\n        <div\n          className=\"absolute -inset-4 -z-10 pointer-events-none blur-lg border-[30px] rounded-xl\"\n          style={{\n            borderImage: `conic-gradient(from ${angle}deg, #669900, #99cc33, #ccee66, #006699, #3399cc, #990066, #cc3399, #ff6600, #ff9900, #ffcc00, #669900) 1`,\n            borderStyle: \"solid\",\n          }}\n        />\n      </div>\n    </div>\n  );\n}\n",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

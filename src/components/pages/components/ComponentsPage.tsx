@@ -16,6 +16,7 @@ import { InfoCardDemo } from "@/components/nurui/info-card-demo";
 import WaveCard from "@/components/nurui/wave-card";
 import HackerBackground from "@/components/nurui/hacker-background";
 import AnimatedListDemo from "@/components/nurui/animated-list-demo";
+import { BadgeDemo } from "@/components/nurui/badge-demo";
 
 const ComponentsPage = () => {
   return (
@@ -240,5 +241,17 @@ const featuresComponents = [
     href: "/docs/hacker-background",
     previewComponentName: "hacker-background",
     background: <HackerBackground />,
+  },
+  {
+    name: "Badge",
+    description: "Displays a badge or a component that looks like a badge.",
+    href: "/docs/badge",
+    previewComponentName: "badge",
+    className: "col-span-full md:col-span-2 xl:col-span-1",
+    background: (
+      <div className="absolute -top-6 h-[400px] w-full scale-75 transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)]">
+        <BadgeDemo />
+      </div>
+    ),
   },
 ];

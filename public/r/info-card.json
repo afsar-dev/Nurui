@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "info-card",
-  "type": "registry:component",
   "dependencies": [
     "clsx",
     "tailwind-merge"
@@ -24,5 +23,6 @@
       "content": "@import \"tw-animate-css\";\n\n:root {\n  --border-color-1: #ff5613;\n  --border-color-2: #9f4eff;\n  --border-color-3: #2196f3;\n  --border-bg-color: #f5f5f5;\n  --card-bg-color: #fff;\n  --shadow-color: #e0e0e0;\n  --text-color: #242424;\n  --hover-text-color-1: #000;\n  --hover-text-color-2: #fff;\n  --hover-text-color-3: #fff;\n  --font-family: \"Roboto Mono\", monospace;\n  --rtl-font-family: \"Montserrat\", sans-serif;\n  --pattern-color1: rgba(200, 200, 200, 0.1);\n  --pattern-color2: rgba(220, 220, 220, 0.1);\n}\n\n.dark {\n  --border-color-1: #daff3e;\n  --border-color-2: #9f4eff;\n  --border-color-3: #2196f3;\n  --border-bg-color: #242424;\n  --card-bg-color: #000;\n  --shadow-color: #242424;\n  --text-color: #f5f5f5;\n  --hover-text-color-1: #242424;\n  --hover-text-color-2: #000;\n  --hover-text-color-3: #242424;\n  --font-family: \"Roboto Mono\", monospace;\n  --rtl-font-family: \"Montserrat\", sans-serif;\n  --pattern-color1: rgba(230, 230, 230, 0.15);\n  --pattern-color2: rgba(240, 240, 240, 0.15);\n}\n",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "wave-card",
-  "type": "registry:component",
   "dependencies": [
     "tw-animate-css"
   ],
@@ -23,5 +22,6 @@
       "content": "@import \"tw-animate-css\";\n\n@keyframes float {\n  0%, 100% {\n    transform: translateY(0);\n  }\n  50% {\n    transform: translateY(-10px);\n  }\n}\n\n@keyframes dataStream {\n  0% {\n    stroke-dashoffset: 20;\n  }\n  100% {\n    stroke-dashoffset: 0;\n  }\n}\n\n@keyframes schemaPulse {\n  0%, 100% {\n    transform: scale(1);\n    opacity: 0.8;\n  }\n  50% {\n    transform: scale(1.02);\n    opacity: 1;\n  }\n}",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

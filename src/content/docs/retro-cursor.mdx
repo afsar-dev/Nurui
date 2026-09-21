@@ -24,61 +24,13 @@ description: "A stylish following retro cursor component for modern UIs, built w
 
 <Step>Install dependencies</Step>
 
-<Cli
-  dependencies={[
-    {
-      label: "npm",
-      command:
-        "npm i clsx framer-motion",
-    },
-    {
-      label: "pnpm",
-      command:
-        "pnpm add clsx framer-motion",
-    },
-    {
-      label: "bun",
-      command:
-        "bun add clsx framer-motion",
-    },
-    {
-      label: "yarn",
-      command:
-        "yarn add clsx framer-motion",
-    },
-  ]}
-/>
+<Cli isManual />
 
 <Step>Add util file</Step>
 
 `utils/use-mouse-position`
 
-<CodeBlock 
-code={`
-import { useState, useEffect } from "react";
-
-export function useMousePosition() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-useEffect(() => {
-if (typeof window === "undefined") return;
-
-    const updateMousePosition = (ev: MouseEvent) => {
-      setMousePosition({ x: ev.clientX, y: ev.clientY });
-    };
-
-    window.addEventListener("mousemove", updateMousePosition);
-
-    return () => {
-      window.removeEventListener("mousemove", updateMousePosition);
-    };
-
-}, []);
-
-return mousePosition;
-}
-`
-}/>
+<CodeBlock snippetKey="use-mouse-position-ts" />
 
 <Step>Copy and paste the following code into your project.</Step>
 

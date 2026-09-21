@@ -1,24 +1,23 @@
 "use client";
+import BunIcon from "@/components/icons/BunIcon";
+import NpmIcon from "@/components/icons/NpmIcon";
+import PnpmIcon from "@/components/icons/PnpmIcon";
+import YarnIcon from "@/components/icons/YarnIcon";
+import { cliDependenciesMap, CliDependency } from "@/registry/cli-dependencies";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
   Snippet,
-  SnippetHeader,
-  SnippetTabsTrigger,
-  SnippetTabsList,
   SnippetCopyButton,
+  SnippetHeader,
   SnippetTabsContent,
+  SnippetTabsList,
+  SnippetTabsTrigger,
 } from "./Snippet";
-import PnpmIcon from "@/components/icons/PnpmIcon";
-import NpmIcon from "@/components/icons/NpmIcon";
-import YarnIcon from "@/components/icons/YarnIcon";
-import BunIcon from "@/components/icons/BunIcon";
-import { usePathname } from "next/navigation";
 
 interface IDependencies {
-  dependencies: {
-    label: string;
-    command: string;
-  }[];
+  dependencies?: CliDependency[];
+  isManual?: boolean;
 }
 
 const commands = [
@@ -44,11 +43,20 @@ const commands = [
   },
 ];
 
-const Cli: React.FC<IDependencies> = ({ dependencies }) => {
+const Cli: React.FC<IDependencies> = ({ dependencies, isManual = false }) => {
+  console.log("Cli dependencies:", dependencies);
   const [value, setValue] = useState(commands[0].label);
-  const activeCommand = commands?.find((command) => command.label === value);
-  const dependencieCommand = dependencies?.find((dep) => dep.label === value);
-  const componentName = usePathname().split("/");
+  const pathname = usePathname();
+  const slug = pathname.split("/").at(-1) ?? "";
+
+  const resolvedDeps = isManual
+    ? dependencies?.length
+      ? dependencies
+      : cliDependenciesMap[slug]
+    : undefined;
+
+  const activeCommand = commands.find((c) => c.label === value);
+  const dependencyCommand = resolvedDeps?.find((dep) => dep.label === value);
 
   return (
     <Snippet value={value} onValueChange={setValue} className="w-full">
@@ -69,28 +77,25 @@ const Cli: React.FC<IDependencies> = ({ dependencies }) => {
             </SnippetTabsTrigger>
           ))}
         </SnippetTabsList>
-        {dependencies?.length ? (
-          <SnippetCopyButton value={dependencieCommand?.command ?? ""} />
+
+        {resolvedDeps?.length ? (
+          <SnippetCopyButton value={dependencyCommand?.command ?? ""} />
         ) : (
           <SnippetCopyButton
-            value={
-              activeCommand?.code.concat(
-                " ",
-                componentName[componentName.length - 1],
-              ) ?? ""
-            }
+            value={activeCommand?.code.concat(" ", slug) ?? ""}
           />
         )}
       </SnippetHeader>
-      {dependencies?.length
-        ? dependencies.map((dep) => (
+
+      {resolvedDeps?.length
+        ? resolvedDeps.map((dep) => (
             <SnippetTabsContent key={dep.label} value={dep.label}>
               {dep.command}
             </SnippetTabsContent>
           ))
         : commands.map((command) => (
             <SnippetTabsContent key={command.label} value={command.label}>
-              {command.code} {componentName[componentName.length - 1]}
+              {command.code} {slug}
             </SnippetTabsContent>
           ))}
     </Snippet>

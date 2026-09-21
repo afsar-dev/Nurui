@@ -2,7 +2,7 @@
 import MenuItem from "@/components/common/MenuItem";
 import { navigation as componentNavigation } from "@/registry/component-navigation";
 import React from "react";
-import { AiOutlineFileSearch } from "react-icons/ai";
+import { AiOutlineFileSearch, AiOutlineAppstore } from "react-icons/ai";
 import { CgMenuRight } from "react-icons/cg";
 import { GrInstallOption } from "react-icons/gr";
 import { SlDocs } from "react-icons/sl";
@@ -71,6 +71,11 @@ const baseNavigation: NavigationItem[] = [
     icon: <TbHandClick />,
     title: "Playground",
     href: "/playground",
+  },
+  {
+    icon: <AiOutlineAppstore />,
+    title: "Showcase",
+    href: "/showcase",
   },
 ];
 

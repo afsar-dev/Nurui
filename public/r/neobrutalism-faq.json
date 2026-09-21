@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "neobrutalism-faq",
-  "type": "registry:component",
   "dependencies": [
     "react-icons"
   ],
@@ -23,5 +22,6 @@
       "content": "import { FC } from \"react\";\nimport { SlArrowDown, SlArrowUp } from \"react-icons/sl\";\n\ninterface PropsType {\n  question: string;\n  answer: string;\n  questionNumber: number;\n  setOpenKey: () => void;\n  openKey: number;\n}\n\nconst QuestionAnswer: FC<PropsType> = ({\n  question,\n  answer,\n  questionNumber,\n  openKey,\n  setOpenKey,\n}) => {\n  return (\n    <div className=\"bg-[var(--primary-color-2)] dark:bg-[var(--primary-color-4)] rounded-xl \">\n      <div\n        className=\"flex items-center justify-between gap-1 pl-2 lg:pl-6 pr-4 py-6 border border-[var(--primary-color)] rounded-xl cursor-pointer\"\n        onClick={() => setOpenKey()}\n      >\n        <h6 className=\"lg:text-lg font-semibold\">\n          <span>{questionNumber}</span>. <span>{question}</span>\n        </h6>\n        <button>\n          {openKey === questionNumber ? (\n            <SlArrowDown className=\"cursor-pointer text-[var(--primary-color)]\" />\n          ) : (\n            <SlArrowUp className=\"cursor-pointer text-[var(--primary-color)]\" />\n          )}\n        </button>\n      </div>\n      {openKey === questionNumber && (\n        <p className=\"p-2 lg:p-5 text-[17px] leading-relaxed text-[var(--opacity-text-color)] text-balance lg:text-pretty\">\n          {answer}\n        </p>\n      )}\n    </div>\n  );\n};\n\nexport default QuestionAnswer;\n",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

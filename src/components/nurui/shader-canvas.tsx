@@ -74,7 +74,9 @@ export const ShaderCanvas = () => {
       gl.shaderSource(shader, source);
       gl.compileShader(shader);
       if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        throw new Error(gl.getShaderInfoLog(shader) || "Shader compilation error");
+        throw new Error(
+          gl.getShaderInfoLog(shader) || "Shader compilation error",
+        );
       }
       return shader;
     };
@@ -83,7 +85,10 @@ export const ShaderCanvas = () => {
     if (!program) throw new Error("Could not create program");
 
     const vertexShader = compileShader(gl.VERTEX_SHADER, vertexShaderSource);
-    const fragmentShader = compileShader(gl.FRAGMENT_SHADER, fragmentShaderSource);
+    const fragmentShader = compileShader(
+      gl.FRAGMENT_SHADER,
+      fragmentShaderSource,
+    );
 
     gl.attachShader(program, vertexShader);
     gl.attachShader(program, fragmentShader);
@@ -96,7 +101,7 @@ export const ShaderCanvas = () => {
     gl.bufferData(
       gl.ARRAY_BUFFER,
       new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]),
-      gl.STATIC_DRAW
+      gl.STATIC_DRAW,
     );
 
     const aPosition = gl.getAttribLocation(program, "aPosition");
@@ -109,11 +114,13 @@ export const ShaderCanvas = () => {
     gl.clearColor(0, 0, 0, 0); // Fully transparent
     gl.clear(gl.COLOR_BUFFER_BIT);
 
+    let animationId: number;
+
     const render = (time: number) => {
       gl.uniform1f(iTimeLoc, time * 0.001);
       gl.uniform2f(iResLoc, canvas.width, canvas.height);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
-      requestAnimationFrame(render);
+      animationId = requestAnimationFrame(render);
     };
 
     const handleResize = () => {
@@ -124,10 +131,11 @@ export const ShaderCanvas = () => {
 
     handleResize();
     window.addEventListener("resize", handleResize);
-    requestAnimationFrame(render);
+    animationId = requestAnimationFrame(render);
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      cancelAnimationFrame(animationId);
     };
   }, []);
 

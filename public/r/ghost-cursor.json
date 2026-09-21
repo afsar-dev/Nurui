@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "ghost-cursor",
-  "type": "registry:component",
   "dependencies": [],
   "devDependencies": [],
   "registryDependencies": [],
@@ -16,5 +15,6 @@
       "content": "\"use client\";\nimport React, { useRef, useEffect } from \"react\";\n\nconst GhostTrailCursor = () => {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n  // Define a Particle type to avoid using 'any'\n  type ParticleType = {\n    x: number;\n    y: number;\n    radius: number;\n    alpha: number;\n    color: string;\n    draw: () => void;\n    update: () => void;\n  };\n\n  useEffect(() => {\n    // Move particles array inside useEffect to avoid dependency warning\n    const particles: ParticleType[] = [];\n\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    const resize = () => {\n      canvas.width = window.innerWidth;\n      canvas.height = window.innerHeight;\n    };\n\n    resize();\n    window.addEventListener(\"resize\", resize);\n\n    class Particle {\n      x: number;\n      y: number;\n      radius: number;\n      alpha: number;\n      color: string;\n\n      constructor(x: number, y: number) {\n        this.x = x;\n        this.y = y;\n        this.radius = Math.random() * 6 + 2;\n        this.alpha = 1;\n        this.color = \"255, 255, 255\";\n      }\n\n      draw() {\n        if (!ctx) return;\n        ctx.beginPath();\n        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);\n        ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;\n        ctx.fill();\n      }\n\n      update() {\n        this.alpha -= 0.02;\n      }\n    }\n\n    const animate = () => {\n      ctx.clearRect(0, 0, canvas.width, canvas.height);\n      particles.forEach((p, index) => {\n        p.update();\n        p.draw();\n        if (p.alpha <= 0) particles.splice(index, 1);\n      });\n      requestAnimationFrame(animate);\n    };\n    animate();\n\n    const onMove = (e: MouseEvent) => {\n      particles.push(new Particle(e.clientX, e.clientY));\n    };\n\n    window.addEventListener(\"mousemove\", onMove);\n\n    return () => {\n      window.removeEventListener(\"mousemove\", onMove);\n      window.removeEventListener(\"resize\", resize);\n    };\n  }, []);\n\n  return (\n    <canvas\n      ref={canvasRef}\n      className=\"fixed top-0 left-0 w-full h-full pointer-events-none z-50\"\n    />\n  );\n};\n\nexport default GhostTrailCursor;\n",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

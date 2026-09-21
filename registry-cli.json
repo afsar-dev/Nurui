@@ -216,7 +216,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "./src/components/nurui/animated-list.tsx",
+          "path": "./src/components/nurui/animated-list-demo.tsx",
           "type": "registry:component"
         },
         {
@@ -413,7 +413,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "./src/components/nurui/backer-background.tsx",
+          "path": "./src/components/nurui/hacker-background.tsx",
           "type": "registry:component"
         }
       ]

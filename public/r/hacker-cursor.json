@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "hacker-cursor",
-  "type": "registry:component",
   "dependencies": [],
   "devDependencies": [],
   "registryDependencies": [],
@@ -16,5 +15,6 @@
       "content": "\"use client\";\nimport React, { useRef, useEffect } from \"react\";\n\ninterface CursorTrailProps {\n  trailColor?: string;\n  dotSize?: number;\n  fadeDuration?: number;\n  className?: string;\n}\n\nconst HackerCursor: React.FC<CursorTrailProps> = ({\n  trailColor = \"#D0FBB6\",\n  dotSize = 4,\n  fadeDuration = 600,\n  className = \"fixed inset-0 w-full h-full pointer-events-none z-50\",\n}) => {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n\n  useEffect(() => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    const resizeCanvas = () => {\n      canvas.width = window.innerWidth;\n      canvas.height = window.innerHeight;\n    };\n\n    resizeCanvas();\n    window.addEventListener(\"resize\", resizeCanvas);\n\n    const hexToRGB = (hex: string) => {\n      const num = parseInt(hex.replace(\"#\", \"\"), 16);\n      return {\n        r: (num >> 16) & 255,\n        g: (num >> 8) & 255,\n        b: num & 255,\n      };\n    };\n\n    const { r, g, b } = hexToRGB(trailColor);\n\n    const paintDot = (x: number, y: number) => {\n      ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 1)`;\n      ctx.fillRect(x, y, dotSize, dotSize);\n    };\n\n    let lastTime = performance.now();\n\n    const fade = () => {\n      const now = performance.now();\n      const delta = now - lastTime;\n      lastTime = now;\n\n      const fadeAlpha = delta / fadeDuration;\n\n      ctx.fillStyle = `rgba(0, 0, 0, ${fadeAlpha})`;\n      ctx.globalCompositeOperation = \"destination-out\";\n      ctx.fillRect(0, 0, canvas.width, canvas.height);\n      ctx.globalCompositeOperation = \"source-over\";\n\n      requestAnimationFrame(fade);\n    };\n\n    requestAnimationFrame(fade);\n\n    const handleMouseMove = (e: MouseEvent) => {\n      const x = Math.floor(e.clientX / dotSize) * dotSize;\n      const y = Math.floor(e.clientY / dotSize) * dotSize;\n      paintDot(x, y);\n    };\n\n    window.addEventListener(\"mousemove\", handleMouseMove);\n\n    return () => {\n      window.removeEventListener(\"mousemove\", handleMouseMove);\n      window.removeEventListener(\"resize\", resizeCanvas);\n    };\n  }, [trailColor, dotSize, fadeDuration]);\n\n  return <canvas ref={canvasRef} className={className} />;\n};\n\nexport default HackerCursor;\n",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

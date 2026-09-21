@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dynamic-card",
-  "type": "registry:component",
   "dependencies": [
     "tw-animate-css"
   ],
@@ -23,5 +22,6 @@
       "content": "/* @import \"tailwindcss\"; */\n@import \"tw-animate-css\";\n\n@keyframes float {\n  0% {\n    transform: translateY(0px);\n  }\n  50% {\n    transform: translateY(-10px);\n  }\n  100% {\n    transform: translateY(0px);\n  }\n}",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

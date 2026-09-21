@@ -24,70 +24,13 @@ description: "A stylish shiny-card component for modern UIs, built with accessib
 
 <Step>Install dependencies</Step>
 
-<Cli
-  dependencies={[
-    {
-      label: "npm",
-      command: "npm i react-icons",
-    },
-    {
-      label: "pnpm",
-      command: "pnpm add react-icons",
-    },
-    {
-      label: "bun",
-      command: "bun add react-icons",
-    },
-    {
-      label: "yarn",
-      command: "yarn add react-icons",
-    },
-  ]}
-/>
+<Cli isManual />
 
 <Step>Add the required CSS animations</Step>
 
 Add the following animations to your `globals.css` or others file.
 
-<CodeBlock isLanguage={false} code={`
-.shiny-card {
-  --white: hsl(0, 0%, 100%);
-  --black: hsl(240, 15%, 9%);
-  --paragraph: hsl(0, 0%, 83%);
-  --line: hsl(240, 9%, 17%);
-  --primary: var(--primary-color);
-  gap: 1rem;
-  padding: 1rem;
-  background-color: hsla(240, 15%, 9%, 1);
-  background-image:
-    radial-gradient(at 88% 40%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
-    radial-gradient(at 49% 30%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
-    radial-gradient(at 14% 26%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
-    radial-gradient(at 0% 64%, hsl(189, 99%, 26%) 0px, transparent 85%),
-    radial-gradient(at 41% 94%, hsl(189, 97%, 36%) 0px, transparent 85%),
-    radial-gradient(at 100% 99%, hsl(188, 94%, 13%) 0px, transparent 85%);
-
-border-radius: 1rem;
-box-shadow: 0px -16px 24px 0px rgba(255, 255, 255, 0.25) inset;
-
-border: 2px solid var(--primary);
-animation: border-color-change 3s linear infinite;
-}
-
-@keyframes border-color-change {
-0% {
-border-color: var(--primary);
-}
-
-50% {
-border-color: var(--line);
-}
-
-100% {
-border-color: var(--primary);
-}
-}
-`}/>
+<CodeBlock isLanguage={false} snippetKey="shiny-card-css" />
 
 <Step>Copy and paste the following code into your project.</Step>
 
